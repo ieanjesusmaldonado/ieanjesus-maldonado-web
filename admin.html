@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Panel Administrativo de IEANJESÚS Maldonado.">
+  <title>Panel Administrativo | IEANJESÚS Maldonado</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Estilos Editoriales -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body style="background-color: var(--bg-cream);">
+
+  <!-- ==========================================
+       1. SECCIÓN DE INICIO DE SESIÓN (LOGIN SEGURO)
+       ========================================== -->
+  <div class="admin-login-wrapper" id="admin-login-section">
+    <div class="admin-login-box">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <span class="editorial-eyebrow" style="margin-bottom: 0.25rem;">ACCESO RESTRINGIDO</span>
+        <h1 style="font-size: 1.5rem; color: var(--ink-primary);">Panel IEANJESÚS</h1>
+        <p style="font-size: 0.85rem; color: var(--ink-secondary); margin-top: 0.35rem;">
+          Acceso exclusivo para responsables autorizados de la congregación.
+        </p>
+      </div>
+
+      <form id="admin-login-form">
+        <div class="form-group-editorial" style="margin-bottom: 1rem;">
+          <label class="form-label-editorial" for="admin-email-input">Correo Electrónico</label>
+          <input type="email" id="admin-email-input" class="form-input-editorial" placeholder="ejemplo@ieanjesus.uy" required autocomplete="username">
+        </div>
+
+        <div class="form-group-editorial" style="margin-bottom: 1.25rem;">
+          <label class="form-label-editorial" for="admin-pass-input">Contraseña</label>
+          <input type="password" id="admin-pass-input" class="form-input-editorial" placeholder="Ingrese su contraseña" required autocomplete="current-password">
+        </div>
+
+        <div id="login-error-msg" style="display: none; background: rgba(198, 92, 80, 0.1); border: 1px solid var(--accent-coral); color: var(--accent-coral); padding: 0.6rem; border-radius: var(--radius-xs); font-size: 0.82rem; margin-bottom: 1rem; text-align: center;">
+          Credenciales incorrectas. Intente nuevamente.
+        </div>
+
+        <button type="submit" id="admin-login-submit-btn" class="btn-editorial btn-green-inst" style="width: 100%; padding: 0.75rem; justify-content: center; font-size: 0.88rem;">
+          <i class="fa-solid fa-lock-open"></i> Ingresar al Panel
+        </button>
+
+        <div style="text-align: center; margin-top: 1.5rem;">
+          <a href="index.html" style="font-size: 0.82rem; color: var(--ink-muted); text-decoration: underline;">
+            ← Volver a la página principal
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       2. SECCIÓN DEL DASHBOARD (ADMINISTRACIÓN)
+       ========================================== -->
+  <div id="admin-dashboard-section" style="display: none;">
+    
+    <!-- Barra Superior de Navegación del Panel -->
+    <header class="editorial-header admin-main-header">
+      <div class="container nav-inner admin-nav-inner">
+        <a href="index.html" class="brand-container">
+          <div class="brand-logo-text">
+            <span class="brand-main-title">PANEL IEANJESÚS</span>
+            <span class="brand-sub-tag">/ ADMINISTRACIÓN</span>
+          </div>
+        </a>
+
+        <div class="admin-header-actions" style="display: flex; align-items: center; gap: 0.75rem;">
+          <span id="admin-user-badge" style="font-size: 0.8rem; color: var(--ink-secondary); background: rgba(30,77,56,0.08); padding: 0.35rem 0.7rem; border-radius: var(--radius-xs); display: none;"></span>
+          <a href="index.html" target="_blank" class="btn-editorial btn-outline-editorial">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Ver Web Pública
+          </a>
+          <button id="admin-logout-btn" class="btn-editorial btn-dark">
+            <i class="fa-solid fa-right-from-bracket"></i> Salir
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="container admin-dashboard-layout">
+      
+      <!-- Barra de Acciones y Respaldo -->
+      <div class="admin-top-bar">
+        <div>
+          <span class="editorial-eyebrow">ADMINISTRACIÓN EN VIVO</span>
+          <h2 style="font-size: 1.5rem; color: var(--ink-primary);">Gestor de Contenidos</h2>
+        </div>
+
+        <div class="admin-backup-actions">
+          <button id="admin-export-btn" class="btn-editorial btn-outline-editorial">
+            <i class="fa-solid fa-download"></i> Exportar Copia
+          </button>
+          
+          <label class="btn-editorial btn-outline-editorial" style="cursor: pointer; margin-bottom: 0;">
+            <i class="fa-solid fa-upload"></i> Restaurar Copia
+            <input type="file" id="admin-import-file" accept=".json" style="display: none;">
+          </label>
+
+          <button id="admin-reset-btn" class="btn-editorial btn-outline-editorial" style="color: var(--accent-coral);">
+            <i class="fa-solid fa-rotate-left"></i> Restablecer Oficial
+          </button>
+        </div>
+      </div>
+
+      <!-- Pestañas de Módulos -->
+      <div class="admin-tab-nav">
+        <button class="admin-tab-btn active" data-tab="agenda">
+          <i class="fa-regular fa-calendar-check"></i> 1. Agenda
+        </button>
+        <button class="admin-tab-btn" data-tab="horarios">
+          <i class="fa-regular fa-clock"></i> 2. Horarios
+        </button>
+        <button class="admin-tab-btn" data-tab="celulas">
+          <i class="fa-solid fa-people-roof"></i> 3. Células
+        </button>
+        <button class="admin-tab-btn" data-tab="avisos">
+          <i class="fa-solid fa-bullhorn"></i> 4. Avisos
+        </button>
+        <button class="admin-tab-btn" data-tab="recursos">
+          <i class="fa-solid fa-book-bookmark"></i> 5. Material Gratuito
+        </button>
+        <button class="admin-tab-btn" data-tab="emprendimientos">
+          <i class="fa-solid fa-store"></i> 6. Emprendimientos
+        </button>
+      </div>
+
+      <!-- ==========================================
+           TAB 1: AGENDA
+           ========================================== -->
+      <div class="admin-tab-panel active" id="panel-agenda">
+        <div class="admin-panel-header">
+          <div>
+            <h3 style="font-size: 1.25rem;">Agenda de Actividades</h3>
+            <p style="font-size: 0.85rem; color: var(--ink-secondary);">Administra cultos especiales, reuniones de jóvenes y fechas importantes.</p>
+          </div>
+          <button class="btn-editorial btn-green-inst" id="btn-new-event" style="font-size: 0.82rem; padding: 0.5rem 1rem;">
+            <i class="fa-solid fa-plus"></i> Nuevo Evento
+          </button>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Título</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Categoría</th>
+                <th>Estado</th>
+                <th style="text-align: right;">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="admin-agenda-list">
+              <!-- Llenado dinámico -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           TAB 2: HORARIOS DE TEMPLO
+           ========================================== -->
+      <div class="admin-tab-panel" id="panel-horarios">
+        <div class="admin-panel-header">
+          <div>
+            <h3 style="font-size: 1.25rem;">Horarios de Cultos & Actividades</h3>
+            <p style="font-size: 0.85rem; color: var(--ink-secondary);">Modifica la información, días y horarios de los cultos y actividades (Evangelismo, Jueves y Domingos).</p>
+          </div>
+        </div>
+
+        <div id="admin-horarios-list">
+          <!-- Llenado dinámico -->
+        </div>
+      </div>
+
+      <!-- ==========================================
+           TAB 3: CÉLULAS EN HOGARES
+           ========================================== -->
+      <div class="admin-tab-panel" id="panel-celulas">
+        <div class="admin-panel-header">
+          <div>
+            <h3 style="font-size: 1.25rem;">Red de 8 Células de Hogar</h3>
+            <p style="font-size: 0.85rem; color: var(--ink-secondary);">Edita los días, horarios y barrios de las células en hogares.</p>
+          </div>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Día</th>
+                <th>Hora</th>
+                <th>Barrio / Zona</th>
+                <th>Estado</th>
+                <th style="text-align: right;">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="admin-celulas-list">
+              <!-- Llenado dinámico -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           TAB 4: AVISOS TEMPORALES
+           ========================================== -->
+      <div class="admin-tab-panel" id="panel-avisos">
+        <div class="admin-panel-header">
+          <div>
+            <h3 style="font-size: 1.25rem;">Avisos Temporales</h3>
+            <p style="font-size: 0.85rem; color: var(--ink-secondary);">Publica anuncios que se ocultarán automáticamente al finalizar la fecha indicada.</p>
+          </div>
+          <button class="btn-editorial btn-green-inst" id="btn-new-aviso" style="font-size: 0.82rem; padding: 0.5rem 1rem;">
+            <i class="fa-solid fa-plus"></i> Publicar Aviso
+          </button>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Título</th>
+                <th>Texto del Aviso</th>
+                <th>Vigencia</th>
+                <th>Estado</th>
+                <th style="text-align: right;">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="admin-avisos-list">
+              <!-- Llenado dinámico -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           TAB 5: MATERIAL GRATUITO
+           ========================================== -->
+      <div class="admin-tab-panel" id="panel-recursos">
+        <div class="admin-panel-header">
+          <div>
+            <h3 style="font-size: 1.25rem;">Material Gratuito</h3>
+            <p style="font-size: 0.85rem; color: var(--ink-secondary);">Agrega o edita recursos descargables, enlaces a Google Drive y folletos.</p>
+          </div>
+          <button class="btn-editorial btn-green-inst" id="btn-new-recurso" style="font-size: 0.82rem; padding: 0.5rem 1rem;">
+            <i class="fa-solid fa-plus"></i> Agregar Material
+          </button>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Título</th>
+                <th>Categoría</th>
+                <th>Tipo</th>
+                <th>Estado</th>
+                <th style="text-align: right;">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="admin-recursos-list">
+              <!-- Llenado dinámico -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           TAB 6: EMPRENDIMIENTOS
+           ========================================== -->
+      <div class="admin-tab-panel" id="panel-emprendimientos">
+        <div class="admin-panel-header">
+          <div>
+            <h3 style="font-size: 1.25rem;">Emprendimientos de la Comunidad</h3>
+            <p style="font-size: 0.85rem; color: var(--ink-secondary);">Gestiona los datos y enlaces de contacto de los negocios que apoyan este espacio.</p>
+          </div>
+        </div>
+
+        <div id="admin-biz-list">
+          <!-- Llenado dinámico -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL: FORMULARIO DE EVENTO (AGENDA)
+       ========================================== -->
+  <div class="admin-modal-backdrop" id="admin-event-modal">
+    <div class="admin-modal-card">
+      <button class="modal-close-btn" id="admin-event-modal-close">&times;</button>
+      <span class="editorial-eyebrow">AGENDA</span>
+      <h3 style="font-size: 1.35rem; color: var(--ink-primary); margin-bottom: 1.25rem;" id="admin-event-modal-title">Nuevo Evento</h3>
+
+      <form id="admin-event-form">
+        <input type="hidden" id="evt-id">
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="evt-title">Título de la Actividad *</label>
+          <input type="text" id="evt-title" class="form-input-editorial" placeholder="Ej: Culto Especial de Santa Cena" required>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group-editorial">
+            <label class="form-label-editorial" for="evt-date">Fecha (Año-Mes-Día) *</label>
+            <input type="date" id="evt-date" class="form-input-editorial" required>
+          </div>
+          <div class="form-group-editorial">
+            <label class="form-label-editorial" for="evt-time">Hora *</label>
+            <input type="text" id="evt-time" class="form-input-editorial" placeholder="19:30 hs" required>
+          </div>
+        </div>
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="evt-location">Lugar *</label>
+          <input type="text" id="evt-location" class="form-input-editorial" placeholder="Sede Central (Av. Wilson Ferreira Aldunate & 25 de Agosto)" required>
+        </div>
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="evt-category">Categoría</label>
+          <select id="evt-category" class="form-input-editorial">
+            <option value="Culto especial">Culto especial</option>
+            <option value="Jóvenes">Jóvenes</option>
+            <option value="Célula">Célula</option>
+            <option value="Evangelismo">Evangelismo</option>
+            <option value="Misión">Misión</option>
+            <option value="Convención">Convención</option>
+            <option value="Enseñanza">Enseñanza</option>
+            <option value="Actividad general">Actividad general</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="evt-desc">Descripción</label>
+          <textarea id="evt-desc" class="form-textarea-editorial" rows="3" placeholder="Detalles de la reunión, oradores o indicaciones para los asistentes..."></textarea>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+          <div class="form-group-editorial">
+            <label class="form-label-editorial" for="evt-public">Mostrar públicamente</label>
+            <select id="evt-public" class="form-input-editorial">
+              <option value="true">Sí (Visible en web)</option>
+              <option value="false">No (Oculto)</option>
+            </select>
+          </div>
+          <div class="form-group-editorial">
+            <label class="form-label-editorial" for="evt-featured">Destacar evento</label>
+            <select id="evt-featured" class="form-input-editorial">
+              <option value="false">No</option>
+              <option value="true">Sí (Con borde destacado)</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-editorial btn-green-inst" style="width: 100%; padding: 0.75rem; justify-content: center;">
+          Guardar Cambios
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL: FORMULARIO DE HORARIO
+       ========================================== -->
+  <div class="admin-modal-backdrop" id="admin-horario-modal">
+    <div class="admin-modal-card">
+      <button class="modal-close-btn" id="admin-horario-modal-close">&times;</button>
+      <span class="editorial-eyebrow">HORARIOS</span>
+      <h3 style="font-size: 1.35rem; color: var(--ink-primary); margin-bottom: 1.25rem;">Editar Horario de Culto</h3>
+
+      <form id="admin-horario-form">
+        <input type="hidden" id="sch-id">
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="sch-name">Nombre del Culto</label>
+          <input type="text" id="sch-name" class="form-input-editorial" required>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group-editorial">
+            <label class="form-label-editorial" for="sch-day">Día</label>
+            <input type="text" id="sch-day" class="form-input-editorial" required>
+          </div>
+          <div class="form-group-editorial">
+            <label class="form-label-editorial" for="sch-time">Hora</label>
+            <input type="text" id="sch-time" class="form-input-editorial" required>
+          </div>
+        </div>
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="sch-location">Lugar</label>
+          <input type="text" id="sch-location" class="form-input-editorial" required>
+        </div>
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="sch-short-desc">Descripción Breve (Tarjeta)</label>
+          <input type="text" id="sch-short-desc" class="form-input-editorial" required>
+        </div>
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="sch-full-desc">Descripción Ampliada (Modal)</label>
+          <textarea id="sch-full-desc" class="form-textarea-editorial" rows="3"></textarea>
+        </div>
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="sch-organizer">¿Quién organiza la reunión?</label>
+          <input type="text" id="sch-organizer" class="form-input-editorial">
+        </div>
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="sch-target">¿A quién está dirigida?</label>
+          <input type="text" id="sch-target" class="form-input-editorial">
+        </div>
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="sch-what-to-expect">¿Qué puede esperar una persona al asistir?</label>
+          <textarea id="sch-what-to-expect" class="form-textarea-editorial" rows="2"></textarea>
+        </div>
+
+        <div class="form-group-editorial" style="margin-bottom: 1.5rem;">
+          <label class="form-label-editorial" for="sch-visible">Estado de Visibilidad</label>
+          <select id="sch-visible" class="form-input-editorial">
+            <option value="true">Visible</option>
+            <option value="false">Oculto</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-editorial btn-green-inst" style="width: 100%; padding: 0.75rem; justify-content: center;">
+          Guardar Cambios
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL: FORMULARIO DE CÉLULA
+       ========================================== -->
+  <div class="admin-modal-backdrop" id="admin-celula-modal">
+    <div class="admin-modal-card">
+      <button class="modal-close-btn" id="admin-celula-modal-close">&times;</button>
+      <span class="editorial-eyebrow">CÉLULAS EN HOGARES</span>
+      <h3 style="font-size: 1.35rem; color: var(--ink-primary); margin-bottom: 1.25rem;">Editar Célula</h3>
+
+      <form id="admin-celula-form">
+        <input type="hidden" id="cell-id">
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="cell-name">Nombre de la Célula</label>
+          <input type="text" id="cell-name" class="form-input-editorial" required>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group-editorial">
+            <label class="form-label-editorial" for="cell-day">Día</label>
+            <select id="cell-day" class="form-input-editorial">
+              <option value="Lunes">Lunes</option>
+              <option value="Martes">Martes</option>
+              <option value="Miércoles">Miércoles</option>
+              <option value="Jueves">Jueves</option>
+              <option value="Viernes">Viernes</option>
+              <option value="Sábado">Sábado</option>
+            </select>
+          </div>
+          <div class="form-group-editorial">
+            <label class="form-label-editorial" for="cell-time">Hora</label>
+            <input type="text" id="cell-time" class="form-input-editorial" required>
+          </div>
+        </div>
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="cell-zone">Barrio / Zona</label>
+          <input type="text" id="cell-zone" class="form-input-editorial" required>
+        </div>
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="cell-address">Dirección o Referencia</label>
+          <input type="text" id="cell-address" class="form-input-editorial" required>
+        </div>
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="cell-desc">Descripción Breve</label>
+          <textarea id="cell-desc" class="form-textarea-editorial" rows="2"></textarea>
+        </div>
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="cell-phone">Contacto / WhatsApp Oficial (+598...)</label>
+          <input type="text" id="cell-phone" class="form-input-editorial" placeholder="Ej: +598 91 479 591">
+        </div>
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="cell-whatsapp">Mensaje al tocar Pedir Ubicación (WhatsApp)</label>
+          <input type="text" id="cell-whatsapp" class="form-input-editorial">
+        </div>
+
+        <div class="form-group-editorial" style="margin-bottom: 1.5rem;">
+          <label class="form-label-editorial" for="cell-visible">Estado</label>
+          <select id="cell-visible" class="form-input-editorial">
+            <option value="true">Visible</option>
+            <option value="false">Oculto</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-editorial btn-green-inst" style="width: 100%; padding: 0.75rem; justify-content: center;">
+          Guardar Cambios
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL: FORMULARIO DE AVISO TEMPORAL
+       ========================================== -->
+  <div class="admin-modal-backdrop" id="admin-aviso-modal">
+    <div class="admin-modal-card">
+      <button class="modal-close-btn" id="admin-aviso-modal-close">&times;</button>
+      <span class="editorial-eyebrow">AVISOS TEMPORALES</span>
+      <h3 style="font-size: 1.35rem; color: var(--ink-primary); margin-bottom: 1.25rem;" id="admin-aviso-modal-title">Publicar Aviso</h3>
+
+      <form id="admin-aviso-form">
+        <input type="hidden" id="av-id">
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="av-title">Título (Opcional)</label>
+          <input type="text" id="av-title" class="form-input-editorial" placeholder="Ej: Cambio de Horario, Santa Cena...">
+        </div>
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="av-text">Mensaje del Aviso *</label>
+          <textarea id="av-text" class="form-textarea-editorial" rows="3" placeholder="Texto claro y conciso que se mostrará en el banner superior..." required></textarea>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group-editorial">
+            <label class="form-label-editorial" for="av-start">Fecha de Inicio *</label>
+            <input type="date" id="av-start" class="form-input-editorial" required>
+          </div>
+          <div class="form-group-editorial">
+            <label class="form-label-editorial" for="av-end">Fecha de Finalización *</label>
+            <input type="date" id="av-end" class="form-input-editorial" required>
+          </div>
+        </div>
+
+        <div class="form-group-editorial" style="margin-bottom: 1.5rem;">
+          <label class="form-label-editorial" for="av-visible">Mostrar en la web</label>
+          <select id="av-visible" class="form-input-editorial">
+            <option value="true">Sí (Activo)</option>
+            <option value="false">No (Pausado)</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-editorial btn-green-inst" style="width: 100%; padding: 0.75rem; justify-content: center;">
+          Guardar Aviso
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL: FORMULARIO DE MATERIAL GRATUITO
+       ========================================== -->
+  <div class="admin-modal-backdrop" id="admin-recurso-modal">
+    <div class="admin-modal-card">
+      <button class="modal-close-btn" id="admin-recurso-modal-close">&times;</button>
+      <span class="editorial-eyebrow">MATERIAL GRATUITO</span>
+      <h3 style="font-size: 1.35rem; color: var(--ink-primary); margin-bottom: 1.25rem;" id="admin-recurso-modal-title">Agregar Material</h3>
+
+      <form id="admin-recurso-form">
+        <input type="hidden" id="res-id">
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="res-title">Título del Material *</label>
+          <input type="text" id="res-title" class="form-input-editorial" placeholder="Ej: Folleto de Evangelismo" required>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group-editorial">
+            <label class="form-label-editorial" for="res-category">Categoría *</label>
+            <select id="res-category" class="form-input-editorial">
+              <option value="Evangelismo">Evangelismo</option>
+              <option value="Plan Cornelio">Plan Cornelio</option>
+              <option value="Bosquejos y Enseñanzas">Bosquejos y Enseñanzas</option>
+              <option value="Doctrina">Doctrina</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+          <div class="form-group-editorial">
+            <label class="form-label-editorial" for="res-type">Tipo de Archivo</label>
+            <select id="res-type" class="form-input-editorial">
+              <option value="PDF">PDF</option>
+              <option value="Presentación">Presentación</option>
+              <option value="Documento">Documento</option>
+              <option value="Folleto">Folleto</option>
+              <option value="Bosquejo">Bosquejo</option>
+              <option value="Enseñanza">Enseñanza</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="res-desc">Descripción Breve</label>
+          <textarea id="res-desc" class="form-textarea-editorial" rows="2" placeholder="Resumen del contenido y propósito pedagógico..."></textarea>
+        </div>
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="res-url">Enlace Externo / Google Drive</label>
+          <input type="url" id="res-url" class="form-input-editorial" placeholder="https://drive.google.com/..." required>
+        </div>
+
+        <div class="form-group-editorial" style="margin-bottom: 1.5rem;">
+          <label class="form-label-editorial" for="res-visible">Estado</label>
+          <select id="res-visible" class="form-input-editorial">
+            <option value="true">Visible</option>
+            <option value="false">Oculto</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-editorial btn-green-inst" style="width: 100%; padding: 0.75rem; justify-content: center;">
+          Guardar Material
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL: FORMULARIO DE EMPRENDIMIENTO
+       ========================================== -->
+  <div class="admin-modal-backdrop" id="admin-biz-modal">
+    <div class="admin-modal-card">
+      <button class="modal-close-btn" id="admin-biz-modal-close">&times;</button>
+      <span class="editorial-eyebrow">EMPRENDIMIENTOS</span>
+      <h3 style="font-size: 1.35rem; color: var(--ink-primary); margin-bottom: 1.25rem;">Editar Emprendimiento</h3>
+
+      <form id="admin-biz-form">
+        <input type="hidden" id="biz-id">
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="biz-name">Nombre Comercial</label>
+          <input type="text" id="biz-name" class="form-input-editorial" required>
+        </div>
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="biz-cat">Rubro / Categoría</label>
+          <input type="text" id="biz-cat" class="form-input-editorial" required>
+        </div>
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="biz-desc">Descripción Breve</label>
+          <textarea id="biz-desc" class="form-textarea-editorial" rows="2" required></textarea>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group-editorial">
+            <label class="form-label-editorial" for="biz-type">Tipo de Enlace</label>
+            <select id="biz-type" class="form-input-editorial">
+              <option value="WhatsApp">WhatsApp</option>
+              <option value="Instagram">Instagram</option>
+              <option value="Web">Web</option>
+              <option value="Facebook">Facebook</option>
+              <option value="Contacto">Contacto</option>
+            </select>
+          </div>
+          <div class="form-group-editorial">
+            <label class="form-label-editorial" for="biz-visible">Estado</label>
+            <select id="biz-visible" class="form-input-editorial">
+              <option value="true">Visible</option>
+              <option value="false">Oculto</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group-editorial" style="margin-bottom: 1.5rem;">
+          <label class="form-label-editorial" for="biz-url">Enlace URL / WhatsApp Link (Opcional)</label>
+          <input type="text" id="biz-url" class="form-input-editorial" placeholder="https://wa.me/... o https://instagram.com/...">
+        </div>
+
+        <button type="submit" class="btn-editorial btn-green-inst" style="width: 100%; padding: 0.75rem; justify-content: center;">
+          Guardar Cambios
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="admin-toast" id="admin-toast">Cambios guardados correctamente</div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/data-store.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+
+</html>

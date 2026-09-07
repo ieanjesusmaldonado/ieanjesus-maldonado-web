@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Material gratuito de IEANJESÚS Maldonado. Recursos de evangelismo, Plan Cornelio, bosquejos bíblicos, enseñanzas y doctrina apostólica.">
+  <meta name="keywords" content="Material Gratuito, Evangelismo, Plan Cornelio, Bosquejos Bíblicos, Doctrina, IEANJESÚS Maldonado">
+  <meta name="author" content="IEANJESÚS Maldonado">
+
+  <title>Material Gratuito | IEANJESÚS Maldonado</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Estilos Editoriales -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- ==========================================
+       AVISO TEMPORAL (BANNER DISCRETO)
+       ========================================== -->
+  <div class="notice-banner-editorial" id="notice-banner">
+    <div class="notice-banner-inner">
+      <div class="notice-banner-content">
+        <span class="notice-pill">AVISO</span>
+        <span id="notice-text"></span>
+      </div>
+      <button class="notice-close-btn" id="notice-close" aria-label="Cerrar aviso">&times;</button>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       HEADER & NAVEGACIÓN EDITORIAL
+       ========================================== -->
+  <header class="editorial-header" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand-container">
+        <div class="brand-logo-text">
+          <img src="assets/images/LOGOWEB.png" alt="IEANJESÚS" class="brand-header-logo">
+          <span class="brand-compact-title">IEANJESÚS MALDONADO</span>
+          <span class="brand-sub-tag">/ MALDONADO, URUGUAY</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links-desktop">
+          <li><a href="index.html" class="nav-link">Inicio</a></li>
+          <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+          <li><a href="celulas.html" class="nav-link">Células</a></li>
+          <li><a href="ministerios.html" class="nav-link">Ministerios</a></li>
+          <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions-wrap">
+        <button class="btn-editorial btn-outline-editorial open-prayer-btn" id="open-prayer-btn">
+          <i class="fa-solid fa-hands-praying"></i> ORACIÓN
+        </button>
+        <a href="contacto.html" class="btn-editorial btn-green-inst">
+          VISÍTANOS
+        </a>
+        <button class="btn-editorial btn-outline-editorial drawer-toggle-btn" aria-label="Abrir Menú de Recursos">
+          <i class="fa-solid fa-bars"></i> MENÚ
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       DRAWER LATERAL: MENÚ PRINCIPAL
+       ========================================== -->
+  <div class="drawer-backdrop" id="drawer-backdrop">
+    <aside class="editorial-drawer" aria-label="Menú Principal">
+      <div class="drawer-header">
+        <div>
+          <span class="drawer-title-eyebrow">IEANJESÚS MALDONADO</span>
+          <h2 class="drawer-title-main">MENÚ PRINCIPAL</h2>
+        </div>
+        <button class="drawer-close-btn" id="drawer-close-btn" aria-label="Cerrar">&times;</button>
+      </div>
+
+      <div class="drawer-body">
+        <!-- 1. Enlaces Principales -->
+        <div>
+          <span class="drawer-nav-section-title">ENLACES PRINCIPALES</span>
+          <div class="drawer-main-links-grid">
+            <a href="index.html" class="drawer-grid-btn">
+              <span>Inicio</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="nosotros.html" class="drawer-grid-btn">
+              <span>Nosotros & Pastor</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="celulas.html" class="drawer-grid-btn">
+              <span>Células en los Barrios</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="ministerios.html" class="drawer-grid-btn">
+              <span>Comités y Ministerios</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="jesus.html" class="drawer-grid-btn highlight-jesus">
+              <span>Conoce a Jesús</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="nosotros.html#doctrina" class="drawer-grid-btn">
+              <span>En qué creemos</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="contacto.html" class="drawer-grid-btn drawer-grid-btn-full">
+              <span>Ubicación y Contacto</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="drawer-divider"></div>
+
+        <!-- 2. Actividades y Recursos -->
+        <div>
+          <span class="drawer-nav-section-title">ACTIVIDADES Y RECURSOS</span>
+          <div class="drawer-resources-list">
+            <!-- Agenda -->
+            <a href="agenda.html" class="drawer-resource-card">
+              <span class="drawer-resource-badge"><i class="fa-regular fa-calendar-check"></i> AGENDA</span>
+              <h3 class="drawer-resource-title">Agenda de la Iglesia</h3>
+              <p class="drawer-resource-desc">Consulta actividades, fechas especiales y próximos eventos de la iglesia.</p>
+              <span class="drawer-resource-cta">VER AGENDA →</span>
+            </a>
+
+            <!-- Petición de Oración -->
+            <div class="drawer-resource-card open-prayer-btn" style="cursor: pointer;">
+              <span class="drawer-resource-badge"><i class="fa-solid fa-hands-praying"></i> INTERCESIÓN</span>
+              <h3 class="drawer-resource-title">Petición de Oración</h3>
+              <p class="drawer-resource-desc">Comparte tu necesidad de oración de manera personalizada o anónima.</p>
+              <span class="drawer-resource-cta">ENVIAR PETICIÓN →</span>
+            </div>
+
+            <!-- Material Gratuito -->
+            <a href="recursos.html" class="drawer-resource-card" style="border-color: var(--green-inst);">
+              <span class="drawer-resource-badge"><i class="fa-solid fa-book-open"></i> DESCARGAS</span>
+              <h3 class="drawer-resource-title">Material Gratuito</h3>
+              <p class="drawer-resource-desc">Encuentra recursos de evangelismo, enseñanzas, Plan Cornelio, bosquejos y material bíblico.</p>
+              <span class="drawer-resource-cta">EXPLORAR MATERIALES →</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="drawer-divider"></div>
+
+        <!-- 3. Colaboración -->
+        <div>
+          <span class="drawer-nav-section-title">COLABORACIÓN</span>
+          <div class="drawer-resource-card" style="border-left: 3px solid var(--green-inst);">
+            <span class="drawer-resource-badge"><i class="fa-solid fa-hand-holding-heart"></i> DONACIONES</span>
+            <h3 class="drawer-resource-title" style="font-size: 1.05rem;">¿Quieres colaborar?</h3>
+            <p class="drawer-resource-desc">
+              Si deseas colaborar con la obra de la iglesia mediante una donación, puedes comunicarte directamente con nosotros.
+            </p>
+            <div style="font-size: 0.74rem; color: var(--ink-muted); font-weight: 500; margin-bottom: 0.85rem; line-height: 1.4;">
+              Ropa · Alimentos · Obras sociales · Ofrendas · Otros aportes
+            </div>
+            <a href="https://wa.me/59897432948?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20colaborar%20con%20la%20iglesia%20mediante%20una%20donaci%C3%B3n%20y%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20c%C3%B3mo%20hacerlo."
+              target="_blank" class="btn-editorial btn-whatsapp-editorial"
+              style="font-size: 0.78rem; padding: 0.48rem 0.9rem; width: 100%; justify-content: center; text-align: center;">
+              <i class="fa-brands fa-whatsapp"></i> CONTACTAR PARA COLABORAR →
+            </a>
+          </div>
+        </div>
+
+        <div class="drawer-divider"></div>
+
+        <!-- 4. Administración -->
+        <div>
+          <span class="drawer-nav-section-title">ADMINISTRACIÓN</span>
+          <div class="drawer-admin-card">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
+              <i class="fa-solid fa-lock" style="color: var(--green-inst); font-size: 0.85rem;"></i>
+              <strong style="font-size: 0.95rem; color: var(--ink-primary);">PANEL ADMINISTRATIVO</strong>
+            </div>
+            <p style="font-size: 0.82rem; color: var(--ink-secondary); margin-bottom: 0.75rem;">Acceso exclusivo para responsables autorizados.</p>
+            <a href="admin.html" class="btn-editorial btn-dark" style="font-size: 0.78rem; padding: 0.45rem 0.9rem; width: 100%; text-align: center;">
+              INGRESAR →
+            </a>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <main>
+    <!-- PAGE HERO -->
+    <section class="page-hero-editorial">
+      <div class="container">
+        <nav class="editorial-breadcrumb" aria-label="Ruta de navegación">
+          <a href="index.html">Inicio</a>
+          <span>/</span>
+          <span>Material Gratuito</span>
+        </nav>
+        <span class="editorial-eyebrow">MATERIAL GRATUITO</span>
+        <h1 class="page-hero-title">Recursos para aprender, enseñar y compartir.</h1>
+        <p class="page-hero-lead">
+          Ponemos a disposición materiales gratuitos preparados para apoyar la enseñanza bíblica, el evangelismo y la formación de la Iglesia.
+        </p>
+      </div>
+    </section>
+
+    <!-- CATÁLOGO DE RECURSOS CON FILTROS -->
+    <section style="padding: 4rem 0 5.5rem;">
+      <div class="container">
+        
+        <!-- Filtros de Categorías -->
+        <div class="filters-tabs-editorial" style="margin-bottom: 2.5rem;">
+          <button class="filter-tab-btn recurso-filter-btn active" data-category="all">Todos los Materiales</button>
+          <button class="filter-tab-btn recurso-filter-btn" data-category="Evangelismo">Evangelismo</button>
+          <button class="filter-tab-btn recurso-filter-btn" data-category="Plan Cornelio">Plan Cornelio</button>
+          <button class="filter-tab-btn recurso-filter-btn" data-category="Bosquejos y Enseñanzas">Bosquejos y Enseñanzas</button>
+          <button class="filter-tab-btn recurso-filter-btn" data-category="Doctrina">Doctrina</button>
+        </div>
+
+        <!-- Grilla del Catálogo -->
+        <div class="recursos-catalogo-grid" id="recursos-grid">
+          
+          <!-- Recurso 1: Evangelismo -->
+          <div class="recurso-card-item" data-category="Evangelismo">
+            <div class="recurso-top-row">
+              <span class="recurso-cat-tag">EVANGELISMO</span>
+              <span class="recurso-type-badge"><i class="fa-regular fa-file-pdf" style="color: #E53935;"></i> PDF</span>
+            </div>
+            <h3 class="recurso-item-title">Folleto: El Camino Bíblico de la Salvación</h3>
+            <p class="recurso-item-desc">
+              Material explicativo claro y directo con citas bíblicas para compartir con familiares, vecinos y amigos.
+            </p>
+            <div>
+              <a href="https://wa.me/59897432948?text=Hola,%20quisiera%20solicitar%20el%20material:%20Folleto%20El%20Camino%20Bíblico%20de%20la%20Salvación" target="_blank" class="btn-editorial btn-dark" style="font-size: 0.82rem; padding: 0.55rem 1rem; width: 100%; text-align: center;">
+                VER MATERIAL <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.75rem;"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Recurso 2: Plan Cornelio -->
+          <div class="recurso-card-item" data-category="Plan Cornelio">
+            <div class="recurso-top-row">
+              <span class="recurso-cat-tag">PLAN CORNELIO</span>
+              <span class="recurso-type-badge"><i class="fa-regular fa-file-powerpoint" style="color: #E64A19;"></i> PRESENTACIÓN</span>
+            </div>
+            <h3 class="recurso-item-title">Plan Cornelio — Guía Práctica de Evangelismo y Discipulado</h3>
+            <p class="recurso-item-desc">
+              Manual de orientación para visitas en hogares, diálogo testimonial y acompañamiento de nuevas personas interesadas en el evangelio.
+            </p>
+            <div>
+              <a href="https://wa.me/59897432948?text=Hola,%20quisiera%20solicitar%20la%20presentación%20del%20Plan%20Cornelio" target="_blank" class="btn-editorial btn-dark" style="font-size: 0.82rem; padding: 0.55rem 1rem; width: 100%; text-align: center;">
+                VER MATERIAL <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.75rem;"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Recurso 3: Bosquejos y Enseñanzas -->
+          <div class="recurso-card-item" data-category="Bosquejos y Enseñanzas">
+            <div class="recurso-top-row">
+              <span class="recurso-cat-tag">BOSQUEJOS Y ENSEÑANZAS</span>
+              <span class="recurso-type-badge"><i class="fa-regular fa-file-lines" style="color: #1976D2;"></i> DOCUMENTO</span>
+            </div>
+            <h3 class="recurso-item-title">Bosquejos Bíblicos para el Estudio de la Palabra</h3>
+            <p class="recurso-item-desc">
+              Compilado de investigaciones temáticas, análisis de palabras clave en el texto original y referencias cruzadas para maestros y líderes.
+            </p>
+            <div>
+              <a href="https://wa.me/59897432948?text=Hola,%20quisiera%20solicitar%20el%20compilado%20de%20Bosquejos%20Bíblicos" target="_blank" class="btn-editorial btn-dark" style="font-size: 0.82rem; padding: 0.55rem 1rem; width: 100%; text-align: center;">
+                DESCARGAR <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.75rem;"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Recurso 4: Doctrina -->
+          <div class="recurso-card-item" data-category="Doctrina">
+            <div class="recurso-top-row">
+              <span class="recurso-cat-tag">DOCTRINA</span>
+              <span class="recurso-type-badge"><i class="fa-regular fa-file-pdf" style="color: #E53935;"></i> PDF</span>
+            </div>
+            <h3 class="recurso-item-title">Fundamentos de la Fe y la Unicidad de Dios</h3>
+            <p class="recurso-item-desc">
+              Estudio doctrinal profundo acerca de la revelación de Dios en Jesucristo, el bautismo bíblico por inmersión y la promesa del Espíritu Santo.
+            </p>
+            <div>
+              <a href="nosotros.html#doctrina" class="btn-editorial btn-dark" style="font-size: 0.82rem; padding: 0.55rem 1rem; width: 100%; text-align: center;">
+                LEER EN LÍNEA <i class="fa-solid fa-arrow-right" style="font-size: 0.75rem;"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Recurso 5: Doctrina / Sanidad -->
+          <div class="recurso-card-item" data-category="Doctrina">
+            <div class="recurso-top-row">
+              <span class="recurso-cat-tag">DOCTRINA</span>
+              <span class="recurso-type-badge"><i class="fa-regular fa-file-pdf" style="color: #E53935;"></i> FOLLETO</span>
+            </div>
+            <h3 class="recurso-item-title">Sanidad Divina y Fe Práctica en el Hogar</h3>
+            <p class="recurso-item-desc">
+              Enseñanza sobre las promesas del Señor para la sanidad del cuerpo y del alma, la oración de fe y la restauración integral de la familia.
+            </p>
+            <div>
+              <a href="https://wa.me/59897432948?text=Hola,%20quisiera%20el%20folleto%20de%20Sanidad%20Divina" target="_blank" class="btn-editorial btn-dark" style="font-size: 0.82rem; padding: 0.55rem 1rem; width: 100%; text-align: center;">
+                VER MATERIAL <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.75rem;"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Recurso 6: Plan Cornelio / Células -->
+          <div class="recurso-card-item" data-category="Plan Cornelio">
+            <div class="recurso-top-row">
+              <span class="recurso-cat-tag">PLAN CORNELIO</span>
+              <span class="recurso-type-badge"><i class="fa-regular fa-file-pdf" style="color: #E53935;"></i> PDF</span>
+            </div>
+            <h3 class="recurso-item-title">Cómo Iniciar y Desarrollar una Célula de Hogar</h3>
+            <p class="recurso-item-desc">
+              Orientación para anfitriones y líderes celulares: dinámica de la reunión, bienvenida fraternal y cuidado pastoral de los hogares.
+            </p>
+            <div>
+              <a href="https://wa.me/59897432948?text=Hola,%20quisiera%20la%20guía%20para%20Células%20de%20Hogar" target="_blank" class="btn-editorial btn-dark" style="font-size: 0.82rem; padding: 0.55rem 1rem; width: 100%; text-align: center;">
+                DESCARGAR <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.75rem;"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Ficha de solicitud de materiales impresos o específicos -->
+        <div style="margin-top: 3.5rem; background: var(--bg-cream-light); border: 1px solid var(--border-card); border-radius: var(--radius-sm); padding: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;">
+          <div>
+            <h3 style="font-size: 1.15rem; color: var(--ink-primary); margin-bottom: 0.35rem;">¿Buscas un material bíblico específico?</h3>
+            <p style="font-size: 0.88rem; color: var(--ink-secondary);">
+              Escríbenos directamente para solicitar folletos físicos, bosquejos adicionales o materiales de formación.
+            </p>
+          </div>
+          <a href="https://wa.me/59897432948?text=Hola,%20quisiera%20consultar%20por%20material%20bíblico%20de%20IEANJESÚS" target="_blank" class="btn-editorial btn-whatsapp-editorial">
+            <i class="fa-brands fa-whatsapp"></i> Solicitar por WhatsApp
+          </a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================
+       FOOTER EDITORIAL
+       ========================================== -->
+  <footer class="editorial-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-title">IEANJESÚS MALDONADO</div>
+          <p class="footer-motto">
+            “Un lugar para encontrarte con Jesús.”<br>
+            «Un Señor, una fe, un bautismo» (Efesios 4:5). Una familia de fe apostólica en Maldonado, Uruguay.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Navegación</div>
+          <ul class="footer-links-list">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="agenda.html">Agenda de Actividades</a></li>
+            <li><a href="recursos.html">Material Gratuito</a></li>
+            <li><a href="celulas.html">8 Células de Hogar</a></li>
+            <li><a href="ministerios.html">Comités</a></li>
+            <li><a href="contacto.html">Ubicación y Contacto</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Horarios Principales</div>
+          <ul class="footer-links-list">
+            <li><strong style="color: #FFFFFF;">Jueves:</strong> 19:30 hs (Templo)</li>
+            <li><strong style="color: #FFFFFF;">Domingos:</strong> 18:30 hs (Templo)</li>
+            <li><strong style="color: #FFFFFF;">Células:</strong> Lunes a Viernes</li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Redes Oficiales</div>
+          <ul class="footer-links-list">
+            <li><a href="https://www.facebook.com/profile.php?id=100066598476732&sk=about&locale=es_LA" target="_blank">Facebook Oficial</a></li>
+            <li><a href="https://www.instagram.com/ieanjesusmaldonado/" target="_blank">Instagram @ieanjesusmaldonado</a></li>
+            <li><a href="https://www.youtube.com/@pastorfranklinsalas" target="_blank">YouTube @pastorfranklinsalas</a></li>
+            <li><a href="https://wa.me/59897432948" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp Sede</a></li>
+          </ul>
+          <button class="btn-editorial btn-outline-editorial open-prayer-btn" id="footer-prayer-btn"
+            style="margin-top: 1rem; width: 100%; font-size: 0.82rem;">
+            <i class="fa-solid fa-hands-praying"></i> ENVIAR PETICIÓN DE ORACIÓN
+          </button>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <span>&copy; <span id="current-year">2026</span> IEANJESÚS Maldonado. Todos los derechos reservados.</span>
+        <span>MALDONADO, URUGUAY</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       MODAL DE PETICIÓN DE ORACIÓN
+       ========================================== -->
+  <div class="modal-editorial-backdrop" id="prayer-modal">
+    <div class="modal-editorial-card">
+      <button class="modal-close-btn" id="prayer-close">&times;</button>
+      <span class="editorial-eyebrow">INTERCESIÓN & FE</span>
+      <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--ink-primary);">Envía tu Petición de Oración</h3>
+      <p style="color: var(--ink-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">
+        “Queremos orar por ti. Puedes compartir con nosotros tu petición de oración.”
+      </p>
+
+      <form id="prayer-form">
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="prayer-name">Nombre (Opcional)</label>
+          <input type="text" id="prayer-name" class="form-input-editorial" placeholder="Tu nombre completo">
+          <label class="form-checkbox-label" style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--ink-secondary); margin-top: 0.5rem; cursor: pointer;">
+            <input type="checkbox" id="prayer-anonymous"> Prefiero enviar mi petición de forma anónima
+          </label>
+        </div>
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="prayer-motive">Petición de Oración *</label>
+          <textarea id="prayer-motive" class="form-textarea-editorial" rows="4"
+            placeholder="Escribe aquí tu petición de oración..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-editorial btn-whatsapp-editorial" style="width: 100%; margin-top: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+          <i class="fa-brands fa-whatsapp"></i> ENVIAR PETICIÓN POR WHATSAPP
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/data-store.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

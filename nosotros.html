@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Conoce la historia, visión, doctrina apostólica y liderazgo pastoral de IEANJESÚS Maldonado, Uruguay.">
+  <meta name="keywords" content="IEANJESÚS Maldonado, Historia, En qué creemos, Doctrina, Pastor Franklin Salas, Iglesia Apostólica">
+  <meta name="author" content="IEANJESÚS Maldonado">
+
+  <title>Nosotros | IEANJESÚS Maldonado</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Estilos Editoriales -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- ==========================================
+       AVISO TEMPORAL (BANNER DISCRETO)
+       ========================================== -->
+  <div class="notice-banner-editorial" id="notice-banner">
+    <div class="notice-banner-inner">
+      <div class="notice-banner-content">
+        <span class="notice-pill">AVISO</span>
+        <span id="notice-text"></span>
+      </div>
+      <button class="notice-close-btn" id="notice-close" aria-label="Cerrar aviso">&times;</button>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="editorial-header" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand-container">
+        <div class="brand-logo-text">
+          <img src="assets/images/LOGOWEB.png" alt="IEANJESÚS" class="brand-header-logo">
+          <span class="brand-compact-title">IEANJESÚS MALDONADO</span>
+          <span class="brand-sub-tag">/ MALDONADO, URUGUAY</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links-desktop">
+          <li><a href="index.html" class="nav-link">Inicio</a></li>
+          <li><a href="nosotros.html" class="nav-link active">Nosotros</a></li>
+          <li><a href="celulas.html" class="nav-link">Células</a></li>
+          <li><a href="ministerios.html" class="nav-link">Ministerios</a></li>
+          <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions-wrap">
+        <button class="btn-editorial btn-outline-editorial open-prayer-btn" id="open-prayer-btn">
+          <i class="fa-solid fa-hands-praying"></i> ORACIÓN
+        </button>
+        <a href="contacto.html" class="btn-editorial btn-green-inst">
+          VISÍTANOS
+        </a>
+        <button class="btn-editorial btn-outline-editorial drawer-toggle-btn" aria-label="Abrir Menú de Recursos">
+          <i class="fa-solid fa-bars"></i> MENÚ
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       DRAWER LATERAL: MENÚ PRINCIPAL
+       ========================================== -->
+  <div class="drawer-backdrop" id="drawer-backdrop">
+    <aside class="editorial-drawer" aria-label="Menú Principal">
+      <div class="drawer-header">
+        <div>
+          <span class="drawer-title-eyebrow">IEANJESÚS MALDONADO</span>
+          <h2 class="drawer-title-main">MENÚ PRINCIPAL</h2>
+        </div>
+        <button class="drawer-close-btn" id="drawer-close-btn" aria-label="Cerrar">&times;</button>
+      </div>
+
+      <div class="drawer-body">
+        <!-- 1. Enlaces Principales -->
+        <div>
+          <span class="drawer-nav-section-title">ENLACES PRINCIPALES</span>
+          <div class="drawer-main-links-grid">
+            <a href="index.html" class="drawer-grid-btn">
+              <span>Inicio</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="nosotros.html" class="drawer-grid-btn">
+              <span>Nosotros & Pastor</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="celulas.html" class="drawer-grid-btn">
+              <span>Células en los Barrios</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="ministerios.html" class="drawer-grid-btn">
+              <span>Comités y Ministerios</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="jesus.html" class="drawer-grid-btn highlight-jesus">
+              <span>Conoce a Jesús</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="nosotros.html#doctrina" class="drawer-grid-btn">
+              <span>En qué creemos</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="contacto.html" class="drawer-grid-btn drawer-grid-btn-full">
+              <span>Ubicación y Contacto</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="drawer-divider"></div>
+
+        <!-- 2. Actividades y Recursos -->
+        <div>
+          <span class="drawer-nav-section-title">ACTIVIDADES Y RECURSOS</span>
+          <div class="drawer-resources-list">
+            <!-- Agenda -->
+            <a href="agenda.html" class="drawer-resource-card">
+              <span class="drawer-resource-badge"><i class="fa-regular fa-calendar-check"></i> AGENDA</span>
+              <h3 class="drawer-resource-title">Agenda de la Iglesia</h3>
+              <p class="drawer-resource-desc">Consulta actividades, fechas especiales y próximos eventos de la iglesia.</p>
+              <span class="drawer-resource-cta">VER AGENDA →</span>
+            </a>
+
+            <!-- Petición de Oración -->
+            <div class="drawer-resource-card open-prayer-btn" style="cursor: pointer;">
+              <span class="drawer-resource-badge"><i class="fa-solid fa-hands-praying"></i> INTERCESIÓN</span>
+              <h3 class="drawer-resource-title">Petición de Oración</h3>
+              <p class="drawer-resource-desc">Comparte tu necesidad de oración de manera personalizada o anónima.</p>
+              <span class="drawer-resource-cta">ENVIAR PETICIÓN →</span>
+            </div>
+
+            <!-- Material Gratuito -->
+            <a href="recursos.html" class="drawer-resource-card">
+              <span class="drawer-resource-badge"><i class="fa-solid fa-book-open"></i> DESCARGAS</span>
+              <h3 class="drawer-resource-title">Material Gratuito</h3>
+              <p class="drawer-resource-desc">Encuentra recursos de evangelismo, enseñanzas, Plan Cornelio, bosquejos y material bíblico.</p>
+              <span class="drawer-resource-cta">EXPLORAR MATERIALES →</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="drawer-divider"></div>
+
+        <!-- 3. Colaboración -->
+        <div>
+          <span class="drawer-nav-section-title">COLABORACIÓN</span>
+          <div class="drawer-resource-card" style="border-left: 3px solid var(--green-inst);">
+            <span class="drawer-resource-badge"><i class="fa-solid fa-hand-holding-heart"></i> DONACIONES</span>
+            <h3 class="drawer-resource-title" style="font-size: 1.05rem;">¿Quieres colaborar?</h3>
+            <p class="drawer-resource-desc">
+              Si deseas colaborar con la obra de la iglesia mediante una donación, puedes comunicarte directamente con nosotros.
+            </p>
+            <div style="font-size: 0.74rem; color: var(--ink-muted); font-weight: 500; margin-bottom: 0.85rem; line-height: 1.4;">
+              Ropa · Alimentos · Obras sociales · Ofrendas · Otros aportes
+            </div>
+            <a href="https://wa.me/59897432948?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20colaborar%20con%20la%20iglesia%20mediante%20una%20donaci%C3%B3n%20y%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20c%C3%B3mo%20hacerlo."
+              target="_blank" class="btn-editorial btn-whatsapp-editorial"
+              style="font-size: 0.78rem; padding: 0.48rem 0.9rem; width: 100%; justify-content: center; text-align: center;">
+              <i class="fa-brands fa-whatsapp"></i> CONTACTAR PARA COLABORAR →
+            </a>
+          </div>
+        </div>
+
+        <div class="drawer-divider"></div>
+
+        <!-- 4. Administración -->
+        <div>
+          <span class="drawer-nav-section-title">ADMINISTRACIÓN</span>
+          <div class="drawer-admin-card">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
+              <i class="fa-solid fa-lock" style="color: var(--green-inst); font-size: 0.85rem;"></i>
+              <strong style="font-size: 0.95rem; color: var(--ink-primary);">PANEL ADMINISTRATIVO</strong>
+            </div>
+            <p style="font-size: 0.82rem; color: var(--ink-secondary); margin-bottom: 0.75rem;">Acceso exclusivo para responsables autorizados.</p>
+            <a href="admin.html" class="btn-editorial btn-dark" style="font-size: 0.78rem; padding: 0.45rem 0.9rem; width: 100%; text-align: center;">
+              INGRESAR →
+            </a>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <main>
+    <!-- PAGE HERO -->
+    <section class="page-hero-editorial">
+      <div class="container">
+        <nav class="editorial-breadcrumb" aria-label="Ruta de navegación">
+          <a href="index.html">Inicio</a>
+          <span>/</span>
+          <span>Nosotros</span>
+        </nav>
+        <span class="editorial-eyebrow">IDENTIDAD & FE</span>
+        <h1 class="page-hero-title">Quiénes Somos</h1>
+        <p class="page-hero-lead">
+          Una congregación cristiana apostólica cimentada en la verdad de la Palabra de Dios, dedicada a proclamar el Nombre de Jesús y restaurar familias en Maldonado.
+        </p>
+      </div>
+    </section>
+
+    <!-- CUERPO DE CONTENIDO -->
+    <section class="article-editorial-body">
+      <div class="container-narrow">
+        
+        <!-- Historia -->
+        <span class="editorial-eyebrow">01 / NUESTRA HISTORIA</span>
+        <h2>Una Obra Nacida en la Fe</h2>
+        <p>
+          La <strong>Iglesia Evangélica Apostólica del Nombre de Jesús (IEANJESÚS)</strong> es una comunidad de creyentes con presencia internacional en más de veinte naciones. En Maldonado, Uruguay, la congregación se ha desarrollado como un espacio acogedor, donde vecinos, jóvenes, niños y adultos mayores encuentran un refugio espiritual y una familia fraterna.
+        </p>
+        <p>
+          Desde nuestros inicios, el propósito no ha sido levantar una estructura religiosa fría, sino establecer un testimonio vivo del amor de Cristo en cada hogar a través de cultos de adoración, grupos celulares barriales y servicio social a quienes más lo necesitan.
+        </p>
+
+        <!-- Cita destacada -->
+        <div class="article-quote-box">
+          <div class="article-quote-text">
+            «Edificados sobre el fundamento de los apóstoles y profetas, siendo la principal piedra del ángulo Jesucristo mismo.»
+          </div>
+          <span class="article-quote-ref">EFESIOS 2:20</span>
+        </div>
+
+        <!-- Liderazgo Pastoral -->
+        <span class="editorial-eyebrow" id="pastor">02 / LIDERAZGO</span>
+        <h2>Pastor Franklin Salas</h2>
+        <div class="pastor-photo-wrap" style="margin: 1.5rem 0 2rem;">
+          <img src="assets/images/pastor-franklin.jpg"
+            onerror="this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80'"
+            alt="Pastor Franklin Salas"
+            class="pastor-photo-img">
+        </div>
+        <p>
+          El <strong>Pastor Franklin Salas</strong> es misionero, predicador y consejero bíblico. Junto a su familia lleva adelante un experimentado ministerio con el respaldo de Dios.
+        </p>
+        <p>
+          Su labor se ha caracterizado por la enseñanza clara de la Palabra de Dios, la formación de discípulos y el fortalecimiento de la Iglesia. Su mensaje busca llevar a las personas a una relación más profunda con Jesucristo y a vivir una fe práctica. Además, el Espíritu Santo respalda su ministerio con señales y sanidades divinas.
+        </p>
+        <p>
+          También comparte enseñanzas bíblicas mediante las redes sociales y su canal de YouTube, alcanzando a miles de personas en distintos países. Su propósito es continuar anunciando el evangelio y sirviendo a la obra de Dios.
+        </p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0 3rem;">
+          <a href="https://www.youtube.com/@pastorfranklinsalas" target="_blank" class="btn-editorial btn-dark">
+            <i class="fa-brands fa-youtube" style="color: #FF0000;"></i> Canal de YouTube del Pastor
+          </a>
+          <a href="https://wa.me/59897432948?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20comunicarme%20con%20el%20Pastor%20Franklin%20Salas."
+            target="_blank" class="btn-editorial btn-whatsapp-editorial">
+            <i class="fa-brands fa-whatsapp"></i> Hablar con el Pastor
+          </a>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid var(--border-fine); margin: 3rem 0;">
+
+        <!-- En qué Creemos -->
+        <span class="editorial-eyebrow" id="doctrina">03 / DOCTRINA APOSTÓLICA</span>
+        <h2>En qué Creemos</h2>
+        <p>
+          Nuestra doctrina se fundamenta exclusivamente en las Sagradas Escrituras (la Santa Biblia), inspiradas por el Espíritu Santo:
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1.5rem;">
+          <div style="background: var(--bg-cream-card); border: 1px solid var(--border-card); padding: 1.5rem; border-radius: var(--radius-sm);">
+            <h3 style="font-size: 1.15rem; margin-top: 0; color: var(--green-inst);">1. La Unicidad de Dios</h3>
+            <p style="margin-bottom: 0; font-size: 0.95rem;">
+              Creemos en un solo Dios eterno, invisible, todopoderoso y creador de todas las cosas, quien se manifestó plenamente en carne humana en la persona de Jesucristo para redimir a la humanidad (1 Timoteo 3:16; Juan 1:1, 14; Deuteronomio 6:4).
+            </p>
+          </div>
+
+          <div style="background: var(--bg-cream-card); border: 1px solid var(--border-card); padding: 1.5rem; border-radius: var(--radius-sm);">
+            <h3 style="font-size: 1.15rem; margin-top: 0; color: var(--green-inst);">2. El Bautismo en el Nombre de Jesús</h3>
+            <p style="margin-bottom: 0; font-size: 0.95rem;">
+              Creemos en el bautismo bíblico por inmersión completa en agua, administrado en el glorioso Nombre de Jesucristo para el perdón y remisión de los pecados, conforme a la ordenanza apostólica (Hechos 2:38; Hechos 8:16; Hechos 19:5).
+            </p>
+          </div>
+
+          <div style="background: var(--bg-cream-card); border: 1px solid var(--border-card); padding: 1.5rem; border-radius: var(--radius-sm);">
+            <h3 style="font-size: 1.15rem; margin-top: 0; color: var(--green-inst);">3. La Promesa del Espíritu Santo</h3>
+            <p style="margin-bottom: 0; font-size: 0.95rem;">
+              Creemos en el bautismo del Espíritu Santo como una experiencia viva para el creyente hoy, manifestada con la señal inicial de hablar en nuevas lenguas según el Espíritu concede expresarse (Hechos 2:4; Hechos 10:44-46).
+            </p>
+          </div>
+
+          <div style="background: var(--bg-cream-card); border: 1px solid var(--border-card); padding: 1.5rem; border-radius: var(--radius-sm);">
+            <h3 style="font-size: 1.15rem; margin-top: 0; color: var(--green-inst);">4. Salvación por Gracia y Vida Santa</h3>
+            <p style="margin-bottom: 0; font-size: 0.95rem;">
+              La salvación es un don inmerecido de Dios mediante la fe en la obra redentora de Jesucristo en la cruz. Llamamos a cada creyente a vivir una vida consagrada, íntegra y de amor hacia su prójimo (Efesios 2:8-9; Hebreos 12:14).
+            </p>
+          </div>
+        </div>
+
+        <div style="margin-top: 3.5rem; text-align: center; background: var(--bg-cream-card); border: 1px solid var(--border-card); padding: 2.5rem 1.5rem; border-radius: var(--radius-sm);">
+          <h3 style="margin-top: 0; margin-bottom: 0.75rem;">¿Deseas acompañarnos en un culto?</h3>
+          <p style="max-width: 500px; margin: 0 auto 1.5rem; font-size: 0.95rem;">
+            Nuestras puertas están abiertas para ti y tu familia. Ven a compartir un tiempo de adoración sincera y estudio de la Palabra.
+          </p>
+          <a href="contacto.html" class="btn-editorial btn-green-inst">
+            PLANIFICA TU VISITA
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         EMPRENDIMIENTOS DE NUESTRA COMUNIDAD
+         ========================================== -->
+    <section class="community-biz-section" id="emprendimientos">
+      <div class="container">
+        <div style="text-align: center; max-width: 680px; margin: 0 auto;">
+          <span class="editorial-eyebrow">04 / COMUNIDAD</span>
+          <h2 style="font-size: 1.65rem; color: var(--ink-primary); margin-bottom: 0.5rem;">Emprendimientos de Nuestra
+            Comunidad</h2>
+          <p style="font-size: 0.92rem; color: var(--ink-secondary); line-height: 1.5;">
+            Conoce algunos de los emprendimientos que forman parte de nuestra comunidad y que apoyan este espacio.
+          </p>
+        </div>
+
+        <!-- Grilla Limpia y Equilibrada de Emprendimientos de la Comunidad -->
+        <div class="biz-showcase-grid">
+          <div class="biz-logo-card" data-biz-id="biz-boomer" title="Boomer Studio">
+            <img src="assets/images/logo-boomer-studio.svg" alt="Boomer Studio" class="biz-logo-img biz-logo-wide">
+          </div>
+          <div class="biz-logo-card" data-biz-id="biz-control-clima" title="Control Clima">
+            <img src="assets/images/logo-control-clima.svg" alt="Control Clima" class="biz-logo-img">
+          </div>
+          <div class="biz-logo-card" data-biz-id="biz-jb-construcciones" title="JB² Construcciones">
+            <img src="assets/images/logo-jb-construcciones.svg" alt="JB² Construcciones" class="biz-logo-img">
+          </div>
+          <div class="biz-logo-card" data-biz-id="biz-cc-construimos" title="C&C Construimos tu proyecto">
+            <img src="assets/images/logo-cc-construimos.svg" alt="C&C Construimos tu proyecto" class="biz-logo-img">
+          </div>
+          <div class="biz-logo-card" data-biz-id="biz-kabby" title="KABBY">
+            <img src="assets/images/logo-kabby.svg" alt="KABBY" class="biz-logo-img">
+          </div>
+        </div>
+
+        <!-- Aclaración sutil -->
+        <p class="biz-discreet-note">
+          Este espacio reconoce a emprendimientos de nuestra comunidad que colaboran con el mantenimiento de este
+          proyecto digital.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         05 — REPERTORIO FOTOGRÁFICO GENERAL
+         ========================================== -->
+    <section class="gallery-section-editorial" id="repertorio">
+      <div class="container">
+        <div class="section-header-editorial split" style="margin-bottom: 2.5rem;">
+          <div>
+            <span class="editorial-eyebrow">05 / NUESTRA IGLESIA</span>
+            <h2 class="section-title-large">Repertorio Fotográfico</h2>
+            <p style="font-family: var(--font-serif); font-size: 1.25rem; font-style: italic; color: var(--green-inst); margin-top: 0.35rem;">
+              “Nuestra iglesia, en imágenes.”
+            </p>
+          </div>
+          <p class="section-desc-editorial" style="max-width: 460px;">
+            Algunos momentos que reflejan la vida, la comunión y la obra de nuestra iglesia.
+          </p>
+        </div>
+
+        <!-- Grilla Editorial de las 15 Fotografías Reales -->
+        <div class="general-gallery-masonry" id="general-gallery-grid">
+          <!-- 1. dominical2 (Panorámica / Grande) -->
+          <div class="gallery-item-editorial span-8" data-photo-id="dominical2">
+            <div class="gallery-item-card">
+              <img src="assets/images/dominical2.jpg" alt="Vista panorámica de la congregación durante el culto dominical de alabanza y adoración" loading="lazy">
+              <span class="gallery-photo-badge">VER FOTO ↗</span>
+            </div>
+          </div>
+
+          <!-- 2. feria1 -->
+          <div class="gallery-item-editorial span-4" data-photo-id="feria1">
+            <div class="gallery-item-card">
+              <img src="assets/images/feria1.jpg" alt="Actividad de evangelismo y distribución de literatura bíblica en la feria de Maldonado" loading="lazy">
+              <span class="gallery-photo-badge">VER FOTO ↗</span>
+            </div>
+          </div>
+
+          <!-- 3. feria5 (Vertical / Destacada) -->
+          <div class="gallery-item-editorial span-4 row-2" data-photo-id="feria5">
+            <div class="gallery-item-card">
+              <img src="assets/images/feria5.jpg" alt="Participación activa de la iglesia en la labor de evangelismo dominical" loading="lazy">
+              <span class="gallery-photo-badge">VER FOTO ↗</span>
+            </div>
+          </div>
+
+          <!-- 4. dominical1 -->
+          <div class="gallery-item-editorial span-4" data-photo-id="dominical1">
+            <div class="gallery-item-card">
+              <img src="assets/images/dominical1.jpg" alt="Reunión de celebración dominical en el templo sede de IEANJESÚS Maldonado" loading="lazy">
+              <span class="gallery-photo-badge">VER FOTO ↗</span>
+            </div>
+          </div>
+
+          <!-- 5. varios1 -->
+          <div class="gallery-item-editorial span-4" data-photo-id="varios1">
+            <div class="gallery-item-card">
+              <img src="assets/images/varios1.jpg" alt="Comunión fraternal y actividades de la congregación de IEANJESÚS Maldonado" loading="lazy">
+              <span class="gallery-photo-badge">VER FOTO ↗</span>
+            </div>
+          </div>
+
+          <!-- 6. dominical3 -->
+          <div class="gallery-item-editorial span-4" data-photo-id="dominical3">
+            <div class="gallery-item-card">
+              <img src="assets/images/dominical3.jpg" alt="Momento de oración y comunión espiritual en la Gran Celebración de domingo" loading="lazy">
+              <span class="gallery-photo-badge">VER FOTO ↗</span>
+            </div>
+          </div>
+
+          <!-- 7. dominical4 -->
+          <div class="gallery-item-editorial span-4" data-photo-id="dominical4">
+            <div class="gallery-item-card">
+              <img src="assets/images/dominical4.jpg" alt="Congregación reunida participando en la alabanza y la predicación bíblica" loading="lazy">
+              <span class="gallery-photo-badge">VER FOTO ↗</span>
+            </div>
+          </div>
+
+          <!-- 8. feria2 -->
+          <div class="gallery-item-editorial span-4" data-photo-id="feria2">
+            <div class="gallery-item-card">
+              <img src="assets/images/feria2.jpg" alt="Miembros de la iglesia compartiendo el mensaje de fe en la feria dominical" loading="lazy">
+              <span class="gallery-photo-badge">VER FOTO ↗</span>
+            </div>
+          </div>
+
+          <!-- 9. feria3 -->
+          <div class="gallery-item-editorial span-4" data-photo-id="feria3">
+            <div class="gallery-item-card">
+              <img src="assets/images/feria3.jpg" alt="Grupo de hermanos en jornada de evangelismo y encuentro con la comunidad" loading="lazy">
+              <span class="gallery-photo-badge">VER FOTO ↗</span>
+            </div>
+          </div>
+
+          <!-- 10. feria4 -->
+          <div class="gallery-item-editorial span-4" data-photo-id="feria4">
+            <div class="gallery-item-card">
+              <img src="assets/images/feria4.jpg" alt="Encuentro y testimonio cristiano con vecinos en la feria de Maldonado" loading="lazy">
+              <span class="gallery-photo-badge">VER FOTO ↗</span>
+            </div>
+          </div>
+
+          <!-- 11. dominical5 -->
+          <div class="gallery-item-editorial span-4" data-photo-id="dominical5">
+            <div class="gallery-item-card">
+              <img src="assets/images/dominical5.jpg" alt="Tiempo de adoración congregacional en la sede central" loading="lazy">
+              <span class="gallery-photo-badge">VER FOTO ↗</span>
+            </div>
+          </div>
+
+          <!-- 12. dominical6 -->
+          <div class="gallery-item-editorial span-4" data-photo-id="dominical6">
+            <div class="gallery-item-card">
+              <img src="assets/images/dominical6.jpg" alt="Comunidad congregada alabando a Dios en la reunión dominical" loading="lazy">
+              <span class="gallery-photo-badge">VER FOTO ↗</span>
+            </div>
+          </div>
+
+          <!-- 13. varios2 -->
+          <div class="gallery-item-editorial span-4" data-photo-id="varios2">
+            <div class="gallery-item-card">
+              <img src="assets/images/varios2.jpg" alt="Momento de encuentro y servicio en las actividades de la iglesia" loading="lazy">
+              <span class="gallery-photo-badge">VER FOTO ↗</span>
+            </div>
+          </div>
+
+          <!-- 14. varios3 -->
+          <div class="gallery-item-editorial span-6" data-photo-id="varios3">
+            <div class="gallery-item-card">
+              <img src="assets/images/varios3.jpg" alt="Hermanos y familias compartiendo en la vida de la congregación" loading="lazy">
+              <span class="gallery-photo-badge">VER FOTO ↗</span>
+            </div>
+          </div>
+
+          <!-- 15. varios4 -->
+          <div class="gallery-item-editorial span-6" data-photo-id="varios4">
+            <div class="gallery-item-card">
+              <img src="assets/images/varios4.jpg" alt="Encuentro fraterno y trabajo comunitario de la iglesia" loading="lazy">
+              <span class="gallery-photo-badge">VER FOTO ↗</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="editorial-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-title">IEANJESÚS MALDONADO</div>
+          <p class="footer-motto">
+            “Un lugar para encontrarte con Jesús.”<br>
+            Iglesia Evangélica Apostólica del Nombre de Jesús en Maldonado, Uruguay.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Navegación</div>
+          <ul class="footer-links-list">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="celulas.html">Células</a></li>
+            <li><a href="ministerios.html">Ministerios</a></li>
+            <li><a href="recursos.html">Recursos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Horarios Principales</div>
+          <ul class="footer-links-list">
+            <li><strong style="color: #FFFFFF;">Jueves:</strong> 19:30 hs (Templo)</li>
+            <li><strong style="color: #FFFFFF;">Domingos:</strong> 18:30 hs (Templo)</li>
+            <li><strong style="color: #FFFFFF;">Células:</strong> Lun, Mar, Mié, Vie</li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Contacto</div>
+          <ul class="footer-links-list">
+            <li>Av. Wilson Ferreira & 25 de Agosto</li>
+            <li><a href="https://wa.me/59897432948" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
+            <li><a href="https://www.instagram.com/ieanjesusmaldonado/" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+            <li><a href="https://www.youtube.com/@pastorfranklinsalas" target="_blank"><i class="fa-brands fa-youtube"></i> YouTube</a></li>
+          </ul>
+          <button class="btn-editorial btn-outline-editorial" id="footer-prayer-btn"
+            style="color: #FFFFFF !important; border-color: rgba(255,255,255,0.25); font-size: 0.78rem; padding: 0.4rem 0.8rem; margin-top: 1rem; width: 100%;">
+            <i class="fa-solid fa-hands-praying" style="color: var(--accent-coral);"></i> Petición de Oración
+          </button>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <span>&copy; <span id="current-year">2026</span> IEANJESÚS Maldonado. Todos los derechos reservados.</span>
+        <span>MALDONADO, URUGUAY · EFESIOS 4:5</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Chatbot y Modal de Oración -->
+  <button class="chatbot-trigger-editorial" id="chatbot-toggle" aria-label="Abrir Asistente"><i class="fa-solid fa-message"></i></button>
+  <div class="chatbot-modal-editorial" id="chatbot-modal">
+    <div class="chat-header-editorial">
+      <div class="chat-header-info-editorial"><span class="chat-dot"></span><span>ASISTENTE · IEANJESÚS</span></div>
+      <button class="chat-close-btn-editorial" id="chatbot-close">&times;</button>
+    </div>
+    <div class="chat-body-editorial" id="chat-body">
+      <div class="chat-msg bot">¡La paz del Señor! 🕊️ ¿En qué podemos orientarte hoy?</div>
+      <div class="chat-chips-container" id="chat-chips">
+        <button class="chat-chip" data-query="horarios">🕒 Horarios de cultos</button>
+        <button class="chat-chip" data-query="ubicacion">📍 Ubicación en Maldonado</button>
+        <button class="chat-chip" data-query="celulas">👥 Células en los barrios</button>
+        <button class="chat-chip" data-query="creencias">✝️ En qué creemos</button>
+      </div>
+    </div>
+    <div class="chat-footer-editorial">
+      <form class="chat-input-form-editorial" id="chat-form">
+        <input type="text" class="chat-input-editorial" id="chat-input" placeholder="Escribe tu consulta..." autocomplete="off">
+        <button type="submit" class="chat-send-btn-editorial"><i class="fa-solid fa-arrow-up"></i></button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-editorial-backdrop" id="prayer-modal">
+    <div class="modal-editorial-card">
+      <button class="modal-close-btn" id="prayer-close">&times;</button>
+      <span class="editorial-eyebrow">INTERCESIÓN & FE</span>
+      <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--ink-primary);">Envía tu Petición de Oración</h3>
+      <p style="color: var(--ink-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">
+        “Queremos orar por ti. Puedes compartir con nosotros tu petición de oración.”
+      </p>
+
+      <form id="prayer-form">
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="prayer-name">Nombre (Opcional)</label>
+          <input type="text" id="prayer-name" class="form-input-editorial" placeholder="Tu nombre completo">
+          <label class="form-checkbox-label" style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--ink-secondary); margin-top: 0.5rem; cursor: pointer;">
+            <input type="checkbox" id="prayer-anonymous"> Prefiero enviar mi petición de forma anónima
+          </label>
+        </div>
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="prayer-motive">Petición de Oración *</label>
+          <textarea id="prayer-motive" class="form-textarea-editorial" rows="4"
+            placeholder="Escribe aquí tu petición de oración..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-editorial btn-whatsapp-editorial" style="width: 100%; margin-top: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+          <i class="fa-brands fa-whatsapp"></i> ENVIAR PETICIÓN POR WHATSAPP
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL LIGHTBOX EDITORIAL
+       ========================================== -->
+  <div class="gallery-lightbox-backdrop" id="gallery-lightbox" role="dialog" aria-modal="true" aria-label="Visor de fotografía" tabindex="-1">
+    <button class="gallery-lightbox-close-btn" id="lightbox-close-btn" aria-label="Cerrar visor">&times;</button>
+    <button class="gallery-lightbox-nav-btn prev" id="lightbox-prev-btn" aria-label="Foto anterior"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="gallery-lightbox-nav-btn next" id="lightbox-next-btn" aria-label="Foto siguiente"><i class="fa-solid fa-chevron-right"></i></button>
+    
+    <div class="gallery-lightbox-container">
+      <div class="gallery-lightbox-stage">
+        <img id="lightbox-image" src="" alt="Fotografía ampliada">
+      </div>
+      <div class="gallery-lightbox-footer">
+        <span class="gallery-lightbox-counter" id="lightbox-counter">1 / 15</span>
+        <div class="gallery-lightbox-caption" id="lightbox-caption">Descripción</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL DE EMPRENDIMIENTO
+       ========================================== -->
+  <div class="modal-editorial-backdrop" id="biz-modal">
+    <div class="modal-editorial-card" style="max-width: 480px;">
+      <button class="modal-close-btn" id="biz-modal-close">&times;</button>
+      <span class="editorial-eyebrow" id="biz-modal-cat">EMPRENDIMIENTO</span>
+      <h3 style="font-size: 1.45rem; color: var(--ink-primary); margin-bottom: 0.75rem;" id="biz-modal-name">Nombre Comercial</h3>
+      <p style="color: var(--ink-secondary); font-size: 0.92rem; line-height: 1.5; margin-bottom: 1.5rem;" id="biz-modal-desc">
+        Descripción del emprendimiento.
+      </p>
+
+      <a href="#" target="_blank" id="biz-modal-link-btn" class="btn-editorial btn-dark"
+        style="width: 100%; text-align: center; justify-content: center; font-size: 0.85rem; padding: 0.65rem 1.25rem;">
+        CONOCER EMPRENDIMIENTO ↗
+      </a>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/data-store.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

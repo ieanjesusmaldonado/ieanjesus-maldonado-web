@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="IEANJESÚS Maldonado — Iglesia Evangélica Apostólica del Nombre de Jesús en Maldonado, Uruguay. Un lugar para encontrarte con Jesús.">
+  <meta name="keywords"
+    content="IEANJESÚS, Maldonado, Iglesia Cristiana, Pastor Franklin Salas, Uruguay, Células de hogar, Horarios, Doctrina Apostólica">
+  <meta name="author" content="IEANJESÚS Maldonado">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="IEANJESÚS Maldonado | Un lugar para encontrarte con Jesús">
+  <meta property="og:description"
+    content="Conoce la Iglesia Evangélica Apostólica del Nombre de Jesús en Maldonado. Horarios de cultos, células, ministerios y recursos.">
+  <meta property="og:type" content="website">
+
+  <title>IEANJESÚS Maldonado · Un lugar para encontrarte con Jesús</title>
+
+  <!-- Google Fonts: Instrument Sans + Newsreader + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Estilos Editoriales -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- ==========================================
+       AVISO TEMPORAL (BANNER DISCRETO)
+       ========================================== -->
+  <div class="notice-banner-editorial" id="notice-banner">
+    <div class="notice-banner-inner">
+      <div class="notice-banner-content">
+        <span class="notice-pill">AVISO</span>
+        <span id="notice-text"></span>
+      </div>
+      <button class="notice-close-btn" id="notice-close" aria-label="Cerrar aviso">&times;</button>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       HEADER & NAVEGACIÓN EDITORIAL
+       ========================================== -->
+  <header class="editorial-header" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand-container">
+        <div class="brand-logo-text">
+          <img src="assets/images/LOGOWEB.png" alt="IEANJESÚS" class="brand-header-logo">
+          <span class="brand-compact-title">IEANJESÚS MALDONADO</span>
+          <span class="brand-sub-tag">/ MALDONADO, URUGUAY</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links-desktop">
+          <li><a href="index.html" class="nav-link active">Inicio</a></li>
+          <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+          <li><a href="celulas.html" class="nav-link">Células</a></li>
+          <li><a href="ministerios.html" class="nav-link">Ministerios</a></li>
+          <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions-wrap">
+        <button class="btn-editorial btn-outline-editorial open-prayer-btn" id="open-prayer-btn">
+          <i class="fa-solid fa-hands-praying"></i> ORACIÓN
+        </button>
+        <a href="contacto.html" class="btn-editorial btn-green-inst">
+          VISÍTANOS
+        </a>
+        <button class="btn-editorial btn-outline-editorial drawer-toggle-btn" aria-label="Abrir Menú de Recursos">
+          <i class="fa-solid fa-bars"></i> MENÚ
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       DRAWER LATERAL: MENÚ PRINCIPAL
+       ========================================== -->
+  <div class="drawer-backdrop" id="drawer-backdrop">
+    <aside class="editorial-drawer" aria-label="Menú Principal">
+      <div class="drawer-header">
+        <div>
+          <span class="drawer-title-eyebrow">IEANJESÚS MALDONADO</span>
+          <h2 class="drawer-title-main">MENÚ PRINCIPAL</h2>
+        </div>
+        <button class="drawer-close-btn" id="drawer-close-btn" aria-label="Cerrar">&times;</button>
+      </div>
+
+      <div class="drawer-body">
+        <!-- 1. Enlaces Principales -->
+        <div>
+          <span class="drawer-nav-section-title">ENLACES PRINCIPALES</span>
+          <div class="drawer-main-links-grid">
+            <a href="index.html" class="drawer-grid-btn">
+              <span>Inicio</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="nosotros.html" class="drawer-grid-btn">
+              <span>Nosotros & Pastor</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="celulas.html" class="drawer-grid-btn">
+              <span>Células en los Barrios</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="ministerios.html" class="drawer-grid-btn">
+              <span>Comités y Ministerios</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="jesus.html" class="drawer-grid-btn highlight-jesus">
+              <span>Conoce a Jesús</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="nosotros.html#doctrina" class="drawer-grid-btn">
+              <span>En qué creemos</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="contacto.html" class="drawer-grid-btn drawer-grid-btn-full">
+              <span>Ubicación y Contacto</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="drawer-divider"></div>
+
+        <!-- 2. Actividades y Recursos -->
+        <div>
+          <span class="drawer-nav-section-title">ACTIVIDADES Y RECURSOS</span>
+          <div class="drawer-resources-list">
+            <!-- Agenda -->
+            <a href="agenda.html" class="drawer-resource-card">
+              <span class="drawer-resource-badge"><i class="fa-regular fa-calendar-check"></i> AGENDA</span>
+              <h3 class="drawer-resource-title">Agenda de la Iglesia</h3>
+              <p class="drawer-resource-desc">Consulta actividades, fechas especiales y próximos eventos de la iglesia.
+              </p>
+              <span class="drawer-resource-cta">VER AGENDA →</span>
+            </a>
+
+            <!-- Petición de Oración -->
+            <div class="drawer-resource-card open-prayer-btn" style="cursor: pointer;">
+              <span class="drawer-resource-badge"><i class="fa-solid fa-hands-praying"></i> INTERCESIÓN</span>
+              <h3 class="drawer-resource-title">Petición de Oración</h3>
+              <p class="drawer-resource-desc">Comparte tu necesidad de oración de manera personalizada o anónima.</p>
+              <span class="drawer-resource-cta">ENVIAR PETICIÓN →</span>
+            </div>
+
+            <!-- Material Gratuito -->
+            <a href="recursos.html" class="drawer-resource-card">
+              <span class="drawer-resource-badge"><i class="fa-solid fa-book-open"></i> DESCARGAS</span>
+              <h3 class="drawer-resource-title">Material Gratuito</h3>
+              <p class="drawer-resource-desc">Encuentra recursos de evangelismo, enseñanzas, Plan Cornelio, bosquejos y
+                material bíblico.</p>
+              <span class="drawer-resource-cta">EXPLORAR MATERIALES →</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="drawer-divider"></div>
+
+        <!-- 3. Colaboración -->
+        <div>
+          <span class="drawer-nav-section-title">COLABORACIÓN</span>
+          <div class="drawer-resource-card" style="border-left: 3px solid var(--green-inst);">
+            <span class="drawer-resource-badge"><i class="fa-solid fa-hand-holding-heart"></i> DONACIONES</span>
+            <h3 class="drawer-resource-title" style="font-size: 1.05rem;">¿Quieres colaborar?</h3>
+            <p class="drawer-resource-desc">
+              Si deseas colaborar con la obra de la iglesia mediante una donación, puedes comunicarte directamente con nosotros.
+            </p>
+            <div style="font-size: 0.74rem; color: var(--ink-muted); font-weight: 500; margin-bottom: 0.85rem; line-height: 1.4;">
+              Ropa · Alimentos · Obras sociales · Ofrendas · Otros aportes
+            </div>
+            <a href="https://wa.me/59897432948?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20colaborar%20con%20la%20iglesia%20mediante%20una%20donaci%C3%B3n%20y%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20c%C3%B3mo%20hacerlo."
+              target="_blank" class="btn-editorial btn-whatsapp-editorial"
+              style="font-size: 0.78rem; padding: 0.48rem 0.9rem; width: 100%; justify-content: center; text-align: center;">
+              <i class="fa-brands fa-whatsapp"></i> CONTACTAR PARA COLABORAR →
+            </a>
+          </div>
+        </div>
+
+        <div class="drawer-divider"></div>
+
+        <!-- 4. Administración -->
+        <div>
+          <span class="drawer-nav-section-title">ADMINISTRACIÓN</span>
+          <div class="drawer-admin-card">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
+              <i class="fa-solid fa-lock" style="color: var(--green-inst); font-size: 0.85rem;"></i>
+              <strong style="font-size: 0.95rem; color: var(--ink-primary);">PANEL ADMINISTRATIVO</strong>
+            </div>
+            <p style="font-size: 0.82rem; color: var(--ink-secondary); margin-bottom: 0.75rem;">Acceso exclusivo para
+              responsables autorizados.</p>
+            <a href="admin.html" class="btn-editorial btn-dark"
+              style="font-size: 0.78rem; padding: 0.45rem 0.9rem; width: 100%; text-align: center;">
+              INGRESAR →
+            </a>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <main>
+    <!-- ==========================================
+         01 — HERO EDITORIAL CENTRADO CON FONDO DIFUMINADO
+         ========================================== -->
+    <section class="hero-centered-section" id="inicio">
+      <!-- Foto de fondo difuminada suave -->
+      <img src="assets/images/hero-portada.jpg"
+        onerror="this.src='https://images.unsplash.com/photo-1548625361-1959779df3ec?auto=format&fit=crop&w=1920&q=80'"
+        alt="Congregación IEANJESÚS Maldonado" class="hero-bg-diffused">
+
+      <!-- Capa de gradiente cálido crema -->
+      <div class="hero-overlay-gradient"></div>
+
+      <!-- Ficha de Datos Esquina Superior Izquierda -->
+      <div class="hero-datum datum-top-left">
+        <strong>MALDONADO · URUGUAY</strong><br>
+        Av. Wilson Ferreira Aldunate & 25 de Agosto
+      </div>
+
+      <!-- Ficha de Datos Esquina Inferior Derecha -->
+      <div class="hero-datum datum-bottom-right">
+        <strong>UNA IGLESIA PARA TODOS</strong><br>
+        «Un Señor, una fe, un bautismo»
+      </div>
+
+      <!-- Contenido Centrado del Hero -->
+      <div class="hero-centered-content">
+        <!-- Tag / Pill Central -->
+        <div class="hero-pill-badge">
+          <span class="status-dot-red"></span>
+          <span>IEANJESÚS · MALDONADO, URUGUAY</span>
+        </div>
+
+        <!-- Título Principal H1 Centrado -->
+        <h1 class="hero-h1-centered">
+          Un lugar para encontrarte con <span class="serif-italic">Jesús.</span>
+        </h1>
+
+        <!-- Frase de bienvenida -->
+        <p class="hero-phrase-centered">
+          Somos una iglesia para todos, donde cada persona puede conocer a Jesús, crecer en la fe y encontrar una
+          familia.
+        </p>
+
+        <!-- Botones de Acción Centrados -->
+        <div class="hero-centered-actions">
+          <a href="#ubicacion" class="btn-editorial btn-dark">
+            Ubicación y canales <i class="fa-solid fa-arrow-down" style="font-size: 0.75rem;"></i>
+          </a>
+          <a href="https://wa.me/59897432948?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20recibir%20informaci%C3%B3n%20sobre%20IEANJES%C3%9AS%20Maldonado."
+            target="_blank" class="btn-editorial btn-whatsapp-editorial">
+            <i class="fa-brands fa-whatsapp"></i> Escribinos por WhatsApp
+          </a>
+
+          <!-- Redes Rápidas debajo de WhatsApp -->
+          <div class="hero-social-mini-row" aria-label="Canales y Redes Oficiales">
+            <a href="https://www.instagram.com/ieanjesusmaldonado/" target="_blank" class="hero-social-icon-btn" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=100066598476732&sk=about&locale=es_LA" target="_blank" class="hero-social-icon-btn" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.youtube.com/@pastorfranklinsalas" target="_blank" class="hero-social-icon-btn" aria-label="YouTube">
+              <i class="fa-brands fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         01.2 — SECCIÓN DESTACADA: QUIÉNES SOMOS (DESKTOP & MOBILE)
+         ========================================== -->
+    <section class="quienes-somos-featured-section" id="quienes-somos">
+      <div class="container">
+        <div class="quienes-somos-card">
+          <!-- Foto grupal de punta a punta -->
+          <div class="quienes-somos-banner">
+            <img src="assets/images/QUIENESSOMOS.jpg"
+              onerror="this.onerror=null; this.src='assets/images/QUI%C3%89NES%20SOMOS.jpg';"
+              alt="Comunidad y Congregación IEANJESÚS Maldonado"
+              class="quienes-somos-banner-img"
+              loading="lazy">
+          </div>
+          
+          <!-- Bloque inferior de contenido -->
+          <div class="quienes-somos-content">
+            <div class="quienes-somos-text-block">
+              <span class="editorial-eyebrow">QUIÉNES SOMOS</span>
+              <h2 class="quienes-somos-title">
+                Una iglesia para conocer a Jesús, crecer en la fe y vivir en comunidad.
+              </h2>
+              <p class="quienes-somos-desc">
+                Somos una iglesia apostólica comprometida con la enseñanza de la Palabra de Dios, la formación de discípulos y el servicio a las familias y la comunidad.
+              </p>
+            </div>
+            <div class="quienes-somos-action-block">
+              <a href="nosotros.html" class="btn-editorial btn-dark quienes-somos-btn">
+                CONOCÉ QUIÉNES SOMOS <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         01.5 — ACCESOS RÁPIDOS (MOBILE & TABLET EXCLUSIVO)
+         ========================================== -->
+    <section class="quick-shortcuts-section" id="accesos-rapidos" aria-label="Accesos Rápidos">
+      <div class="container">
+        <div class="quick-shortcuts-header">
+          <span class="quick-shortcuts-label">ACCESOS RÁPIDOS</span>
+        </div>
+        <div class="quick-shortcuts-grid">
+          <a href="index.html" class="quick-shortcut-btn">
+            <i class="fa-solid fa-house"></i>
+            <span>Inicio</span>
+          </a>
+          <a href="nosotros.html" class="quick-shortcut-btn">
+            <i class="fa-solid fa-users"></i>
+            <span>Nosotros</span>
+          </a>
+          <a href="celulas.html" class="quick-shortcut-btn">
+            <i class="fa-solid fa-people-roof"></i>
+            <span>Células</span>
+          </a>
+          <a href="ministerios.html" class="quick-shortcut-btn">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+            <span>Ministerios</span>
+          </a>
+          <a href="contacto.html" class="quick-shortcut-btn">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Contacto</span>
+          </a>
+          <a href="jesus.html" class="quick-shortcut-btn highlight-jesus">
+            <i class="fa-solid fa-cross"></i>
+            <span>Conoce a Jesús</span>
+          </a>
+          <a href="nosotros.html#doctrina" class="quick-shortcut-btn quick-shortcut-span">
+            <i class="fa-solid fa-book-bible"></i>
+            <span>En qué creemos</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         02 — SECCIÓN HORARIOS (AGENDA COMPLETA CON TARJETAS)
+         ========================================== -->
+    <section class="schedules-section" id="horarios">
+      <div class="container">
+        <div class="section-header-editorial split">
+          <div>
+            <span class="editorial-eyebrow">01 / AGENDA</span>
+            <h2 class="section-title-large">Horarios de Cultos & Células</h2>
+          </div>
+          <p class="section-desc-editorial">
+            Cronograma semanal completo en el templo sede y en los hogares de Maldonado y Rocha.
+          </p>
+        </div>
+
+        <div class="schedules-editorial-grid">
+          <!-- 1. Lunes -->
+          <div class="schedule-editorial-item">
+            <span class="schedule-day-label">LUNES</span>
+            <div class="schedule-time-display">19:00</div>
+            <h3 class="schedule-title-text">Célula Barrio Hipódromo</h3>
+            <p class="schedule-desc-text">Reunión en hogar para compartir la Palabra y oración.</p>
+          </div>
+
+          <!-- 2. Martes -->
+          <div class="schedule-editorial-item">
+            <span class="schedule-day-label">MARTES</span>
+            <div class="schedule-time-display">19:00 / 19:30</div>
+            <h3 class="schedule-title-text">Células en Hogares</h3>
+            <p class="schedule-desc-text">
+              <strong>19:00 hs:</strong> La Milagrosa<br>
+              <strong>19:30 hs:</strong> Cerro Pelado
+            </p>
+          </div>
+
+          <!-- 3. Miércoles -->
+          <div class="schedule-editorial-item">
+            <span class="schedule-day-label">MIÉRCOLES</span>
+            <div class="schedule-time-display">19:30</div>
+            <h3 class="schedule-title-text">Células en Hogares</h3>
+            <p class="schedule-desc-text">
+              <strong>19:30 hs:</strong> Cuñetti<br>
+              <strong>19:30 hs:</strong> Rocha
+            </p>
+          </div>
+
+          <!-- 4. Jueves (Templo - Highlight) -->
+          <div class="schedule-editorial-item highlight-item" id="schedule-item-jueves">
+            <span class="schedule-day-label" style="color: var(--accent-coral);">JUEVES · TEMPLO</span>
+            <div class="schedule-time-display" id="time-jueves">19:30</div>
+            <h3 class="schedule-title-text" id="title-jueves">Reunión General</h3>
+            <p class="schedule-desc-text" id="desc-jueves">Culto congregacional en sede central: alabanza y Palabra.</p>
+            <button class="schedule-more-btn open-culto-modal-btn" data-culto-id="sched-jueves">
+              <i class="fa-solid fa-circle-info"></i> CONOCER MÁS →
+            </button>
+          </div>
+
+          <!-- 5. Viernes -->
+          <div class="schedule-editorial-item">
+            <span class="schedule-day-label">VIERNES</span>
+            <div class="schedule-time-display">19:00 / 19:30</div>
+            <h3 class="schedule-title-text">Células en Hogares</h3>
+            <p class="schedule-desc-text">
+              <strong>19:00 hs:</strong> Centro<br>
+              <strong>19:00 hs:</strong> Maldonado Nuevo<br>
+              <strong>19:30 hs:</strong> Barrio Norte
+            </p>
+          </div>
+
+          <!-- 6. Domingo Evangelismo -->
+          <div class="schedule-editorial-item" id="schedule-item-evangelismo">
+            <span class="schedule-day-label">DOMINGO · EVANGELISMO</span>
+            <div class="schedule-time-display" id="time-evangelismo">10:00</div>
+            <h3 class="schedule-title-text" id="title-evangelismo">Evangelismo en la Feria</h3>
+            <p class="schedule-desc-text" id="desc-evangelismo">Evangelismo en la Feria</p>
+            <button class="schedule-more-btn open-culto-modal-btn" data-culto-id="sched-evangelismo-feria">
+              <i class="fa-solid fa-circle-info"></i> CONOCER MÁS →
+            </button>
+          </div>
+
+          <!-- 7. Domingo (Templo - Highlight) -->
+          <div class="schedule-editorial-item highlight-item" id="schedule-item-domingo">
+            <span class="schedule-day-label" style="color: var(--accent-coral);">DOMINGO · TEMPLO</span>
+            <div class="schedule-time-display" id="time-domingo">18:30</div>
+            <h3 class="schedule-title-text" id="title-domingo">Gran Celebración</h3>
+            <p class="schedule-desc-text" id="desc-domingo">Gran celebración dominical de adoración, comunión y
+              predicación.</p>
+            <button class="schedule-more-btn open-culto-modal-btn" data-culto-id="sched-domingo">
+              <i class="fa-solid fa-circle-info"></i> CONOCER MÁS →
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         03 — IDENTIDAD / MENSAJE CENTRAL
+         ========================================== -->
+    <section class="identity-section" id="identidad">
+      <div class="container">
+        <div class="identity-grid">
+          <div>
+            <span class="editorial-eyebrow">02 / MENSAJE CENTRAL</span>
+            <h2 class="identity-title">
+              SALVACIÓN,<br>SANIDAD Y<br><span class="text-green">RESTAURACIÓN</span>
+            </h2>
+          </div>
+
+          <div>
+            <div class="identity-quote">
+              «Un Señor, una Fe, un Bautismo.»
+            </div>
+            <span class="identity-quote-source">EFESIOS 4:5</span>
+            <p class="identity-desc">
+              Conoce nuestra fe, nuestra doctrina y el mensaje que anunciamos cada semana a la comunidad de Maldonado y
+              el mundo.
+            </p>
+            <a href="nosotros.html#doctrina" class="btn-editorial btn-outline-editorial">
+              EN QUÉ CREEMOS <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         04 — NUESTRO PASTOR
+         ========================================== -->
+    <section class="pastor-section" id="pastor">
+      <div class="container">
+        <div class="pastor-grid">
+          <div class="pastor-photo-wrap">
+            <img src="assets/images/pastor-franklin.jpg"
+              onerror="this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80'"
+              alt="Pastor Franklin Salas">
+          </div>
+
+          <div>
+            <span class="editorial-eyebrow">03 / LIDERAZGO</span>
+            <h2 class="pastor-name-heading">Nuestro Pastor</h2>
+            <span class="pastor-role-tag">PASTOR FRANKLIN SALAS</span>
+            <div class="pastor-quote-block">
+              «Creemos firmemente en el poder transformador de la Palabra de Dios y en el Nombre que es sobre todo
+              nombre: Jesús.»
+            </div>
+            <p class="pastor-bio-text">
+              El Pastor Franklin Salas es misionero, predicador y consejero bíblico. Su ministerio se caracteriza por la
+              enseñanza de la Palabra de Dios, la formación de discípulos y el propósito de llevar a las personas a una
+              relación más profunda con Jesucristo.
+            </p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <a href="nosotros.html#pastor" class="btn-editorial btn-dark">
+                CONOCE A NUESTRO PASTOR <i class="fa-solid fa-arrow-right"></i>
+              </a>
+              <a href="https://wa.me/59897432948?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20comunicarme%20con%20el%20Pastor%20Franklin%20Salas."
+                target="_blank" class="btn-editorial btn-whatsapp-editorial">
+                <i class="fa-brands fa-whatsapp"></i> Hablar con el Pastor
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         05 — CONOCE A JESÚS (Sección de Contraste)
+         ========================================== -->
+    <section class="jesus-teaser-section" id="conoce-a-jesus">
+      <div class="container">
+        <div class="jesus-teaser-grid">
+          <div>
+            <span class="editorial-eyebrow light">04 / CONOCE A JESÚS</span>
+            <h2 class="jesus-teaser-title">
+              HAY ESPERANZA<br>EN JESÚS.
+            </h2>
+          </div>
+
+          <div>
+            <p class="jesus-teaser-text">
+              Descubre más sobre aquel que cambió el rumbo de la humanidad y que tiene el poder de transformar tu vida,
+              sanar tus heridas y darte un nuevo comienzo.
+            </p>
+            <a href="jesus.html" class="btn-editorial btn-white-contrast">
+              CONOCE A JESÚS <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         06 — RED DE CÉLULAS EN LOS BARRIOS (TODAS LAS 8 CÉLULAS COMPLETAS)
+         ========================================== -->
+    <section class="celulas-section" id="celulas">
+      <div class="container">
+        <div class="section-header-editorial split">
+          <div>
+            <span class="editorial-eyebrow">05 / RED LOCAL</span>
+            <h2 class="section-title-large">Células en los Barrios</h2>
+          </div>
+          <p class="section-desc-editorial">
+            Encuentros semanales en hogares distribuidos por Maldonado y extensión en Rocha.
+          </p>
+        </div>
+
+        <!-- Filtros por Día -->
+        <div class="filters-tabs-editorial">
+          <button class="filter-tab-btn active" data-filter="all">Todas las Células (8)</button>
+          <button class="filter-tab-btn" data-filter="lunes">Lunes</button>
+          <button class="filter-tab-btn" data-filter="martes">Martes</button>
+          <button class="filter-tab-btn" data-filter="miercoles">Miércoles</button>
+          <button class="filter-tab-btn" data-filter="viernes">Viernes</button>
+        </div>
+
+        <!-- Grilla Completa de las 8 Células -->
+        <div class="celulas-cards-grid" id="celulas-grid">
+
+          <!-- 1. Barrio Hipódromo (Lunes 19:00) -->
+          <div class="celula-card-editorial" data-category="lunes">
+            <div class="celula-card-img-wrap">
+              <img src="assets/images/celula-hipodromo.jpg" onerror="this.src='assets/images/celula-hipodromo.jpeg'"
+                alt="Célula Barrio Hipódromo">
+            </div>
+            <div class="celula-card-body">
+              <span class="celula-badge">LUNES · 19:00 HS</span>
+              <h3 class="celula-name">Barrio Hipódromo</h3>
+              <ul class="celula-meta-list">
+                <li><i class="fa-regular fa-clock"></i> Lunes 19:00 hs</li>
+                <li><i class="fa-solid fa-location-dot"></i> Barrio Hipódromo</li>
+              </ul>
+              <div class="celula-card-footer">
+                <a href="https://wa.me/59893836423?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20C%C3%A9lula%20Barrio%20Hip%C3%B3dromo."
+                  target="_blank" class="btn-editorial btn-whatsapp-editorial"
+                  style="width: 100%; font-size: 0.82rem; padding: 0.6rem 1rem;">
+                  <i class="fa-brands fa-whatsapp"></i> Pedir Ubicación
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. La Milagrosa (Martes 19:00) -->
+          <div class="celula-card-editorial" data-category="martes">
+            <div class="celula-card-img-wrap">
+              <img src="assets/images/celula-la-milagrosa.jpg" alt="Célula Barrio La Milagrosa">
+            </div>
+            <div class="celula-card-body">
+              <span class="celula-badge">MARTES · 19:00 HS</span>
+              <h3 class="celula-name">La Milagrosa</h3>
+              <ul class="celula-meta-list">
+                <li><i class="fa-regular fa-clock"></i> Martes 19:00 hs</li>
+                <li><i class="fa-solid fa-location-dot"></i> Barrio La Milagrosa</li>
+              </ul>
+              <div class="celula-card-footer">
+                <a href="https://wa.me/59895712960?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20C%C3%A9lula%20La%20Milagrosa."
+                  target="_blank" class="btn-editorial btn-whatsapp-editorial"
+                  style="width: 100%; font-size: 0.82rem; padding: 0.6rem 1rem;">
+                  <i class="fa-brands fa-whatsapp"></i> Pedir Ubicación
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Cerro Pelado (Martes 19:30) -->
+          <div class="celula-card-editorial" data-category="martes">
+            <div class="celula-card-img-wrap">
+              <img src="assets/images/celula-cerro-pelado.jpg" alt="Célula Cerro Pelado">
+            </div>
+            <div class="celula-card-body">
+              <span class="celula-badge">MARTES · 19:30 HS</span>
+              <h3 class="celula-name">Cerro Pelado</h3>
+              <ul class="celula-meta-list">
+                <li><i class="fa-regular fa-clock"></i> Martes 19:30 hs</li>
+                <li><i class="fa-solid fa-location-dot"></i> Barrio Cerro Pelado</li>
+              </ul>
+              <div class="celula-card-footer">
+                <a href="https://wa.me/59894181784?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20C%C3%A9lula%20Cerro%20Pelado."
+                  target="_blank" class="btn-editorial btn-whatsapp-editorial"
+                  style="width: 100%; font-size: 0.82rem; padding: 0.6rem 1rem;">
+                  <i class="fa-brands fa-whatsapp"></i> Pedir Ubicación
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Centro (Viernes 19:00) -->
+          <div class="celula-card-editorial" data-category="viernes">
+            <div class="celula-card-img-wrap">
+              <img src="assets/images/celula-centro.jpg" alt="Célula Maldonado Centro">
+            </div>
+            <div class="celula-card-body">
+              <span class="celula-badge">VIERNES · 19:00 HS</span>
+              <h3 class="celula-name">Centro</h3>
+              <ul class="celula-meta-list">
+                <li><i class="fa-regular fa-clock"></i> Viernes 19:00 hs</li>
+                <li><i class="fa-solid fa-location-dot"></i> Maldonado Centro</li>
+              </ul>
+              <div class="celula-card-footer">
+                <a href="https://wa.me/59891479591?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20C%C3%A9lula%20Centro."
+                  target="_blank" class="btn-editorial btn-whatsapp-editorial"
+                  style="width: 100%; font-size: 0.82rem; padding: 0.6rem 1rem;">
+                  <i class="fa-brands fa-whatsapp"></i> Pedir Ubicación
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. Cuñetti (Miércoles 19:30) -->
+          <div class="celula-card-editorial" data-category="miercoles">
+            <div class="celula-card-img-wrap">
+              <img src="assets/images/celula-cunetti.jpg" alt="Célula Cuñetti">
+            </div>
+            <div class="celula-card-body">
+              <span class="celula-badge">MIÉRCOLES · 19:30 HS</span>
+              <h3 class="celula-name">Cuñetti</h3>
+              <ul class="celula-meta-list">
+                <li><i class="fa-regular fa-clock"></i> Miércoles 19:30 hs</li>
+                <li><i class="fa-solid fa-location-dot"></i> Barrio Cuñetti</li>
+              </ul>
+              <div class="celula-card-footer">
+                <a href="https://wa.me/59893943580?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20C%C3%A9lula%20Cu%C3%B1etti."
+                  target="_blank" class="btn-editorial btn-whatsapp-editorial"
+                  style="width: 100%; font-size: 0.82rem; padding: 0.6rem 1rem;">
+                  <i class="fa-brands fa-whatsapp"></i> Pedir Ubicación
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. Rocha (Miércoles 19:30) -->
+          <div class="celula-card-editorial" data-category="miercoles">
+            <div class="celula-card-img-wrap">
+              <img src="assets/images/celula-rocha.jpg" alt="Célula Rocha">
+            </div>
+            <div class="celula-card-body">
+              <span class="celula-badge">MIÉRCOLES · 19:30 HS</span>
+              <h3 class="celula-name">Rocha</h3>
+              <ul class="celula-meta-list">
+                <li><i class="fa-regular fa-clock"></i> Miércoles 19:30 hs</li>
+                <li><i class="fa-solid fa-location-dot"></i> Ciudad de Rocha</li>
+              </ul>
+              <div class="celula-card-footer">
+                <a href="https://wa.me/59894867047?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20C%C3%A9lula%20Rocha."
+                  target="_blank" class="btn-editorial btn-whatsapp-editorial"
+                  style="width: 100%; font-size: 0.82rem; padding: 0.6rem 1rem;">
+                  <i class="fa-brands fa-whatsapp"></i> Pedir Información
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7. Maldonado Nuevo (Viernes 19:00) -->
+          <div class="celula-card-editorial" data-category="viernes">
+            <div class="celula-card-img-wrap">
+              <img src="assets/images/celula-maldonado-nuevo.jpg" alt="Célula Maldonado Nuevo">
+            </div>
+            <div class="celula-card-body">
+              <span class="celula-badge">VIERNES · 19:00 HS</span>
+              <h3 class="celula-name">Maldonado Nuevo</h3>
+              <ul class="celula-meta-list">
+                <li><i class="fa-regular fa-clock"></i> Viernes 19:00 hs</li>
+                <li><i class="fa-solid fa-location-dot"></i> Maldonado Nuevo</li>
+              </ul>
+              <div class="celula-card-footer">
+                <a href="https://wa.me/59891884036?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20C%C3%A9lula%20Maldonado%20Nuevo."
+                  target="_blank" class="btn-editorial btn-whatsapp-editorial"
+                  style="width: 100%; font-size: 0.82rem; padding: 0.6rem 1rem;">
+                  <i class="fa-brands fa-whatsapp"></i> Pedir Ubicación
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8. Barrio Norte (Viernes 19:30) -->
+          <div class="celula-card-editorial" data-category="viernes">
+            <div class="celula-card-img-wrap">
+              <img src="assets/images/celula-barrio-norte.jpg" alt="Célula Barrio Norte">
+            </div>
+            <div class="celula-card-body">
+              <span class="celula-badge">VIERNES · 19:30 HS</span>
+              <h3 class="celula-name">Barrio Norte</h3>
+              <ul class="celula-meta-list">
+                <li><i class="fa-regular fa-clock"></i> Viernes 19:30 hs</li>
+                <li><i class="fa-solid fa-location-dot"></i> Sector Barrio Norte</li>
+              </ul>
+              <div class="celula-card-footer">
+                <a href="https://wa.me/59895615798?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20C%C3%A9lula%20Barrio%20Norte."
+                  target="_blank" class="btn-editorial btn-whatsapp-editorial"
+                  style="width: 100%; font-size: 0.82rem; padding: 0.6rem 1rem;">
+                  <i class="fa-brands fa-whatsapp"></i> Pedir Ubicación
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         07 — VISÍTANOS / UBICACIÓN & CONTACTOS
+         ========================================== -->
+    <section class="location-section" id="ubicacion">
+      <div class="container">
+        <div class="section-header-editorial">
+          <span class="editorial-eyebrow">06 / CONTACTO</span>
+          <h2 class="section-title-large">Ubicación y Canales Oficiales</h2>
+        </div>
+
+        <div class="location-grid">
+          <div class="location-details">
+            <div class="location-item">
+              <span class="location-label">SEDE CENTRAL</span>
+              <div class="location-val">Av. Wilson Ferreira Aldunate & 25 de Agosto</div>
+              <div class="location-sub">Maldonado, Uruguay</div>
+            </div>
+
+            <div class="location-item">
+              <span class="location-label">ORGANIZACIÓN INTERNACIONAL</span>
+              <div class="location-val">Iglesia Evangélica Apostólica del Nombre de Jesús</div>
+              <div class="location-sub">Presencia en más de 20 países y en todo el territorio uruguayo</div>
+            </div>
+
+            <div class="location-item">
+              <span class="location-label">REDES SOCIALES & CONTACTO</span>
+              <div class="location-social-links">
+                <a href="https://wa.me/59897432948?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20recibir%20informaci%C3%B3n%20sobre%20IEANJES%C3%9AS%20Maldonado." target="_blank" class="btn-editorial btn-outline-editorial">
+                  <i class="fa-brands fa-whatsapp" style="color: #25D366;"></i> WhatsApp Directo
+                </a>
+                <a href="https://www.instagram.com/ieanjesusmaldonado/" target="_blank"
+                  class="btn-editorial btn-outline-editorial">
+                  <i class="fa-brands fa-instagram" style="color: var(--accent-coral);"></i> Instagram
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=100066598476732&sk=about&locale=es_LA" target="_blank"
+                  class="btn-editorial btn-outline-editorial">
+                  <i class="fa-brands fa-facebook-f" style="color: #1877F2;"></i> Facebook
+                </a>
+                <a href="https://www.youtube.com/@pastorfranklinsalas" target="_blank"
+                  class="btn-editorial btn-outline-editorial">
+                  <i class="fa-brands fa-youtube" style="color: #FF0000;"></i> YouTube
+                </a>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+              <a href="https://maps.app.goo.gl/Wde2KanvJQ8BYH8G6" target="_blank" class="btn-editorial btn-dark">
+                <i class="fa-solid fa-diamond-turn-right"></i> ABRIR EN MAPS
+              </a>
+            </div>
+          </div>
+
+          <div class="location-map-wrap">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3272.7183!2d-54.959868!3d-34.8953891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95751b085037410d%3A0xb9e323a7cebe91bc!2sIglesia%20Evang%C3%A9lica%20Apost%C3%B3lica%20del%20Nombre%20de%20Jes%C3%BAs%20-%20IEANJES%C3%9AS%20Maldonado!5e0!3m2!1ses!2suy!4v1700000000000!5m2!1ses!2suy"
+              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              title="Ubicación IEANJESÚS Maldonado en Google Maps">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         08 — COMITÉS / MINISTERIOS (10 COMITÉS)
+         ========================================== -->
+    <section class="ministerios-section" id="comites">
+      <div class="container">
+        <div class="section-header-editorial split">
+          <div>
+            <span class="editorial-eyebrow">07 / MINISTERIOS</span>
+            <h2 class="section-title-large">Comités</h2>
+          </div>
+          <p class="section-desc-editorial">
+            Estructura de servicio dinámico para cada etapa y vocación de la comunidad.
+          </p>
+        </div>
+
+        <div class="ministerios-full-grid">
+
+          <!-- 1. Educación Cristiana -->
+          <div class="ministerio-card-editorial">
+            <div class="ministerio-card-img">
+              <img src="assets/images/comite-educacion.jpg"
+                onerror="this.src='https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=600&q=80'"
+                alt="Educación Cristiana">
+            </div>
+            <div class="ministerio-card-body">
+              <span class="ministerio-category">01 · FORMACIÓN & NIÑEZ</span>
+              <h3 class="ministerio-name">Educación Cristiana</h3>
+              <p class="ministerio-desc">Escuela bíblica interactiva, creativa y con sólidos valores para niños y
+                familias.</p>
+            </div>
+          </div>
+
+          <!-- 2. Jóvenes -->
+          <div class="ministerio-card-editorial">
+            <div class="ministerio-card-img">
+              <img src="assets/images/comite-jovenes.jpg"
+                onerror="this.src='https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80'"
+                alt="Jóvenes">
+            </div>
+            <div class="ministerio-card-body">
+              <span class="ministerio-category">02 · JUVENTUD</span>
+              <h3 class="ministerio-name">Comité de Jóvenes</h3>
+              <p class="ministerio-desc">Reuniones dinámicas, música, campamentos y liderazgo para las nuevas
+                generaciones.</p>
+            </div>
+          </div>
+
+          <!-- 3. Damas Dorcas -->
+          <div class="ministerio-card-editorial">
+            <div class="ministerio-card-img">
+              <img src="assets/images/comite-dorcas.jpg"
+                onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80'"
+                alt="Damas Dorcas">
+            </div>
+            <div class="ministerio-card-body">
+              <span class="ministerio-category">03 · MINISTERIO FEMENIL</span>
+              <h3 class="ministerio-name">Damas Dorcas</h3>
+              <p class="ministerio-desc">Comunidad de mujeres dedicadas a la oración, el servicio mutuo y la edificación
+                del hogar.</p>
+            </div>
+          </div>
+
+          <!-- 4. Caballeros -->
+          <div class="ministerio-card-editorial">
+            <div class="ministerio-card-img">
+              <img src="assets/images/comite-caballeros.jpg"
+                onerror="this.src='https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80'"
+                alt="Caballeros">
+            </div>
+            <div class="ministerio-card-body">
+              <span class="ministerio-category">04 · MINISTERIO VARONIL</span>
+              <h3 class="ministerio-name">Caballeros</h3>
+              <p class="ministerio-desc">Varones guiados por la Palabra, fortaleciendo el liderazgo familiar y la
+                mayordomía.</p>
+            </div>
+          </div>
+
+          <!-- 5. Música & Alabanza -->
+          <div class="ministerio-card-editorial">
+            <div class="ministerio-card-img">
+              <img src="assets/images/comite-musica.jpg"
+                onerror="this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80'"
+                alt="Música y Alabanza">
+            </div>
+            <div class="ministerio-card-body">
+              <span class="ministerio-category">05 · ADORACIÓN</span>
+              <h3 class="ministerio-name">Música & Alabanza</h3>
+              <p class="ministerio-desc">Instrumentistas y voces dirigiendo los momentos de alabanza y comunión
+                espiritual.</p>
+            </div>
+          </div>
+
+          <!-- 6. Comunicaciones -->
+          <div class="ministerio-card-editorial">
+            <div class="ministerio-card-img">
+              <img src="assets/images/comite-comunicaciones.jpg"
+                onerror="this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80'"
+                alt="Comunicaciones">
+            </div>
+            <div class="ministerio-card-body">
+              <span class="ministerio-category">06 · MEDIOS & TRANSMISIÓN</span>
+              <h3 class="ministerio-name">Comunicaciones</h3>
+              <p class="ministerio-desc">Transmisiones en vivo, fotografía, sonido y producción audiovisual de cada
+                actividad.</p>
+            </div>
+          </div>
+
+          <!-- 7. Obra Social -->
+          <div class="ministerio-card-editorial">
+            <div class="ministerio-card-img">
+              <img src="assets/images/comite-obrasocial.jpg"
+                onerror="this.src='https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=600&q=80'"
+                alt="Obra Social">
+            </div>
+            <div class="ministerio-card-body">
+              <span class="ministerio-category">07 · SOLIDARIDAD</span>
+              <h3 class="ministerio-name">Obra Social</h3>
+              <p class="ministerio-desc">Apoyo alimentario, canastas, ropa y asistencia a familias necesitadas de
+                Maldonado.</p>
+            </div>
+          </div>
+
+          <!-- 8. Intercesión -->
+          <div class="ministerio-card-editorial">
+            <div class="ministerio-card-img">
+              <img src="assets/images/comite-intercesion.jpg"
+                onerror="this.src='https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=600&q=80'"
+                alt="Intercesión">
+            </div>
+            <div class="ministerio-card-body">
+              <span class="ministerio-category">08 · ORACIÓN</span>
+              <h3 class="ministerio-name">Intercesión</h3>
+              <p class="ministerio-desc">Clamor constante por sanidad, restauración de hogares y peticiones de la
+                congregación.</p>
+            </div>
+          </div>
+
+          <!-- 9. Misiones -->
+          <div class="ministerio-card-editorial">
+            <div class="ministerio-card-img">
+              <img src="assets/images/comite-misiones.jpg"
+                onerror="this.src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80'"
+                alt="Misiones">
+            </div>
+            <div class="ministerio-card-body">
+              <span class="ministerio-category">09 · EXTENSIÓN</span>
+              <h3 class="ministerio-name">Misiones y Extensión</h3>
+              <p class="ministerio-desc">Evangelismo en calles, apertura de puntos misioneros en Rocha y alcance
+                regional.</p>
+            </div>
+          </div>
+
+          <!-- 10. Junta Local -->
+          <div class="ministerio-card-editorial">
+            <div class="ministerio-card-img">
+              <img src="assets/images/comite-junta.jpg"
+                onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80'"
+                alt="Junta Local">
+            </div>
+            <div class="ministerio-card-body">
+              <span class="ministerio-category">10 · ADMINISTRACIÓN</span>
+              <h3 class="ministerio-name">Junta Local</h3>
+              <p class="ministerio-desc">Coordinación administrativa, mayordomía responsable y soporte a la visión
+                pastoral.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         09 — EMPRENDIMIENTOS DE NUESTRA COMUNIDAD (LOGO MARQUEE)
+         ========================================== -->
+    <section class="community-biz-section" id="emprendimientos">
+      <div class="container">
+        <div style="text-align: center; max-width: 680px; margin: 0 auto;">
+          <span class="editorial-eyebrow">08 / COMUNIDAD</span>
+          <h2 style="font-size: 1.65rem; color: var(--ink-primary); margin-bottom: 0.5rem;">Emprendimientos de Nuestra
+            Comunidad</h2>
+          <p style="font-size: 0.92rem; color: var(--ink-secondary); line-height: 1.5;">
+            Conoce algunos de los emprendimientos que forman parte de nuestra comunidad y que apoyan este espacio.
+          </p>
+        </div>
+
+        <!-- Grilla Limpia y Equilibrada de Emprendimientos de la Comunidad -->
+        <div class="biz-showcase-grid">
+          <div class="biz-logo-card" data-biz-id="biz-boomer" title="Boomer Studio">
+            <img src="assets/images/logo-boomer-studio.svg" alt="Boomer Studio" class="biz-logo-img biz-logo-wide">
+          </div>
+          <div class="biz-logo-card" data-biz-id="biz-control-clima" title="Control Clima">
+            <img src="assets/images/logo-control-clima.svg" alt="Control Clima" class="biz-logo-img">
+          </div>
+          <div class="biz-logo-card" data-biz-id="biz-jb-construcciones" title="JB² Construcciones">
+            <img src="assets/images/logo-jb-construcciones.svg" alt="JB² Construcciones" class="biz-logo-img">
+          </div>
+          <div class="biz-logo-card" data-biz-id="biz-cc-construimos" title="C&C Construimos tu proyecto">
+            <img src="assets/images/logo-cc-construimos.svg" alt="C&C Construimos tu proyecto" class="biz-logo-img">
+          </div>
+          <div class="biz-logo-card" data-biz-id="biz-kabby" title="KABBY">
+            <img src="assets/images/logo-kabby.svg" alt="KABBY" class="biz-logo-img">
+          </div>
+        </div>
+
+        <!-- Aclaración sutil -->
+        <p class="biz-discreet-note">
+          Este espacio reconoce a emprendimientos de nuestra comunidad que colaboran con el mantenimiento de este
+          proyecto digital.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         10 — CTA FINAL: ¿TE ALEJASTE DE DIOS?
+         ========================================== -->
+    <section class="final-cta-section" id="nuevo-comienzo">
+      <div class="container">
+        <div class="final-cta-content">
+          <span class="editorial-eyebrow light">UN NUEVO COMIENZO</span>
+          <h2 class="final-cta-title">¿TE ALEJASTE DE DIOS?</h2>
+          <p class="final-cta-text">
+            Si alguna vez conociste a Dios y te alejaste, hoy aún puedes volver. Él no se ha olvidado de ti y tiene sus
+            brazos abiertos para restaurarte.
+          </p>
+          <a href="jesus.html#acercarme" class="btn-editorial btn-green-inst">
+            QUIERO ACERCARME A DIOS <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================
+       11 — FOOTER EDITORIAL
+       ========================================== -->
+  <footer class="editorial-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Columna 1: Logo & Frase -->
+        <div>
+          <div class="footer-brand-title">IEANJESÚS MALDONADO</div>
+          <p class="footer-motto">
+            “Un lugar para encontrarte con Jesús.”<br>
+            «Un Señor, una fe, un bautismo» (Efesios 4:5). Una familia de fe apostólica en Maldonado, Uruguay.
+          </p>
+        </div>
+
+        <!-- Columna 2: Navegación -->
+        <div>
+          <div class="footer-col-title">Navegación</div>
+          <ul class="footer-links-list">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros & Pastor</a></li>
+            <li><a href="agenda.html">Agenda de Actividades</a></li>
+            <li><a href="recursos.html">Material Gratuito</a></li>
+            <li><a href="celulas.html">8 Células de Hogar</a></li>
+            <li><a href="ministerios.html">Comités</a></li>
+            <li><a href="contacto.html">Ubicación y Contacto</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna 3: Horarios -->
+        <div>
+          <div class="footer-col-title">Horarios Principales</div>
+          <ul class="footer-links-list">
+            <li><strong style="color: #FFFFFF;">Jueves:</strong> 19:30 hs (Templo)</li>
+            <li><strong style="color: #FFFFFF;">Domingos:</strong> 18:30 hs (Templo)</li>
+            <li><strong style="color: #FFFFFF;">Células:</strong> Lunes a Viernes</li>
+          </ul>
+        </div>
+
+        <!-- Columna 4: Contacto & Redes -->
+        <div>
+          <div class="footer-col-title">Redes Oficiales</div>
+          <ul class="footer-links-list">
+            <li><a href="https://www.facebook.com/profile.php?id=100066598476732&sk=about&locale=es_LA"
+                target="_blank">Facebook Oficial</a></li>
+            <li><a href="https://www.instagram.com/ieanjesusmaldonado/" target="_blank">Instagram
+                @ieanjesusmaldonado</a></li>
+            <li><a href="https://www.youtube.com/@pastorfranklinsalas" target="_blank">YouTube @pastorfranklinsalas</a>
+            </li>
+            <li><a href="https://wa.me/59897432948" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp
+                Sede</a></li>
+          </ul>
+          <button class="btn-editorial btn-outline-editorial" id="footer-prayer-btn"
+            style="color: #FFFFFF !important; border-color: rgba(255,255,255,0.25); font-size: 0.78rem; padding: 0.4rem 0.8rem; margin-top: 1rem; width: 100%;">
+            <i class="fa-solid fa-hands-praying" style="color: var(--accent-coral);"></i> Enviar Petición de Oración
+          </button>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <span>&copy; <span id="current-year">2026</span> IEANJESÚS Maldonado. Todos los derechos reservados.</span>
+        <span>MALDONADO, URUGUAY</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       MODAL DE DETALLE DE CULTO INTERACTIVO
+       ========================================== -->
+  <div class="modal-editorial-backdrop" id="culto-modal">
+    <div class="modal-editorial-card" style="max-width: 540px;">
+      <button class="modal-close-btn" id="culto-modal-close">&times;</button>
+      <span class="editorial-eyebrow" id="modal-culto-day-badge">CULTO GENERAL</span>
+      <h3 style="font-size: 1.5rem; color: var(--ink-primary); margin-bottom: 0.75rem;" id="modal-culto-title">Reunión
+        General</h3>
+      <p style="color: var(--ink-secondary); font-size: 0.95rem; line-height: 1.55; margin-bottom: 1.25rem;"
+        id="modal-culto-desc">
+        Detalle del culto.
+      </p>
+
+      <div
+        style="background: var(--bg-cream); border: 1px solid var(--border-fine); border-radius: var(--radius-xs); padding: 1rem; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.65rem;">
+        <div>
+          <strong style="font-size: 0.82rem; color: var(--ink-muted); text-transform: uppercase;">¿Quién
+            organiza?</strong>
+          <div style="font-size: 0.88rem; color: var(--ink-primary);" id="modal-culto-organizer">-</div>
+        </div>
+        <div>
+          <strong style="font-size: 0.82rem; color: var(--ink-muted); text-transform: uppercase;">¿A quién está
+            dirigida?</strong>
+          <div style="font-size: 0.88rem; color: var(--ink-primary);" id="modal-culto-target">-</div>
+        </div>
+        <div>
+          <strong style="font-size: 0.82rem; color: var(--ink-muted); text-transform: uppercase;">¿Qué puedes esperar al
+            asistir?</strong>
+          <div style="font-size: 0.88rem; color: var(--ink-primary);" id="modal-culto-expect">-</div>
+        </div>
+      </div>
+
+      <!-- Sección de Repertorio Fotográfico para el Culto / Actividad -->
+      <div id="modal-culto-gallery-section" class="modal-culto-gallery-section" style="display: none;">
+        <span class="editorial-eyebrow" style="font-size: 0.72rem; margin-bottom: 0.25rem;">REPERTORIO
+          FOTOGRÁFICO</span>
+        <p id="modal-culto-gallery-desc"
+          style="font-size: 0.85rem; color: var(--ink-secondary); margin-bottom: 0.5rem; line-height: 1.45;"></p>
+        <div id="modal-culto-gallery-grid" class="modal-culto-gallery-grid"></div>
+      </div>
+
+      <div style="display: flex; gap: 0.75rem;">
+        <a href="https://maps.google.com/?q=Av.+Wilson+Ferreira+Aldunate+%26+25+de+Agosto,+Maldonado" target="_blank"
+          class="btn-editorial btn-dark"
+          style="font-size: 0.82rem; padding: 0.55rem 1rem; flex: 1; text-align: center;">
+          <i class="fa-solid fa-diamond-turn-right"></i> Cómo llegar
+        </a>
+        <a href="https://wa.me/59897432948?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20consultar%20sobre%20los%20cultos%20de%20IEANJES%C3%9AS%20Maldonado."
+          target="_blank" class="btn-editorial btn-whatsapp-editorial"
+          style="font-size: 0.82rem; padding: 0.55rem 1rem; flex: 1; text-align: center;">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL DE EMPRENDIMIENTO
+       ========================================== -->
+  <div class="modal-editorial-backdrop" id="biz-modal">
+    <div class="modal-editorial-card" style="max-width: 480px;">
+      <button class="modal-close-btn" id="biz-modal-close">&times;</button>
+      <span class="editorial-eyebrow" id="biz-modal-cat">EMPRENDIMIENTO</span>
+      <h3 style="font-size: 1.45rem; color: var(--ink-primary); margin-bottom: 0.75rem;" id="biz-modal-name">Nombre
+        Comercial</h3>
+      <p style="color: var(--ink-secondary); font-size: 0.92rem; line-height: 1.5; margin-bottom: 1.5rem;"
+        id="biz-modal-desc">
+        Descripción del emprendimiento.
+      </p>
+
+      <a href="#" target="_blank" id="biz-modal-link-btn" class="btn-editorial btn-dark"
+        style="width: 100%; text-align: center; justify-content: center; font-size: 0.85rem; padding: 0.65rem 1.25rem;">
+        CONOCER EMPRENDIMIENTO ↗
+      </a>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       CHATBOT EDITORIAL FLOTANTE (IEAN-BOT)
+       ========================================== -->
+  <button class="chatbot-trigger-editorial" id="chatbot-toggle" aria-label="Abrir Asistente Virtual">
+    <i class="fa-solid fa-message"></i>
+  </button>
+
+  <div class="chatbot-modal-editorial" id="chatbot-modal">
+    <div class="chat-header-editorial">
+      <div class="chat-header-info-editorial">
+        <span class="chat-dot"></span>
+        <span>ASISTENTE · IEANJESÚS</span>
+      </div>
+      <button class="chat-close-btn-editorial" id="chatbot-close">&times;</button>
+    </div>
+
+    <div class="chat-body-editorial" id="chat-body">
+      <div class="chat-msg bot">
+        ¡La paz del Señor! 🕊️ Bienvenido a <strong>IEANJESÚS Maldonado</strong>. ¿En qué podemos orientarte?
+      </div>
+
+      <div class="chat-chips-container" id="chat-chips">
+        <button class="chat-chip" data-query="horarios">🕒 Horarios de cultos</button>
+        <button class="chat-chip" data-query="agenda">📅 Agenda y actividades</button>
+        <button class="chat-chip" data-query="recursos">📖 Material gratuito</button>
+        <button class="chat-chip" data-query="celulas">👥 Células en los barrios</button>
+        <button class="chat-chip" data-query="pastor">📖 Pastor Franklin Salas</button>
+        <button class="chat-chip" data-query="oracion">🙏 Pedir oración</button>
+      </div>
+    </div>
+
+    <div class="chat-footer-editorial">
+      <form class="chat-input-form-editorial" id="chat-form">
+        <input type="text" class="chat-input-editorial" id="chat-input" placeholder="Escribe tu consulta..."
+          autocomplete="off">
+        <button type="submit" class="chat-send-btn-editorial" aria-label="Enviar"><i
+            class="fa-solid fa-arrow-up"></i></button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL DE PETICIÓN DE ORACIÓN
+       ========================================== -->
+  <div class="modal-editorial-backdrop" id="prayer-modal">
+    <div class="modal-editorial-card">
+      <button class="modal-close-btn" id="prayer-close">&times;</button>
+      <span class="editorial-eyebrow">INTERCESIÓN & FE</span>
+      <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--ink-primary);">Envía tu Petición de Oración</h3>
+      <p style="color: var(--ink-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">
+        “Queremos orar por ti. Puedes compartir con nosotros tu petición de oración.”
+      </p>
+
+      <form id="prayer-form">
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="prayer-name">Nombre (Opcional)</label>
+          <input type="text" id="prayer-name" class="form-input-editorial" placeholder="Tu nombre completo">
+          <label class="form-checkbox-label"
+            style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--ink-secondary); margin-top: 0.5rem; cursor: pointer;">
+            <input type="checkbox" id="prayer-anonymous"> Prefiero enviar mi petición de forma anónima
+          </label>
+        </div>
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="prayer-motive">Petición de Oración *</label>
+          <textarea id="prayer-motive" class="form-textarea-editorial" rows="4"
+            placeholder="Escribe aquí tu petición de oración..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-editorial btn-whatsapp-editorial"
+          style="width: 100%; margin-top: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+          <i class="fa-brands fa-whatsapp"></i> ENVIAR PETICIÓN POR WHATSAPP
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL LIGHTBOX EDITORIAL
+       ========================================== -->
+  <div class="gallery-lightbox-backdrop" id="gallery-lightbox" role="dialog" aria-modal="true"
+    aria-label="Visor de fotografía" tabindex="-1">
+    <button class="gallery-lightbox-close-btn" id="lightbox-close-btn" aria-label="Cerrar visor">&times;</button>
+    <button class="gallery-lightbox-nav-btn prev" id="lightbox-prev-btn" aria-label="Foto anterior"><i
+        class="fa-solid fa-chevron-left"></i></button>
+    <button class="gallery-lightbox-nav-btn next" id="lightbox-next-btn" aria-label="Foto siguiente"><i
+        class="fa-solid fa-chevron-right"></i></button>
+
+    <div class="gallery-lightbox-container">
+      <div class="gallery-lightbox-stage">
+        <img id="lightbox-image" src="" alt="Fotografía ampliada">
+      </div>
+      <div class="gallery-lightbox-footer">
+        <span class="gallery-lightbox-counter" id="lightbox-counter">1 / 15</span>
+        <div class="gallery-lightbox-caption" id="lightbox-caption">Descripción</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/data-store.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

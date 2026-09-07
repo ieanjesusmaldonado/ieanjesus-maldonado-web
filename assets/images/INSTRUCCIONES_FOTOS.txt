@@ -1,0 +1,47 @@
+=============================================================================
+IEANJESÚS MALDONADO - GUÍA PARA AGREGAR TUS FOTOS OFICIALES
+=============================================================================
+
+Puedes copiar tus fotos directamente en esta carpeta (assets/images/)
+con los siguientes nombres exactos de archivo:
+
+-----------------------------------------------------------------------------
+1. PORTADA Y LOGO
+-----------------------------------------------------------------------------
+- hero-portada.jpg         -> Foto principal de la iglesia / congregación (ancho recomendado: 1920x1080)
+- logo-iean.png            -> Logo oficial de la iglesia con fondo transparente
+
+-----------------------------------------------------------------------------
+2. NUESTRO PASTOR
+-----------------------------------------------------------------------------
+- pastor-franklin.jpg      -> Foto del Pastor Franklin Salas (retrato vertical o cuadrado)
+
+-----------------------------------------------------------------------------
+3. COMITÉS Y MINISTERIOS (Para el Carrusel)
+-----------------------------------------------------------------------------
+- comite-educacion.jpg     -> Educación Cristiana (Niños / Escuela Bíblica)
+- comite-jovenes.jpg       -> Comité de Jóvenes
+- comite-dorcas.jpg        -> Damas Dorcas (Ministerio Femenil)
+- comite-caballeros.jpg    -> Ministerio de Caballeros
+- comite-musica.jpg        -> Música y Alabanza
+- comite-comunicaciones.jpg -> Medios, Cámaras y Redes
+- comite-obrasocial.jpg    -> Obra Social y Solidaridad
+- comite-intercesion.jpg   -> Intercesión y Oración
+- comite-misiones.jpg      -> Misiones y Evangelismo
+- comite-junta.jpg         -> Junta Local / Administración
+
+-----------------------------------------------------------------------------
+4. CÉLULAS DE HOGAR EN MALDONADO
+-----------------------------------------------------------------------------
+- celula-centro.jpg        -> Célula Centro
+- celula-barrio-norte.jpg  -> Célula Barrio Norte
+- celula-cunetti.jpg       -> Célula Cuñetti
+- celula-cerro-pelado.jpg  -> Célula Cerro Pelado
+- celula-la-milagrosa.jpg  -> Célula La Milagrosa
+- celula-hipodromo.jpg     -> Célula Hipódromo
+- celula-maldonado-nuevo.jpg -> Célula Maldonado Nuevo
+- celula-rocha.jpg         -> Célula / Misión Rocha
+
+* Nota: Mientras agregas tus fotos, el sitio web tiene imágenes de respaldo 
+  de alta calidad y elegantes para que funcione y se vea impecable de inmediato.
+=============================================================================

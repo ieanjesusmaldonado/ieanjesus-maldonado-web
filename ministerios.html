@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Conoce las 10 áreas de ministerio, servicio y formación para niños, jóvenes, damas y familias en IEANJESÚS Maldonado.">
+  <meta name="keywords" content="Ministerios IEANJESÚS, Educación Cristiana, Jóvenes, Damas Dorcas, Caballeros, Música, Maldonado">
+  <meta name="author" content="IEANJESÚS Maldonado">
+
+  <title>Ministerios | IEANJESÚS Maldonado</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Estilos Editoriales -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- ==========================================
+       AVISO TEMPORAL (BANNER DISCRETO)
+       ========================================== -->
+  <div class="notice-banner-editorial" id="notice-banner">
+    <div class="notice-banner-inner">
+      <div class="notice-banner-content">
+        <span class="notice-pill">AVISO</span>
+        <span id="notice-text"></span>
+      </div>
+      <button class="notice-close-btn" id="notice-close" aria-label="Cerrar aviso">&times;</button>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="editorial-header" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand-container">
+        <div class="brand-logo-text">
+          <img src="assets/images/LOGOWEB.png" alt="IEANJESÚS" class="brand-header-logo">
+          <span class="brand-compact-title">IEANJESÚS MALDONADO</span>
+          <span class="brand-sub-tag">/ MALDONADO, URUGUAY</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links-desktop">
+          <li><a href="index.html" class="nav-link">Inicio</a></li>
+          <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+          <li><a href="celulas.html" class="nav-link">Células</a></li>
+          <li><a href="ministerios.html" class="nav-link active">Ministerios</a></li>
+          <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions-wrap">
+        <button class="btn-editorial btn-outline-editorial open-prayer-btn" id="open-prayer-btn">
+          <i class="fa-solid fa-hands-praying"></i> ORACIÓN
+        </button>
+        <a href="contacto.html" class="btn-editorial btn-green-inst">
+          VISÍTANOS
+        </a>
+        <button class="btn-editorial btn-outline-editorial drawer-toggle-btn" aria-label="Abrir Menú de Recursos">
+          <i class="fa-solid fa-bars"></i> MENÚ
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       DRAWER LATERAL: MENÚ PRINCIPAL
+       ========================================== -->
+  <div class="drawer-backdrop" id="drawer-backdrop">
+    <aside class="editorial-drawer" aria-label="Menú Principal">
+      <div class="drawer-header">
+        <div>
+          <span class="drawer-title-eyebrow">IEANJESÚS MALDONADO</span>
+          <h2 class="drawer-title-main">MENÚ PRINCIPAL</h2>
+        </div>
+        <button class="drawer-close-btn" id="drawer-close-btn" aria-label="Cerrar">&times;</button>
+      </div>
+
+      <div class="drawer-body">
+        <!-- 1. Enlaces Principales -->
+        <div>
+          <span class="drawer-nav-section-title">ENLACES PRINCIPALES</span>
+          <div class="drawer-main-links-grid">
+            <a href="index.html" class="drawer-grid-btn">
+              <span>Inicio</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="nosotros.html" class="drawer-grid-btn">
+              <span>Nosotros & Pastor</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="celulas.html" class="drawer-grid-btn">
+              <span>Células en los Barrios</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="ministerios.html" class="drawer-grid-btn">
+              <span>Comités y Ministerios</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="jesus.html" class="drawer-grid-btn highlight-jesus">
+              <span>Conoce a Jesús</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="nosotros.html#doctrina" class="drawer-grid-btn">
+              <span>En qué creemos</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="contacto.html" class="drawer-grid-btn drawer-grid-btn-full">
+              <span>Ubicación y Contacto</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="drawer-divider"></div>
+
+        <!-- 2. Actividades y Recursos -->
+        <div>
+          <span class="drawer-nav-section-title">ACTIVIDADES Y RECURSOS</span>
+          <div class="drawer-resources-list">
+            <!-- Agenda -->
+            <a href="agenda.html" class="drawer-resource-card">
+              <span class="drawer-resource-badge"><i class="fa-regular fa-calendar-check"></i> AGENDA</span>
+              <h3 class="drawer-resource-title">Agenda de la Iglesia</h3>
+              <p class="drawer-resource-desc">Consulta actividades, fechas especiales y próximos eventos de la iglesia.</p>
+              <span class="drawer-resource-cta">VER AGENDA →</span>
+            </a>
+
+            <!-- Petición de Oración -->
+            <div class="drawer-resource-card open-prayer-btn" style="cursor: pointer;">
+              <span class="drawer-resource-badge"><i class="fa-solid fa-hands-praying"></i> INTERCESIÓN</span>
+              <h3 class="drawer-resource-title">Petición de Oración</h3>
+              <p class="drawer-resource-desc">Comparte tu necesidad de oración de manera personalizada o anónima.</p>
+              <span class="drawer-resource-cta">ENVIAR PETICIÓN →</span>
+            </div>
+
+            <!-- Material Gratuito -->
+            <a href="recursos.html" class="drawer-resource-card">
+              <span class="drawer-resource-badge"><i class="fa-solid fa-book-open"></i> DESCARGAS</span>
+              <h3 class="drawer-resource-title">Material Gratuito</h3>
+              <p class="drawer-resource-desc">Encuentra recursos de evangelismo, enseñanzas, Plan Cornelio, bosquejos y material bíblico.</p>
+              <span class="drawer-resource-cta">EXPLORAR MATERIALES →</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="drawer-divider"></div>
+
+        <!-- 3. Colaboración -->
+        <div>
+          <span class="drawer-nav-section-title">COLABORACIÓN</span>
+          <div class="drawer-resource-card" style="border-left: 3px solid var(--green-inst);">
+            <span class="drawer-resource-badge"><i class="fa-solid fa-hand-holding-heart"></i> DONACIONES</span>
+            <h3 class="drawer-resource-title" style="font-size: 1.05rem;">¿Quieres colaborar?</h3>
+            <p class="drawer-resource-desc">
+              Si deseas colaborar con la obra de la iglesia mediante una donación, puedes comunicarte directamente con nosotros.
+            </p>
+            <div style="font-size: 0.74rem; color: var(--ink-muted); font-weight: 500; margin-bottom: 0.85rem; line-height: 1.4;">
+              Ropa · Alimentos · Obras sociales · Ofrendas · Otros aportes
+            </div>
+            <a href="https://wa.me/59897432948?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20colaborar%20con%20la%20iglesia%20mediante%20una%20donaci%C3%B3n%20y%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20c%C3%B3mo%20hacerlo."
+              target="_blank" class="btn-editorial btn-whatsapp-editorial"
+              style="font-size: 0.78rem; padding: 0.48rem 0.9rem; width: 100%; justify-content: center; text-align: center;">
+              <i class="fa-brands fa-whatsapp"></i> CONTACTAR PARA COLABORAR →
+            </a>
+          </div>
+        </div>
+
+        <div class="drawer-divider"></div>
+
+        <!-- 4. Administración -->
+        <div>
+          <span class="drawer-nav-section-title">ADMINISTRACIÓN</span>
+          <div class="drawer-admin-card">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
+              <i class="fa-solid fa-lock" style="color: var(--green-inst); font-size: 0.85rem;"></i>
+              <strong style="font-size: 0.95rem; color: var(--ink-primary);">PANEL ADMINISTRATIVO</strong>
+            </div>
+            <p style="font-size: 0.82rem; color: var(--ink-secondary); margin-bottom: 0.75rem;">Acceso exclusivo para responsables autorizados.</p>
+            <a href="admin.html" class="btn-editorial btn-dark" style="font-size: 0.78rem; padding: 0.45rem 0.9rem; width: 100%; text-align: center;">
+              INGRESAR →
+            </a>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <main>
+    <!-- PAGE HERO -->
+    <section class="page-hero-editorial">
+      <div class="container">
+        <nav class="editorial-breadcrumb" aria-label="Ruta de navegación">
+          <a href="index.html">Inicio</a>
+          <span>/</span>
+          <span>Ministerios</span>
+        </nav>
+        <span class="editorial-eyebrow">SERVICIO & VOCACIÓN</span>
+        <h1 class="page-hero-title">Nuestros Ministerios</h1>
+        <p class="page-hero-lead">
+          Una estructura dinámica y humana concebida para brindar discipulado, servicio social, adoración y liderazgo a cada generación de nuestra congregación.
+        </p>
+      </div>
+    </section>
+
+    <!-- GRILLA COMPLETA DE MINISTERIOS -->
+    <section style="padding: 4.5rem 0;">
+      <div class="container">
+        <div class="ministerios-full-grid">
+          
+          <!-- 1. Educación Cristiana -->
+          <div class="ministerio-card-editorial" id="educacion">
+            <div class="ministerio-card-img">
+              <img src="assets/images/comite-educacion.jpg"
+                onerror="this.src='https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=600&q=80'"
+                alt="Educación Cristiana">
+            </div>
+            <div class="ministerio-card-body">
+              <span class="ministerio-category">01 · FORMACIÓN & NIÑEZ</span>
+              <h2 class="ministerio-name">Educación Cristiana</h2>
+              <p class="ministerio-desc">
+                Escuela bíblica para niños y adolescentes con actividades didácticas, valores cristianos sólidos y formación espiritual para las familias.
+              </p>
+            </div>
+          </div>
+
+          <!-- 2. Jóvenes -->
+          <div class="ministerio-card-editorial" id="jovenes">
+            <div class="ministerio-card-img">
+              <img src="assets/images/comite-jovenes.jpg"
+                onerror="this.src='https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80'"
+                alt="Comité de Jóvenes">
+            </div>
+            <div class="ministerio-card-body">
+              <span class="ministerio-category">02 · JUVENTUD</span>
+              <h2 class="ministerio-name">Comité de Jóvenes</h2>
+              <p class="ministerio-desc">
+                Reuniones semanales, campamentos, alabanza contemporánea y desarrollo de liderazgo para guiar a las nuevas generaciones en los caminos de Dios.
+              </p>
+            </div>
+          </div>
+
+          <!-- 3. Damas Dorcas -->
+          <div class="ministerio-card-editorial" id="dorcas">
+            <div class="ministerio-card-img">
+              <img src="assets/images/comite-dorcas.jpg"
+                onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80'"
+                alt="Damas Dorcas">
+            </div>
+            <div class="ministerio-card-body">
+              <span class="ministerio-category">03 · MINISTERIO FEMENIL</span>
+              <h2 class="ministerio-name">Damas Dorcas</h2>
+              <p class="ministerio-desc">
+                Comunidad de mujeres enfocadas en la oración ferviente, el apoyo mutuo, la mayordomía del hogar y el servicio voluntario.
+              </p>
+            </div>
+          </div>
+
+          <!-- 4. Caballeros -->
+          <div class="ministerio-card-editorial" id="caballeros">
+            <div class="ministerio-card-img">
+              <img src="assets/images/comite-caballeros.jpg"
+                onerror="this.src='https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80'"
+                alt="Ministerio de Caballeros">
+            </div>
+            <div class="ministerio-card-body">
+              <span class="ministerio-category">04 · VARONES</span>
+              <h2 class="ministerio-name">Caballeros</h2>
+              <p class="ministerio-desc">
+                Varones comprometidos con el sacerdocio familiar, la integridad personal, el estudio de las Escrituras y el respaldo a las obras de la iglesia.
+              </p>
+            </div>
+          </div>
+
+          <!-- 5. Música & Alabanza -->
+          <div class="ministerio-card-editorial" id="musica">
+            <div class="ministerio-card-img">
+              <img src="assets/images/comite-musica.jpg"
+                onerror="this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80'"
+                alt="Música y Alabanza">
+            </div>
+            <div class="ministerio-card-body">
+              <span class="ministerio-category">05 · ADORACIÓN</span>
+              <h2 class="ministerio-name">Música & Alabanza</h2>
+              <p class="ministerio-desc">
+                Músicos, cantantes e instrumentistas dedicados a guiar la adoración congregacional con excelencia, reverencia y unción espiritual.
+              </p>
+            </div>
+          </div>
+
+          <!-- 6. Comunicaciones -->
+          <div class="ministerio-card-editorial" id="comunicaciones">
+            <div class="ministerio-card-img">
+              <img src="assets/images/comite-comunicaciones.jpg"
+                onerror="this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80'"
+                alt="Comunicaciones y Medios">
+            </div>
+            <div class="ministerio-card-body">
+              <span class="ministerio-category">06 · MEDIOS & DIGITAL</span>
+              <h2 class="ministerio-name">Comunicaciones</h2>
+              <p class="ministerio-desc">
+                Transmisiones en vivo, diseño, producción audiovisual, fotografía y administración de redes sociales para llevar el mensaje a miles de personas.
+              </p>
+            </div>
+          </div>
+
+          <!-- 7. Obra Social -->
+          <div class="ministerio-card-editorial" id="obrasocial">
+            <div class="ministerio-card-img">
+              <img src="assets/images/comite-obrasocial.jpg"
+                onerror="this.src='https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=600&q=80'"
+                alt="Obra Social">
+            </div>
+            <div class="ministerio-card-body">
+              <span class="ministerio-category">07 · SOLIDARIDAD</span>
+              <h2 class="ministerio-name">Obra Social</h2>
+              <p class="ministerio-desc">
+                Asistencia alimentaria, ropa, abrigo y apoyo humanitario a familias en situación de vulnerabilidad en Maldonado y zonas de influencia.
+              </p>
+            </div>
+          </div>
+
+          <!-- 8. Intercesión -->
+          <div class="ministerio-card-editorial" id="intercesion">
+            <div class="ministerio-card-img">
+              <img src="assets/images/comite-intercesion.jpg"
+                onerror="this.src='https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=600&q=80'"
+                alt="Intercesión y Oración">
+            </div>
+            <div class="ministerio-card-body">
+              <span class="ministerio-category">08 · ORACIÓN</span>
+              <h2 class="ministerio-name">Intercesión</h2>
+              <p class="ministerio-desc">
+                Equipo de creyentes que intercede continuamente por sanidad, peticiones personales, el avance de la obra y las familias de la comunidad.
+              </p>
+            </div>
+          </div>
+
+          <!-- 9. Misiones & Extensión -->
+          <div class="ministerio-card-editorial" id="misiones">
+            <div class="ministerio-card-img">
+              <img src="assets/images/comite-misiones.jpg"
+                onerror="this.src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80'"
+                alt="Misiones y Extensión">
+            </div>
+            <div class="ministerio-card-body">
+              <span class="ministerio-category">09 · EXPANSIÓN</span>
+              <h2 class="ministerio-name">Misiones & Extensión</h2>
+              <p class="ministerio-desc">
+                Evangelismo personal, tratados en la vía pública y apertura de nuevos puntos de reunión como la extensión en la ciudad de Rocha.
+              </p>
+            </div>
+          </div>
+
+          <!-- 10. Junta Local -->
+          <div class="ministerio-card-editorial" id="junta">
+            <div class="ministerio-card-img">
+              <img src="assets/images/comite-junta.jpg"
+                onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80'"
+                alt="Junta Local y Administración">
+            </div>
+            <div class="ministerio-card-body">
+              <span class="ministerio-category">10 · ADMINISTRACIÓN</span>
+              <h2 class="ministerio-name">Junta Local</h2>
+              <p class="ministerio-desc">
+                Coordinación logística, gestión de mayordomía, infraestructura y soporte institucional para el buen orden de todas las áreas de la iglesia.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="margin-top: 3.5rem; text-align: center;">
+          <a href="contacto.html" class="btn-editorial btn-green-inst">
+            ¿QUIERES INVOLUCRARTE O RECIBIR MÁS INFORMACIÓN? CONTACTANOS
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="editorial-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-title">IEANJESÚS MALDONADO</div>
+          <p class="footer-motto">
+            “Un lugar para encontrarte con Jesús.”<br>
+            Iglesia Evangélica Apostólica del Nombre de Jesús en Maldonado, Uruguay.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Navegación</div>
+          <ul class="footer-links-list">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="celulas.html">Células</a></li>
+            <li><a href="ministerios.html">Ministerios</a></li>
+            <li><a href="recursos.html">Recursos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Horarios Principales</div>
+          <ul class="footer-links-list">
+            <li><strong style="color: #FFFFFF;">Jueves:</strong> 19:30 hs (Templo)</li>
+            <li><strong style="color: #FFFFFF;">Domingos:</strong> 18:30 hs (Templo)</li>
+            <li><strong style="color: #FFFFFF;">Células:</strong> Lun, Mar, Mié, Vie</li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Contacto</div>
+          <ul class="footer-links-list">
+            <li>Av. Wilson Ferreira & 25 de Agosto</li>
+            <li><a href="https://wa.me/59897432948" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
+            <li><a href="https://www.instagram.com/ieanjesusmaldonado/" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+            <li><a href="https://www.youtube.com/@pastorfranklinsalas" target="_blank"><i class="fa-brands fa-youtube"></i> YouTube</a></li>
+          </ul>
+          <button class="btn-editorial btn-outline-editorial" id="footer-prayer-btn"
+            style="color: #FFFFFF !important; border-color: rgba(255,255,255,0.25); font-size: 0.78rem; padding: 0.4rem 0.8rem; margin-top: 1rem; width: 100%;">
+            <i class="fa-solid fa-hands-praying" style="color: var(--accent-coral);"></i> Petición de Oración
+          </button>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <span>&copy; <span id="current-year">2026</span> IEANJESÚS Maldonado. Todos los derechos reservados.</span>
+        <span>MALDONADO, URUGUAY · EFESIOS 4:5</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Chatbot y Modal de Oración -->
+  <button class="chatbot-trigger-editorial" id="chatbot-toggle" aria-label="Abrir Asistente"><i class="fa-solid fa-message"></i></button>
+  <div class="chatbot-modal-editorial" id="chatbot-modal">
+    <div class="chat-header-editorial">
+      <div class="chat-header-info-editorial"><span class="chat-dot"></span><span>ASISTENTE · IEANJESÚS</span></div>
+      <button class="chat-close-btn-editorial" id="chatbot-close">&times;</button>
+    </div>
+    <div class="chat-body-editorial" id="chat-body">
+      <div class="chat-msg bot">¡La paz del Señor! 🕊️ ¿Sobre qué ministerio deseas saber más?</div>
+    </div>
+    <div class="chat-footer-editorial">
+      <form class="chat-input-form-editorial" id="chat-form">
+        <input type="text" class="chat-input-editorial" id="chat-input" placeholder="Escribe tu consulta..." autocomplete="off">
+        <button type="submit" class="chat-send-btn-editorial"><i class="fa-solid fa-arrow-up"></i></button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-editorial-backdrop" id="prayer-modal">
+    <div class="modal-editorial-card">
+      <button class="modal-close-btn" id="prayer-close">&times;</button>
+      <span class="editorial-eyebrow">INTERCESIÓN & FE</span>
+      <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--ink-primary);">Envía tu Petición de Oración</h3>
+      <p style="color: var(--ink-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">
+        “Queremos orar por ti. Puedes compartir con nosotros tu petición de oración.”
+      </p>
+
+      <form id="prayer-form">
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="prayer-name">Nombre (Opcional)</label>
+          <input type="text" id="prayer-name" class="form-input-editorial" placeholder="Tu nombre completo">
+          <label class="form-checkbox-label" style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--ink-secondary); margin-top: 0.5rem; cursor: pointer;">
+            <input type="checkbox" id="prayer-anonymous"> Prefiero enviar mi petición de forma anónima
+          </label>
+        </div>
+
+        <div class="form-group-editorial">
+          <label class="form-label-editorial" for="prayer-motive">Petición de Oración *</label>
+          <textarea id="prayer-motive" class="form-textarea-editorial" rows="4"
+            placeholder="Escribe aquí tu petición de oración..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-editorial btn-whatsapp-editorial" style="width: 100%; margin-top: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+          <i class="fa-brands fa-whatsapp"></i> ENVIAR PETICIÓN POR WHATSAPP
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/data-store.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
