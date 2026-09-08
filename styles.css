@@ -649,91 +649,99 @@ img {
 }
 
 /* ==========================================================================
-   SECCIÓN DESTACADA: QUIÉNES SOMOS (TRANSICIÓN HERO -> AGENDA)
+   SECCIÓN DESTACADA: QUIÉNES SOMOS (EDITORIAL - TRANSICIÓN HERO -> AGENDA)
    ========================================================================== */
 .quienes-somos-featured-section {
-  padding: 2.5rem 0 2rem;
+  padding: 3.5rem 0;
   background-color: var(--bg-cream-light);
   border-bottom: 1px solid var(--border-fine);
 }
 
-.quienes-somos-card {
-  background: #FFFFFF;
-  border: 1px solid var(--border-fine);
-  border-radius: var(--radius-xs, 4px);
-  overflow: hidden;
+.quienes-somos-editorial-wrap {
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 20px rgba(23, 23, 20, 0.04);
+  gap: 2rem;
+  width: 100%;
 }
 
 .quienes-somos-banner {
   width: 100%;
-  height: auto;
-  margin: 0;
-  padding: 0;
-  line-height: 0;
-  font-size: 0;
-  background: transparent;
+  border-radius: var(--radius-sm, 6px);
   overflow: hidden;
+  border: 1px solid var(--border-fine);
+  background-color: var(--bg-cream-subtle);
+  line-height: 0;
 }
 
 .quienes-somos-banner-img {
   width: 100%;
-  height: auto;
-  display: block;
-  margin: 0;
-  padding: 0;
-  border: none;
+  height: 420px;
   object-fit: cover;
+  object-position: center 28%;
+  display: block;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.quienes-somos-card:hover .quienes-somos-banner-img {
-  transform: scale(1.012);
+.quienes-somos-editorial-wrap:hover .quienes-somos-banner-img {
+  transform: scale(1.01);
 }
 
 .quienes-somos-content {
-  padding: 2.25rem 2.5rem;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 2.5rem;
-  align-items: center;
-  background-color: #FFFFFF;
-  border-top: 1px solid var(--border-fine);
-}
-
-.quienes-somos-text-block {
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
+  align-items: flex-start;
+  text-align: left;
+  background: transparent;
+  padding: 0;
+  border: none;
+}
+
+.quienes-somos-featured-section .editorial-eyebrow {
+  margin-bottom: 1rem;
 }
 
 .quienes-somos-title {
-  font-size: clamp(1.35rem, 2.2vw, 1.8rem);
+  font-size: clamp(1.6rem, 2.8vw, 2.4rem);
   font-weight: 750;
   color: var(--ink-primary);
-  line-height: 1.22;
-  letter-spacing: -0.02em;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.35rem;
+  max-width: 900px;
+  text-align: left;
+}
+
+.quienes-somos-quote-block {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--ink-primary);
+  line-height: 1.4;
+  margin-bottom: 1.25rem;
+  border-left: 3px solid var(--green-inst);
+  padding-left: 1rem;
+  text-align: left;
 }
 
 .quienes-somos-desc {
-  font-size: 0.96rem;
+  font-size: 1rem;
   color: var(--ink-secondary);
-  line-height: 1.6;
-  max-width: 68ch;
+  line-height: 1.65;
+  max-width: 780px;
+  margin-bottom: 1.75rem;
+  text-align: left;
 }
 
 .quienes-somos-action-block {
   display: flex;
   align-items: center;
-  flex-shrink: 0;
+  margin-top: 0.25rem;
 }
 
 .quienes-somos-btn {
-  font-size: 0.84rem;
-  padding: 0.75rem 1.6rem;
-  min-height: 46px;
+  font-size: 0.86rem;
+  padding: 0.8rem 1.8rem;
+  min-height: 48px;
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
@@ -1988,19 +1996,16 @@ img {
 
   /* QUIÉNES SOMOS TABLET */
   .quienes-somos-featured-section {
-    padding: 0 0 40px !important;
+    padding: 0 0 44px !important;
     background: transparent !important;
+    border-bottom: 1px solid var(--border-fine) !important;
   }
 
-  .quienes-somos-card {
-    border: none !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-    border-radius: 0 !important;
+  .quienes-somos-editorial-wrap {
     display: flex !important;
     flex-direction: column !important;
     gap: 1.75rem !important;
+    width: 100% !important;
   }
 
   .quienes-somos-banner {
@@ -2009,12 +2014,13 @@ img {
     overflow: hidden !important;
     margin: 0 !important;
     line-height: 0 !important;
+    border: 1px solid var(--border-fine) !important;
   }
 
   .quienes-somos-banner-img {
     width: 100% !important;
-    height: auto !important;
-    max-height: 480px !important;
+    height: 320px !important;
+    max-height: 380px !important;
     object-fit: cover !important;
     object-position: center 25% !important;
     display: block !important;
@@ -2025,18 +2031,39 @@ img {
     display: flex !important;
     flex-direction: column !important;
     padding: 0 !important;
-    gap: 1.25rem !important;
+    gap: 0 !important;
     width: 100% !important;
     text-align: left !important;
     align-items: flex-start !important;
   }
 
+  .quienes-somos-featured-section .editorial-eyebrow {
+    margin-bottom: 0.9rem !important;
+    text-align: left !important;
+    align-self: flex-start !important;
+  }
+
   .quienes-somos-title {
     font-size: clamp(1.6rem, 3.8vw, 2.1rem) !important;
-    line-height: 1.25 !important;
+    line-height: 1.22 !important;
     color: var(--ink-primary) !important;
     font-weight: 700 !important;
     text-align: left !important;
+    align-self: flex-start !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  .quienes-somos-quote-block {
+    font-family: var(--font-serif) !important;
+    font-style: italic !important;
+    font-size: 1.18rem !important;
+    color: var(--ink-primary) !important;
+    line-height: 1.4 !important;
+    margin-bottom: 1.15rem !important;
+    border-left: 3px solid var(--green-inst) !important;
+    padding-left: 0.9rem !important;
+    text-align: left !important;
+    align-self: flex-start !important;
   }
 
   .quienes-somos-desc {
@@ -2044,6 +2071,8 @@ img {
     line-height: 1.65 !important;
     color: var(--ink-secondary) !important;
     text-align: left !important;
+    align-self: flex-start !important;
+    margin-bottom: 1.75rem !important;
   }
 
   .quienes-somos-btn {
@@ -2053,6 +2082,7 @@ img {
     min-height: 50px !important;
     padding: 0.75rem 1.6rem !important;
     font-size: 0.90rem !important;
+    align-self: flex-start !important;
   }
 
   /* HORARIOS TABLET: Ocultar desktop grid, mostrar formato interactivo */
@@ -2576,19 +2606,16 @@ img {
 
   /* QUIÉNES SOMOS MOBILE: Sección Editorial con Foto Panorámica Arriba */
   .quienes-somos-featured-section {
-    padding: 0 0 36px !important;
+    padding: 0 0 38px !important;
     background: transparent !important;
+    border-bottom: 1px solid var(--border-fine) !important;
   }
 
-  .quienes-somos-card {
-    border: none !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-    border-radius: 0 !important;
+  .quienes-somos-editorial-wrap {
     display: flex !important;
     flex-direction: column !important;
     gap: 1.5rem !important;
+    width: 100% !important;
   }
 
   .quienes-somos-banner {
@@ -2597,12 +2624,13 @@ img {
     overflow: hidden !important;
     margin: 0 !important;
     line-height: 0 !important;
+    border: 1px solid var(--border-fine) !important;
   }
 
   .quienes-somos-banner-img {
     width: 100% !important;
-    height: auto !important;
-    max-height: 400px !important;
+    height: 220px !important;
+    max-height: 260px !important;
     object-fit: cover !important;
     object-position: center 25% !important;
     display: block !important;
@@ -2613,34 +2641,58 @@ img {
     display: flex !important;
     flex-direction: column !important;
     padding: 0 !important;
-    gap: 1.15rem !important;
+    gap: 0 !important;
     width: 100% !important;
     text-align: left !important;
     align-items: flex-start !important;
   }
 
+  .quienes-somos-featured-section .editorial-eyebrow {
+    margin-bottom: 0.85rem !important;
+    text-align: left !important;
+    align-self: flex-start !important;
+  }
+
   .quienes-somos-title {
-    font-size: clamp(1.5rem, 5vw, 1.95rem) !important;
+    font-size: clamp(1.45rem, 5.5vw, 1.85rem) !important;
     line-height: 1.22 !important;
     color: var(--ink-primary) !important;
     font-weight: 700 !important;
     text-align: left !important;
+    align-self: flex-start !important;
+    margin-bottom: 1.15rem !important;
+  }
+
+  .quienes-somos-quote-block {
+    font-family: var(--font-serif) !important;
+    font-style: italic !important;
+    font-size: 1.1rem !important;
+    color: var(--ink-primary) !important;
+    line-height: 1.4 !important;
+    margin-bottom: 1.1rem !important;
+    border-left: 3px solid var(--green-inst) !important;
+    padding-left: 0.85rem !important;
+    text-align: left !important;
+    align-self: flex-start !important;
   }
 
   .quienes-somos-desc {
-    font-size: 0.96rem !important;
+    font-size: 0.95rem !important;
     line-height: 1.6 !important;
     color: var(--ink-secondary) !important;
     text-align: left !important;
+    align-self: flex-start !important;
+    margin-bottom: 1.6rem !important;
   }
 
   .quienes-somos-btn {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    min-height: 50px !important;
+    min-height: 48px !important;
     padding: 0.75rem 1.4rem !important;
-    font-size: 0.88rem !important;
+    font-size: 0.86rem !important;
+    align-self: flex-start !important;
   }
 
   /* ==========================================================================
