@@ -1673,6 +1673,15 @@ img {
 }
 
 /* ==========================================================================
+   DESKTOP DEFAULT / UTILITY RULES (>= 1025px)
+   Ocultar elementos exclusivos de mobile en desktop para mantener desktop 100% intacto
+   ========================================================================== */
+.agenda-mobile-summary,
+.agenda-full-list-heading {
+  display: none;
+}
+
+/* ==========================================================================
    MASTER RESPONSIVE SYSTEM: TABLET & MOBILE
    Diseñado específicamente para Tablet (768px - 1024px) y Mobile (<= 767px).
    Desktop (>= 1025px) permanece 100% bloqueado e intacto.
@@ -1682,18 +1691,18 @@ img {
    1. TABLET (768px a 1024px)
    -------------------------------------------------------------------------- */
 @media (min-width: 768px) and (max-width: 1024px) {
-  /* Contenedor Global Tablet: width: min(100% - 48px, 900px) */
-  .container {
-    width: min(100% - 48px, 900px) !important;
-    max-width: 900px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+  /* Contenedor Global Tablet: width: calc(100% - 48px); max-width: 920px; */
+  .container,
+  .container-narrow {
+    width: calc(100% - 48px) !important;
+    max-width: 920px !important;
+    margin-inline: auto !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
     box-sizing: border-box !important;
   }
 
-  /* Espaciado vertical entre secciones en tablet: 88px */
+  /* Espaciado vertical entre secciones en tablet: 88px (padding interno 40px) */
   .schedules-section,
   .identity-section,
   .pastor-section,
@@ -1702,9 +1711,22 @@ img {
   .location-section,
   .ministerios-section,
   .community-biz-section,
-  .final-cta-section {
-    padding-top: 44px !important;
-    padding-bottom: 44px !important;
+  .final-cta-section,
+  .page-hero-editorial,
+  .article-editorial-body {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Padding lateral amplio en bloques oscuros/verdes: min 32px */
+  .jesus-teaser-section,
+  .final-cta-section,
+  .page-hero-editorial[style*="--bg-dark-section"],
+  section[style*="--bg-dark-section"] {
+    padding-left: 32px !important;
+    padding-right: 32px !important;
+    box-sizing: border-box !important;
   }
 
   .section-header-editorial {
@@ -1718,15 +1740,15 @@ img {
     gap: 0.75rem !important;
   }
 
-  /* HEADER TABLET: Altura 80px, SOLO Logo a la izquierda y MENÚ a la derecha */
+  /* HEADER TABLET: Altura 88px, SOLO Logo a la izquierda y MENÚ a la derecha */
   .editorial-header {
     position: sticky !important;
     top: 0 !important;
     left: 0 !important;
     width: 100% !important;
-    height: 80px !important;
-    min-height: 80px !important;
-    background-color: var(--bg-cream) !important;
+    height: 88px !important;
+    min-height: 88px !important;
+    background-color: #FFFFFF !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     border-bottom: 1px solid var(--border-fine) !important;
@@ -1736,10 +1758,10 @@ img {
   }
 
   .editorial-header .container {
-    width: min(100% - 48px, 900px) !important;
-    max-width: 900px !important;
+    width: calc(100% - 48px) !important;
+    max-width: 920px !important;
     height: 100% !important;
-    margin: 0 auto !important;
+    margin-inline: auto !important;
     padding: 0 !important;
   }
 
@@ -1756,7 +1778,7 @@ img {
     display: none !important;
   }
 
-  /* Izquierda: SOLO el logo */
+  /* Izquierda: SOLO el logo (visible y proporcionado: 44-48px) */
   .brand-container {
     display: inline-flex !important;
     align-items: center !important;
@@ -1769,8 +1791,8 @@ img {
   }
 
   .brand-header-logo {
-    height: 52px !important;
-    max-height: 52px !important;
+    height: 46px !important;
+    max-height: 48px !important;
     width: auto !important;
     margin: 0 !important;
     object-fit: contain !important;
@@ -1798,10 +1820,10 @@ img {
 
   .nav-actions-wrap .drawer-toggle-btn {
     display: inline-flex !important;
-    height: 42px !important;
-    min-height: 42px !important;
+    height: 46px !important;
+    min-height: 46px !important;
     padding: 0 1.25rem !important;
-    font-size: 0.86rem !important;
+    font-size: 0.88rem !important;
     font-weight: 600 !important;
     gap: 0.5rem !important;
     align-items: center !important;
@@ -1811,15 +1833,10 @@ img {
     color: var(--ink-primary) !important;
   }
 
-  .editorial-header.scrolled {
-    background-color: #FFFFFF !important;
-    box-shadow: 0 2px 10px rgba(23, 23, 20, 0.06) !important;
-  }
-
-  /* HERO TABLET: Pantalla completa, centrado y con aire */
+  /* HERO TABLET */
   .hero-centered-section {
-    min-height: calc(100svh - 80px) !important;
-    min-height: calc(100vh - 80px) !important;
+    min-height: calc(100svh - 88px) !important;
+    min-height: calc(100vh - 88px) !important;
     padding: 4rem 0 !important;
     display: flex !important;
     flex-direction: column !important;
@@ -1860,7 +1877,7 @@ img {
     padding: 0 !important;
     margin: 0 auto 1.5rem !important;
     text-align: center !important;
-    font-size: 0.76rem !important;
+    font-size: 0.78rem !important;
     line-height: 1.45 !important;
     color: var(--ink-muted) !important;
     letter-spacing: 0.05em !important;
@@ -1870,7 +1887,7 @@ img {
   }
 
   .datum-bottom-right strong {
-    font-size: 0.82rem !important;
+    font-size: 0.84rem !important;
     letter-spacing: 0.08em !important;
     color: var(--ink-primary) !important;
     display: block !important;
@@ -1880,22 +1897,22 @@ img {
   .hero-centered-content {
     position: relative !important;
     z-index: 3 !important;
-    width: min(100% - 48px, 900px) !important;
-    max-width: 900px !important;
-    margin: 0 auto !important;
+    width: calc(100% - 48px) !important;
+    max-width: 920px !important;
+    margin-inline: auto !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
   }
 
   .hero-pill-badge {
-    font-size: 0.76rem !important;
+    font-size: 0.78rem !important;
     padding: 0.4rem 1rem !important;
     margin-bottom: 1.5rem !important;
   }
 
   .hero-h1-centered {
-    font-size: clamp(2.4rem, 6vw, 3.2rem) !important;
+    font-size: clamp(2.4rem, 5.5vw, 3.2rem) !important;
     line-height: 1.15 !important;
     letter-spacing: -0.03em !important;
     margin-bottom: 1.35rem !important;
@@ -1925,7 +1942,7 @@ img {
     width: 100% !important;
     min-height: 50px !important;
     height: 50px !important;
-    font-size: 0.86rem !important;
+    font-size: 0.88rem !important;
     font-weight: 600 !important;
     padding: 0 0.75rem !important;
     text-align: center !important;
@@ -1959,9 +1976,9 @@ img {
     transition: all 0.2s ease !important;
   }
 
-  /* QUIÉNES SOMOS TABLET: Editorial con Foto Panorámica y Contenido Debajo */
+  /* QUIÉNES SOMOS TABLET */
   .quienes-somos-featured-section {
-    padding: 0 0 44px !important;
+    padding: 0 0 40px !important;
     background: transparent !important;
   }
 
@@ -2003,7 +2020,7 @@ img {
   }
 
   .quienes-somos-title {
-    font-size: clamp(1.6rem, 4vw, 2.1rem) !important;
+    font-size: clamp(1.6rem, 3.8vw, 2.1rem) !important;
     line-height: 1.25 !important;
     color: var(--ink-primary) !important;
     font-weight: 700 !important;
@@ -2024,7 +2041,12 @@ img {
     font-size: 0.90rem !important;
   }
 
-  /* HORARIOS TABLET: 2 Columnas Reales */
+  /* HORARIOS TABLET: 2 Columnas amplias y legibles */
+  .agenda-mobile-summary,
+  .agenda-full-list-heading {
+    display: none !important;
+  }
+
   .schedules-editorial-grid {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -2036,11 +2058,11 @@ img {
     background: var(--bg-cream-card) !important;
     border: 1px solid var(--border-card) !important;
     border-radius: var(--radius-sm) !important;
-    padding: 1.25rem 1.15rem !important;
+    padding: 1.35rem 1.25rem !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: space-between !important;
-    min-height: 165px !important;
+    min-height: 170px !important;
     box-shadow: 0 1px 4px rgba(23, 23, 20, 0.02) !important;
   }
 
@@ -2072,7 +2094,7 @@ img {
     height: 140px !important;
   }
 
-  /* EMPRENDIMIENTOS TABLET: 2 Columnas con 5to item centrado */
+  /* EMPRENDIMIENTOS TABLET: 2 o 3 Columnas */
   .biz-showcase-grid {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -2088,7 +2110,7 @@ img {
     width: 100% !important;
   }
 
-  /* Ubicación & Canales Tablet */
+  /* OTRAS SECCIONES TABLET */
   .location-grid,
   .pastor-grid,
   .identity-grid,
@@ -2126,18 +2148,18 @@ img {
    2. MOBILE (<= 767px)
    -------------------------------------------------------------------------- */
 @media (max-width: 767px) {
-  /* Contenedor Global Mobile: width: min(100% - 32px, 680px) */
-  .container {
-    width: min(100% - 32px, 680px) !important;
-    max-width: 680px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+  /* Contenedor Global Mobile: width: calc(100% - 32px); max-width: 430px; */
+  .container,
+  .container-narrow {
+    width: calc(100% - 32px) !important;
+    max-width: 430px !important;
+    margin-inline: auto !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
     box-sizing: border-box !important;
   }
 
-  /* Espaciado vertical entre secciones en mobile: 72px */
+  /* Espaciado vertical entre secciones en mobile: 72px (padding interno 28px) */
   .schedules-section,
   .identity-section,
   .pastor-section,
@@ -2146,9 +2168,22 @@ img {
   .location-section,
   .ministerios-section,
   .community-biz-section,
-  .final-cta-section {
-    padding-top: 36px !important;
-    padding-bottom: 36px !important;
+  .final-cta-section,
+  .page-hero-editorial,
+  .article-editorial-body {
+    padding-top: 28px !important;
+    padding-bottom: 28px !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Padding lateral amplio en bloques oscuros/verdes: min 24px */
+  .jesus-teaser-section,
+  .final-cta-section,
+  .page-hero-editorial[style*="--bg-dark-section"],
+  section[style*="--bg-dark-section"] {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    box-sizing: border-box !important;
   }
 
   .section-header-editorial {
@@ -2163,32 +2198,32 @@ img {
   }
 
   .editorial-eyebrow {
-    font-size: 0.72rem !important;
+    font-size: 0.74rem !important;
     letter-spacing: 0.08em !important;
     margin-bottom: 0.4rem !important;
   }
 
   .section-title-large {
-    font-size: clamp(1.65rem, 6.2vw, 2.15rem) !important;
-    line-height: 1.18 !important;
+    font-size: clamp(1.75rem, 6.5vw, 2.25rem) !important;
+    line-height: 1.16 !important;
     letter-spacing: -0.02em !important;
   }
 
   .section-desc-editorial {
-    font-size: 0.92rem !important;
-    line-height: 1.5 !important;
+    font-size: 0.94rem !important;
+    line-height: 1.55 !important;
     color: var(--ink-secondary) !important;
   }
 
-  /* HEADER MOBILE: Altura 72px, SOLO Logo a la izquierda y MENÚ a la derecha */
+  /* HEADER MOBILE: Altura 80px, SOLO Logo a la izquierda y MENÚ a la derecha */
   .editorial-header {
     position: sticky !important;
     top: 0 !important;
     left: 0 !important;
     width: 100% !important;
-    height: 72px !important;
-    min-height: 72px !important;
-    background-color: var(--bg-cream) !important;
+    height: 80px !important;
+    min-height: 80px !important;
+    background-color: #FFFFFF !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     border-bottom: 1px solid var(--border-fine) !important;
@@ -2198,10 +2233,10 @@ img {
   }
 
   .editorial-header .container {
-    width: min(100% - 32px, 680px) !important;
-    max-width: 680px !important;
+    width: calc(100% - 32px) !important;
+    max-width: 430px !important;
     height: 100% !important;
-    margin: 0 auto !important;
+    margin-inline: auto !important;
     padding: 0 !important;
   }
 
@@ -2218,7 +2253,7 @@ img {
     display: none !important;
   }
 
-  /* Izquierda: SOLO el logo */
+  /* Izquierda: SOLO el logo (prominente y legible: 38-40px) */
   .brand-container {
     display: inline-flex !important;
     align-items: center !important;
@@ -2231,8 +2266,8 @@ img {
   }
 
   .brand-header-logo {
-    height: 46px !important;
-    max-height: 46px !important;
+    height: 38px !important;
+    max-height: 40px !important;
     width: auto !important;
     margin: 0 !important;
     object-fit: contain !important;
@@ -2260,12 +2295,12 @@ img {
 
   .nav-actions-wrap .drawer-toggle-btn {
     display: inline-flex !important;
-    height: 40px !important;
-    min-height: 40px !important;
-    padding: 0 1rem !important;
-    font-size: 0.82rem !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    padding: 0 1.15rem !important;
+    font-size: 0.84rem !important;
     font-weight: 600 !important;
-    gap: 0.45rem !important;
+    gap: 0.5rem !important;
     align-items: center !important;
     border-radius: var(--radius-xs) !important;
     background: #FFFFFF !important;
@@ -2273,16 +2308,11 @@ img {
     color: var(--ink-primary) !important;
   }
 
-  .editorial-header.scrolled {
-    background-color: #FFFFFF !important;
-    box-shadow: 0 2px 10px rgba(23, 23, 20, 0.06) !important;
-  }
-
-  /* HERO MOBILE: Portada de Pantalla Completa, Centrado y Aire */
+  /* HERO MOBILE */
   .hero-centered-section {
-    min-height: calc(100svh - 72px) !important;
-    min-height: calc(100vh - 72px) !important;
-    padding: 3rem 0 !important;
+    min-height: calc(100svh - 80px) !important;
+    min-height: calc(100vh - 80px) !important;
+    padding: 3.5rem 0 !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
@@ -2320,9 +2350,9 @@ img {
     order: -2 !important;
     border: none !important;
     padding: 0 !important;
-    margin: 0 auto 1.35rem !important;
+    margin: 0 auto 1.5rem !important;
     text-align: center !important;
-    font-size: 0.72rem !important;
+    font-size: 0.74rem !important;
     line-height: 1.45 !important;
     color: var(--ink-muted) !important;
     letter-spacing: 0.05em !important;
@@ -2332,7 +2362,7 @@ img {
   }
 
   .datum-bottom-right strong {
-    font-size: 0.76rem !important;
+    font-size: 0.80rem !important;
     letter-spacing: 0.08em !important;
     color: var(--ink-primary) !important;
     display: block !important;
@@ -2342,37 +2372,37 @@ img {
   .hero-centered-content {
     position: relative !important;
     z-index: 3 !important;
-    width: min(100% - 32px, 680px) !important;
-    max-width: 680px !important;
-    margin: 0 auto !important;
+    width: calc(100% - 32px) !important;
+    max-width: 430px !important;
+    margin-inline: auto !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
   }
 
   .hero-pill-badge {
-    font-size: 0.72rem !important;
-    padding: 0.35rem 0.9rem !important;
-    margin-bottom: 1.25rem !important;
+    font-size: 0.74rem !important;
+    padding: 0.38rem 0.95rem !important;
+    margin-bottom: 1.35rem !important;
   }
 
   .hero-h1-centered {
-    font-size: clamp(2.15rem, 8.5vw, 2.75rem) !important;
+    font-size: clamp(2.25rem, 8.8vw, 2.9rem) !important;
     line-height: 1.12 !important;
     letter-spacing: -0.03em !important;
-    margin-bottom: 1.25rem !important;
+    margin-bottom: 1.35rem !important;
     color: var(--ink-primary) !important;
     font-weight: 750 !important;
     word-break: normal !important;
   }
 
   .hero-phrase-centered {
-    font-size: 0.96rem !important;
-    line-height: 1.55 !important;
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
     color: var(--ink-secondary) !important;
-    margin-bottom: 1.85rem !important;
-    padding: 0 0.5rem !important;
-    max-width: 520px !important;
+    margin-bottom: 2rem !important;
+    padding: 0 0.25rem !important;
+    max-width: 420px !important;
   }
 
   /* Botones Hero: EXACTAMENTE dos botones en una misma fila 50% / 50% */
@@ -2380,18 +2410,18 @@ img {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
     width: 100% !important;
-    max-width: 440px !important;
+    max-width: 430px !important;
     gap: 10px !important;
     margin: 0 auto 1.5rem !important;
   }
 
   .hero-centered-actions .btn-editorial {
     width: 100% !important;
-    min-height: 48px !important;
-    height: 48px !important;
-    font-size: 0.80rem !important;
+    min-height: 50px !important;
+    height: 50px !important;
+    font-size: 0.82rem !important;
     font-weight: 600 !important;
-    padding: 0 0.45rem !important;
+    padding: 0 0.5rem !important;
     text-align: center !important;
     justify-content: center !important;
     white-space: nowrap !important;
@@ -2404,14 +2434,14 @@ img {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    gap: 0.85rem !important;
-    margin-top: 0.25rem !important;
+    gap: 0.9rem !important;
+    margin-top: 0.35rem !important;
   }
 
   .hero-social-icon-btn {
     width: 44px !important;
     height: 44px !important;
-    font-size: 1.1rem !important;
+    font-size: 1.15rem !important;
     border-radius: 50% !important;
     display: flex !important;
     align-items: center !important;
@@ -2421,6 +2451,27 @@ img {
     color: var(--ink-secondary) !important;
     text-decoration: none !important;
     transition: all 0.2s ease !important;
+  }
+
+  /* BANNER DE AVISO TEMPORAL */
+  .notice-banner-inner {
+    width: calc(100% - 32px) !important;
+    max-width: 430px !important;
+    margin-inline: auto !important;
+    padding: 0.6rem 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.5rem !important;
+  }
+
+  .notice-banner-content {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    font-size: 0.82rem !important;
+    line-height: 1.4 !important;
+    flex: 1 !important;
   }
 
   /* QUIÉNES SOMOS MOBILE: Sección Editorial con Foto Panorámica Arriba */
@@ -2467,14 +2518,14 @@ img {
   }
 
   .quienes-somos-title {
-    font-size: clamp(1.45rem, 4.5vw, 1.85rem) !important;
-    line-height: 1.25 !important;
+    font-size: clamp(1.5rem, 5vw, 1.95rem) !important;
+    line-height: 1.22 !important;
     color: var(--ink-primary) !important;
     font-weight: 700 !important;
   }
 
   .quienes-somos-desc {
-    font-size: 0.95rem !important;
+    font-size: 0.96rem !important;
     line-height: 1.6 !important;
     color: var(--ink-secondary) !important;
   }
@@ -2483,16 +2534,79 @@ img {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    min-height: 48px !important;
+    min-height: 50px !important;
     padding: 0.75rem 1.4rem !important;
     font-size: 0.88rem !important;
   }
 
-  /* HORARIOS: Grilla de 2 Columnas Reales 50/50 */
+  /* ==========================================================================
+     SECCIÓN 01 / AGENDA EN MÓVIL
+     A. 3 Bloques destacados
+     B. Botón de scroll a la lista completa
+     C. Lista completa vertical (1 columna)
+     ========================================================================== */
+  .agenda-mobile-summary {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+    margin-bottom: 2rem !important;
+    width: 100% !important;
+  }
+
+  .schedule-summary-item {
+    background: var(--bg-cream-card) !important;
+    border: 1px solid var(--border-card) !important;
+    border-radius: var(--radius-sm) !important;
+    padding: 1.25rem 1.15rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.45rem !important;
+    box-shadow: 0 1px 4px rgba(23, 23, 20, 0.02) !important;
+    box-sizing: border-box !important;
+  }
+
+  .schedule-summary-item.highlight-item {
+    border: 1px solid #FF806E !important;
+    background-color: #FFFDFB !important;
+  }
+
+  .agenda-scroll-action {
+    margin-top: 0.5rem !important;
+    width: 100% !important;
+  }
+
+  .agenda-scroll-btn {
+    width: 100% !important;
+    min-height: 50px !important;
+    justify-content: center !important;
+    font-size: 0.88rem !important;
+    font-weight: 600 !important;
+    gap: 0.5rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+
+  .agenda-full-list-heading {
+    display: block !important;
+    margin-top: 1.5rem !important;
+    margin-bottom: 1.25rem !important;
+    padding-top: 1rem !important;
+    border-top: 1px solid var(--border-fine) !important;
+    scroll-margin-top: 90px !important;
+  }
+
+  .agenda-full-title {
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    color: var(--ink-primary) !important;
+    margin-top: 0.25rem !important;
+  }
+
+  /* LISTA COMPLETA VERTICAL (1 COLUMNA REAL) */
   .schedules-editorial-grid {
     display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 12px !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
     width: 100% !important;
   }
 
@@ -2500,57 +2614,42 @@ img {
     background: var(--bg-cream-card) !important;
     border: 1px solid var(--border-card) !important;
     border-radius: var(--radius-sm) !important;
-    padding: 1.05rem 0.9rem !important;
+    padding: 1.2rem 1.1rem !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: space-between !important;
-    min-height: 155px !important;
+    min-height: auto !important;
     box-shadow: 0 1px 4px rgba(23, 23, 20, 0.02) !important;
     box-sizing: border-box !important;
   }
 
-  .schedules-editorial-grid > .schedule-editorial-item:last-child {
-    grid-column: span 2 !important;
-  }
-
-  .schedule-day-label {
-    font-family: var(--font-mono) !important;
-    font-size: 0.68rem !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.06em !important;
-    color: var(--ink-muted) !important;
-    margin-bottom: 0.35rem !important;
-  }
-
   .schedule-time-display {
-    font-size: 1.45rem !important;
+    font-size: 1.65rem !important;
     font-weight: 750 !important;
     color: var(--ink-primary) !important;
     line-height: 1.1 !important;
-    margin-bottom: 0.35rem !important;
+    margin-bottom: 0.4rem !important;
     letter-spacing: -0.02em !important;
   }
 
   .schedule-title-text {
-    font-size: 0.92rem !important;
+    font-size: 1rem !important;
     font-weight: 700 !important;
     color: var(--ink-primary) !important;
-    margin-bottom: 0.25rem !important;
-    line-height: 1.25 !important;
+    margin-bottom: 0.35rem !important;
+    line-height: 1.3 !important;
   }
 
   .schedule-desc-text {
-    font-size: 0.80rem !important;
-    line-height: 1.35 !important;
+    font-size: 0.88rem !important;
+    line-height: 1.45 !important;
     color: var(--ink-secondary) !important;
-    margin-top: auto !important;
   }
 
   .schedule-more-btn {
     margin-top: 0.5rem !important;
-    font-size: 0.75rem !important;
+    font-size: 0.78rem !important;
     font-weight: 600 !important;
-    min-height: 38px !important;
+    min-height: 40px !important;
     color: var(--green-inst) !important;
     background: none !important;
     border: none !important;
@@ -2569,13 +2668,13 @@ img {
   }
 
   .identity-title {
-    font-size: clamp(2rem, 7.5vw, 2.6rem) !important;
+    font-size: clamp(2.1rem, 8vw, 2.7rem) !important;
     line-height: 1.1 !important;
     letter-spacing: -0.03em !important;
   }
 
   .identity-quote {
-    font-size: clamp(1.2rem, 4.5vw, 1.45rem) !important;
+    font-size: clamp(1.25rem, 5vw, 1.5rem) !important;
     font-family: var(--font-serif) !important;
     font-style: italic !important;
     color: var(--ink-primary) !important;
@@ -2585,7 +2684,7 @@ img {
 
   .identity-quote-source {
     font-family: var(--font-mono) !important;
-    font-size: 0.72rem !important;
+    font-size: 0.74rem !important;
     color: var(--accent-coral) !important;
     font-weight: 700 !important;
     display: block !important;
@@ -2593,7 +2692,7 @@ img {
   }
 
   .identity-desc {
-    font-size: 0.94rem !important;
+    font-size: 0.96rem !important;
     line-height: 1.6 !important;
     color: var(--ink-secondary) !important;
     margin-bottom: 1.5rem !important;
@@ -2608,8 +2707,8 @@ img {
 
   .pastor-photo-wrap {
     width: 100% !important;
-    max-width: 440px !important;
-    margin: 0 auto !important;
+    max-width: 430px !important;
+    margin-inline: auto !important;
     height: 380px !important;
     border-radius: var(--radius-sm) !important;
     overflow: hidden !important;
@@ -2623,13 +2722,13 @@ img {
   }
 
   .pastor-name-heading {
-    font-size: clamp(1.6rem, 5.5vw, 2rem) !important;
+    font-size: clamp(1.7rem, 6vw, 2.15rem) !important;
     margin-bottom: 0.35rem !important;
   }
 
   .pastor-role-tag {
     font-family: var(--font-mono) !important;
-    font-size: 0.74rem !important;
+    font-size: 0.76rem !important;
     font-weight: 700 !important;
     color: var(--accent-coral) !important;
     display: block !important;
@@ -2639,7 +2738,7 @@ img {
   .pastor-quote-block {
     font-family: var(--font-serif) !important;
     font-style: italic !important;
-    font-size: 1.05rem !important;
+    font-size: 1.1rem !important;
     line-height: 1.45 !important;
     color: var(--ink-primary) !important;
     padding-left: 1rem !important;
@@ -2648,7 +2747,7 @@ img {
   }
 
   .pastor-bio-text {
-    font-size: 0.92rem !important;
+    font-size: 0.95rem !important;
     line-height: 1.6 !important;
     color: var(--ink-secondary) !important;
     margin-bottom: 1.5rem !important;
@@ -2664,15 +2763,10 @@ img {
   .pastor-grid .btn-editorial {
     width: 100% !important;
     justify-content: center !important;
-    min-height: 46px !important;
+    min-height: 48px !important;
   }
 
   /* CONOCE A JESÚS */
-  .jesus-teaser-section {
-    background-color: var(--bg-dark-section) !important;
-    color: #FFFFFF !important;
-  }
-
   .jesus-teaser-grid {
     display: flex !important;
     flex-direction: column !important;
@@ -2680,16 +2774,16 @@ img {
   }
 
   .jesus-teaser-title {
-    font-size: clamp(2rem, 7.5vw, 2.6rem) !important;
+    font-size: clamp(2.1rem, 8vw, 2.7rem) !important;
     line-height: 1.1 !important;
     color: #FFFFFF !important;
     letter-spacing: -0.02em !important;
   }
 
   .jesus-teaser-text {
-    font-size: 0.96rem !important;
+    font-size: 0.98rem !important;
     line-height: 1.6 !important;
-    color: rgba(255, 255, 255, 0.85) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
     margin-bottom: 1.5rem !important;
   }
 
@@ -2697,12 +2791,12 @@ img {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    min-height: 48px !important;
+    min-height: 50px !important;
     padding: 0.75rem 1.5rem !important;
-    font-size: 0.88rem !important;
+    font-size: 0.90rem !important;
   }
 
-  /* CÉLULAS: 8 Células en Grid 2 Columnas */
+  /* CÉLULAS MOBILE: 1 Columna Vertical */
   .filters-tabs-editorial {
     display: flex !important;
     gap: 0.5rem !important;
@@ -2719,13 +2813,13 @@ img {
 
   .filter-tab-btn {
     white-space: nowrap !important;
-    font-size: 0.78rem !important;
-    padding: 0.45rem 0.85rem !important;
+    font-size: 0.80rem !important;
+    padding: 0.5rem 0.9rem !important;
     border-radius: var(--radius-xs) !important;
     border: 1px solid var(--border-card) !important;
     background: #FFFFFF !important;
     color: var(--ink-secondary) !important;
-    min-height: 38px !important;
+    min-height: 40px !important;
     flex-shrink: 0 !important;
   }
 
@@ -2737,8 +2831,8 @@ img {
 
   .celulas-cards-grid {
     display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 12px !important;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
     width: 100% !important;
   }
 
@@ -2754,7 +2848,7 @@ img {
   }
 
   .celula-card-img-wrap {
-    height: 120px !important;
+    height: 170px !important;
     width: 100% !important;
     overflow: hidden !important;
     position: relative !important;
@@ -2768,7 +2862,7 @@ img {
   }
 
   .celula-card-body {
-    padding: 0.85rem 0.75rem !important;
+    padding: 1.1rem 1rem !important;
     display: flex !important;
     flex-direction: column !important;
     flex: 1 !important;
@@ -2776,38 +2870,38 @@ img {
 
   .celula-badge {
     font-family: var(--font-mono) !important;
-    font-size: 0.62rem !important;
+    font-size: 0.68rem !important;
     font-weight: 700 !important;
     letter-spacing: 0.05em !important;
     color: var(--accent-coral) !important;
-    margin-bottom: 0.3rem !important;
+    margin-bottom: 0.35rem !important;
     display: block !important;
   }
 
   .celula-name {
-    font-size: 0.92rem !important;
+    font-size: 1.05rem !important;
     font-weight: 700 !important;
     color: var(--ink-primary) !important;
-    margin-bottom: 0.45rem !important;
+    margin-bottom: 0.5rem !important;
     line-height: 1.2 !important;
   }
 
   .celula-meta-list {
-    font-size: 0.75rem !important;
+    font-size: 0.85rem !important;
     color: var(--ink-secondary) !important;
     list-style: none !important;
     padding: 0 !important;
-    margin-bottom: 0.75rem !important;
+    margin-bottom: 1rem !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 0.25rem !important;
+    gap: 0.35rem !important;
   }
 
   .celula-meta-list li {
     display: flex !important;
     align-items: center !important;
-    gap: 0.4rem !important;
-    line-height: 1.3 !important;
+    gap: 0.45rem !important;
+    line-height: 1.35 !important;
   }
 
   .celula-card-footer {
@@ -2816,9 +2910,9 @@ img {
 
   .celula-card-footer .btn-editorial {
     width: 100% !important;
-    font-size: 0.74rem !important;
-    padding: 0.5rem 0.4rem !important;
-    min-height: 38px !important;
+    font-size: 0.82rem !important;
+    padding: 0.65rem 1rem !important;
+    min-height: 44px !important;
     justify-content: center !important;
   }
 
@@ -2831,7 +2925,7 @@ img {
 
   .location-map-wrap {
     width: 100% !important;
-    height: 290px !important;
+    height: 300px !important;
     border-radius: var(--radius-sm) !important;
     overflow: hidden !important;
   }
@@ -2851,16 +2945,16 @@ img {
 
   .location-social-links .btn-editorial {
     width: 100% !important;
-    min-height: 44px !important;
+    min-height: 46px !important;
     justify-content: center !important;
-    font-size: 0.84rem !important;
+    font-size: 0.86rem !important;
   }
 
-  /* MINISTERIOS: Grid 2 Columnas */
+  /* MINISTERIOS MOBILE: 1 Columna Vertical */
   .ministerios-full-grid {
     display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 12px !important;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
     width: 100% !important;
   }
 
@@ -2876,7 +2970,7 @@ img {
   }
 
   .ministerio-card-img {
-    height: 110px !important;
+    height: 160px !important;
     width: 100% !important;
     overflow: hidden !important;
   }
@@ -2888,7 +2982,7 @@ img {
   }
 
   .ministerio-card-body {
-    padding: 0.85rem 0.75rem !important;
+    padding: 1.1rem 1rem !important;
     display: flex !important;
     flex-direction: column !important;
     flex: 1 !important;
@@ -2896,28 +2990,28 @@ img {
 
   .ministerio-category {
     font-family: var(--font-mono) !important;
-    font-size: 0.60rem !important;
+    font-size: 0.68rem !important;
     font-weight: 700 !important;
     color: var(--accent-coral) !important;
-    margin-bottom: 0.25rem !important;
+    margin-bottom: 0.35rem !important;
     display: block !important;
   }
 
   .ministerio-name {
-    font-size: 0.90rem !important;
+    font-size: 1.05rem !important;
     font-weight: 700 !important;
     color: var(--ink-primary) !important;
-    margin-bottom: 0.35rem !important;
+    margin-bottom: 0.45rem !important;
     line-height: 1.25 !important;
   }
 
   .ministerio-desc {
-    font-size: 0.78rem !important;
-    line-height: 1.38 !important;
+    font-size: 0.88rem !important;
+    line-height: 1.45 !important;
     color: var(--ink-secondary) !important;
   }
 
-  /* EMPRENDIMIENTOS: 2 Columnas Limpias con 5to item centrado */
+  /* EMPRENDIMIENTOS MOBILE: 2 Columnas Limpias */
   .biz-showcase-grid {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -2930,13 +3024,12 @@ img {
     background: #FFFFFF !important;
     border: 1px solid var(--border-card) !important;
     border-radius: var(--radius-sm) !important;
-    min-height: 88px !important;
+    min-height: 90px !important;
     padding: 0.85rem 1rem !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     cursor: pointer !important;
-    transition: all 0.2s ease !important;
     box-sizing: border-box !important;
   }
 
@@ -2960,7 +3053,7 @@ img {
     object-fit: contain !important;
   }
 
-  /* MODALES: Adaptados para Touch & Vista Completa */
+  /* MODALES */
   .modal-editorial-backdrop {
     padding: 1rem !important;
     display: none !important;
@@ -2983,7 +3076,8 @@ img {
     border-radius: var(--radius-sm) !important;
     border: 1px solid var(--border-card) !important;
     padding: 1.75rem 1.4rem 1.5rem !important;
-    width: min(100% - 32px, 480px) !important;
+    width: calc(100% - 32px) !important;
+    max-width: 430px !important;
     max-height: 90dvh !important;
     max-height: 90vh !important;
     overflow-y: auto !important;
@@ -3019,17 +3113,17 @@ img {
   }
 
   .final-cta-title {
-    font-size: clamp(1.8rem, 6.5vw, 2.4rem) !important;
+    font-size: clamp(1.85rem, 7vw, 2.45rem) !important;
     color: #FFFFFF !important;
     margin-bottom: 1rem !important;
     letter-spacing: -0.02em !important;
   }
 
   .final-cta-text {
-    font-size: 0.95rem !important;
+    font-size: 0.96rem !important;
     line-height: 1.6 !important;
     color: rgba(255, 255, 255, 0.85) !important;
-    max-width: 460px !important;
+    max-width: 420px !important;
     margin: 0 auto 1.75rem !important;
   }
 
@@ -3117,12 +3211,6 @@ img {
    3. SMARTPHONES MUY PEQUEÑOS (max-width: 360px)
    -------------------------------------------------------------------------- */
 @media (max-width: 360px) {
-  .schedules-editorial-grid,
-  .celulas-cards-grid,
-  .biz-showcase-grid {
-    grid-template-columns: 1fr !important;
-  }
-
   .hero-centered-actions {
     grid-template-columns: 1fr !important;
     gap: 8px !important;

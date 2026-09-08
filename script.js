@@ -345,40 +345,76 @@ document.addEventListener('DOMContentLoaded', () => {
     // Jueves
     const schJueves = schedules.find(s => s.id === 'sched-jueves');
     const cardJueves = document.getElementById('schedule-item-jueves');
-    if (schJueves && cardJueves) {
-      const timeEl = document.getElementById('time-jueves');
-      const titleEl = document.getElementById('title-jueves');
-      const descEl = document.getElementById('desc-jueves');
-      if (timeEl) timeEl.textContent = schJueves.time;
-      if (titleEl) titleEl.textContent = schJueves.name;
-      if (descEl) descEl.textContent = schJueves.shortDesc;
-      cardJueves.style.display = schJueves.visible !== false ? 'flex' : 'none';
+    const summaryJueves = document.getElementById('summary-item-jueves');
+    if (schJueves) {
+      if (cardJueves) {
+        const timeEl = document.getElementById('time-jueves');
+        const titleEl = document.getElementById('title-jueves');
+        const descEl = document.getElementById('desc-jueves');
+        if (timeEl) timeEl.textContent = schJueves.time;
+        if (titleEl) titleEl.textContent = schJueves.name;
+        if (descEl) descEl.textContent = schJueves.shortDesc;
+        cardJueves.style.display = schJueves.visible !== false ? 'flex' : 'none';
+      }
+      if (summaryJueves) {
+        const timeSummary = summaryJueves.querySelector('.schedule-time-display');
+        const titleSummary = summaryJueves.querySelector('.schedule-title-text');
+        const descSummary = summaryJueves.querySelector('.schedule-desc-text');
+        if (timeSummary) timeSummary.textContent = `${schJueves.time} hs`;
+        if (titleSummary) titleSummary.textContent = schJueves.name;
+        if (descSummary) descSummary.textContent = schJueves.shortDesc;
+        summaryJueves.style.display = schJueves.visible !== false ? 'flex' : 'none';
+      }
     }
 
     // Evangelismo en la Feria
     const schEvangelismo = schedules.find(s => s.id === 'sched-evangelismo-feria');
     const cardEvangelismo = document.getElementById('schedule-item-evangelismo');
-    if (schEvangelismo && cardEvangelismo) {
-      const timeEl = document.getElementById('time-evangelismo');
-      const titleEl = document.getElementById('title-evangelismo');
-      const descEl = document.getElementById('desc-evangelismo');
-      if (timeEl) timeEl.textContent = schEvangelismo.time;
-      if (titleEl) titleEl.textContent = schEvangelismo.name;
-      if (descEl) descEl.textContent = schEvangelismo.shortDesc;
-      cardEvangelismo.style.display = schEvangelismo.visible !== false ? 'flex' : 'none';
+    const summaryEvangelismo = document.getElementById('summary-item-evangelismo');
+    if (schEvangelismo) {
+      if (cardEvangelismo) {
+        const timeEl = document.getElementById('time-evangelismo');
+        const titleEl = document.getElementById('title-evangelismo');
+        const descEl = document.getElementById('desc-evangelismo');
+        if (timeEl) timeEl.textContent = schEvangelismo.time;
+        if (titleEl) titleEl.textContent = schEvangelismo.name;
+        if (descEl) descEl.textContent = schEvangelismo.shortDesc;
+        cardEvangelismo.style.display = schEvangelismo.visible !== false ? 'flex' : 'none';
+      }
+      if (summaryEvangelismo) {
+        const timeSummary = summaryEvangelismo.querySelector('.schedule-time-display');
+        const titleSummary = summaryEvangelismo.querySelector('.schedule-title-text');
+        const descSummary = summaryEvangelismo.querySelector('.schedule-desc-text');
+        if (timeSummary) timeSummary.textContent = `${schEvangelismo.time} hs`;
+        if (titleSummary) titleSummary.textContent = schEvangelismo.name;
+        if (descSummary) descSummary.textContent = schEvangelismo.shortDesc;
+        summaryEvangelismo.style.display = schEvangelismo.visible !== false ? 'flex' : 'none';
+      }
     }
 
     // Domingo Gran Celebración
     const schDomingo = schedules.find(s => s.id === 'sched-domingo');
     const cardDomingo = document.getElementById('schedule-item-domingo');
-    if (schDomingo && cardDomingo) {
-      const timeEl = document.getElementById('time-domingo');
-      const titleEl = document.getElementById('title-domingo');
-      const descEl = document.getElementById('desc-domingo');
-      if (timeEl) timeEl.textContent = schDomingo.time;
-      if (titleEl) titleEl.textContent = schDomingo.name;
-      if (descEl) descEl.textContent = schDomingo.shortDesc;
-      cardDomingo.style.display = schDomingo.visible !== false ? 'flex' : 'none';
+    const summaryDomingo = document.getElementById('summary-item-domingo');
+    if (schDomingo) {
+      if (cardDomingo) {
+        const timeEl = document.getElementById('time-domingo');
+        const titleEl = document.getElementById('title-domingo');
+        const descEl = document.getElementById('desc-domingo');
+        if (timeEl) timeEl.textContent = schDomingo.time;
+        if (titleEl) titleEl.textContent = schDomingo.name;
+        if (descEl) descEl.textContent = schDomingo.shortDesc;
+        cardDomingo.style.display = schDomingo.visible !== false ? 'flex' : 'none';
+      }
+      if (summaryDomingo) {
+        const timeSummary = summaryDomingo.querySelector('.schedule-time-display');
+        const titleSummary = summaryDomingo.querySelector('.schedule-title-text');
+        const descSummary = summaryDomingo.querySelector('.schedule-desc-text');
+        if (timeSummary) timeSummary.textContent = `${schDomingo.time} hs`;
+        if (titleSummary) titleSummary.textContent = schDomingo.name;
+        if (descSummary) descSummary.textContent = schDomingo.shortDesc;
+        summaryDomingo.style.display = schDomingo.visible !== false ? 'flex' : 'none';
+      }
     }
 
     // Contacto: Horarios de Cultos
