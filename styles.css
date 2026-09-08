@@ -1672,32 +1672,106 @@ img {
   }
 }
 
-/* 2. Tablets y Transición de Header a Menú Hamburguesa (769px - 1040px) */
-@media (max-width: 1040px) {
+/* ==========================================================================
+   MASTER RESPONSIVE SYSTEM: TABLET & MOBILE
+   Diseñado específicamente para max-width: 1024px, 768px, 480px y 360px.
+   Desktop (>= 1025px) permanece 100% bloqueado e intacto.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. TABLETS Y MÓVILES GENERALES (max-width: 1024px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  /* Contenedores y Layout General */
+  .container {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+    box-sizing: border-box;
+  }
+
+  /* Header Mobile/Tablet: Limpio, Horizontal, Sobrio */
   .editorial-header {
-    height: 76px;
-    transition: height 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 68px;
+    background-color: var(--bg-cream);
+    border-bottom: 1px solid var(--border-fine);
+    z-index: 1000;
+    transition: height 0.22s ease, background-color 0.22s ease, box-shadow 0.22s ease, padding 0.22s ease;
   }
 
   .editorial-header .container {
-    padding: 0 1.25rem;
+    padding: 0 1.25rem !important;
+    max-width: 100%;
+    height: 100%;
   }
 
   .nav-inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 100%;
     width: 100%;
   }
 
-  /* Ocultar navegación horizontal y botones grandes en la barra */
+  /* Ocultar navegación horizontal de desktop */
   .nav-inner > nav,
   .nav-links-desktop {
     display: none !important;
   }
 
-  .nav-actions-wrap #open-prayer-btn,
-  .nav-actions-wrap a[href="contacto.html"] {
+  /* Identidad Izquierda: Logo + Nombre Limpio */
+  .brand-container {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .brand-logo-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .brand-header-logo {
+    height: 40px;
+    max-height: 40px;
+    width: auto;
+    margin: 0;
+    object-fit: contain;
+    display: block;
+  }
+
+  .brand-compact-title {
+    display: block !important;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 750;
+    color: var(--ink-primary);
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+
+  .brand-sub-tag {
+    display: none !important;
+  }
+
+  /* Acciones Derecha: ÚNICAMENTE el botón de Menú */
+  .nav-actions-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  /* Eliminar estrictamente VISÍTANOS, ORACIÓN y cualquier otro CTA del Header */
+  .nav-actions-wrap .open-prayer-btn,
+  .nav-actions-wrap .btn-green-inst,
+  .nav-actions-wrap a:not(.drawer-toggle-btn),
+  .nav-actions-wrap button:not(.drawer-toggle-btn) {
     display: none !important;
   }
 
@@ -1707,60 +1781,113 @@ img {
     min-height: 38px;
     padding: 0 0.95rem !important;
     font-size: 0.82rem !important;
+    font-weight: 600;
     gap: 0.45rem;
     align-items: center;
+    border-radius: var(--radius-xs);
+    background: #FFFFFF;
+    border: 1px solid var(--border-card);
+    color: var(--ink-primary);
   }
 
-  .brand-header-logo {
-    height: 148px;
-    margin: -52px -8px -52px -8px;
-  }
-
-  .brand-sub-tag {
-    font-size: 0.58rem;
-  }
-
-  /* Header Sticky Compacto al hacer Scroll en Mobile/Tablet */
+  /* Sticky Header Suave y Compacto (Sin saltos de fixed ni cambios bruscos) */
   .editorial-header.scrolled {
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
-    height: 58px !important;
-    min-height: 58px !important;
-    z-index: 990;
-    background: rgba(253, 252, 248, 0.98);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--border-fine);
-    box-shadow: 0 2px 10px rgba(23, 23, 20, 0.04);
+    height: 58px;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 10px rgba(23, 23, 20, 0.05);
   }
 
   .editorial-header.scrolled .brand-header-logo {
-    display: none !important;
-  }
-
-  .editorial-header.scrolled .brand-sub-tag {
-    display: none !important;
+    height: 34px;
+    max-height: 34px;
+    margin: 0;
   }
 
   .editorial-header.scrolled .brand-compact-title {
-    display: block !important;
-    font-family: var(--font-sans);
-    font-size: 0.92rem;
-    font-weight: 750;
-    color: var(--ink-primary);
-    letter-spacing: -0.01em;
-    white-space: nowrap;
+    font-size: 0.90rem;
   }
 
   .editorial-header.scrolled .drawer-toggle-btn {
     height: 34px !important;
     min-height: 34px !important;
     padding: 0 0.85rem !important;
-    font-size: 0.76rem !important;
+    font-size: 0.78rem !important;
   }
 
+  /* Sección Quiénes Somos: Formato Editorial sin Bordes de Card */
+  .quienes-somos-featured-section {
+    padding: 3rem 0 2rem;
+    background: transparent;
+  }
+
+  .quienes-somos-card {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .quienes-somos-banner {
+    width: 100%;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    line-height: 0;
+  }
+
+  .quienes-somos-banner-img {
+    width: 100%;
+    height: auto;
+    max-height: 420px;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+    border-radius: var(--radius-sm);
+  }
+
+  .quienes-somos-content {
+    display: flex;
+    flex-direction: column;
+    padding: 0 !important;
+    gap: 1.25rem;
+  }
+
+  .quienes-somos-text-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .quienes-somos-title {
+    font-size: clamp(1.4rem, 3.8vw, 1.85rem);
+    line-height: 1.25;
+    color: var(--ink-primary);
+    font-weight: 700;
+  }
+
+  .quienes-somos-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--ink-secondary);
+  }
+
+  .quienes-somos-action-block {
+    margin-top: 0.35rem;
+  }
+
+  .quienes-somos-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0.75rem 1.4rem;
+    font-size: 0.88rem;
+  }
+
+  /* Grids en Tablet (769px - 1024px) */
   .hero-grid,
   .identity-grid,
   .pastor-grid,
@@ -1771,48 +1898,241 @@ img {
     gap: 2.5rem;
   }
 
-  /* Sección Destacada Quiénes Somos en Tablet */
-  .quienes-somos-featured-section {
-    padding: 1.75rem 0 1.25rem;
+  .schedules-editorial-grid,
+  .celulas-cards-grid,
+  .ministerios-full-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
   }
 
-  .quienes-somos-banner {
-    width: 100%;
-    height: auto;
-    margin: 0;
-    padding: 0;
-    line-height: 0;
-    font-size: 0;
-    background: transparent;
+  .biz-showcase-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
   }
 
-  .quienes-somos-banner-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
   }
 
-  .quienes-somos-content {
+  .agenda-layout-grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 1.85rem 1.6rem;
+    gap: 2rem;
   }
 
-  .quienes-somos-action-block {
+  /* Drawer Menú */
+  .editorial-drawer {
+    max-width: 420px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. SMARTPHONES Y TABLETS VERTICALES (max-width: 768px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  /* Contenedores con padding equilibrado */
+  .container {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    box-sizing: border-box;
+  }
+
+  /* Espaciado vertical entre secciones */
+  .schedules-section,
+  .identity-section,
+  .pastor-section,
+  .jesus-teaser-section,
+  .celulas-section,
+  .location-section,
+  .ministerios-section,
+  .community-biz-section,
+  .final-cta-section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  /* Encabezados de Sección */
+  .section-header-editorial {
+    margin-bottom: 2rem;
+  }
+
+  .section-header-editorial.split {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .editorial-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.45rem;
+  }
+
+  .section-title-large {
+    font-size: clamp(1.65rem, 6vw, 2.1rem);
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+  }
+
+  .section-desc-editorial {
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--ink-secondary);
+  }
+
+  /* HERO MOBILE: Portada de Pantalla Completa */
+  .hero-centered-section {
+    min-height: calc(100svh - 68px);
+    min-height: 90svh;
+    padding: 3.5rem 1.25rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .hero-bg-diffused {
+    position: absolute;
+    inset: 0;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    filter: blur(2px) saturate(0.9);
+    opacity: 0.35;
+    z-index: 1;
   }
 
-  .quienes-somos-btn {
-    align-self: flex-start;
+  .hero-overlay-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(245, 243, 237, 0.72) 0%, rgba(245, 243, 237, 0.94) 100%);
+    z-index: 2;
   }
 
-  /* Accesos Rápidos en Tablet */
+  .datum-top-left {
+    display: none !important;
+  }
+
+  .datum-bottom-right {
+    position: static !important;
+    order: -2;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 auto 1.25rem !important;
+    text-align: center !important;
+    font-size: 0.72rem !important;
+    line-height: 1.45;
+    color: var(--ink-muted);
+    letter-spacing: 0.05em;
+    width: 100%;
+    display: block !important;
+    z-index: 3;
+  }
+
+  .datum-bottom-right strong {
+    font-size: 0.76rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-primary);
+    display: block;
+    margin-bottom: 0.15rem;
+  }
+
+  .hero-centered-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  .hero-pill-badge {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.9rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-h1-centered {
+    font-size: clamp(2.1rem, 8.2vw, 2.75rem);
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.15rem;
+    color: var(--ink-primary);
+    font-weight: 750;
+    word-break: normal;
+  }
+
+  .hero-phrase-centered {
+    font-size: 0.96rem;
+    line-height: 1.55;
+    color: var(--ink-secondary);
+    margin-bottom: 1.75rem;
+    padding: 0 0.5rem;
+  }
+
+  /* Botones Hero: 50% / 50% en una misma fila */
+  .hero-centered-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    max-width: 440px;
+    gap: 10px;
+    margin: 0 auto 1.5rem;
+  }
+
+  .hero-centered-actions .btn-editorial {
+    width: 100%;
+    min-height: 48px;
+    font-size: 0.80rem;
+    font-weight: 600;
+    padding: 0.65rem 0.45rem;
+    text-align: center;
+    justify-content: center;
+    white-space: nowrap;
+    border-radius: var(--radius-xs);
+  }
+
+  .hero-social-mini-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    margin-top: 0.25rem;
+  }
+
+  .hero-social-icon-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    border: 1px solid var(--border-fine);
+    color: var(--ink-secondary);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .hero-social-icon-btn:hover {
+    color: var(--green-inst);
+    border-color: var(--green-inst);
+  }
+
+  /* Accesos Rápidos Mobile */
   .quick-shortcuts-section {
     display: block;
     background-color: var(--bg-cream-light);
     border-bottom: 1px solid var(--border-fine);
-    padding: 1.35rem 0 1.5rem;
+    padding: 1.5rem 0;
   }
 
   .quick-shortcuts-header {
@@ -1831,7 +2151,7 @@ img {
 
   .quick-shortcuts-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 0.55rem;
   }
 
@@ -1839,19 +2159,18 @@ img {
     background: var(--bg-cream-card);
     border: 1px solid var(--border-fine);
     border-radius: var(--radius-xs);
-    padding: 0.7rem 0.5rem;
+    padding: 0.65rem 0.4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.35rem;
+    gap: 0.3rem;
     text-decoration: none;
     color: var(--ink-primary);
-    font-size: 0.8rem;
+    font-size: 0.76rem;
     font-weight: 600;
-    min-height: 50px;
+    min-height: 48px;
     text-align: center;
-    transition: all var(--transition);
   }
 
   .quick-shortcut-btn i {
@@ -1864,116 +2183,574 @@ img {
   }
 
   .quick-shortcut-span {
-    grid-column: span 2;
+    grid-column: span 3;
     flex-direction: row;
     gap: 0.5rem;
+    min-height: 42px;
   }
 
-  .schedules-editorial-grid,
-  .celulas-cards-grid,
-  .ministerios-full-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.15rem;
+  /* HORARIOS: Grilla de 2 Columnas con Gran Legibilidad */
+  .schedules-editorial-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
   }
 
-  .footer-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
-
-  .general-gallery-masonry {
-    grid-template-columns: repeat(6, 1fr);
-    grid-auto-rows: 220px;
-  }
-
-  .gallery-item-editorial.span-8 {
-    grid-column: span 6;
-  }
-
-  .gallery-item-editorial.span-6,
-  .gallery-item-editorial.span-4 {
-    grid-column: span 3;
-  }
-
-  .agenda-layout-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-}
-
-/* 3. Móviles y Tablets Verticales (<= 768px) */
-@media (max-width: 768px) {
-  /* Aviso Superior Móvil */
-  .notice-banner-editorial {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.8rem;
-    line-height: 1.35;
-  }
-
-  .notice-banner-inner {
+  .schedule-editorial-item {
+    background: var(--bg-cream-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-sm);
+    padding: 1rem 0.9rem;
     display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
-    position: relative;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 150px;
+    box-shadow: 0 1px 4px rgba(23, 23, 20, 0.02);
+  }
+
+  .schedules-editorial-grid > .schedule-editorial-item:last-child {
+    grid-column: span 2;
+  }
+
+  .schedule-day-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--ink-muted);
+    margin-bottom: 0.35rem;
+  }
+
+  .schedule-time-display {
+    font-size: 1.45rem;
+    font-weight: 750;
+    color: var(--ink-primary);
+    line-height: 1.1;
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.02em;
+  }
+
+  .schedule-title-text {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--ink-primary);
+    margin-bottom: 0.25rem;
+    line-height: 1.25;
+  }
+
+  .schedule-desc-text {
+    font-size: 0.80rem;
+    line-height: 1.35;
+    color: var(--ink-secondary);
+    margin-top: auto;
+  }
+
+  .schedule-more-btn {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    min-height: 38px;
+    color: var(--green-inst);
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0;
+  }
+
+  /* MENSAJE CENTRAL */
+  .identity-section {
+    padding: 4.5rem 0;
+  }
+
+  .identity-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .identity-title {
+    font-size: clamp(2rem, 7.5vw, 2.6rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+
+  .identity-quote {
+    font-size: clamp(1.2rem, 4.5vw, 1.45rem);
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--ink-primary);
+    line-height: 1.3;
+    margin-bottom: 0.4rem;
+  }
+
+  .identity-quote-source {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--accent-coral);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .identity-desc {
+    font-size: 0.94rem;
+    line-height: 1.6;
+    color: var(--ink-secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  /* NUESTRO PASTOR */
+  .pastor-section {
+    padding: 4rem 0;
+  }
+
+  .pastor-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .pastor-photo-wrap {
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    height: 380px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  .pastor-photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+  }
+
+  .pastor-name-heading {
+    font-size: clamp(1.6rem, 5.5vw, 2rem);
+    margin-bottom: 0.35rem;
+  }
+
+  .pastor-role-tag {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--accent-coral);
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .pastor-quote-block {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.45;
+    color: var(--ink-primary);
+    padding-left: 1rem;
+    border-left: 3px solid var(--green-inst);
+    margin-bottom: 1rem;
+  }
+
+  .pastor-bio-text {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--ink-secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  .pastor-grid div:last-child > div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
     width: 100%;
   }
 
-  .notice-banner-content {
-    display: flex;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    flex: 1;
-    padding-right: 1.8rem;
+  .pastor-grid .btn-editorial {
+    width: 100%;
+    justify-content: center;
+    min-height: 46px;
   }
 
-  .notice-pill {
-    font-size: 0.62rem;
-    padding: 0.12rem 0.45rem;
+  /* CONOCE A JESÚS */
+  .jesus-teaser-section {
+    padding: 4.5rem 0;
+    background-color: var(--bg-dark-section);
+    color: #FFFFFF;
+  }
+
+  .jesus-teaser-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .jesus-teaser-title {
+    font-size: clamp(2rem, 7.5vw, 2.6rem);
+    line-height: 1.1;
+    color: #FFFFFF;
+    letter-spacing: -0.02em;
+  }
+
+  .jesus-teaser-text {
+    font-size: 0.96rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 1.5rem;
+  }
+
+  .btn-white-contrast {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.88rem;
+  }
+
+  /* CÉLULAS: 8 Células en Grid 2 Columnas */
+  .filters-tabs-editorial {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .filters-tabs-editorial::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-tab-btn {
+    white-space: nowrap;
+    font-size: 0.78rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: var(--radius-xs);
+    border: 1px solid var(--border-card);
+    background: #FFFFFF;
+    color: var(--ink-secondary);
+    min-height: 38px;
     flex-shrink: 0;
   }
 
-  .notice-close-btn {
-    position: absolute;
-    top: -2px;
-    right: 0;
-    padding: 0.2rem;
-    font-size: 1.25rem;
-    line-height: 1;
-    color: rgba(255, 255, 255, 0.85);
+  .filter-tab-btn.active {
+    background: var(--green-inst);
+    color: #FFFFFF;
+    border-color: var(--green-inst);
   }
 
-  /* Header Móvil Compacto */
-  .editorial-header {
-    height: 72px;
+  .celulas-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
   }
 
-  .editorial-header .container {
-    padding: 0 1rem;
+  .celula-card-editorial {
+    background: var(--bg-cream-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 4px rgba(23, 23, 20, 0.02);
+  }
+
+  .celula-card-img-wrap {
+    height: 120px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .celula-card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+  }
+
+  .celula-card-body {
+    padding: 0.85rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .celula-badge {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--accent-coral);
+    margin-bottom: 0.3rem;
+    display: block;
+  }
+
+  .celula-name {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--ink-primary);
+    margin-bottom: 0.45rem;
+    line-height: 1.2;
+  }
+
+  .celula-meta-list {
+    font-size: 0.75rem;
+    color: var(--ink-secondary);
+    list-style: none;
+    padding: 0;
+    margin-bottom: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .celula-meta-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    line-height: 1.3;
+  }
+
+  .celula-card-footer {
+    margin-top: auto;
+  }
+
+  .celula-card-footer .btn-editorial {
+    width: 100%;
+    font-size: 0.74rem !important;
+    padding: 0.5rem 0.4rem !important;
+    min-height: 38px;
+    justify-content: center;
+  }
+
+  /* UBICACIÓN Y CANALES */
+  .location-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .location-map-wrap {
+    width: 100%;
+    height: 290px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  .location-map-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .location-social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
     width: 100%;
   }
 
-  .brand-header-logo {
-    height: 132px;
-    max-height: none;
-    margin: -45px -6px -45px -6px;
+  .location-social-links .btn-editorial {
+    width: 100%;
+    min-height: 44px;
+    justify-content: center;
+    font-size: 0.84rem;
   }
 
-  .brand-logo-text {
-    gap: 0.4rem;
+  /* MINISTERIOS: Grid 2 Columnas */
+  .ministerios-full-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
   }
 
-  .brand-sub-tag {
-    font-size: 0.54rem;
-    letter-spacing: 0.07em;
+  .ministerio-card-editorial {
+    background: var(--bg-cream-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 4px rgba(23, 23, 20, 0.02);
   }
 
-  .nav-actions-wrap .drawer-toggle-btn {
+  .ministerio-card-img {
+    height: 110px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .ministerio-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ministerio-card-body {
+    padding: 0.8rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .ministerio-category {
+    font-family: var(--font-mono);
+    font-size: 0.60rem;
+    font-weight: 700;
+    color: var(--accent-coral);
+    margin-bottom: 0.25rem;
+    display: block;
+  }
+
+  .ministerio-name {
+    font-size: 0.90rem;
+    font-weight: 700;
+    color: var(--ink-primary);
+    margin-bottom: 0.35rem;
+    line-height: 1.25;
+  }
+
+  .ministerio-desc {
+    font-size: 0.78rem;
+    line-height: 1.38;
+    color: var(--ink-secondary);
+  }
+
+  /* EMPRENDIMIENTOS */
+  .biz-showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 1.5rem auto 1rem;
+  }
+
+  .biz-logo-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-sm);
+    min-height: 84px;
+    padding: 0.85rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .biz-logo-img {
+    max-height: 48px;
+    max-width: 120px;
+    object-fit: contain;
+  }
+
+  .biz-logo-img.biz-logo-wide {
+    max-height: 38px;
+    max-width: 140px;
+    object-fit: contain;
+  }
+
+  /* MODALES: Adaptados para Touch & Vista Completa */
+  .modal-editorial-backdrop {
+    padding: 1rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    inset: 0;
+    background: rgba(17, 26, 21, 0.72);
+    z-index: 2000;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+  }
+
+  .modal-editorial-backdrop.active {
+    display: flex;
+  }
+
+  .modal-editorial-card {
+    background: var(--bg-cream-light);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-card);
+    padding: 1.75rem 1.4rem 1.5rem;
+    width: calc(100% - 32px);
+    max-width: 480px;
+    max-height: 90dvh;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    box-sizing: border-box;
+  }
+
+  .modal-close-btn {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 36px;
     height: 36px;
-    min-height: 36px;
-    padding: 0 0.8rem !important;
-    font-size: 0.78rem !important;
-    gap: 0.35rem;
+    border-radius: 50%;
+    background: #FFFFFF;
+    border: 1px solid var(--border-fine);
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--ink-primary);
+    z-index: 10;
+    line-height: 1;
+  }
+
+  /* CIERRE ESPIRITUAL */
+  .final-cta-section {
+    padding: 4.5rem 0;
+    background-color: var(--bg-dark-section);
+    color: #FFFFFF;
+    text-align: center;
+  }
+
+  .final-cta-title {
+    font-size: clamp(1.8rem, 6.5vw, 2.4rem);
+    color: #FFFFFF;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .final-cta-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 460px;
+    margin: 0 auto 1.75rem;
+  }
+
+  /* FOOTER */
+  .editorial-footer {
+    padding: 3.5rem 0 2rem;
+    background-color: var(--bg-dark-footer);
+    color: #FAF9F5;
+  }
+
+  .footer-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+  }
+
+  .footer-links-list a {
+    padding: 0.35rem 0;
+    display: inline-block;
+  }
+
+  .footer-bottom-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
   }
 
   /* Drawer Menú Full-Screen Táctil */
@@ -1990,651 +2767,6 @@ img {
   .drawer-body {
     padding: 1.25rem;
     gap: 1.25rem;
-  }
-
-  .drawer-link-item {
-    min-height: 46px;
-    padding: 0.85rem 1rem;
-    font-size: 0.95rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  /* Hero Móvil: Composición limpia, compacta y centrada */
-  .hero-centered-section {
-    min-height: auto;
-    padding: 2.25rem 1rem 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .hero-bg-diffused {
-    object-position: center 25%;
-    filter: blur(2.5px) saturate(0.9);
-    opacity: 0.38;
-  }
-
-  /* 1. Eliminar completamente el bloque superior de dirección en mobile */
-  .datum-top-left {
-    display: none !important;
-  }
-
-  /* 2. "UNA IGLESIA PARA TODOS" más discreto y ubicado arriba del contenido */
-  .datum-bottom-right {
-    position: static !important;
-    order: -1;
-    border: none !important;
-    padding: 0 !important;
-    margin: 0 auto 0.75rem !important;
-    text-align: center !important;
-    font-size: 0.64rem !important;
-    line-height: 1.35;
-    color: var(--ink-muted);
-    letter-spacing: 0.04em;
-    width: 100%;
-    max-width: 320px;
-    display: block !important;
-  }
-
-  .datum-bottom-right strong {
-    font-size: 0.68rem;
-    letter-spacing: 0.08em;
-    color: var(--ink-primary);
-  }
-
-  .hero-centered-content {
-    width: 100%;
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .hero-pill-badge {
-    font-size: 0.65rem;
-    padding: 0.3rem 0.8rem;
-    margin-bottom: 0.85rem;
-  }
-
-  .hero-h1-centered {
-    font-size: clamp(1.9rem, 7.5vw, 2.5rem);
-    line-height: 1.12;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.85rem;
-    word-break: normal;
-  }
-
-  .hero-phrase-centered {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    margin-bottom: 1.35rem;
-    padding: 0 0.25rem;
-  }
-
-  .hero-centered-actions {
-    flex-direction: column;
-    width: 100%;
-    max-width: 320px;
-    margin: 0 auto;
-    gap: 0.65rem;
-  }
-
-  .hero-centered-actions .btn-editorial {
-    width: 100%;
-    min-height: 46px;
-    font-size: 0.85rem;
-    justify-content: center;
-  }
-
-  /* Redes Rápidas en Mobile Hero */
-  .hero-social-mini-row {
-    margin-top: 0.2rem;
-    gap: 0.75rem;
-  }
-
-  .hero-social-icon-btn {
-    width: 42px;
-    height: 42px;
-    font-size: 1.05rem;
-  }
-
-  /* Sección Destacada Quiénes Somos en Mobile */
-  .quienes-somos-featured-section {
-    padding: 1.15rem 0 1rem;
-  }
-
-  .quienes-somos-banner {
-    width: 100%;
-    height: auto;
-    margin: 0;
-    padding: 0;
-    line-height: 0;
-    font-size: 0;
-    background: transparent;
-  }
-
-  .quienes-somos-banner-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
-  }
-
-  .quienes-somos-content {
-    padding: 1.35rem 1.15rem 1.5rem;
-    gap: 1.25rem;
-  }
-
-  .quienes-somos-title {
-    font-size: clamp(1.15rem, 4.4vw, 1.4rem);
-    line-height: 1.25;
-  }
-
-  .quienes-somos-desc {
-    font-size: 0.88rem;
-    line-height: 1.5;
-  }
-
-  .quienes-somos-btn {
-    width: 100%;
-    justify-content: center;
-    min-height: 46px;
-    font-size: 0.82rem;
-  }
-
-  /* Accesos Rápidos Mobile */
-  .quick-shortcuts-section {
-    display: block;
-    background-color: var(--bg-cream-light);
-    border-bottom: 1px solid var(--border-fine);
-    padding: 1.15rem 0 1.25rem;
-  }
-
-  .quick-shortcuts-header {
-    margin-bottom: 0.6rem;
-    text-align: center;
-  }
-
-  .quick-shortcuts-label {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    color: var(--accent-coral);
-    text-transform: uppercase;
-  }
-
-  .quick-shortcuts-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.45rem;
-  }
-
-  .quick-shortcut-btn {
-    background: var(--bg-cream-card);
-    border: 1px solid var(--border-fine);
-    border-radius: var(--radius-xs);
-    padding: 0.6rem 0.3rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.25rem;
-    text-decoration: none;
-    color: var(--ink-primary);
-    font-size: 0.74rem;
-    font-weight: 600;
-    min-height: 48px;
-    text-align: center;
-    transition: all var(--transition);
-  }
-
-  .quick-shortcut-btn i {
-    font-size: 0.85rem;
-    color: var(--green-inst);
-  }
-
-  .quick-shortcut-btn.highlight-jesus i {
-    color: var(--accent-coral);
-  }
-
-  .quick-shortcut-span {
-    grid-column: span 3;
-    flex-direction: row;
-    gap: 0.5rem;
-    min-height: 40px;
-  }
-
-  /* Secciones Encabezado Mobile */
-  .section-header-editorial {
-    margin-bottom: 1.5rem;
-  }
-
-  .section-header-editorial.split {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-
-  .section-title-large {
-    font-size: clamp(1.6rem, 5vw, 2rem);
-    letter-spacing: -0.02em;
-  }
-
-  .section-desc-editorial {
-    font-size: 0.86rem;
-    line-height: 1.45;
-  }
-
-  /* Horarios de Cultos & Células: Grilla compacta de 2 Columnas */
-  .schedules-editorial-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.6rem;
-  }
-
-  .schedule-editorial-item {
-    width: 100%;
-    padding: 0.85rem 0.75rem;
-    min-height: auto;
-    display: flex;
-    flex-direction: column;
-    border-radius: var(--radius-xs);
-  }
-
-  /* Domingo Templo abarca 2 columnas para balancear el grid de 7 items */
-  .schedules-editorial-grid > .schedule-editorial-item:last-child {
-    grid-column: span 2;
-  }
-
-  .schedule-day-label {
-    font-size: 0.62rem;
-    margin-bottom: 0.35rem;
-    letter-spacing: 0.06em;
-  }
-
-  .schedule-time-display {
-    font-size: 1.35rem;
-    font-weight: 750;
-    line-height: 1.1;
-    margin-bottom: 0.4rem;
-    letter-spacing: -0.02em;
-    word-break: break-word;
-  }
-
-  .schedule-title-text {
-    font-size: 0.88rem;
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-    line-height: 1.25;
-  }
-
-  .schedule-desc-text {
-    font-size: 0.76rem;
-    line-height: 1.35;
-    margin-top: auto;
-    color: var(--ink-secondary);
-  }
-
-  .schedule-more-btn {
-    font-size: 0.72rem;
-    margin-top: 0.45rem;
-    min-height: 38px;
-    padding: 0.2rem 0;
-    display: inline-flex;
-    align-items: center;
-  }
-
-  /* Red de Células: Grilla compacta de 2 Columnas */
-  .celulas-cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.6rem;
-  }
-
-  .celula-card-editorial {
-    border-radius: var(--radius-xs);
-  }
-
-  .celula-card-img-wrap {
-    height: 115px;
-  }
-
-  .celula-card-img-wrap img {
-    object-fit: cover;
-    object-position: center 25%;
-  }
-
-  .celula-card-body {
-    padding: 0.75rem 0.65rem;
-  }
-
-  .celula-badge {
-    font-size: 0.58rem;
-    margin-bottom: 0.25rem;
-    letter-spacing: 0.04em;
-  }
-
-  .celula-name {
-    font-size: 0.88rem;
-    font-weight: 700;
-    margin-bottom: 0.35rem;
-    line-height: 1.2;
-  }
-
-  .celula-meta-list {
-    font-size: 0.72rem;
-    gap: 0.25rem;
-    margin-bottom: 0.65rem;
-  }
-
-  .celula-meta-list li {
-    gap: 0.35rem;
-    line-height: 1.25;
-  }
-
-  .celula-meta-list i {
-    font-size: 0.72rem;
-    width: 12px;
-  }
-
-  .celula-card-footer .btn-editorial {
-    font-size: 0.72rem !important;
-    padding: 0.45rem 0.4rem !important;
-    min-height: 38px;
-    gap: 0.3rem;
-  }
-
-  .ministerios-full-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-  }
-
-  /* Nuestro Pastor */
-  .pastor-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .pastor-photo-wrap {
-    width: 100%;
-    max-width: 420px;
-    margin: 0 auto;
-    height: 380px;
-    border-radius: var(--radius-xs);
-  }
-
-  .pastor-photo-wrap img,
-  .pastor-photo-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 35% 20%;
-  }
-
-  /* Conoce a Jesús Teaser */
-  .jesus-teaser-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .jesus-teaser-content {
-    max-width: 100%;
-  }
-
-  /* Emprendimientos de la Comunidad */
-  .biz-showcase-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    margin: 1.75rem auto 1rem;
-  }
-
-  .biz-logo-card {
-    min-height: 84px;
-    padding: 1rem;
-  }
-
-  /* Ubicación y Mapa */
-  .location-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .location-map-wrap {
-    height: 320px;
-    width: 100%;
-  }
-
-  .location-social-links {
-    flex-direction: column;
-    width: 100%;
-    gap: 0.55rem;
-  }
-
-  .location-social-links .btn-editorial {
-    width: 100%;
-    min-height: 44px;
-    justify-content: center;
-  }
-
-  /* Formularios Accesibles al Tacto */
-  .form-input-editorial,
-  .form-textarea-editorial {
-    font-size: 16px; /* Evita auto-zoom molesto en iOS */
-    padding: 0.8rem 0.95rem;
-  }
-
-  /* Modales Responsive Táctiles */
-  .modal-editorial-backdrop {
-    padding: 0.75rem;
-  }
-
-  .modal-editorial-card {
-    padding: 1.5rem 1.25rem;
-    max-height: 90vh;
-    max-height: 90dvh;
-    width: 100%;
-  }
-
-  .modal-close-btn {
-    width: 38px;
-    height: 38px;
-    font-size: 1.4rem;
-  }
-
-  /* Galería Masonry & Lightbox */
-  .general-gallery-masonry {
-    grid-template-columns: 1fr;
-    grid-auto-rows: 230px;
-    gap: 1rem;
-  }
-
-  .gallery-item-editorial.span-4,
-  .gallery-item-editorial.span-6,
-  .gallery-item-editorial.span-8,
-  .gallery-item-editorial.span-12 {
-    grid-column: span 1;
-  }
-
-  .gallery-item-editorial.row-2 {
-    grid-row: span 1;
-  }
-
-  .gallery-lightbox-nav-btn {
-    width: 42px;
-    height: 42px;
-    font-size: 1rem;
-  }
-
-  .gallery-lightbox-nav-btn.prev {
-    left: 0.25rem;
-  }
-
-  .gallery-lightbox-nav-btn.next {
-    right: 0.25rem;
-  }
-
-  .gallery-lightbox-footer {
-    flex-direction: column;
-    gap: 0.4rem;
-    text-align: center;
-  }
-
-  .gallery-lightbox-caption {
-    white-space: normal;
-    font-size: 0.8rem;
-    line-height: 1.35;
-  }
-
-  /* Footer en Columna Vertical */
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .footer-links-list a {
-    padding: 0.35rem 0;
-    display: inline-block;
-  }
-
-  .footer-bottom-bar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.6rem;
-  }
-
-  /* Cabecera de páginas secundarias & Agenda en Tablet */
-  .page-hero-editorial {
-    padding: 2.25rem 0 1.25rem;
-  }
-
-  .page-hero-title {
-    font-size: clamp(1.75rem, 5.5vw, 2.3rem);
-  }
-
-  .agenda-main-section {
-    padding: 1.25rem 0 3.5rem;
-  }
-
-  .agenda-layout-grid {
-    grid-template-columns: 1fr;
-    gap: 1.75rem;
-  }
-
-  .agenda-events-stack {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-
-  .agenda-event-card {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.75rem;
-    padding: 1rem;
-    height: 100%;
-    justify-content: space-between;
-  }
-
-  .calendar-card,
-  .calendar-card-editorial {
-    padding: 1.25rem 1rem;
-  }
-
-  /* Catálogo de Recursos en 1 columna */
-  .recursos-catalogo-grid {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-
-  /* Panel Admin en Tablet (768px - 1024px) */
-  .admin-main-header {
-    height: auto !important;
-    min-height: 72px;
-    padding: 1rem 0;
-  }
-
-  .admin-main-header .container,
-  .admin-dashboard-layout {
-    width: 100%;
-    max-width: 980px;
-    margin: 0 auto;
-    padding-left: 28px !important;
-    padding-right: 28px !important;
-    box-sizing: border-box;
-  }
-
-  .admin-dashboard-layout {
-    padding-top: 2rem !important;
-    padding-bottom: 4rem !important;
-  }
-
-  .admin-nav-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.25rem;
-  }
-
-  .admin-top-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1.25rem;
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
-  }
-
-  .admin-tab-nav {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.65rem;
-    width: 100%;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border-fine);
-  }
-
-  .admin-tab-btn {
-    width: 100%;
-    min-height: 46px;
-    padding: 0.6rem 0.75rem;
-    font-size: 0.84rem;
-    justify-content: center;
-    text-align: center;
-    border: 1px solid var(--border-card);
-    background: #FFFFFF;
-    color: var(--ink-secondary);
-    border-radius: var(--radius-xs);
-    box-shadow: 0 1px 3px rgba(23, 23, 20, 0.02);
-  }
-
-  .admin-tab-btn.active {
-    background: var(--green-inst) !important;
-    color: #FFFFFF !important;
-    border-color: var(--green-inst) !important;
-  }
-
-  .admin-card-item {
-    padding: 1.35rem 1.5rem;
-    background: #FFFFFF;
-    border: 1px solid var(--border-card);
-    border-radius: var(--radius-sm);
-    box-shadow: 0 2px 8px rgba(23, 23, 20, 0.03);
-    margin-bottom: 1.25rem;
-  }
-
-  .admin-table-wrap {
-    background: #FFFFFF;
-    border: 1px solid var(--border-card);
-    border-radius: var(--radius-sm);
-    box-shadow: 0 2px 8px rgba(23, 23, 20, 0.02);
-    margin-bottom: 2rem;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    width: 100%;
   }
 
   /* Botón Flotante Chatbot IEAN-BOT */
@@ -2654,556 +2786,92 @@ img {
     max-width: 100%;
     height: 440px;
   }
-}
 
-/* 4. Teléfonos Móviles Estándar y Pequeños (360px - 480px, Ref: 390px) */
-@media (max-width: 480px) {
-  .editorial-header {
-    height: 68px;
-  }
-
-  .editorial-header .container {
-    padding: 0 0.85rem;
-  }
-
-  .brand-header-logo {
-    height: 118px;
-    margin: -40px -5px -40px -5px;
-  }
-
-  .brand-logo-text {
-    gap: 0.35rem;
-  }
-
-  .brand-sub-tag {
-    font-size: 0.48rem;
-    letter-spacing: 0.05em;
-  }
-
-  .nav-actions-wrap .drawer-toggle-btn {
-    height: 34px;
-    min-height: 34px;
-    padding: 0 0.7rem !important;
-    font-size: 0.74rem !important;
-  }
-
-  /* Hero Compacto en Teléfonos */
-  .hero-centered-section {
-    padding: 2rem 0.75rem 1.75rem;
-  }
-
-  .hero-h1-centered {
-    font-size: clamp(1.8rem, 7.8vw, 2.2rem);
-    line-height: 1.12;
-    margin-bottom: 0.75rem;
-  }
-
-  .hero-phrase-centered {
-    font-size: 0.86rem;
-    line-height: 1.45;
-    margin-bottom: 1.15rem;
-  }
-
-  /* Accesos Rápidos Ultra Compactos */
-  .quick-shortcuts-section {
-    padding: 1rem 0 1.15rem;
-  }
-
-  .quick-shortcuts-grid {
-    gap: 0.35rem;
-  }
-
-  .quick-shortcut-btn {
-    font-size: 0.7rem;
-    padding: 0.5rem 0.25rem;
-    min-height: 44px;
-  }
-
-  .quick-shortcut-btn i {
-    font-size: 0.8rem;
-  }
-
-  /* Horarios 2 Columnas Compactas */
-  .schedules-editorial-grid {
-    gap: 0.45rem;
-  }
-
-  .schedule-editorial-item {
-    padding: 0.75rem 0.55rem;
-  }
-
-  .schedule-time-display {
-    font-size: 1.25rem;
-    margin-bottom: 0.3rem;
-  }
-
-  .schedule-title-text {
-    font-size: 0.84rem;
-  }
-
-  .schedule-desc-text {
-    font-size: 0.72rem;
-  }
-
-  .schedule-more-btn {
-    font-size: 0.7rem;
-    margin-top: 0.35rem;
-    min-height: 36px;
-  }
-
-  /* Células 2 Columnas Compactas */
-  .celulas-cards-grid {
-    gap: 0.45rem;
-  }
-
-  .celula-card-img-wrap {
-    height: 105px;
-  }
-
-  .celula-card-body {
-    padding: 0.65rem 0.5rem;
-  }
-
-  .celula-name {
-    font-size: 0.84rem;
-    margin-bottom: 0.25rem;
-  }
-
-  .celula-meta-list {
-    font-size: 0.68rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .celula-card-footer .btn-editorial {
-    font-size: 0.68rem !important;
-    padding: 0.4rem 0.3rem !important;
-    min-height: 36px;
-  }
-
-  /* Drawer Compacto */
-  .drawer-header {
-    padding: 1rem 1.15rem;
-  }
-
-  .drawer-body {
-    padding: 1.15rem 1.15rem;
-    gap: 1.15rem;
-  }
-
-  .drawer-main-links-grid {
-    gap: 0.4rem;
-  }
-
-  .drawer-grid-btn {
-    font-size: 0.76rem;
-    min-height: 42px;
-    padding: 0.55rem 0.6rem;
-  }
-
-  /* Emprendimientos en 1 columna si el espacio es muy reducido */
-  .biz-showcase-grid {
-    grid-template-columns: 1fr;
-  }
-
-  /* Agenda en Mobile (390px - 480px) */
-  .page-hero-editorial {
-    padding: 1.75rem 0 0.85rem;
-  }
-
-  .agenda-main-section {
-    padding: 0.85rem 0 2.5rem;
-  }
-
-  .agenda-layout-grid {
-    gap: 1.35rem;
-  }
-
-  .calendar-card,
-  .calendar-card-editorial {
-    padding: 0.95rem 0.65rem;
-  }
-
-  .calendar-day-cell {
-    font-size: 0.8rem;
-  }
-
-  .calendar-weekdays-row {
-    font-size: 0.66rem;
-    gap: 2px;
-  }
-
-  .calendar-days-grid {
-    gap: 4px;
-  }
-
+  /* Agenda & Recursos en Smartphone/Tablet */
   .agenda-events-stack {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.65rem;
+    gap: 1rem;
   }
 
   .agenda-event-card {
     flex-direction: column;
     align-items: stretch;
-    padding: 0.75rem 0.65rem;
-    gap: 0.5rem;
+    gap: 0.75rem;
+    padding: 1rem;
     height: 100%;
     justify-content: space-between;
   }
 
-  .agenda-event-card .agenda-date-badge {
-    min-width: unset;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0.3rem 0.5rem;
-    border-radius: var(--radius-xs);
+  .recursos-catalogo-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. SMARTPHONES ESTÁNDAR (max-width: 480px, ej. 375px - 430px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .hero-h1-centered {
+    font-size: clamp(2rem, 8.5vw, 2.45rem);
   }
 
-  .agenda-event-card .agenda-date-day {
-    font-size: 1.1rem;
+  .hero-centered-actions {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    max-width: 100%;
   }
 
-  .agenda-event-card .agenda-date-month {
-    font-size: 0.62rem;
-    margin-top: 0;
+  .hero-centered-actions .btn-editorial {
+    font-size: 0.76rem !important;
+    padding: 0.6rem 0.35rem !important;
+    min-height: 46px;
   }
 
-  .agenda-cat-badge {
-    font-size: 0.58rem;
-    padding: 0.08rem 0.3rem;
+  .schedules-editorial-grid,
+  .celulas-cards-grid,
+  .ministerios-full-grid,
+  .biz-showcase-grid {
+    gap: 10px;
   }
 
-  .agenda-featured-pill {
-    font-size: 0.58rem;
-    padding: 0.08rem 0.3rem;
+  .schedule-time-display {
+    font-size: 1.3rem;
   }
 
-  .agenda-event-title {
+  .schedule-title-text,
+  .celula-name,
+  .ministerio-name {
     font-size: 0.88rem;
-    line-height: 1.25;
-    font-weight: 700;
-    margin-bottom: 0.2rem;
   }
 
-  .agenda-event-desc {
-    font-size: 0.74rem;
-    line-height: 1.35;
-    color: var(--ink-secondary);
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    margin-bottom: 0.25rem;
-  }
-
-  .agenda-event-meta-bottom {
-    font-size: 0.68rem;
-    flex-direction: column;
-    gap: 0.2rem;
-    color: var(--ink-muted);
-  }
-
-  .agenda-event-action {
-    margin-top: 0.2rem;
-  }
-
-  .agenda-event-action .btn-view-event {
-    width: 100%;
-    justify-content: center;
-    font-size: 0.7rem !important;
-    padding: 0.4rem 0.35rem !important;
-    min-height: 36px;
-  }
-
-  /* Panel Admin en Mobile (390px - 480px) */
-  .admin-login-box {
+  .modal-editorial-card {
     padding: 1.5rem 1.15rem;
   }
 
-  .admin-main-header {
-    height: auto !important;
-    min-height: unset !important;
-    padding: 1.15rem 0 1rem !important;
-    border-bottom: 1px solid var(--border-fine);
-    background: #FFFFFF !important;
+  .agenda-events-stack {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. SMARTPHONES MUY PEQUEÑOS (max-width: 360px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 360px) {
+  .schedules-editorial-grid,
+  .celulas-cards-grid,
+  .biz-showcase-grid {
+    grid-template-columns: 1fr;
   }
 
-  .admin-main-header .container,
-  .admin-dashboard-layout {
-    padding-left: 18px !important;
-    padding-right: 18px !important;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
+  .hero-centered-actions {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
 
-  .admin-dashboard-layout {
-    padding-top: 1.5rem !important;
-    padding-bottom: 3.5rem !important;
-  }
-
-  .admin-nav-inner {
-    height: auto !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 0.85rem !important;
-  }
-
-  .admin-nav-inner .brand-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.2rem;
-  }
-
-  .admin-nav-inner .brand-logo-text {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.2rem;
-  }
-
-  .admin-nav-inner .brand-main-title {
-    font-size: 1.22rem;
-    font-weight: 750;
-    color: var(--ink-primary);
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-  }
-
-  .admin-nav-inner .brand-sub-tag {
-    font-size: 0.72rem;
-    color: var(--ink-muted);
-    font-family: var(--font-mono);
-    letter-spacing: 0.04em;
-  }
-
-  .admin-header-actions {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr;
-    width: 100%;
-    gap: 0.6rem;
-  }
-
-  .admin-header-actions .btn-editorial {
-    width: 100%;
-    justify-content: center;
-    text-align: center;
-    font-size: 0.76rem !important;
-    padding: 0.45rem 0.5rem !important;
-    min-height: 40px;
-    border-radius: var(--radius-xs);
-  }
-
-  .admin-top-bar {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1rem;
-    margin-bottom: 1.75rem;
-    padding-bottom: 1.25rem;
-    border-bottom: 1px solid var(--border-fine);
-  }
-
-  .admin-top-bar h2 {
-    font-size: 1.28rem !important;
-    margin-top: 0.2rem;
-  }
-
-  .admin-backup-actions {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.55rem;
-    width: 100%;
-  }
-
-  .admin-backup-actions > *:nth-child(3) {
-    grid-column: span 2;
-  }
-
-  .admin-backup-actions .btn-editorial {
-    width: 100%;
-    justify-content: center;
-    text-align: center;
-    min-height: 42px;
-    font-size: 0.78rem !important;
-    padding: 0.45rem 0.5rem !important;
-    border-radius: var(--radius-xs);
-  }
-
-  .admin-tab-nav {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.55rem;
-    width: 100%;
-    margin-bottom: 1.85rem;
-    border-bottom: 1px solid var(--border-fine);
-    padding-bottom: 0.85rem;
-    overflow-x: visible;
-  }
-
-  .admin-tab-btn {
-    width: 100%;
-    min-height: 46px;
-    padding: 0.55rem 0.45rem;
-    font-size: 0.78rem;
-    font-weight: 600;
-    justify-content: center;
-    text-align: center;
-    border: 1px solid var(--border-card);
-    background: #FFFFFF;
-    color: var(--ink-secondary);
-    border-radius: var(--radius-xs);
-    white-space: normal;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    box-shadow: 0 1px 3px rgba(23, 23, 20, 0.02);
-  }
-
-  .admin-tab-btn.active {
-    background: var(--green-inst) !important;
-    color: #FFFFFF !important;
-    border-color: var(--green-inst) !important;
-  }
-
-  .admin-panel-header {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.85rem;
-    margin-bottom: 1.35rem;
-  }
-
-  .admin-panel-header h3 {
-    font-size: 1.2rem;
-    line-height: 1.25;
-    margin-bottom: 0.25rem;
-  }
-
-  .admin-panel-header p {
-    font-size: 0.82rem;
-    line-height: 1.45;
-    max-width: 100%;
-    color: var(--ink-secondary);
-  }
-
-  .admin-panel-header .btn-editorial {
-    width: 100%;
-    justify-content: center;
-    min-height: 44px;
-    font-size: 0.84rem;
-    border-radius: var(--radius-xs);
-  }
-
-  .admin-card-item {
-    background: #FFFFFF;
-    border: 1px solid var(--border-card);
-    border-radius: var(--radius-sm);
-    padding: 1.25rem 1.15rem;
-    margin-bottom: 1.15rem;
-    box-shadow: 0 2px 8px rgba(23, 23, 20, 0.03);
-    word-break: break-word;
-    overflow-wrap: anywhere;
-  }
-
-  .admin-card-item a {
-    word-break: break-all;
-    overflow-wrap: anywhere;
-  }
-
-  .admin-card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 0.5rem;
-    gap: 0.5rem;
-  }
-
-  .admin-card-item .btn-editorial {
-    width: 100%;
-    justify-content: center;
-    min-height: 38px;
-    font-size: 0.78rem;
-    margin-top: 0.75rem;
-  }
-
-  .admin-table-wrap {
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch;
-    width: 100%;
-    border: 1px solid var(--border-card);
-    border-radius: var(--radius-sm);
-    background: #FFFFFF;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 2px 8px rgba(23, 23, 20, 0.02);
-  }
-
-  .admin-table {
-    min-width: 660px;
-    width: 100%;
-    font-size: 0.82rem;
-    border-collapse: collapse;
-  }
-
-  .admin-table th {
-    padding: 0.75rem 0.9rem;
-    font-size: 0.72rem;
-    letter-spacing: 0.04em;
-    background: var(--bg-cream);
-    white-space: nowrap;
-    border-bottom: 1px solid var(--border-fine);
-  }
-
-  .admin-table td {
-    padding: 0.85rem 0.9rem;
-    font-size: 0.82rem;
-    border-bottom: 1px solid var(--border-fine);
-  }
-
-  .table-actions-cell {
-    min-width: 120px;
-    text-align: right;
-    vertical-align: middle;
-    white-space: nowrap;
-  }
-
-  .btn-table-action {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    vertical-align: middle;
-    padding: 0.35rem 0.55rem;
-    font-size: 0.76rem;
-    min-height: 34px;
-    min-width: 34px;
-    margin-left: 0.35rem;
-  }
-
-  .admin-modal-backdrop {
-    padding: 0.6rem;
-  }
-
-  .admin-modal-card {
-    width: calc(100% - 12px);
-    max-height: 92vh;
-    max-height: 92dvh;
-    padding: 1.35rem 1.05rem;
-    border-radius: var(--radius-sm);
-  }
-
-  .admin-modal-card form [style*="grid-template-columns: 1fr 1fr"] {
-    grid-template-columns: 1fr !important;
-    gap: 0.65rem !important;
-  }
-
-  .admin-modal-card .form-group-editorial {
-    margin-bottom: 0.75rem;
-  }
-
-  .admin-modal-card .btn-editorial {
-    min-height: 44px;
-    font-size: 0.82rem;
+  .hero-h1-centered {
+    font-size: 1.95rem;
   }
 }
 
@@ -3622,65 +3290,6 @@ img {
   line-height: 1.5;
 }
 
-@media (max-width: 1024px) {
-  .biz-showcase-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-    max-width: 720px;
-  }
-}
-
-@media (max-width: 768px) {
-  .biz-showcase-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.15rem;
-    max-width: 520px;
-  }
-  
-  .biz-logo-card {
-    min-height: 84px;
-    padding: 1rem 1.15rem;
-  }
-  
-  .biz-logo-img {
-    max-height: 50px;
-    max-width: 120px;
-  }
-  
-  .biz-logo-img.biz-logo-wide {
-    max-height: 38px;
-    max-width: 150px;
-  }
-}
-
-@media (max-width: 520px) {
-  .biz-showcase-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-  }
-  
-  .biz-logo-card {
-    min-height: 76px;
-    padding: 0.75rem 1rem;
-  }
-  
-  .biz-logo-img {
-    max-height: 44px;
-    max-width: 105px;
-  }
-  
-  .biz-logo-img.biz-logo-wide {
-    max-height: 34px;
-    max-width: 130px;
-  }
-}
-
-@media (max-width: 360px) {
-  .biz-showcase-grid {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-  }
-}
 
 /* 5. AGENDA: CALENDARIO MENSUAL & LISTA */
 .agenda-main-section {
