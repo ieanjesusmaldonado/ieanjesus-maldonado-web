@@ -95,19 +95,94 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 5. MODAL DE CULTO INTERACTIVO (Jueves y Domingo)
+  // 5. MODAL DE CULTO INTERACTIVO (Jueves, Evangelismo y Domingo)
   const serviceModal = document.getElementById('culto-modal');
   const serviceModalClose = document.getElementById('culto-modal-close');
-  const serviceTriggers = document.querySelectorAll('.open-culto-modal-btn');
 
-  const openServiceModal = (serviceId) => {
-    if (!serviceModal || !window.ieanDataStore) return;
-    const service = window.ieanDataStore.getScheduleById(serviceId);
+  const defaultCultosFallback = {
+    'sched-jueves': {
+      id: 'sched-jueves',
+      name: 'Reunión General de Jueves',
+      day: 'Jueves',
+      time: '19:30 hs',
+      location: 'Sede Central (Av. Wilson Ferreira Aldunate & 25 de Agosto)',
+      type: 'templo',
+      shortDesc: 'Culto congregacional en sede central: alabanza y estudio de la Palabra de Dios.',
+      fullDesc: 'Una reunión enfocada en la edificación espiritual de la congregación, la enseñanza profunda de las Sagradas Escrituras y un tiempo de oración intercesora por las familias y necesidades de Maldonado.',
+      organizer: 'Liderazgo pastoral y ministerios de apoyo',
+      target: 'Toda la familia, jóvenes, adultos y personas interesadas en conocer más de Dios',
+      whatToExpect: 'Un ambiente acogedor y reverente, alabanzas congregacionales, predicación bíblica clara y un momento final de oración por peticiones personales.'
+    },
+    'sched-evangelismo-feria': {
+      id: 'sched-evangelismo-feria',
+      name: 'Evangelismo en la Feria',
+      day: 'Domingo',
+      time: '10:00 hs',
+      location: 'Feria de Maldonado',
+      type: 'evangelismo',
+      shortDesc: 'Evangelismo en la Feria',
+      fullDesc: 'Actividad de evangelismo y testimonio público en la feria de Maldonado, compartiendo las Buenas Nuevas y folletos bíblicos con la comunidad.',
+      organizer: 'Equipo de evangelismo y liderazgo de la iglesia',
+      target: 'Toda la comunidad y visitantes de la feria',
+      whatToExpect: 'Evangelismo personal, entrega de folletos, oración por las necesidades y testimonio cristiano.'
+    },
+    'sched-domingo': {
+      id: 'sched-domingo',
+      name: 'Gran Celebración Dominical',
+      day: 'Domingo',
+      time: '18:30 hs',
+      location: 'Sede Central (Av. Wilson Ferreira Aldunate & 25 de Agosto)',
+      type: 'templo',
+      shortDesc: 'Gran celebración dominical de adoración, comunión fraternal y predicación.',
+      fullDesc: 'El encuentro principal de la semana donde toda la iglesia se reúne para adorar a Dios con gozo, escuchar el mensaje bíblico de salvación y compartir en comunidad fraterna.',
+      organizer: 'Ministerio pastoral, coro/música y comités de servicio',
+      target: 'Toda la familia, niños, amigos y visitantes de la comunidad',
+      whatToExpect: 'Adoración en vivo con el ministerio de alabanza, predicación cristocéntrica, atención cálida para nuevas visitas y un tiempo especial de ministración espiritual.'
+    }
+  };
+
+  const defaultGalleryFallback = {
+    evangelismo: [
+      { id: 'feria1', src: 'assets/images/feria1.jpg', alt: 'Actividad de evangelismo y distribución de literatura bíblica en la feria de Maldonado' },
+      { id: 'feria2', src: 'assets/images/feria2.jpg', alt: 'Miembros de la iglesia compartiendo el mensaje de fe en la feria dominical' },
+      { id: 'feria3', src: 'assets/images/feria3.jpg', alt: 'Diálogo testimonial y entrega de folletos del Plan Cornelio en la feria' },
+      { id: 'feria4', src: 'assets/images/feria4.jpg', alt: 'Oración y testimonio cristiano en las calles de Maldonado' },
+      { id: 'feria5', src: 'assets/images/feria5.jpg', alt: 'Equipo de evangelismo compartiendo la Palabra de Dios' }
+    ],
+    dominical: [
+      { id: 'dominical1', src: 'assets/images/dominical1.jpg', alt: 'Alabanza congregacional y adoración en la Gran Celebración de domingo' },
+      { id: 'dominical2', src: 'assets/images/dominical2.jpg', alt: 'Vista panorámica de la congregación durante el culto dominical de alabanza y adoración' },
+      { id: 'dominical3', src: 'assets/images/dominical3.jpg', alt: 'Momento de oración y comunión espiritual en la Gran Celebración de domingo' },
+      { id: 'dominical4', src: 'assets/images/dominical4.jpg', alt: 'Congregación reunida participando en la alabanza y la predicación bíblica' },
+      { id: 'dominical5', src: 'assets/images/dominical5.jpg', alt: 'Tiempo de adoración congregacional en la sede central' },
+      { id: 'dominical6', src: 'assets/images/dominical6.jpg', alt: 'Comunidad congregada alabando a Dios en la reunión dominical' }
+    ]
+  };
+
+  window.openServiceModal = (serviceId) => {
+    if (!serviceModal) return;
+    
+    let service = null;
+    if (window.ieanDataStore && typeof window.ieanDataStore.getScheduleById === 'function') {
+      service = window.ieanDataStore.getScheduleById(serviceId);
+    }
+    if (!service && defaultCultosFallback[serviceId]) {
+      service = defaultCultosFallback[serviceId];
+    }
     if (!service) return;
 
-    document.getElementById('modal-culto-day-badge').textContent = `${service.day.toUpperCase()} · ${service.time.toUpperCase()}`;
-    document.getElementById('modal-culto-title').textContent = service.name;
-    document.getElementById('modal-culto-desc').textContent = service.fullDesc || service.shortDesc;
+    const dayBadgeEl = document.getElementById('modal-culto-day-badge');
+    if (dayBadgeEl) {
+      const dayText = (service.day || 'CULTO').toUpperCase();
+      const timeText = service.time ? ` · ${service.time.toUpperCase()}` : '';
+      dayBadgeEl.textContent = `${dayText}${timeText}`;
+    }
+
+    const titleEl = document.getElementById('modal-culto-title');
+    if (titleEl) titleEl.textContent = service.name || 'Culto Congregacional';
+
+    const descEl = document.getElementById('modal-culto-desc');
+    if (descEl) descEl.textContent = service.fullDesc || service.shortDesc || '';
     
     const orgEl = document.getElementById('modal-culto-organizer');
     if (orgEl) orgEl.textContent = service.organizer || 'Liderazgo pastoral y comités de apoyo';
@@ -127,7 +202,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (serviceId === 'sched-evangelismo-feria') {
         gallerySec.style.display = 'block';
         galleryDesc.textContent = 'Algunos momentos de nuestro trabajo de evangelismo y encuentro con la comunidad.';
-        const photos = window.ieanDataStore.getGalleryPhotos('evangelismo');
+        let photos = (window.ieanDataStore && typeof window.ieanDataStore.getGalleryPhotos === 'function')
+          ? window.ieanDataStore.getGalleryPhotos('evangelismo')
+          : [];
+        if (!photos || !photos.length) photos = defaultGalleryFallback.evangelismo;
+
         galleryGrid.innerHTML = photos.map((p, idx) => `
           <div class="modal-gallery-thumb" data-photo-idx="${idx}" title="${p.alt}" tabindex="0" role="button" aria-label="${p.alt}">
             <img src="${p.src}" alt="${p.alt}" loading="lazy">
@@ -153,7 +232,11 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (serviceId === 'sched-domingo') {
         gallerySec.style.display = 'block';
         galleryDesc.textContent = 'Algunos momentos de nuestra celebración dominical y de la vida de nuestra congregación.';
-        const photos = window.ieanDataStore.getGalleryPhotos('dominical');
+        let photos = (window.ieanDataStore && typeof window.ieanDataStore.getGalleryPhotos === 'function')
+          ? window.ieanDataStore.getGalleryPhotos('dominical')
+          : [];
+        if (!photos || !photos.length) photos = defaultGalleryFallback.dominical;
+
         galleryGrid.innerHTML = photos.map((p, idx) => `
           <div class="modal-gallery-thumb" data-photo-idx="${idx}" title="${p.alt}" tabindex="0" role="button" aria-label="${p.alt}">
             <img src="${p.src}" alt="${p.alt}" loading="lazy">
@@ -191,12 +274,16 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = 'hidden';
   };
 
-  serviceTriggers.forEach(btn => {
-    btn.addEventListener('click', (e) => {
+  // Delegación de eventos para apertura de modales de cultos (Desktop y Mobile)
+  document.addEventListener('click', (e) => {
+    const triggerBtn = e.target.closest('.open-culto-modal-btn');
+    if (triggerBtn) {
       e.preventDefault();
-      const serviceId = btn.getAttribute('data-culto-id');
-      openServiceModal(serviceId);
-    });
+      const serviceId = triggerBtn.getAttribute('data-culto-id');
+      if (serviceId) {
+        window.openServiceModal(serviceId);
+      }
+    }
   });
 
   if (serviceModalClose) {
@@ -214,6 +301,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // Cerrar modal de culto con tecla Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && serviceModal && serviceModal.classList.contains('active')) {
+      serviceModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
 
   // 6. MODAL DE EMPRENDIMIENTOS DE LA COMUNIDAD
   const bizModal = document.getElementById('biz-modal');

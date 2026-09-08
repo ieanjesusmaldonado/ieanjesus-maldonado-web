@@ -593,13 +593,13 @@ const DEFAULT_DATA = {
 class DataStore {
   constructor() {
     this.data = {
-      notices: [],
-      schedules: [],
-      cells: [],
-      events: [],
-      resources: [],
-      businesses: [],
-      galleryPhotos: DEFAULT_DATA.galleryPhotos
+      notices: [...DEFAULT_DATA.notices],
+      schedules: [...DEFAULT_DATA.schedules],
+      cells: [...DEFAULT_DATA.cells],
+      events: [...DEFAULT_DATA.events],
+      resources: [...DEFAULT_DATA.resources],
+      businesses: [...DEFAULT_DATA.businesses],
+      galleryPhotos: [...DEFAULT_DATA.galleryPhotos]
     };
     this.listeners = [];
     this.isInitialized = false;
@@ -917,21 +917,33 @@ class DataStore {
   }
 
   getSchedules(publicOnly = true) {
-    if (!publicOnly) return this.data.schedules || [];
-    return (this.data.schedules || []).filter(s => s.visible !== false);
+    const list = (this.data.schedules && this.data.schedules.length > 0)
+      ? this.data.schedules
+      : DEFAULT_DATA.schedules;
+    if (!publicOnly) return list;
+    return list.filter(s => s.visible !== false);
   }
 
   getScheduleById(id) {
-    return (this.data.schedules || []).find(s => s.id === id);
+    if (!id) return null;
+    const list = (this.data.schedules && this.data.schedules.length > 0)
+      ? this.data.schedules
+      : DEFAULT_DATA.schedules;
+    const found = list.find(s => s.id === id);
+    if (found) return found;
+    return DEFAULT_DATA.schedules.find(s => s.id === id) || null;
   }
 
   getCells(publicOnly = true) {
-    if (!publicOnly) return this.data.cells || [];
-    return (this.data.cells || []).filter(c => c.visible !== false);
+    const list = (this.data.cells && this.data.cells.length > 0)
+      ? this.data.cells
+      : DEFAULT_DATA.cells;
+    if (!publicOnly) return list;
+    return list.filter(c => c.visible !== false);
   }
 
   getEvents(upcomingOnly = false) {
-    let list = [...(this.data.events || [])];
+    let list = [...((this.data.events && this.data.events.length > 0) ? this.data.events : DEFAULT_DATA.events)];
     if (upcomingOnly) {
       const todayStr = new Date().toISOString().split('T')[0];
       list = list.filter(e => e.public && e.date >= todayStr);
@@ -940,11 +952,15 @@ class DataStore {
   }
 
   getEventById(id) {
-    return (this.data.events || []).find(e => e.id === id);
+    if (!id) return null;
+    const list = (this.data.events && this.data.events.length > 0)
+      ? this.data.events
+      : DEFAULT_DATA.events;
+    return list.find(e => e.id === id) || null;
   }
 
   getResources(publicOnly = true, category = 'all') {
-    let list = [...(this.data.resources || [])];
+    let list = [...((this.data.resources && this.data.resources.length > 0) ? this.data.resources : DEFAULT_DATA.resources)];
     if (publicOnly) {
       list = list.filter(r => r.visible !== false);
     }
@@ -955,12 +971,17 @@ class DataStore {
   }
 
   getBusinesses(publicOnly = true) {
-    if (!publicOnly) return this.data.businesses || [];
-    return (this.data.businesses || []).filter(b => b.visible !== false);
+    const list = (this.data.businesses && this.data.businesses.length > 0)
+      ? this.data.businesses
+      : DEFAULT_DATA.businesses;
+    if (!publicOnly) return list;
+    return list.filter(b => b.visible !== false);
   }
 
   getGalleryPhotos(category = null) {
-    const list = this.data.galleryPhotos || DEFAULT_DATA.galleryPhotos;
+    const list = (this.data.galleryPhotos && this.data.galleryPhotos.length > 0)
+      ? this.data.galleryPhotos
+      : DEFAULT_DATA.galleryPhotos;
     if (!category || category === 'all' || category === 'general_all') {
       return list;
     }
@@ -968,8 +989,10 @@ class DataStore {
   }
 
   getPhotoById(id) {
-    const list = this.data.galleryPhotos || DEFAULT_DATA.galleryPhotos;
-    return list.find(p => p.id === id);
+    const list = (this.data.galleryPhotos && this.data.galleryPhotos.length > 0)
+      ? this.data.galleryPhotos
+      : DEFAULT_DATA.galleryPhotos;
+    return list.find(p => p.id === id) || null;
   }
 
   // --- MÉTODOS DE MUTACIÓN ASINCRÓNICA CON SUPABASE ---
