@@ -778,9 +778,17 @@ class DataStore {
   // --- INICIALIZACIÓN Y CARGA DESDE SUPABASE ---
   async initSupabase() {
     if (typeof window.supabaseClient === 'undefined') {
-      // Reintentar si el script de Supabase aún se está cargando
-      setTimeout(() => this.initSupabase(), 150);
+      setTimeout(() => this.initSupabase(), 100);
       return;
+    }
+
+    // Escuchar cambios de autenticación para refrescar datos según rol
+    try {
+      window.supabaseClient.auth.onAuthStateChange(async () => {
+        await this.refreshAll();
+      });
+    } catch (e) {
+      // Ignorar si auth no está listo
     }
 
     try {
@@ -788,12 +796,12 @@ class DataStore {
       this.isInitialized = true;
       this.setupRealtime();
     } catch (err) {
-      console.warn('No se pudo conectar a Supabase, utilizando datos predeterminados en memoria:', err);
+      console.warn('Error en inicialización con Supabase:', err);
     }
   }
 
   async refreshAll() {
-    if (!window.supabaseClient) return;
+    if (!window.supabaseClient) return { success: false, error: 'Supabase client no disponible' };
 
     try {
       const [
@@ -812,28 +820,48 @@ class DataStore {
         window.supabaseClient.from('businesses').select('*').order('display_order', { ascending: true })
       ]);
 
-      if (noticesRes.data && noticesRes.data.length > 0) {
+      if (noticesRes.error) {
+        console.error('Error al obtener notices de Supabase:', noticesRes.error);
+      } else if (Array.isArray(noticesRes.data)) {
         this.data.notices = noticesRes.data.map(r => this.fromDb('notices', r));
       }
-      if (schedulesRes.data && schedulesRes.data.length > 0) {
+
+      if (schedulesRes.error) {
+        console.error('Error al obtener schedules de Supabase:', schedulesRes.error);
+      } else if (Array.isArray(schedulesRes.data)) {
         this.data.schedules = schedulesRes.data.map(r => this.fromDb('schedules', r));
       }
-      if (cellsRes.data && cellsRes.data.length > 0) {
+
+      if (cellsRes.error) {
+        console.error('Error al obtener cells de Supabase:', cellsRes.error);
+      } else if (Array.isArray(cellsRes.data)) {
         this.data.cells = cellsRes.data.map(r => this.fromDb('cells', r));
       }
-      if (eventsRes.data && eventsRes.data.length > 0) {
+
+      if (eventsRes.error) {
+        console.error('Error al obtener events de Supabase:', eventsRes.error);
+      } else if (Array.isArray(eventsRes.data)) {
         this.data.events = eventsRes.data.map(r => this.fromDb('events', r));
       }
-      if (resourcesRes.data && resourcesRes.data.length > 0) {
+
+      if (resourcesRes.error) {
+        console.error('Error al obtener resources de Supabase:', resourcesRes.error);
+      } else if (Array.isArray(resourcesRes.data)) {
         this.data.resources = resourcesRes.data.map(r => this.fromDb('resources', r));
       }
-      if (businessesRes.data && businessesRes.data.length > 0) {
+
+      if (businessesRes.error) {
+        console.error('Error al obtener businesses de Supabase:', businessesRes.error);
+      } else if (Array.isArray(businessesRes.data)) {
         this.data.businesses = businessesRes.data.map(r => this.fromDb('businesses', r));
       }
 
+      this.isInitialized = true;
       this.notifyListeners();
+      return { success: true };
     } catch (err) {
-      console.error('Error al sincronizar con Supabase:', err);
+      console.error('Excepción al sincronizar con Supabase:', err);
+      return { success: false, error: err.message };
     }
   }
 
@@ -843,8 +871,8 @@ class DataStore {
     try {
       window.supabaseClient
         .channel('public_data_changes')
-        .on('postgres_changes', { event: '*', schema: 'public' }, () => {
-          this.refreshAll();
+        .on('postgres_changes', { event: '*', schema: 'public' }, async () => {
+          await this.refreshAll();
         })
         .subscribe();
     } catch (e) {
@@ -870,9 +898,9 @@ class DataStore {
 
   // --- MÉTODOS DE LECTURA SINCRÓNICA ---
   getNotices(activeOnly = true) {
-    if (!activeOnly) return this.data.notices;
+    if (!activeOnly) return this.data.notices || [];
     const nowStr = new Date().toISOString().split('T')[0];
-    return this.data.notices.filter(n => {
+    return (this.data.notices || []).filter(n => {
       if (!n.visible) return false;
       if (n.startDate && n.startDate > nowStr) return false;
       if (n.endDate && n.endDate < nowStr) return false;
@@ -881,21 +909,21 @@ class DataStore {
   }
 
   getSchedules(publicOnly = true) {
-    if (!publicOnly) return this.data.schedules;
-    return this.data.schedules.filter(s => s.visible !== false);
+    if (!publicOnly) return this.data.schedules || [];
+    return (this.data.schedules || []).filter(s => s.visible !== false);
   }
 
   getScheduleById(id) {
-    return this.data.schedules.find(s => s.id === id);
+    return (this.data.schedules || []).find(s => s.id === id);
   }
 
   getCells(publicOnly = true) {
-    if (!publicOnly) return this.data.cells;
-    return this.data.cells.filter(c => c.visible !== false);
+    if (!publicOnly) return this.data.cells || [];
+    return (this.data.cells || []).filter(c => c.visible !== false);
   }
 
   getEvents(upcomingOnly = false) {
-    let list = [...this.data.events];
+    let list = [...(this.data.events || [])];
     if (upcomingOnly) {
       const todayStr = new Date().toISOString().split('T')[0];
       list = list.filter(e => e.public && e.date >= todayStr);
@@ -904,23 +932,23 @@ class DataStore {
   }
 
   getEventById(id) {
-    return this.data.events.find(e => e.id === id);
+    return (this.data.events || []).find(e => e.id === id);
   }
 
   getResources(publicOnly = true, category = 'all') {
-    let list = [...this.data.resources];
+    let list = [...(this.data.resources || [])];
     if (publicOnly) {
       list = list.filter(r => r.visible !== false);
     }
     if (category && category !== 'all') {
-      list = list.filter(r => r.category.toLowerCase() === category.toLowerCase());
+      list = list.filter(r => r.category && r.category.toLowerCase() === category.toLowerCase());
     }
     return list;
   }
 
   getBusinesses(publicOnly = true) {
-    if (!publicOnly) return this.data.businesses;
-    return this.data.businesses.filter(b => b.visible !== false);
+    if (!publicOnly) return this.data.businesses || [];
+    return (this.data.businesses || []).filter(b => b.visible !== false);
   }
 
   getGalleryPhotos(category = null) {
@@ -938,67 +966,87 @@ class DataStore {
 
   // --- MÉTODOS DE MUTACIÓN ASINCRÓNICA CON SUPABASE ---
   async saveItem(collectionName, item) {
+    if (!window.supabaseClient) {
+      return { success: false, error: 'Cliente de Supabase no inicializado.' };
+    }
+
     if (!item.id) {
       item.id = `${collectionName.slice(0, 3)}-${Date.now()}`;
     }
 
-    // Actualizar optimísticamente en memoria
-    if (!this.data[collectionName]) this.data[collectionName] = [];
-    const idx = this.data[collectionName].findIndex(i => i.id === item.id);
-    if (idx !== -1) {
-      this.data[collectionName][idx] = { ...this.data[collectionName][idx], ...item };
-    } else {
-      this.data[collectionName].push(item);
-    }
-    this.notifyListeners();
+    try {
+      const dbRow = this.toDb(collectionName, item);
+      const { data, error } = await window.supabaseClient
+        .from(collectionName)
+        .upsert(dbRow)
+        .select();
 
-    // Guardar en Supabase
-    if (window.supabaseClient) {
-      try {
-        const dbRow = this.toDb(collectionName, item);
-        const { error } = await window.supabaseClient
-          .from(collectionName)
-          .upsert(dbRow);
-
-        if (error) {
-          console.error(`Error al guardar en Supabase [${collectionName}]:`, error);
-          return { success: false, error: error.message };
-        }
-        return { success: true };
-      } catch (err) {
-        console.error(`Excepción al guardar en Supabase [${collectionName}]:`, err);
-        return { success: false, error: err.message };
+      if (error) {
+        console.error(`Error al guardar en Supabase [${collectionName}]:`, error);
+        return { success: false, error: error.message };
       }
+
+      if (!data || data.length === 0) {
+        console.warn(`Supabase upsert no afectó ninguna fila [${collectionName}]. Verifica permisos RLS.`);
+        return {
+          success: false,
+          error: 'No se actualizó ningún registro en Supabase. Revisa los permisos de administrador o la sesión.'
+        };
+      }
+
+      // Sincronizar directamente con el registro devuelto por Supabase
+      const savedItem = this.fromDb(collectionName, data[0]);
+      if (!this.data[collectionName]) this.data[collectionName] = [];
+      const idx = this.data[collectionName].findIndex(i => i.id === savedItem.id);
+      if (idx !== -1) {
+        this.data[collectionName][idx] = savedItem;
+      } else {
+        this.data[collectionName].push(savedItem);
+      }
+
+      this.notifyListeners();
+      return { success: true, data: savedItem };
+    } catch (err) {
+      console.error(`Excepción al guardar en Supabase [${collectionName}]:`, err);
+      return { success: false, error: err.message };
     }
-    return { success: true };
   }
 
   async deleteItem(collectionName, id) {
-    // Eliminar optimísticamente en memoria
-    if (this.data[collectionName]) {
-      this.data[collectionName] = this.data[collectionName].filter(i => i.id !== id);
-      this.notifyListeners();
+    if (!window.supabaseClient) {
+      return { success: false, error: 'Cliente de Supabase no inicializado.' };
     }
 
-    // Eliminar en Supabase
-    if (window.supabaseClient) {
-      try {
-        const { error } = await window.supabaseClient
-          .from(collectionName)
-          .delete()
-          .eq('id', id);
+    try {
+      const { data, error } = await window.supabaseClient
+        .from(collectionName)
+        .delete()
+        .eq('id', id)
+        .select();
 
-        if (error) {
-          console.error(`Error al eliminar de Supabase [${collectionName}]:`, error);
-          return { success: false, error: error.message };
-        }
-        return { success: true };
-      } catch (err) {
-        console.error(`Excepción al eliminar de Supabase [${collectionName}]:`, err);
-        return { success: false, error: err.message };
+      if (error) {
+        console.error(`Error al eliminar de Supabase [${collectionName}]:`, error);
+        return { success: false, error: error.message };
       }
+
+      if (!data || data.length === 0) {
+        console.warn(`Supabase delete no afectó ninguna fila [${collectionName}] con id ${id}.`);
+        return {
+          success: false,
+          error: 'No se eliminó ningún registro en Supabase. Verifica el ID o los permisos.'
+        };
+      }
+
+      if (this.data[collectionName]) {
+        this.data[collectionName] = this.data[collectionName].filter(i => i.id !== id);
+        this.notifyListeners();
+      }
+
+      return { success: true };
+    } catch (err) {
+      console.error(`Excepción al eliminar de Supabase [${collectionName}]:`, err);
+      return { success: false, error: err.message };
     }
-    return { success: true };
   }
 
   async resetToDefaults() {

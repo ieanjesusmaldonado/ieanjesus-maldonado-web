@@ -60,13 +60,16 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // Actualizar la interfaz según el estado de la sesión
-  function updateAdminSessionUI(user) {
+  async function updateAdminSessionUI(user) {
     if (user) {
       if (loginSection) loginSection.style.display = 'none';
       if (dashboardSection) dashboardSection.style.display = 'block';
       if (userBadge) {
         userBadge.textContent = user.email || 'Admin';
         userBadge.style.display = 'inline-block';
+      }
+      if (window.ieanDataStore) {
+        await window.ieanDataStore.refreshAll();
       }
       loadActiveModuleData();
     } else {
@@ -90,16 +93,16 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (session && session.user) {
         const isAuthorized = await verifyAdminAuth(session.user);
         if (isAuthorized) {
-          updateAdminSessionUI(session.user);
+          await updateAdminSessionUI(session.user);
           return;
         } else {
           await window.supabaseClient.auth.signOut();
         }
       }
-      updateAdminSessionUI(null);
+      await updateAdminSessionUI(null);
     } catch (err) {
       console.error('Error al verificar sesión inicial:', err);
-      updateAdminSessionUI(null);
+      await updateAdminSessionUI(null);
     }
   }
 
@@ -144,7 +147,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Login exitoso
         loginErrorMsg.style.display = 'none';
         loginPassInput.value = '';
-        updateAdminSessionUI(data.user);
+        await updateAdminSessionUI(data.user);
         showToast('Sesión iniciada correctamente');
       } catch (err) {
         loginErrorMsg.textContent = 'Error de conexión. Intente nuevamente.';
@@ -164,7 +167,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (window.supabaseClient) {
         await window.supabaseClient.auth.signOut();
       }
-      updateAdminSessionUI(null);
+      await updateAdminSessionUI(null);
       showToast('Sesión cerrada');
     });
   }
@@ -173,14 +176,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (window.supabaseClient) {
     window.supabaseClient.auth.onAuthStateChange(async (event, session) => {
       if (event === 'SIGNED_OUT') {
-        updateAdminSessionUI(null);
+        await updateAdminSessionUI(null);
       } else if (event === 'SIGNED_IN' && session && session.user) {
         const isAuthorized = await verifyAdminAuth(session.user);
         if (isAuthorized) {
-          updateAdminSessionUI(session.user);
+          await updateAdminSessionUI(session.user);
         } else {
           await window.supabaseClient.auth.signOut();
-          updateAdminSessionUI(null);
+          await updateAdminSessionUI(null);
         }
       }
     });
@@ -192,7 +195,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let currentTab = 'agenda';
 
   tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', async () => {
       tabBtns.forEach(b => b.classList.remove('active'));
       tabPanels.forEach(p => p.classList.remove('active'));
 
@@ -201,6 +204,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       const targetPanel = document.getElementById(`panel-${currentTab}`);
       if (targetPanel) targetPanel.classList.add('active');
 
+      if (window.ieanDataStore) {
+        await window.ieanDataStore.refreshAll();
+      }
       loadActiveModuleData();
     });
   });

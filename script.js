@@ -96,6 +96,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   checkAndRenderNotices();
+  if (window.ieanDataStore) {
+    window.ieanDataStore.subscribe(checkAndRenderNotices);
+  }
 
   // 5. MODAL DE CULTO INTERACTIVO (Jueves y Domingo)
   const serviceModal = document.getElementById('culto-modal');
@@ -222,15 +225,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const bizModalClose = document.getElementById('biz-modal-close');
   const bizCards = document.querySelectorAll('.biz-logo-card');
 
-  if (window.ieanDataStore && bizCards.length > 0) {
+  const syncBusinessesFromStore = () => {
+    if (!window.ieanDataStore || bizCards.length === 0) return;
     const allBusinesses = window.ieanDataStore.getBusinesses(false);
     bizCards.forEach(card => {
       const bizId = card.getAttribute('data-biz-id');
       const bObj = allBusinesses.find(b => b.id === bizId);
       if (bObj && bObj.visible === false) {
         card.style.display = 'none';
+      } else {
+        card.style.display = '';
       }
     });
+  };
+
+  syncBusinessesFromStore();
+  if (window.ieanDataStore) {
+    window.ieanDataStore.subscribe(syncBusinessesFromStore);
   }
 
   bizCards.forEach(card => {
