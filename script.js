@@ -435,6 +435,32 @@ document.addEventListener('DOMContentLoaded', () => {
     window.ieanDataStore.subscribe(syncSchedulesFromStore);
   }
 
+  // 8.1.1 TOGGLE DESPLEGABLE AGENDA MOBILE/TABLET
+  const agendaToggleBtn = document.getElementById('agenda-toggle-btn');
+  const agendaWrapper = document.getElementById('agenda-collapsible-wrapper');
+  if (agendaToggleBtn && agendaWrapper) {
+    agendaToggleBtn.addEventListener('click', () => {
+      const isCurrentlyOpen = agendaWrapper.classList.contains('open');
+      const newState = !isCurrentlyOpen;
+      
+      if (newState) {
+        agendaWrapper.classList.add('open');
+      } else {
+        agendaWrapper.classList.remove('open');
+      }
+
+      agendaToggleBtn.setAttribute('aria-expanded', newState ? 'true' : 'false');
+      const span = agendaToggleBtn.querySelector('span');
+      const icon = agendaToggleBtn.querySelector('i');
+      if (span) {
+        span.textContent = newState ? 'OCULTAR HORARIOS' : 'VER HORARIOS Y CÉLULAS';
+      }
+      if (icon) {
+        icon.className = newState ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down';
+      }
+    });
+  }
+
   // 8.2 FORMULARIO DE CONTACTO (ESCRÍBENOS) EN CONTACTO.HTML
   const contactPageForm = document.getElementById('contact-page-form');
   if (contactPageForm) {

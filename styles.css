@@ -1676,8 +1676,7 @@ img {
    DESKTOP DEFAULT / UTILITY RULES (>= 1025px)
    Ocultar elementos exclusivos de mobile en desktop para mantener desktop 100% intacto
    ========================================================================== */
-.agenda-mobile-summary,
-.agenda-full-list-heading {
+.agenda-mobile-wrapper {
   display: none;
 }
 
@@ -1691,10 +1690,10 @@ img {
    1. TABLET (768px a 1024px)
    -------------------------------------------------------------------------- */
 @media (min-width: 768px) and (max-width: 1024px) {
-  /* Contenedor Global Tablet: width: calc(100% - 48px); max-width: 920px; */
+  /* Contenedor Global Tablet: width: calc(100% - 64px); max-width: 920px; */
   .container,
   .container-narrow {
-    width: calc(100% - 48px) !important;
+    width: calc(100% - 64px) !important;
     max-width: 920px !important;
     margin-inline: auto !important;
     padding-left: 0 !important;
@@ -1719,7 +1718,7 @@ img {
     margin-bottom: 0 !important;
   }
 
-  /* Padding lateral amplio en bloques oscuros/verdes: min 32px */
+  /* Padding lateral en bloques oscuros/verdes: min 32px */
   .jesus-teaser-section,
   .final-cta-section,
   .page-hero-editorial[style*="--bg-dark-section"],
@@ -1729,8 +1728,11 @@ img {
     box-sizing: border-box !important;
   }
 
+  /* Alineación Editorial a la Izquierda Estricta */
   .section-header-editorial {
     margin-bottom: 2.25rem !important;
+    text-align: left !important;
+    align-items: flex-start !important;
   }
 
   .section-header-editorial.split {
@@ -1738,6 +1740,14 @@ img {
     flex-direction: column !important;
     align-items: flex-start !important;
     gap: 0.75rem !important;
+    text-align: left !important;
+  }
+
+  .editorial-eyebrow,
+  .section-title-large,
+  .section-desc-editorial {
+    text-align: left !important;
+    align-self: flex-start !important;
   }
 
   /* HEADER TABLET: Altura 88px, SOLO Logo a la izquierda y MENÚ a la derecha */
@@ -1758,7 +1768,7 @@ img {
   }
 
   .editorial-header .container {
-    width: calc(100% - 48px) !important;
+    width: calc(100% - 64px) !important;
     max-width: 920px !important;
     height: 100% !important;
     margin-inline: auto !important;
@@ -1778,7 +1788,7 @@ img {
     display: none !important;
   }
 
-  /* Izquierda: SOLO el logo (visible y proporcionado: 44-48px) */
+  /* Izquierda: SOLO el logo (visible y prominente: 52-56px de contenido real) */
   .brand-container {
     display: inline-flex !important;
     align-items: center !important;
@@ -1791,10 +1801,10 @@ img {
   }
 
   .brand-header-logo {
-    height: 46px !important;
-    max-height: 48px !important;
+    height: 148px !important;
+    max-height: none !important;
     width: auto !important;
-    margin: 0 !important;
+    margin: -44px 0 !important;
     object-fit: contain !important;
     display: block !important;
   }
@@ -1897,7 +1907,7 @@ img {
   .hero-centered-content {
     position: relative !important;
     z-index: 3 !important;
-    width: calc(100% - 48px) !important;
+    width: calc(100% - 64px) !important;
     max-width: 920px !important;
     margin-inline: auto !important;
     display: flex !important;
@@ -2017,6 +2027,8 @@ img {
     padding: 0 !important;
     gap: 1.25rem !important;
     width: 100% !important;
+    text-align: left !important;
+    align-items: flex-start !important;
   }
 
   .quienes-somos-title {
@@ -2024,12 +2036,14 @@ img {
     line-height: 1.25 !important;
     color: var(--ink-primary) !important;
     font-weight: 700 !important;
+    text-align: left !important;
   }
 
   .quienes-somos-desc {
     font-size: 1.02rem !important;
     line-height: 1.65 !important;
     color: var(--ink-secondary) !important;
+    text-align: left !important;
   }
 
   .quienes-somos-btn {
@@ -2041,33 +2055,65 @@ img {
     font-size: 0.90rem !important;
   }
 
-  /* HORARIOS TABLET: 2 Columnas amplias y legibles */
-  .agenda-mobile-summary,
-  .agenda-full-list-heading {
+  /* HORARIOS TABLET: Ocultar desktop grid, mostrar formato interactivo */
+  .schedules-editorial-grid {
     display: none !important;
   }
 
-  .schedules-editorial-grid {
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 16px !important;
+  .agenda-mobile-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
     width: 100% !important;
   }
 
-  .schedule-editorial-item {
-    background: var(--bg-cream-card) !important;
-    border: 1px solid var(--border-card) !important;
-    border-radius: var(--radius-sm) !important;
-    padding: 1.35rem 1.25rem !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
-    min-height: 170px !important;
-    box-shadow: 0 1px 4px rgba(23, 23, 20, 0.02) !important;
+  .agenda-toggle-action {
+    width: 100% !important;
+    margin-top: 0.25rem !important;
   }
 
-  .schedules-editorial-grid > .schedule-editorial-item:last-child {
-    grid-column: span 2 !important;
+  .agenda-toggle-btn {
+    width: 100% !important;
+    min-height: 50px !important;
+    font-size: 0.88rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.03em !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.55rem !important;
+    cursor: pointer !important;
+    background: #171714 !important;
+    color: #F5F3ED !important;
+    border: 1px solid #171714 !important;
+    border-radius: var(--radius-xs) !important;
+  }
+
+  .agenda-collapsible-wrapper {
+    display: grid !important;
+    grid-template-rows: 0fr !important;
+    transition: grid-template-rows 250ms ease, opacity 250ms ease, margin-top 250ms ease !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .agenda-collapsible-wrapper.open {
+    grid-template-rows: 1fr !important;
+    opacity: 1 !important;
+    margin-top: 0.5rem !important;
+  }
+
+  .agenda-collapsible-inner {
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .agenda-remaining-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+    padding-top: 2px !important;
+    width: 100% !important;
   }
 
   /* CÉLULAS TABLET: 2 Columnas */
@@ -2099,7 +2145,7 @@ img {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 16px !important;
-    margin: 2.5rem auto 1.5rem !important;
+    margin: 2rem auto 1.5rem !important;
     width: 100% !important;
   }
 
@@ -2110,13 +2156,57 @@ img {
     width: 100% !important;
   }
 
-  /* OTRAS SECCIONES TABLET */
-  .location-grid,
-  .pastor-grid,
-  .identity-grid,
+  /* OTRAS SECCIONES TABLET — ALINEACIÓN IZQUIERDA */
+  .identity-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2rem !important;
+    text-align: left !important;
+    align-items: flex-start !important;
+  }
+
+  .identity-title,
+  .identity-quote,
+  .identity-desc {
+    text-align: left !important;
+    align-self: flex-start !important;
+  }
+
+  .pastor-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2rem !important;
+    text-align: left !important;
+    align-items: flex-start !important;
+  }
+
+  .pastor-name-heading,
+  .pastor-role-tag,
+  .pastor-quote-block,
+  .pastor-bio-text {
+    text-align: left !important;
+    align-self: flex-start !important;
+  }
+
   .jesus-teaser-grid {
-    grid-template-columns: 1fr !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.75rem !important;
+    text-align: left !important;
+    align-items: flex-start !important;
+  }
+
+  .jesus-teaser-title,
+  .jesus-teaser-text {
+    text-align: left !important;
+    align-self: flex-start !important;
+  }
+
+  .location-grid {
+    display: flex !important;
+    flex-direction: column !important;
     gap: 2.5rem !important;
+    text-align: left !important;
   }
 
   .location-map-wrap {
@@ -2128,7 +2218,7 @@ img {
   .pastor-photo-wrap {
     width: 100% !important;
     max-width: 520px !important;
-    margin: 0 auto !important;
+    margin: 0 !important;
     height: 420px !important;
   }
 
@@ -2148,10 +2238,10 @@ img {
    2. MOBILE (<= 767px)
    -------------------------------------------------------------------------- */
 @media (max-width: 767px) {
-  /* Contenedor Global Mobile: width: calc(100% - 32px); max-width: 430px; */
+  /* Contenedor Global Mobile: width: calc(100% - 48px); max-width: 430px; */
   .container,
   .container-narrow {
-    width: calc(100% - 32px) !important;
+    width: calc(100% - 48px) !important;
     max-width: 430px !important;
     margin-inline: auto !important;
     padding-left: 0 !important;
@@ -2176,7 +2266,7 @@ img {
     margin-bottom: 0 !important;
   }
 
-  /* Padding lateral amplio en bloques oscuros/verdes: min 24px */
+  /* Padding lateral en bloques oscuros/verdes: min 24px */
   .jesus-teaser-section,
   .final-cta-section,
   .page-hero-editorial[style*="--bg-dark-section"],
@@ -2186,8 +2276,11 @@ img {
     box-sizing: border-box !important;
   }
 
+  /* Alineación Editorial a la Izquierda Estricta */
   .section-header-editorial {
     margin-bottom: 1.75rem !important;
+    text-align: left !important;
+    align-items: flex-start !important;
   }
 
   .section-header-editorial.split {
@@ -2195,24 +2288,31 @@ img {
     flex-direction: column !important;
     align-items: flex-start !important;
     gap: 0.5rem !important;
+    text-align: left !important;
   }
 
   .editorial-eyebrow {
     font-size: 0.74rem !important;
     letter-spacing: 0.08em !important;
     margin-bottom: 0.4rem !important;
+    text-align: left !important;
+    align-self: flex-start !important;
   }
 
   .section-title-large {
     font-size: clamp(1.75rem, 6.5vw, 2.25rem) !important;
     line-height: 1.16 !important;
     letter-spacing: -0.02em !important;
+    text-align: left !important;
+    align-self: flex-start !important;
   }
 
   .section-desc-editorial {
     font-size: 0.94rem !important;
     line-height: 1.55 !important;
     color: var(--ink-secondary) !important;
+    text-align: left !important;
+    align-self: flex-start !important;
   }
 
   /* HEADER MOBILE: Altura 80px, SOLO Logo a la izquierda y MENÚ a la derecha */
@@ -2233,7 +2333,7 @@ img {
   }
 
   .editorial-header .container {
-    width: calc(100% - 32px) !important;
+    width: calc(100% - 48px) !important;
     max-width: 430px !important;
     height: 100% !important;
     margin-inline: auto !important;
@@ -2253,7 +2353,7 @@ img {
     display: none !important;
   }
 
-  /* Izquierda: SOLO el logo (prominente y legible: 38-40px) */
+  /* Izquierda: SOLO el logo (visible y prominente: 46-50px de contenido real) */
   .brand-container {
     display: inline-flex !important;
     align-items: center !important;
@@ -2266,10 +2366,10 @@ img {
   }
 
   .brand-header-logo {
-    height: 38px !important;
-    max-height: 40px !important;
+    height: 135px !important;
+    max-height: none !important;
     width: auto !important;
-    margin: 0 !important;
+    margin: -38px 0 !important;
     object-fit: contain !important;
     display: block !important;
   }
@@ -2372,7 +2472,7 @@ img {
   .hero-centered-content {
     position: relative !important;
     z-index: 3 !important;
-    width: calc(100% - 32px) !important;
+    width: calc(100% - 48px) !important;
     max-width: 430px !important;
     margin-inline: auto !important;
     display: flex !important;
@@ -2455,7 +2555,7 @@ img {
 
   /* BANNER DE AVISO TEMPORAL */
   .notice-banner-inner {
-    width: calc(100% - 32px) !important;
+    width: calc(100% - 48px) !important;
     max-width: 430px !important;
     margin-inline: auto !important;
     padding: 0.6rem 0 !important;
@@ -2515,6 +2615,8 @@ img {
     padding: 0 !important;
     gap: 1.15rem !important;
     width: 100% !important;
+    text-align: left !important;
+    align-items: flex-start !important;
   }
 
   .quienes-somos-title {
@@ -2522,12 +2624,14 @@ img {
     line-height: 1.22 !important;
     color: var(--ink-primary) !important;
     font-weight: 700 !important;
+    text-align: left !important;
   }
 
   .quienes-somos-desc {
     font-size: 0.96rem !important;
     line-height: 1.6 !important;
     color: var(--ink-secondary) !important;
+    text-align: left !important;
   }
 
   .quienes-somos-btn {
@@ -2541,15 +2645,18 @@ img {
 
   /* ==========================================================================
      SECCIÓN 01 / AGENDA EN MÓVIL
-     A. 3 Bloques destacados
-     B. Botón de scroll a la lista completa
-     C. Lista completa vertical (1 columna)
+     A. 3 Bloques destacados iniciales
+     B. Botón desplegable que abre/cierra suavemente
+     C. Lista restante de 4 bloques (Lunes, Martes, Miércoles, Viernes) en 1 columna
      ========================================================================== */
-  .agenda-mobile-summary {
+  .schedules-editorial-grid {
+    display: none !important;
+  }
+
+  .agenda-mobile-wrapper {
     display: flex !important;
     flex-direction: column !important;
     gap: 14px !important;
-    margin-bottom: 2rem !important;
     width: 100% !important;
   }
 
@@ -2563,6 +2670,7 @@ img {
     gap: 0.45rem !important;
     box-shadow: 0 1px 4px rgba(23, 23, 20, 0.02) !important;
     box-sizing: border-box !important;
+    text-align: left !important;
   }
 
   .schedule-summary-item.highlight-item {
@@ -2570,43 +2678,57 @@ img {
     background-color: #FFFDFB !important;
   }
 
-  .agenda-scroll-action {
-    margin-top: 0.5rem !important;
+  .agenda-toggle-action {
     width: 100% !important;
-  }
-
-  .agenda-scroll-btn {
-    width: 100% !important;
-    min-height: 50px !important;
-    justify-content: center !important;
-    font-size: 0.88rem !important;
-    font-weight: 600 !important;
-    gap: 0.5rem !important;
-    display: inline-flex !important;
-    align-items: center !important;
-  }
-
-  .agenda-full-list-heading {
-    display: block !important;
-    margin-top: 1.5rem !important;
-    margin-bottom: 1.25rem !important;
-    padding-top: 1rem !important;
-    border-top: 1px solid var(--border-fine) !important;
-    scroll-margin-top: 90px !important;
-  }
-
-  .agenda-full-title {
-    font-size: 1.25rem !important;
-    font-weight: 700 !important;
-    color: var(--ink-primary) !important;
     margin-top: 0.25rem !important;
   }
 
-  /* LISTA COMPLETA VERTICAL (1 COLUMNA REAL) */
-  .schedules-editorial-grid {
+  .agenda-toggle-btn {
+    width: 100% !important;
+    min-height: 50px !important;
+    font-size: 0.86rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.03em !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.55rem !important;
+    cursor: pointer !important;
+    background: #171714 !important;
+    color: #F5F3ED !important;
+    border: 1px solid #171714 !important;
+    border-radius: var(--radius-xs) !important;
+    transition: background-color 0.2s ease, transform 0.15s ease !important;
+  }
+
+  .agenda-toggle-btn:hover {
+    background: #2D2D29 !important;
+  }
+
+  .agenda-collapsible-wrapper {
     display: grid !important;
-    grid-template-columns: 1fr !important;
+    grid-template-rows: 0fr !important;
+    transition: grid-template-rows 250ms ease, opacity 250ms ease, margin-top 250ms ease !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .agenda-collapsible-wrapper.open {
+    grid-template-rows: 1fr !important;
+    opacity: 1 !important;
+    margin-top: 0.5rem !important;
+  }
+
+  .agenda-collapsible-inner {
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .agenda-remaining-list {
+    display: flex !important;
+    flex-direction: column !important;
     gap: 14px !important;
+    padding-top: 2px !important;
     width: 100% !important;
   }
 
@@ -2620,6 +2742,7 @@ img {
     min-height: auto !important;
     box-shadow: 0 1px 4px rgba(23, 23, 20, 0.02) !important;
     box-sizing: border-box !important;
+    text-align: left !important;
   }
 
   .schedule-time-display {
@@ -2629,6 +2752,7 @@ img {
     line-height: 1.1 !important;
     margin-bottom: 0.4rem !important;
     letter-spacing: -0.02em !important;
+    text-align: left !important;
   }
 
   .schedule-title-text {
@@ -2637,12 +2761,14 @@ img {
     color: var(--ink-primary) !important;
     margin-bottom: 0.35rem !important;
     line-height: 1.3 !important;
+    text-align: left !important;
   }
 
   .schedule-desc-text {
     font-size: 0.88rem !important;
     line-height: 1.45 !important;
     color: var(--ink-secondary) !important;
+    text-align: left !important;
   }
 
   .schedule-more-btn {
@@ -2660,17 +2786,23 @@ img {
     padding: 0 !important;
   }
 
-  /* MENSAJE CENTRAL */
+  /* ==========================================================================
+     SECCIÓN 02 / MENSAJE CENTRAL (ALINEADA A LA IZQUIERDA)
+     ========================================================================== */
   .identity-grid {
     display: flex !important;
     flex-direction: column !important;
-    gap: 2rem !important;
+    gap: 1.75rem !important;
+    text-align: left !important;
+    align-items: flex-start !important;
   }
 
   .identity-title {
     font-size: clamp(2.1rem, 8vw, 2.7rem) !important;
     line-height: 1.1 !important;
     letter-spacing: -0.03em !important;
+    text-align: left !important;
+    align-self: flex-start !important;
   }
 
   .identity-quote {
@@ -2680,6 +2812,8 @@ img {
     color: var(--ink-primary) !important;
     line-height: 1.3 !important;
     margin-bottom: 0.4rem !important;
+    text-align: left !important;
+    align-self: flex-start !important;
   }
 
   .identity-quote-source {
@@ -2689,6 +2823,8 @@ img {
     font-weight: 700 !important;
     display: block !important;
     margin-bottom: 1rem !important;
+    text-align: left !important;
+    align-self: flex-start !important;
   }
 
   .identity-desc {
@@ -2696,19 +2832,25 @@ img {
     line-height: 1.6 !important;
     color: var(--ink-secondary) !important;
     margin-bottom: 1.5rem !important;
+    text-align: left !important;
+    align-self: flex-start !important;
   }
 
-  /* NUESTRO PASTOR */
+  /* ==========================================================================
+     SECCIÓN 03 / NUESTRO PASTOR (ALINEADA A LA IZQUIERDA)
+     ========================================================================== */
   .pastor-grid {
     display: flex !important;
     flex-direction: column !important;
     gap: 2rem !important;
+    text-align: left !important;
+    align-items: flex-start !important;
   }
 
   .pastor-photo-wrap {
     width: 100% !important;
     max-width: 430px !important;
-    margin-inline: auto !important;
+    margin: 0 !important;
     height: 380px !important;
     border-radius: var(--radius-sm) !important;
     overflow: hidden !important;
@@ -2724,6 +2866,8 @@ img {
   .pastor-name-heading {
     font-size: clamp(1.7rem, 6vw, 2.15rem) !important;
     margin-bottom: 0.35rem !important;
+    text-align: left !important;
+    align-self: flex-start !important;
   }
 
   .pastor-role-tag {
@@ -2733,6 +2877,8 @@ img {
     color: var(--accent-coral) !important;
     display: block !important;
     margin-bottom: 1rem !important;
+    text-align: left !important;
+    align-self: flex-start !important;
   }
 
   .pastor-quote-block {
@@ -2744,6 +2890,8 @@ img {
     padding-left: 1rem !important;
     border-left: 3px solid var(--green-inst) !important;
     margin-bottom: 1rem !important;
+    text-align: left !important;
+    align-self: flex-start !important;
   }
 
   .pastor-bio-text {
@@ -2751,6 +2899,8 @@ img {
     line-height: 1.6 !important;
     color: var(--ink-secondary) !important;
     margin-bottom: 1.5rem !important;
+    text-align: left !important;
+    align-self: flex-start !important;
   }
 
   .pastor-grid div:last-child > div:last-child {
@@ -2766,11 +2916,15 @@ img {
     min-height: 48px !important;
   }
 
-  /* CONOCE A JESÚS */
+  /* ==========================================================================
+     SECCIÓN 04 / CONOCE A JESÚS (ALINEADA A LA IZQUIERDA)
+     ========================================================================== */
   .jesus-teaser-grid {
     display: flex !important;
     flex-direction: column !important;
     gap: 1.75rem !important;
+    text-align: left !important;
+    align-items: flex-start !important;
   }
 
   .jesus-teaser-title {
@@ -2778,6 +2932,8 @@ img {
     line-height: 1.1 !important;
     color: #FFFFFF !important;
     letter-spacing: -0.02em !important;
+    text-align: left !important;
+    align-self: flex-start !important;
   }
 
   .jesus-teaser-text {
@@ -2785,6 +2941,8 @@ img {
     line-height: 1.6 !important;
     color: rgba(255, 255, 255, 0.9) !important;
     margin-bottom: 1.5rem !important;
+    text-align: left !important;
+    align-self: flex-start !important;
   }
 
   .btn-white-contrast {
@@ -2845,6 +3003,7 @@ img {
     flex-direction: column !important;
     box-shadow: 0 1px 4px rgba(23, 23, 20, 0.02) !important;
     box-sizing: border-box !important;
+    text-align: left !important;
   }
 
   .celula-card-img-wrap {
@@ -2866,6 +3025,7 @@ img {
     display: flex !important;
     flex-direction: column !important;
     flex: 1 !important;
+    text-align: left !important;
   }
 
   .celula-badge {
@@ -2876,6 +3036,7 @@ img {
     color: var(--accent-coral) !important;
     margin-bottom: 0.35rem !important;
     display: block !important;
+    text-align: left !important;
   }
 
   .celula-name {
@@ -2884,6 +3045,7 @@ img {
     color: var(--ink-primary) !important;
     margin-bottom: 0.5rem !important;
     line-height: 1.2 !important;
+    text-align: left !important;
   }
 
   .celula-meta-list {
@@ -2895,6 +3057,7 @@ img {
     display: flex !important;
     flex-direction: column !important;
     gap: 0.35rem !important;
+    text-align: left !important;
   }
 
   .celula-meta-list li {
@@ -2921,6 +3084,7 @@ img {
     display: flex !important;
     flex-direction: column !important;
     gap: 2rem !important;
+    text-align: left !important;
   }
 
   .location-map-wrap {
@@ -2967,6 +3131,7 @@ img {
     flex-direction: column !important;
     box-shadow: 0 1px 4px rgba(23, 23, 20, 0.02) !important;
     box-sizing: border-box !important;
+    text-align: left !important;
   }
 
   .ministerio-card-img {
@@ -2986,6 +3151,7 @@ img {
     display: flex !important;
     flex-direction: column !important;
     flex: 1 !important;
+    text-align: left !important;
   }
 
   .ministerio-category {
@@ -2995,6 +3161,7 @@ img {
     color: var(--accent-coral) !important;
     margin-bottom: 0.35rem !important;
     display: block !important;
+    text-align: left !important;
   }
 
   .ministerio-name {
@@ -3003,12 +3170,14 @@ img {
     color: var(--ink-primary) !important;
     margin-bottom: 0.45rem !important;
     line-height: 1.25 !important;
+    text-align: left !important;
   }
 
   .ministerio-desc {
     font-size: 0.88rem !important;
     line-height: 1.45 !important;
     color: var(--ink-secondary) !important;
+    text-align: left !important;
   }
 
   /* EMPRENDIMIENTOS MOBILE: 2 Columnas Limpias */
@@ -3016,7 +3185,7 @@ img {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 12px !important;
-    margin: 2rem auto 1.25rem !important;
+    margin: 1.5rem auto 1.25rem !important;
     width: 100% !important;
   }
 
@@ -3076,7 +3245,7 @@ img {
     border-radius: var(--radius-sm) !important;
     border: 1px solid var(--border-card) !important;
     padding: 1.75rem 1.4rem 1.5rem !important;
-    width: calc(100% - 32px) !important;
+    width: calc(100% - 48px) !important;
     max-width: 430px !important;
     max-height: 90dvh !important;
     max-height: 90vh !important;
@@ -3084,6 +3253,7 @@ img {
     position: relative !important;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18) !important;
     box-sizing: border-box !important;
+    text-align: left !important;
   }
 
   .modal-close-btn {
@@ -3109,7 +3279,12 @@ img {
   .final-cta-section {
     background-color: var(--bg-dark-section) !important;
     color: #FFFFFF !important;
-    text-align: center !important;
+    text-align: left !important;
+  }
+
+  .final-cta-content {
+    text-align: left !important;
+    align-items: flex-start !important;
   }
 
   .final-cta-title {
@@ -3117,6 +3292,7 @@ img {
     color: #FFFFFF !important;
     margin-bottom: 1rem !important;
     letter-spacing: -0.02em !important;
+    text-align: left !important;
   }
 
   .final-cta-text {
@@ -3124,7 +3300,8 @@ img {
     line-height: 1.6 !important;
     color: rgba(255, 255, 255, 0.85) !important;
     max-width: 420px !important;
-    margin: 0 auto 1.75rem !important;
+    margin: 0 0 1.75rem 0 !important;
+    text-align: left !important;
   }
 
   /* FOOTER */
@@ -3138,6 +3315,7 @@ img {
     display: flex !important;
     flex-direction: column !important;
     gap: 2.25rem !important;
+    text-align: left !important;
   }
 
   .footer-links-list a {
@@ -3149,6 +3327,7 @@ img {
     flex-direction: column !important;
     align-items: flex-start !important;
     gap: 0.6rem !important;
+    text-align: left !important;
   }
 
   /* Drawer Menú Full-Screen Táctil */

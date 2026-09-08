@@ -373,55 +373,7 @@
           </p>
         </div>
 
-        <!-- Resumen Destacado Mobile (Exclusivo para Mobile) -->
-        <div class="agenda-mobile-summary">
-          <!-- 1. Jueves -->
-          <div class="schedule-summary-item highlight-item" id="summary-item-jueves">
-            <span class="schedule-day-label" style="color: var(--accent-coral);">JUEVES · TEMPLO</span>
-            <div class="schedule-time-display">19:30 hs</div>
-            <h3 class="schedule-title-text">Reunión General</h3>
-            <p class="schedule-desc-text">Culto congregacional en sede central: alabanza y Palabra.</p>
-            <button class="schedule-more-btn open-culto-modal-btn" data-culto-id="sched-jueves">
-              <i class="fa-solid fa-circle-info"></i> CONOCER MÁS →
-            </button>
-          </div>
-
-          <!-- 2. Domingo Evangelismo -->
-          <div class="schedule-summary-item" id="summary-item-evangelismo">
-            <span class="schedule-day-label">DOMINGO · EVANGELISMO</span>
-            <div class="schedule-time-display">10:00 hs</div>
-            <h3 class="schedule-title-text">Evangelismo en la Feria</h3>
-            <p class="schedule-desc-text">Evangelismo en la Feria</p>
-            <button class="schedule-more-btn open-culto-modal-btn" data-culto-id="sched-evangelismo-feria">
-              <i class="fa-solid fa-circle-info"></i> CONOCER MÁS →
-            </button>
-          </div>
-
-          <!-- 3. Domingo Templo -->
-          <div class="schedule-summary-item highlight-item" id="summary-item-domingo">
-            <span class="schedule-day-label" style="color: var(--accent-coral);">DOMINGO · TEMPLO</span>
-            <div class="schedule-time-display">18:30 hs</div>
-            <h3 class="schedule-title-text">Gran Celebración Dominical</h3>
-            <p class="schedule-desc-text">Gran celebración dominical de adoración, comunión y predicación.</p>
-            <button class="schedule-more-btn open-culto-modal-btn" data-culto-id="sched-domingo">
-              <i class="fa-solid fa-circle-info"></i> CONOCER MÁS →
-            </button>
-          </div>
-
-          <!-- Botón de scroll a la lista completa en la misma página -->
-          <div class="agenda-scroll-action">
-            <a href="#horarios-lista-completa" class="btn-editorial btn-dark agenda-scroll-btn">
-              <i class="fa-solid fa-calendar-days"></i> Ver horarios y células <i class="fa-solid fa-arrow-down"></i>
-            </a>
-          </div>
-        </div>
-
-        <!-- Encabezado de Lista Completa para Mobile -->
-        <div class="agenda-full-list-heading" id="horarios-lista-completa">
-          <span class="editorial-eyebrow">CRONOGRAMA COMPLETO</span>
-          <h3 class="agenda-full-title">Todos los Horarios & Células de la Semana</h3>
-        </div>
-
+        <!-- Versión Desktop: Grilla completa de 7 tarjetas (>= 1025px) -->
         <div class="schedules-editorial-grid">
           <!-- 1. Lunes -->
           <div class="schedule-editorial-item">
@@ -497,6 +449,98 @@
             <button class="schedule-more-btn open-culto-modal-btn" data-culto-id="sched-domingo">
               <i class="fa-solid fa-circle-info"></i> CONOCER MÁS →
             </button>
+          </div>
+        </div>
+
+        <!-- Versión Mobile & Tablet: 3 Destacados + Desplegable con 4 restantes (< 1025px) -->
+        <div class="agenda-mobile-wrapper">
+          <!-- 1. Jueves -->
+          <div class="schedule-summary-item highlight-item" id="summary-item-jueves">
+            <span class="schedule-day-label" style="color: var(--accent-coral);">JUEVES · TEMPLO</span>
+            <div class="schedule-time-display">19:30 hs</div>
+            <h3 class="schedule-title-text">Reunión General de Jueves</h3>
+            <p class="schedule-desc-text">Culto congregacional en sede central: alabanza y Palabra.</p>
+            <button class="schedule-more-btn open-culto-modal-btn" data-culto-id="sched-jueves">
+              <i class="fa-solid fa-circle-info"></i> CONOCER MÁS →
+            </button>
+          </div>
+
+          <!-- 2. Domingo Evangelismo -->
+          <div class="schedule-summary-item" id="summary-item-evangelismo">
+            <span class="schedule-day-label">DOMINGO · EVANGELISMO</span>
+            <div class="schedule-time-display">10:00 hs</div>
+            <h3 class="schedule-title-text">Evangelismo en la Feria</h3>
+            <p class="schedule-desc-text">Evangelismo en la Feria</p>
+            <button class="schedule-more-btn open-culto-modal-btn" data-culto-id="sched-evangelismo-feria">
+              <i class="fa-solid fa-circle-info"></i> CONOCER MÁS →
+            </button>
+          </div>
+
+          <!-- 3. Domingo Templo -->
+          <div class="schedule-summary-item highlight-item" id="summary-item-domingo">
+            <span class="schedule-day-label" style="color: var(--accent-coral);">DOMINGO · TEMPLO</span>
+            <div class="schedule-time-display">18:30 hs</div>
+            <h3 class="schedule-title-text">Gran Celebración Dominical</h3>
+            <p class="schedule-desc-text">Gran celebración dominical de adoración, comunión y predicación.</p>
+            <button class="schedule-more-btn open-culto-modal-btn" data-culto-id="sched-domingo">
+              <i class="fa-solid fa-circle-info"></i> CONOCER MÁS →
+            </button>
+          </div>
+
+          <!-- Botón de apertura/cierre -->
+          <div class="agenda-toggle-action">
+            <button type="button" id="agenda-toggle-btn" class="btn-editorial btn-dark agenda-toggle-btn" aria-expanded="false">
+              <span>VER HORARIOS Y CÉLULAS</span> <i class="fa-solid fa-chevron-down"></i>
+            </button>
+          </div>
+
+          <!-- Contenedor Desplegable Suave con los 4 horarios restantes (SIN repetir Jueves ni Domingo) -->
+          <div id="agenda-collapsible-wrapper" class="agenda-collapsible-wrapper">
+            <div class="agenda-collapsible-inner">
+              <div class="agenda-remaining-list">
+                <!-- 1. Lunes -->
+                <div class="schedule-editorial-item">
+                  <span class="schedule-day-label">LUNES</span>
+                  <div class="schedule-time-display">19:00</div>
+                  <h3 class="schedule-title-text">Célula Barrio Hipódromo</h3>
+                  <p class="schedule-desc-text">Reunión en hogar para compartir la Palabra y oración.</p>
+                </div>
+
+                <!-- 2. Martes -->
+                <div class="schedule-editorial-item">
+                  <span class="schedule-day-label">MARTES</span>
+                  <div class="schedule-time-display">19:00 / 19:30</div>
+                  <h3 class="schedule-title-text">Células en Hogares</h3>
+                  <p class="schedule-desc-text">
+                    <strong>19:00 hs:</strong> La Milagrosa<br>
+                    <strong>19:30 hs:</strong> Cerro Pelado
+                  </p>
+                </div>
+
+                <!-- 3. Miércoles -->
+                <div class="schedule-editorial-item">
+                  <span class="schedule-day-label">MIÉRCOLES</span>
+                  <div class="schedule-time-display">19:30</div>
+                  <h3 class="schedule-title-text">Células en Hogares</h3>
+                  <p class="schedule-desc-text">
+                    <strong>19:30 hs:</strong> Cuñetti<br>
+                    <strong>19:30 hs:</strong> Rocha
+                  </p>
+                </div>
+
+                <!-- 4. Viernes -->
+                <div class="schedule-editorial-item">
+                  <span class="schedule-day-label">VIERNES</span>
+                  <div class="schedule-time-display">19:00 / 19:30</div>
+                  <h3 class="schedule-title-text">Células en Hogares</h3>
+                  <p class="schedule-desc-text">
+                    <strong>19:00 hs:</strong> Centro<br>
+                    <strong>19:00 hs:</strong> Maldonado Nuevo<br>
+                    <strong>19:30 hs:</strong> Barrio Norte
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1044,11 +1088,10 @@
          ========================================== -->
     <section class="community-biz-section" id="emprendimientos">
       <div class="container">
-        <div style="text-align: center; max-width: 680px; margin: 0 auto;">
+        <div class="section-header-editorial">
           <span class="editorial-eyebrow">08 / COMUNIDAD</span>
-          <h2 style="font-size: 1.65rem; color: var(--ink-primary); margin-bottom: 0.5rem;">Emprendimientos de Nuestra
-            Comunidad</h2>
-          <p style="font-size: 0.92rem; color: var(--ink-secondary); line-height: 1.5;">
+          <h2 class="section-title-large">Emprendimientos de Nuestra Comunidad</h2>
+          <p class="section-desc-editorial">
             Conoce algunos de los emprendimientos que forman parte de nuestra comunidad y que apoyan este espacio.
           </p>
         </div>
