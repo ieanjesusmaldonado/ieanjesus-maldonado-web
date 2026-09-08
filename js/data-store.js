@@ -8,384 +8,16 @@
  * =============================================================================
  */
 
-// Datos de contingencia / iniciales oficiales
+// Metadatos de contingencia (únicamente catálogo multimedia estático)
 const DEFAULT_DATA = {
-  // 1. Avisos Temporales
-  notices: [
-    {
-      id: 'notice-1',
-      title: 'Cultos Congregacionales',
-      text: 'Les recordamos que nuestros cultos generales en sede central son los Jueves 19:30 hs y Domingos 18:30 hs. ¡Te esperamos junto a tu familia!',
-      startDate: '2026-01-01',
-      endDate: '2026-12-31',
-      visible: true
-    }
-  ],
+  notices: [],
+  schedules: [],
+  cells: [],
+  events: [],
+  resources: [],
+  businesses: [],
 
-  // 2. Horarios de Cultos en Templo Central
-  schedules: [
-    {
-      id: 'sched-jueves',
-      name: 'Reunión General de Jueves',
-      day: 'Jueves',
-      time: '19:30 hs',
-      location: 'Sede Central (Av. Wilson Ferreira Aldunate & 25 de Agosto)',
-      type: 'templo',
-      shortDesc: 'Culto congregacional en sede central: alabanza y estudio de la Palabra de Dios.',
-      fullDesc: 'Una reunión enfocada en la edificación espiritual de la congregación, la enseñanza profunda de las Sagradas Escrituras y un tiempo de oración intercesora por las familias y necesidades de Maldonado.',
-      organizer: 'Liderazgo pastoral y ministerios de apoyo',
-      target: 'Toda la familia, jóvenes, adultos y personas interesadas en conocer más de Dios',
-      whatToExpect: 'Un ambiente acogedor y reverente, alabanzas congregacionales, predicación bíblica clara y un momento final de oración por peticiones personales.',
-      displayOrder: 1,
-      visible: true
-    },
-    {
-      id: 'sched-evangelismo-feria',
-      name: 'Evangelismo en la Feria',
-      day: 'Domingo',
-      time: '10:00',
-      location: 'Feria de Maldonado',
-      type: 'evangelismo',
-      shortDesc: 'Evangelismo en la Feria',
-      fullDesc: 'Actividad de evangelismo y testimonio público en la feria de Maldonado, compartiendo las Buenas Nuevas y folletos bíblicos con la comunidad.',
-      organizer: 'Equipo de evangelismo y liderazgo de la iglesia',
-      target: 'Toda la comunidad y visitantes de la feria',
-      whatToExpect: 'Evangelismo personal, entrega de folletos, oración por las necesidades y testimonio cristiano.',
-      displayOrder: 2,
-      visible: true
-    },
-    {
-      id: 'sched-domingo',
-      name: 'Gran Celebración Dominical',
-      day: 'Domingo',
-      time: '18:30 hs',
-      location: 'Sede Central (Av. Wilson Ferreira Aldunate & 25 de Agosto)',
-      type: 'templo',
-      shortDesc: 'Gran celebración dominical de adoración, comunión fraternal y predicación.',
-      fullDesc: 'El encuentro principal de la semana donde toda la iglesia se reúne para adorar a Dios con gozo, escuchar el mensaje bíblico de salvación y compartir en comunidad fraterna.',
-      organizer: 'Ministerio pastoral, coro/música y comités de servicio',
-      target: 'Toda la familia, niños, amigos y visitantes de la comunidad',
-      whatToExpect: 'Adoración en vivo con el ministerio de alabanza, predicación cristocéntrica, atención cálida para nuevas visitas y un tiempo especial de ministración espiritual.',
-      displayOrder: 3,
-      visible: true
-    }
-  ],
-
-  // 3. Red de 8 Células de Hogar
-  cells: [
-    {
-      id: 'cell-hipodromo',
-      name: 'Barrio Hipódromo',
-      day: 'Lunes',
-      time: '19:00 hs',
-      zone: 'Barrio Hipódromo',
-      address: 'Sector Barrio Hipódromo, Maldonado',
-      description: 'Reunión en hogar para compartir la Palabra, orar por las necesidades y fortalecer los lazos fraternos.',
-      image: 'assets/images/celula-hipodromo.jpg',
-      phone: '+598 93 836 423',
-      whatsappText: 'Hola, Dios le bendiga. Quisiera recibir información sobre la Célula Barrio Hipódromo.',
-      whatsappUrl: 'https://wa.me/59893836423?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20C%C3%A9lula%20Barrio%20Hip%C3%B3dromo.',
-      displayOrder: 1,
-      visible: true
-    },
-    {
-      id: 'cell-la-milagrosa',
-      name: 'La Milagrosa',
-      day: 'Martes',
-      time: '19:00 hs',
-      zone: 'Barrio La Milagrosa',
-      address: 'Barrio La Milagrosa, Maldonado',
-      description: 'Espacio de estudio bíblico, crecimiento en la fe y oración por la familia en un ambiente cálido.',
-      image: 'assets/images/celula-la-milagrosa.jpg',
-      phone: '+598 95 712 960',
-      whatsappText: 'Hola, Dios le bendiga. Quisiera recibir información sobre la Célula La Milagrosa.',
-      whatsappUrl: 'https://wa.me/59895712960?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20C%C3%A9lula%20La%20Milagrosa.',
-      displayOrder: 2,
-      visible: true
-    },
-    {
-      id: 'cell-cerro-pelado',
-      name: 'Cerro Pelado',
-      day: 'Martes',
-      time: '19:30 hs',
-      zone: 'Barrio Cerro Pelado',
-      address: 'Barrio Cerro Pelado, Maldonado',
-      description: 'Encuentro familiar para profundizar en las Escrituras y apoyarnos mutuamente en oración.',
-      image: 'assets/images/celula-cerro-pelado.jpg',
-      phone: '+598 94 181 784',
-      whatsappText: 'Hola, Dios le bendiga. Quisiera recibir información sobre la Célula Cerro Pelado.',
-      whatsappUrl: 'https://wa.me/59894181784?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20C%C3%A9lula%20Cerro%20Pelado.',
-      displayOrder: 3,
-      visible: true
-    },
-    {
-      id: 'cell-cunetti',
-      name: 'Cuñetti',
-      day: 'Miércoles',
-      time: '19:30 hs',
-      zone: 'Barrio Cuñetti',
-      address: 'Barrio Cuñetti, Maldonado',
-      description: 'Reunión vecinal para compartir reflexiones bíblicas prácticas y orar por los hogares del barrio.',
-      image: 'assets/images/celula-cunetti.jpg',
-      phone: '+598 93 943 580',
-      whatsappText: 'Hola, Dios le bendiga. Quisiera recibir información sobre la Célula Cuñetti.',
-      whatsappUrl: 'https://wa.me/59893943580?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20C%C3%A9lula%20Cu%C3%B1etti.',
-      displayOrder: 4,
-      visible: true
-    },
-    {
-      id: 'cell-rocha',
-      name: 'Ciudad de Rocha',
-      day: 'Miércoles',
-      time: '19:30 hs',
-      zone: 'Ciudad de Rocha',
-      address: 'Ciudad de Rocha (Punto de Extensión)',
-      description: 'Misión y grupo de extensión para la comunidad de Rocha con enseñanza bíblica y oración.',
-      image: 'assets/images/celula-rocha.jpg',
-      phone: '+598 94 867 047',
-      whatsappText: 'Hola, Dios le bendiga. Quisiera recibir información sobre la Célula Rocha.',
-      whatsappUrl: 'https://wa.me/59894867047?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20C%C3%A9lula%20Rocha.',
-      displayOrder: 5,
-      visible: true
-    },
-    {
-      id: 'cell-maldonado-nuevo',
-      name: 'Maldonado Nuevo',
-      day: 'Viernes',
-      time: '19:00 hs',
-      zone: 'Maldonado Nuevo',
-      address: 'Sector Maldonado Nuevo, Maldonado',
-      description: 'Discipulado práctico en el hogar, alabanza y compañerismo en el amor de Cristo.',
-      image: 'assets/images/celula-maldonado-nuevo.jpg',
-      phone: '+598 91 884 036',
-      whatsappText: 'Hola, Dios le bendiga. Quisiera recibir información sobre la Célula Maldonado Nuevo.',
-      whatsappUrl: 'https://wa.me/59891884036?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20C%C3%A9lula%20Maldonado%20Nuevo.',
-      displayOrder: 6,
-      visible: true
-    },
-    {
-      id: 'cell-centro',
-      name: 'Centro',
-      day: 'Viernes',
-      time: '19:00 hs',
-      zone: 'Maldonado Centro',
-      address: 'Maldonado Centro',
-      description: 'Reunión céntrica de estudio bíblico, alabanza y bienvenida a quienes trabajan o viven en el centro.',
-      image: 'assets/images/celula-centro.jpg',
-      phone: '+598 91 479 591',
-      whatsappText: 'Hola, Dios le bendiga. Quisiera recibir información sobre la Célula Centro.',
-      whatsappUrl: 'https://wa.me/59891479591?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20C%C3%A9lula%20Centro.',
-      displayOrder: 7,
-      visible: true
-    },
-    {
-      id: 'cell-barrio-norte',
-      name: 'Barrio Norte',
-      day: 'Viernes',
-      time: '19:30 hs',
-      zone: 'Sector Barrio Norte',
-      address: 'Sector Barrio Norte, Maldonado',
-      description: 'Comunión cristiana, adoración y estudio de la Palabra para edificación de los hogares.',
-      image: 'assets/images/celula-barrio-norte.jpg',
-      phone: '+598 95 615 798',
-      whatsappText: 'Hola, Dios le bendiga. Quisiera recibir información sobre la Célula Barrio Norte.',
-      whatsappUrl: 'https://wa.me/59895615798?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20C%C3%A9lula%20Barrio%20Norte.',
-      displayOrder: 8,
-      visible: true
-    }
-  ],
-
-  // 4. Agenda y Próximas Actividades (Fechas específicas)
-  events: [
-    {
-      id: 'evt-1',
-      title: 'Culto Especial de Oración e Intercesión',
-      date: '2026-09-10',
-      time: '19:30 hs',
-      location: 'Sede Central (Av. Wilson Ferreira Aldunate & 25 de Agosto)',
-      category: 'Culto especial',
-      description: 'Noche consagrada al clamor por las familias, sanidad divina y dirección espiritual para nuestra comunidad.',
-      public: true,
-      featured: true
-    },
-    {
-      id: 'evt-2',
-      title: 'Encuentro Unido de Jóvenes',
-      date: '2026-09-19',
-      time: '18:00 hs',
-      location: 'Sede Central IEANJESÚS Maldonado',
-      category: 'Jóvenes',
-      description: 'Reunión especial de adoración, dinámicas, palabra para la juventud y refrigerio compartido.',
-      public: true,
-      featured: true
-    },
-    {
-      id: 'evt-3',
-      title: 'Jornada de Evangelismo y Plan Cornelio',
-      date: '2026-09-26',
-      time: '15:30 hs',
-      location: 'Punto de encuentro: Sede Central Maldonado',
-      category: 'Evangelismo',
-      description: 'Salida misionera para compartir el mensaje del evangelio y folletos en los barrios de Maldonado.',
-      public: true,
-      featured: false
-    },
-    {
-      id: 'evt-4',
-      title: 'Santa Cena y Celebración Congregacional',
-      date: '2026-10-04',
-      time: '18:30 hs',
-      location: 'Sede Central IEANJESÚS Maldonado',
-      category: 'Culto especial',
-      description: 'Conmemoración solemne del sacrificio de nuestro Señor Jesucristo y tiempo de profunda comunión espiritual.',
-      public: true,
-      featured: true
-    },
-    {
-      id: 'evt-5',
-      title: 'Seminario de Discipulado y Doctrina Bíblica',
-      date: '2026-10-17',
-      time: '16:00 hs',
-      location: 'Salón Principal Sede Central',
-      category: 'Enseñanza',
-      description: 'Taller formativo para nuevos creyentes y líderes sobre los fundamentos bíblicos y la vida práctica en Cristo.',
-      public: true,
-      featured: false
-    }
-  ],
-
-  // 5. Catálogo de Material Gratuito
-  resources: [
-    {
-      id: 'res-1',
-      title: 'Folleto: El Camino Bíblico de la Salvación',
-      category: 'Evangelismo',
-      description: 'Material explicativo claro y directo con citas bíblicas para compartir con familiares, vecinos y amigos.',
-      fileType: 'PDF',
-      externalUrl: 'https://drive.google.com/drive/folders/1example-evangelismo',
-      displayOrder: 1,
-      visible: true
-    },
-    {
-      id: 'res-2',
-      title: 'Plan Cornelio — Guía Práctica de Evangelismo y Discipulado',
-      category: 'Plan Cornelio',
-      description: 'Manual de orientación para visitas en hogares, diálogo testimonial y acompañamiento de nuevas personas interesadas en el evangelio.',
-      fileType: 'Presentación',
-      externalUrl: 'https://drive.google.com/drive/folders/1example-plan-cornelio',
-      displayOrder: 2,
-      visible: true
-    },
-    {
-      id: 'res-3',
-      title: 'Bosquejos Bíblicos para el Estudio de la Palabra',
-      category: 'Bosquejos y Enseñanzas',
-      description: 'Compilado de investigaciones temáticas, análisis de palabras clave en el texto original y referencias cruzadas.',
-      fileType: 'Documento',
-      externalUrl: 'https://drive.google.com/drive/folders/1example-bosquejos',
-      displayOrder: 3,
-      visible: true
-    },
-    {
-      id: 'res-4',
-      title: 'Fundamentos de la Fe y la Unicidad de Dios',
-      category: 'Doctrina',
-      description: 'Estudio doctrinal profundo acerca de la revelación de Dios en Jesucristo, el bautismo bíblico y la promesa del Espíritu Santo.',
-      fileType: 'PDF',
-      externalUrl: 'https://drive.google.com/drive/folders/1example-doctrina',
-      displayOrder: 4,
-      visible: true
-    },
-    {
-      id: 'res-5',
-      title: 'Sanidad Divina y Fe Práctica en el Hogar',
-      category: 'Doctrina',
-      description: 'Enseñanza sobre las promesas del Señor para la sanidad, la oración de fe y la restauración integral de la familia.',
-      fileType: 'Folleto',
-      externalUrl: 'https://drive.google.com/drive/folders/1example-sanidad',
-      displayOrder: 5,
-      visible: true
-    },
-    {
-      id: 'res-6',
-      title: 'Cómo Iniciar y Desarrollar una Célula de Hogar',
-      category: 'Plan Cornelio',
-      description: 'Orientación para anfitriones y líderes celulares: dinámica de la reunión, bienvenida y cuidado pastoral.',
-      fileType: 'PDF',
-      externalUrl: 'https://drive.google.com/drive/folders/1example-celulas',
-      displayOrder: 6,
-      visible: true
-    }
-  ],
-
-  // 6. Emprendimientos de Nuestra Comunidad
-  businesses: [
-    {
-      id: 'biz-boomer',
-      name: 'Boomer Studio',
-      category: 'Estudio Creativo & Multimedia',
-      description: 'Servicios de diseño gráfico, identidad visual, producción audiovisual y desarrollo web profesional.',
-      linkType: 'Instagram',
-      phone: '+598 98 094 062',
-      url: 'https://www.instagram.com/boomerstudio.mktg?stkn=MTc2enVlbTU5cnA1cg==',
-      whatsappUrl: 'https://wa.me/59898094062?text=Hola,%20quisiera%20consultar%20por%20los%20servicios%20de%20Boomer%20Studio.',
-      logoText: 'BOOMER STUDIO',
-      displayOrder: 1,
-      visible: true
-    },
-    {
-      id: 'biz-control-clima',
-      name: 'Control Clima',
-      category: 'Climatización & Confort',
-      description: 'Instalación, mantenimiento y reparación de sistemas de aire acondicionado y climatización para hogares y comercios.',
-      linkType: 'WhatsApp',
-      phone: '+598 94 494 907',
-      url: 'https://wa.me/59894494907?text=Hola,%20quisiera%20consultar%20por%20los%20servicios%20de%20Control%20Clima.',
-      logoText: 'CONTROL CLIMA',
-      displayOrder: 2,
-      visible: true
-    },
-    {
-      id: 'biz-jb-construcciones',
-      name: 'JB² Construcciones',
-      category: 'Construcción & Reformas',
-      description: 'Obras civiles, albañilería tradicional, reformas integrales, yeso, pintura y terminaciones de calidad.',
-      linkType: 'WhatsApp',
-      phone: '+598 99 655 825',
-      url: 'https://wa.me/59899655825?text=Hola,%20quisiera%20consultar%20por%20los%20servicios%20de%20JB%C2%B2%20Construcciones.',
-      logoText: 'JB² CONSTRUCCIONES',
-      displayOrder: 3,
-      visible: true
-    },
-    {
-      id: 'biz-cc-construimos',
-      name: 'C&C — Construimos tu proyecto',
-      category: 'Arquitectura & Obras',
-      description: 'Planificación, dirección técnica y ejecución de proyectos constructivos, remodelaciones y diseño de espacios.',
-      linkType: 'WhatsApp',
-      phone: '+598 94 181 784',
-      url: 'https://wa.me/59894181784?text=Hola,%20quisiera%20consultar%20por%20los%20servicios%20de%20C%26C.',
-      logoText: 'C&C — CONSTRUIMOS TU PROYECTO',
-      displayOrder: 4,
-      visible: true
-    },
-    {
-      id: 'biz-kabby',
-      name: 'KABBY',
-      category: 'Modista / Confección de prendas',
-      description: 'Confección y arreglo de prendas, trabajos de modista y soluciones personalizadas en costura, con atención cuidada y trabajo a medida.',
-      linkType: 'WhatsApp',
-      phone: '+598 92 659 579',
-      url: 'https://wa.me/59892659579?text=Hola,%20quisiera%20consultar%20por%20los%20servicios%20de%20KABBY.',
-      whatsappUrl: 'https://wa.me/59892659579?text=Hola,%20quisiera%20consultar%20por%20los%20servicios%20de%20KABBY.',
-      logoText: 'KABBY',
-      logo: 'assets/images/logo-kabby.svg',
-      displayOrder: 5,
-      visible: true
-    }
-  ],
-
-  // 7. Repertorio Fotográfico Oficial
+  // Repertorio Fotográfico Oficial
   galleryPhotos: [
     {
       id: 'feria1',
@@ -593,13 +225,13 @@ const DEFAULT_DATA = {
 class DataStore {
   constructor() {
     this.data = {
-      notices: [...DEFAULT_DATA.notices],
-      schedules: [...DEFAULT_DATA.schedules],
-      cells: [...DEFAULT_DATA.cells],
-      events: [...DEFAULT_DATA.events],
-      resources: [...DEFAULT_DATA.resources],
-      businesses: [...DEFAULT_DATA.businesses],
-      galleryPhotos: [...DEFAULT_DATA.galleryPhotos]
+      notices: [],
+      schedules: [],
+      cells: [],
+      events: [],
+      resources: [],
+      businesses: [],
+      galleryPhotos: [...(DEFAULT_DATA.galleryPhotos || [])]
     };
     this.listeners = [];
     this.isInitialized = false;
@@ -906,9 +538,10 @@ class DataStore {
 
   // --- MÉTODOS DE LECTURA SINCRÓNICA ---
   getNotices(activeOnly = true) {
-    if (!activeOnly) return this.data.notices || [];
+    const list = this.data.notices || [];
+    if (!activeOnly) return list;
     const nowStr = new Date().toISOString().split('T')[0];
-    return (this.data.notices || []).filter(n => {
+    return list.filter(n => {
       if (!n.visible) return false;
       if (n.startDate && n.startDate > nowStr) return false;
       if (n.endDate && n.endDate < nowStr) return false;
@@ -917,33 +550,25 @@ class DataStore {
   }
 
   getSchedules(publicOnly = true) {
-    const list = (this.data.schedules && this.data.schedules.length > 0)
-      ? this.data.schedules
-      : DEFAULT_DATA.schedules;
+    const list = this.data.schedules || [];
     if (!publicOnly) return list;
     return list.filter(s => s.visible !== false);
   }
 
   getScheduleById(id) {
     if (!id) return null;
-    const list = (this.data.schedules && this.data.schedules.length > 0)
-      ? this.data.schedules
-      : DEFAULT_DATA.schedules;
-    const found = list.find(s => s.id === id);
-    if (found) return found;
-    return DEFAULT_DATA.schedules.find(s => s.id === id) || null;
+    const list = this.data.schedules || [];
+    return list.find(s => s.id === id) || null;
   }
 
   getCells(publicOnly = true) {
-    const list = (this.data.cells && this.data.cells.length > 0)
-      ? this.data.cells
-      : DEFAULT_DATA.cells;
+    const list = this.data.cells || [];
     if (!publicOnly) return list;
     return list.filter(c => c.visible !== false);
   }
 
   getEvents(upcomingOnly = false) {
-    let list = [...((this.data.events && this.data.events.length > 0) ? this.data.events : DEFAULT_DATA.events)];
+    let list = [...(this.data.events || [])];
     if (upcomingOnly) {
       const todayStr = new Date().toISOString().split('T')[0];
       list = list.filter(e => e.public && e.date >= todayStr);
@@ -953,14 +578,12 @@ class DataStore {
 
   getEventById(id) {
     if (!id) return null;
-    const list = (this.data.events && this.data.events.length > 0)
-      ? this.data.events
-      : DEFAULT_DATA.events;
+    const list = this.data.events || [];
     return list.find(e => e.id === id) || null;
   }
 
   getResources(publicOnly = true, category = 'all') {
-    let list = [...((this.data.resources && this.data.resources.length > 0) ? this.data.resources : DEFAULT_DATA.resources)];
+    let list = [...(this.data.resources || [])];
     if (publicOnly) {
       list = list.filter(r => r.visible !== false);
     }
@@ -971,9 +594,7 @@ class DataStore {
   }
 
   getBusinesses(publicOnly = true) {
-    const list = (this.data.businesses && this.data.businesses.length > 0)
-      ? this.data.businesses
-      : DEFAULT_DATA.businesses;
+    const list = this.data.businesses || [];
     if (!publicOnly) return list;
     return list.filter(b => b.visible !== false);
   }
@@ -981,7 +602,7 @@ class DataStore {
   getGalleryPhotos(category = null) {
     const list = (this.data.galleryPhotos && this.data.galleryPhotos.length > 0)
       ? this.data.galleryPhotos
-      : DEFAULT_DATA.galleryPhotos;
+      : (DEFAULT_DATA.galleryPhotos || []);
     if (!category || category === 'all' || category === 'general_all') {
       return list;
     }
@@ -991,7 +612,7 @@ class DataStore {
   getPhotoById(id) {
     const list = (this.data.galleryPhotos && this.data.galleryPhotos.length > 0)
       ? this.data.galleryPhotos
-      : DEFAULT_DATA.galleryPhotos;
+      : (DEFAULT_DATA.galleryPhotos || []);
     return list.find(p => p.id === id) || null;
   }
 
