@@ -95,11 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  checkAndRenderNotices();
-  if (window.ieanDataStore) {
-    window.ieanDataStore.subscribe(checkAndRenderNotices);
-  }
-
   // 5. MODAL DE CULTO INTERACTIVO (Jueves y Domingo)
   const serviceModal = document.getElementById('culto-modal');
   const serviceModalClose = document.getElementById('culto-modal-close');
@@ -238,11 +233,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   };
-
-  syncBusinessesFromStore();
-  if (window.ieanDataStore) {
-    window.ieanDataStore.subscribe(syncBusinessesFromStore);
-  }
 
   bizCards.forEach(card => {
     card.addEventListener('click', () => {
@@ -440,11 +430,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   };
-
-  syncSchedulesFromStore();
-  if (window.ieanDataStore) {
-    window.ieanDataStore.subscribe(syncSchedulesFromStore);
-  }
 
   // 8.1.1 TOGGLE DESPLEGABLE AGENDA MOBILE/TABLET
   const agendaToggleBtn = document.getElementById('agenda-toggle-btn');
@@ -845,4 +830,32 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.style.overflow = '';
     }
   });
+
+  // =========================================================================
+  // INICIALIZACIÓN PÚBLICA ASÍNCRONA DESDE SUPABASE
+  // =========================================================================
+  const renderAllPublicData = () => {
+    checkAndRenderNotices();
+    syncSchedulesFromStore();
+    syncBusinessesFromStore();
+  };
+
+  async function initializePublicSite() {
+    if (window.ieanDataStore) {
+      if (window.ieanDataStore.initPromise) {
+        await window.ieanDataStore.initPromise;
+      } else {
+        await window.ieanDataStore.refreshAll();
+      }
+    }
+    renderAllPublicData();
+  }
+
+  // Suscripción reactiva ante cambios en tiempo real
+  if (window.ieanDataStore) {
+    window.ieanDataStore.subscribe(renderAllPublicData);
+  }
+
+  // Ejecutar carga fresca de Supabase
+  initializePublicSite();
 });

@@ -592,12 +592,20 @@ const DEFAULT_DATA = {
 
 class DataStore {
   constructor() {
-    this.data = JSON.parse(JSON.stringify(DEFAULT_DATA));
+    this.data = {
+      notices: [],
+      schedules: [],
+      cells: [],
+      events: [],
+      resources: [],
+      businesses: [],
+      galleryPhotos: DEFAULT_DATA.galleryPhotos
+    };
     this.listeners = [];
     this.isInitialized = false;
 
     // Iniciar carga asíncrona desde Supabase en cuanto el cliente esté listo
-    this.initSupabase();
+    this.initPromise = this.initSupabase();
   }
 
   // --- MAPEOS DE BASE DE DATOS (CamelCase <-> SnakeCase) ---
