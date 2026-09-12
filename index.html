@@ -94,12 +94,11 @@
   <!-- ==========================================
        HEADER & NAVEGACIÓN EDITORIAL
        ========================================== -->
-  <header class="editorial-header" id="navbar">
+  <header class="editorial-header header-translucent" id="navbar">
     <div class="container nav-inner">
       <a href="index.html" class="brand-container">
         <div class="brand-logo-text">
           <img src="assets/images/LOGOWEB.png" alt="IEANJESÚS Maldonado - Iglesia Evangélica Apostólica del Nombre de Jesús" class="brand-header-logo">
-          <span class="brand-compact-title">IEANJESÚS MALDONADO</span>
           <span class="brand-sub-tag">/ MALDONADO, URUGUAY</span>
         </div>
       </a>
@@ -257,69 +256,68 @@
 
   <main>
     <!-- ==========================================
-         01 — HERO EDITORIAL CENTRADO CON FONDO DIFUMINADO
+         01 — HERO CINEMATOGRÁFICO CON VIDEO DE FONDO
          ========================================== -->
-    <section class="hero-centered-section" id="inicio">
-      <!-- Foto de fondo difuminada suave -->
-      <img src="assets/images/hero-portada.jpg"
-        onerror="this.src='https://images.unsplash.com/photo-1548625361-1959779df3ec?auto=format&fit=crop&w=1920&q=80'"
-        alt="Congregación IEANJESÚS Maldonado" class="hero-bg-diffused">
-
-      <!-- Capa de gradiente cálido crema -->
-      <div class="hero-overlay-gradient"></div>
-
-      <!-- Ficha de Datos Esquina Superior Izquierda -->
-      <div class="hero-datum datum-top-left">
-        <strong>MALDONADO · URUGUAY</strong><br>
-        Av. Wilson Ferreira Aldunate & 25 de Agosto
+    <section class="hero-cinematic-section" id="inicio">
+      <!-- Video de fondo responsivo con póster de respaldo -->
+      <div class="hero-media-wrapper">
+        <video class="hero-video hero-video-desktop" autoplay muted loop playsinline preload="auto" poster="assets/images/hero-portada.jpg">
+          <source src="assets/videos/hero-desktop.mp4" type="video/mp4">
+        </video>
+        <video class="hero-video hero-video-mobile" autoplay muted loop playsinline preload="auto" poster="assets/images/hero-portada.jpg">
+          <source src="assets/videos/hero-mobile.mp4" type="video/mp4">
+        </video>
+        <!-- Overlay oscuro cinematográfico -->
+        <div class="hero-cinema-overlay"></div>
       </div>
 
-      <!-- Ficha de Datos Esquina Inferior Derecha -->
-      <div class="hero-datum datum-bottom-right">
-        <strong>UNA IGLESIA PARA TODOS</strong><br>
-        «Un Señor, una fe, un bautismo»
-      </div>
+      <!-- Contenido Principal -->
+      <div class="container hero-content-wrapper">
+        <div class="hero-main-col">
+          <h1 class="hero-cinematic-title">
+            Un lugar para<br>
+            encontrarte con <span class="serif-italic-jes">Jesús.</span>
+          </h1>
 
-      <!-- Contenido Centrado del Hero -->
-      <div class="hero-centered-content">
-        <!-- Tag / Pill Central -->
-        <div class="hero-pill-badge">
-          <span class="status-dot-red"></span>
-          <span>IEANJESÚS · MALDONADO, URUGUAY</span>
+          <p class="hero-cinematic-desc">
+            Somos una iglesia para todos, donde cada persona puede conocer a Jesús, crecer en la fe y encontrar una familia.
+          </p>
+
+          <div class="hero-cinematic-actions">
+            <a href="contacto.html" class="hero-btn-primary">
+              <i class="fa-solid fa-location-dot"></i>
+              <span>Visítanos</span>
+            </a>
+            <a href="https://wa.me/59897432948?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20recibir%20informaci%C3%B3n%20sobre%20IEANJES%C3%9AS%20Maldonado."
+               target="_blank" rel="noopener noreferrer" class="hero-btn-secondary">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>Escríbenos</span>
+            </a>
+          </div>
         </div>
 
-        <!-- Título Principal H1 Centrado -->
-        <h1 class="hero-h1-centered">
-          Un lugar para encontrarte con <span class="serif-italic">Jesús.</span>
-        </h1>
+        <!-- Barra Inferior Editorial -->
+        <div class="hero-bottom-bar">
+          <!-- Esquina Inferior Izquierda -->
+          <div class="hero-bottom-left">
+            <span class="hero-geo-dash"></span>
+            <span class="hero-geo-text">Maldonado · Uruguay</span>
+          </div>
 
-        <!-- Frase de bienvenida -->
-        <p class="hero-phrase-centered">
-          Somos una iglesia para todos, donde cada persona puede conocer a Jesús, crecer en la fe y encontrar una
-          familia.
-        </p>
-
-        <!-- Botones de Acción Centrados -->
-        <div class="hero-centered-actions">
-          <a href="#ubicacion" class="btn-editorial btn-dark">
-            Ubicación y redes <i class="fa-solid fa-arrow-down" style="font-size: 0.75rem;"></i>
-          </a>
-          <a href="https://wa.me/59897432948?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20recibir%20informaci%C3%B3n%20sobre%20IEANJES%C3%9AS%20Maldonado."
-            target="_blank" class="btn-editorial btn-whatsapp-editorial">
-            <i class="fa-brands fa-whatsapp"></i> Escribinos
+          <!-- Centro Inferior: Indicador de scroll -->
+          <a href="#quienes-somos" class="hero-scroll-indicator" aria-label="Descubre más">
+            <i class="fa-solid fa-chevron-down"></i>
+            <span class="hero-scroll-text">DESCUBRE MÁS</span>
           </a>
 
-          <!-- Redes Rápidas debajo de WhatsApp -->
-          <div class="hero-social-mini-row" aria-label="Canales y Redes Oficiales">
-            <a href="https://www.instagram.com/ieanjesusmaldonado/" target="_blank" class="hero-social-icon-btn" aria-label="Instagram">
-              <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="https://www.facebook.com/profile.php?id=100066598476732&sk=about&locale=es_LA" target="_blank" class="hero-social-icon-btn" aria-label="Facebook">
-              <i class="fa-brands fa-facebook-f"></i>
-            </a>
-            <a href="https://www.youtube.com/@pastorfranklinsalas" target="_blank" class="hero-social-icon-btn" aria-label="YouTube">
-              <i class="fa-brands fa-youtube"></i>
-            </a>
+          <!-- Esquina Inferior Derecha: Bloque Tipográfico -->
+          <div class="hero-bottom-right">
+            <div class="hero-pillar-stack">
+              <span>PERSONAS</span>
+              <span>FAMILIAS</span>
+              <span>COMUNIDAD</span>
+              <span>PARA JESÚS</span>
+            </div>
           </div>
         </div>
       </div>

@@ -25,6 +25,40 @@ document.addEventListener('DOMContentLoaded', () => {
     handleScroll();
   }
 
+  // 2.1 Reproducción inteligente de videos de fondo en el Hero
+  const heroVideos = document.querySelectorAll('.hero-video');
+  if (heroVideos.length > 0) {
+    const playHeroVideos = () => {
+      heroVideos.forEach(vid => {
+        // Solo reproducir el video visible según el ancho de pantalla
+        const isMobile = window.innerWidth <= 768;
+        const isDesktopVideo = vid.classList.contains('hero-video-desktop');
+        const isMobileVideo = vid.classList.contains('hero-video-mobile');
+
+        if ((isMobile && isMobileVideo) || (!isMobile && isDesktopVideo)) {
+          vid.muted = true;
+          const playPromise = vid.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(() => {
+              const resumeOnInteraction = () => {
+                vid.play();
+                document.removeEventListener('touchstart', resumeOnInteraction);
+                document.removeEventListener('click', resumeOnInteraction);
+              };
+              document.addEventListener('touchstart', resumeOnInteraction, { once: true });
+              document.addEventListener('click', resumeOnInteraction, { once: true });
+            });
+          }
+        } else {
+          vid.pause();
+        }
+      });
+    };
+
+    playHeroVideos();
+    window.addEventListener('resize', playHeroVideos, { passive: true });
+  }
+
   // 3. DRAWER LATERAL: HERRAMIENTAS Y RECURSOS
   const drawerToggleBtns = document.querySelectorAll('.drawer-toggle-btn');
   const drawerBackdrop = document.getElementById('drawer-backdrop');
