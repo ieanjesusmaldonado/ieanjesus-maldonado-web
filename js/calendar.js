@@ -1,6 +1,10 @@
 /**
+ * =============================================================================
  * IEANJESÚS Maldonado - Motor de Agenda y Calendario Mensual
- * Maneja la visualización interactiva del calendario y la lista cronológica de eventos.
+ * =============================================================================
+ * Maneja la visualización interactiva del calendario mensual, la lista cronológica
+ * de la programación completa y la interacción con el modal de suscripción.
+ * =============================================================================
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -11,6 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const upcomingEventsList = document.getElementById('upcoming-events-list');
   const eventDetailModal = document.getElementById('event-detail-modal');
   const eventModalClose = document.getElementById('event-modal-close');
+
+  // Modal de suscripción a calendarios
+  const subscribeModal = document.getElementById('calendar-subscribe-modal');
+  const openSubscribeModalBtn = document.getElementById('open-subscribe-modal-btn');
+  const subscribeModalClose = document.getElementById('subscribe-modal-close');
+  const copyIcsBtns = document.querySelectorAll('.copy-ics-btn');
 
   if (!calendarDaysContainer || !upcomingEventsList) {
     // Si no estamos en la página de agenda, salir
@@ -26,11 +36,20 @@ document.addEventListener('DOMContentLoaded', () => {
     'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
   ];
 
-  const DAY_NAMES = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
-
   // Formatear fecha a legible en español
   const formatEventDate = (dateStr) => {
     if (!dateStr) return '';
+    if (dateStr.includes(' a ')) {
+      const parts = dateStr.split(' a ');
+      const p1 = parts[0].trim().split('-');
+      const p2 = parts[1].trim().split('-');
+      if (p1.length === 3 && p2.length === 3) {
+        const mIdx = parseInt(p1[1], 10) - 1;
+        return `Del ${parseInt(p1[2], 10)} al ${parseInt(p2[2], 10)} de ${MONTH_NAMES[mIdx]} de ${p1[0]}`;
+      }
+      return dateStr;
+    }
+
     const parts = dateStr.split('-');
     if (parts.length !== 3) return dateStr;
     const year = parseInt(parts[0], 10);
@@ -41,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return `${dayName} ${day} de ${MONTH_NAMES[month]} de ${year}`;
   };
 
-  // Renderizar Lista de Próximas Actividades
+  // Renderizar Lista de Próximas Actividades (Calendario Completo)
   const renderUpcomingEvents = () => {
     const events = window.ieanDataStore ? window.ieanDataStore.getEvents(true) : [];
     upcomingEventsList.innerHTML = '';
@@ -58,13 +77,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     events.forEach(evt => {
-      const parts = evt.date.split('-');
-      const dayNum = parts[2] || '';
-      const monthNum = parseInt(parts[1], 10) - 1;
-      const monthShort = MONTH_NAMES[monthNum] ? MONTH_NAMES[monthNum].slice(0, 3).toUpperCase() : '';
+      let dayNum = '';
+      let monthShort = '';
+
+      if (evt.date.includes(' a ')) {
+        const startParts = evt.date.split(' a ')[0].trim().split('-');
+        dayNum = startParts[2] || '';
+        const monthNum = parseInt(startParts[1], 10) - 1;
+        monthShort = MONTH_NAMES[monthNum] ? MONTH_NAMES[monthNum].slice(0, 3).toUpperCase() : '';
+      } else {
+        const parts = evt.date.split('-');
+        dayNum = parts[2] || '';
+        const monthNum = parseInt(parts[1], 10) - 1;
+        monthShort = MONTH_NAMES[monthNum] ? MONTH_NAMES[monthNum].slice(0, 3).toUpperCase() : '';
+      }
 
       const card = document.createElement('div');
       card.className = `agenda-event-card ${evt.featured ? 'featured-event' : ''}`;
+      
+      const timeHtml = evt.time 
+        ? `<span><i class="fa-regular fa-clock"></i> ${evt.time}</span>` 
+        : `<span><i class="fa-regular fa-calendar"></i> Fecha completa</span>`;
+
       card.innerHTML = `
         <div class="agenda-date-badge">
           <span class="agenda-date-day">${dayNum}</span>
@@ -78,8 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
           <h3 class="agenda-event-title">${evt.title}</h3>
           <p class="agenda-event-desc">${evt.description || ''}</p>
           <div class="agenda-event-meta-bottom">
-            <span><i class="fa-regular fa-clock"></i> ${evt.time}</span>
-            <span><i class="fa-solid fa-location-dot"></i> ${evt.location}</span>
+            ${timeHtml}
+            <span><i class="fa-solid fa-location-dot"></i> ${evt.location || 'Sede Central IEANJESÚS Maldonado'}</span>
           </div>
         </div>
         <div class="agenda-event-action">
@@ -130,7 +164,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const monthStr = selectedMonth + 1 < 10 ? `0${selectedMonth + 1}` : `${selectedMonth + 1}`;
       const fullDateStr = `${selectedYear}-${monthStr}-${dayStr}`;
 
-      const dayEvents = allEvents.filter(e => e.public && e.date === fullDateStr);
+      // Filtrar eventos que caen en este día (fecha exacta o rango de fechas)
+      const dayEvents = allEvents.filter(e => {
+        if (!e.public) return false;
+        if (e.date === fullDateStr) return true;
+        if (e.date.includes(' a ')) {
+          const [sDate, eDate] = e.date.split(' a ').map(s => s.trim());
+          return fullDateStr >= sDate && fullDateStr <= eDate;
+        }
+        return false;
+      });
+
       const isToday = isCurrentMonthYear && day === todayDateNum;
       const hasEvents = dayEvents.length > 0;
 
@@ -151,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
 
       if (hasEvents) {
-        cell.setAttribute('title', dayEvents.map(e => `${e.time}: ${e.title}`).join('\n'));
+        cell.setAttribute('title', dayEvents.map(e => `${e.time ? e.time + ': ' : ''}${e.title}`).join('\n'));
         cell.addEventListener('click', () => {
           if (dayEvents.length === 1) {
             openEventModal(dayEvents[0]);
@@ -175,25 +219,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // Modal de Detalle de Evento
+  // Modal de Detalle de Evento Individual
   const openEventModal = (event) => {
     if (!eventDetailModal) return;
 
     document.getElementById('modal-event-cat').textContent = event.category || 'Actividad';
     document.getElementById('modal-event-title').textContent = event.title;
     document.getElementById('modal-event-date').textContent = formatEventDate(event.date);
-    document.getElementById('modal-event-time').textContent = event.time;
-    document.getElementById('modal-event-location').textContent = event.location;
+    document.getElementById('modal-event-time').textContent = event.time || 'Sin horario fijado';
+    document.getElementById('modal-event-location').textContent = event.location || 'Sede Central IEANJESÚS Maldonado';
     document.getElementById('modal-event-desc').textContent = event.description || 'Sin descripción adicional.';
 
     const mapBtn = document.getElementById('modal-event-map-btn');
     if (mapBtn) {
-      mapBtn.href = `https://maps.google.com/?q=${encodeURIComponent(event.location)}`;
+      mapBtn.href = `https://maps.google.com/?q=${encodeURIComponent(event.location || 'IEANJESÚS Maldonado')}`;
     }
 
     const waBtn = document.getElementById('modal-event-wa-btn');
     if (waBtn) {
-      const msg = `Hola, Dios le bendiga. Quisiera consultar sobre la actividad: ${event.title} (${event.date} - ${event.time})`;
+      const timeInfo = event.time ? ` (${event.time})` : '';
+      const msg = `Hola, Dios le bendiga. Quisiera consultar sobre la actividad: ${event.title} - ${formatEventDate(event.date)}${timeInfo}`;
       waBtn.href = `https://wa.me/59897432948?text=${encodeURIComponent(msg)}`;
     }
 
@@ -204,17 +249,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // Modal cuando hay múltiples eventos el mismo día
   const openMultiEventModal = (dateStr, eventsList) => {
     if (!eventDetailModal) return;
-    document.getElementById('modal-event-cat').textContent = `${eventsList.length} ACTIVIDADES`;
+    document.getElementById('modal-event-cat').textContent = `${eventsList.length} ACTIVIDADES PROGRAMADAS`;
     document.getElementById('modal-event-title').textContent = `Actividades del ${formatEventDate(dateStr)}`;
     document.getElementById('modal-event-date').textContent = formatEventDate(dateStr);
-    document.getElementById('modal-event-time').textContent = 'Múltiples horarios';
+    document.getElementById('modal-event-time').textContent = 'Múltiples horarios / actividades';
     document.getElementById('modal-event-location').textContent = 'IEANJESÚS Maldonado';
 
     const descHtml = eventsList.map(e => `
       <div style="margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-fine);">
         <strong style="color: var(--ink-primary); font-size: 1.05rem;">${e.title}</strong><br>
-        <span style="font-size: 0.85rem; color: var(--accent-coral); font-weight: 600;">🕒 ${e.time} | 📍 ${e.location}</span>
-        <p style="margin-top: 0.4rem; font-size: 0.9rem; color: var(--ink-secondary);">${e.description || ''}</p>
+        <span style="font-size: 0.85rem; color: var(--accent-coral); font-weight: 600;">
+          ${e.time ? '🕒 ' + e.time + ' | ' : ''}📍 ${e.location || 'Sede Central IEANJESÚS Maldonado'}
+        </span>
+        <p style="margin-top: 0.4rem; font-size: 0.9rem; color: var(--ink-secondary); line-height: 1.5;">${e.description || ''}</p>
       </div>
     `).join('');
 
@@ -234,6 +281,104 @@ document.addEventListener('DOMContentLoaded', () => {
   if (eventDetailModal) {
     eventDetailModal.addEventListener('click', (e) => {
       if (e.target === eventDetailModal) closeEventModal();
+    });
+  }
+
+  // --- MODAL DE SUSCRIPCIÓN ---
+  const configureSubscriptionLinks = () => {
+    let baseOrigin = window.location.origin;
+    if (!baseOrigin || baseOrigin === 'null' || baseOrigin.startsWith('file:')) {
+      baseOrigin = 'https://ieanjesusmaldonado.org';
+    }
+
+    const iglesiaHttps = `${baseOrigin}/calendario/iglesia.ics`;
+    const completoHttps = `${baseOrigin}/calendario/completo.ics`;
+
+    const iglesiaWebcal = iglesiaHttps.replace(/^https?:\/\//i, 'webcal://');
+    const completoWebcal = completoHttps.replace(/^https?:\/\//i, 'webcal://');
+
+    const iglesiaGoogle = `https://calendar.google.com/calendar/r?cid=${encodeURIComponent(iglesiaHttps)}`;
+    const completoGoogle = `https://calendar.google.com/calendar/r?cid=${encodeURIComponent(completoHttps)}`;
+
+    const subIglesiaGoogle = document.getElementById('sub-iglesia-google');
+    if (subIglesiaGoogle) subIglesiaGoogle.href = iglesiaGoogle;
+
+    const subIglesiaApple = document.getElementById('sub-iglesia-apple');
+    if (subIglesiaApple) subIglesiaApple.href = iglesiaWebcal;
+
+    const subIglesiaCopy = document.getElementById('sub-iglesia-copy');
+    if (subIglesiaCopy) subIglesiaCopy.setAttribute('data-url', iglesiaHttps);
+
+    const subCompletoGoogle = document.getElementById('sub-completo-google');
+    if (subCompletoGoogle) subCompletoGoogle.href = completoGoogle;
+
+    const subCompletoApple = document.getElementById('sub-completo-apple');
+    if (subCompletoApple) subCompletoApple.href = completoWebcal;
+
+    const subCompletoCopy = document.getElementById('sub-completo-copy');
+    if (subCompletoCopy) subCompletoCopy.setAttribute('data-url', completoHttps);
+  };
+
+  const openSubscribeModal = () => {
+    if (!subscribeModal) return;
+    configureSubscriptionLinks();
+    subscribeModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeSubscribeModal = () => {
+    if (!subscribeModal) return;
+    subscribeModal.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  if (openSubscribeModalBtn) {
+    openSubscribeModalBtn.addEventListener('click', openSubscribeModal);
+  }
+
+  if (subscribeModalClose) {
+    subscribeModalClose.addEventListener('click', closeSubscribeModal);
+  }
+
+  if (subscribeModal) {
+    subscribeModal.addEventListener('click', (e) => {
+      if (e.target === subscribeModal) closeSubscribeModal();
+    });
+  }
+
+  // Copiar URL de feed ICS al portapapeles
+  if (copyIcsBtns) {
+    copyIcsBtns.forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const url = btn.getAttribute('data-url');
+        if (!url) return;
+
+        try {
+          await navigator.clipboard.writeText(url);
+          const origHtml = btn.innerHTML;
+          btn.innerHTML = '<i class="fa-solid fa-check"></i> ¡ENLACE COPIADO!';
+          btn.style.borderColor = 'var(--green-inst)';
+          btn.style.color = 'var(--green-inst)';
+
+          setTimeout(() => {
+            btn.innerHTML = origHtml;
+            btn.style.borderColor = '';
+            btn.style.color = '';
+          }, 3000);
+        } catch (err) {
+          // Fallback manual para navegadores antiguos
+          const tempInput = document.createElement('input');
+          tempInput.value = url;
+          document.body.appendChild(tempInput);
+          tempInput.select();
+          document.execCommand('copy');
+          document.body.removeChild(tempInput);
+          btn.innerHTML = '<i class="fa-solid fa-check"></i> ¡ENLACE COPIADO!';
+          setTimeout(() => {
+            btn.innerHTML = '<i class="fa-solid fa-link"></i> OTROS CALENDARIOS (COPIAR URL)';
+          }, 3000);
+        }
+      });
     });
   }
 
@@ -262,12 +407,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Teclado Escape
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && eventDetailModal && eventDetailModal.classList.contains('active')) {
-      closeEventModal();
+    if (e.key === 'Escape') {
+      if (eventDetailModal && eventDetailModal.classList.contains('active')) closeEventModal();
+      if (subscribeModal && subscribeModal.classList.contains('active')) closeSubscribeModal();
     }
   });
 
-  // Inicializar
+  // Inicializar vistas
+  configureSubscriptionLinks();
   renderUpcomingEvents();
   renderCalendar();
 

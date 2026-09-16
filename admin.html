@@ -167,6 +167,7 @@
                 <th>Fecha</th>
                 <th>Hora</th>
                 <th>Categoría</th>
+                <th>Suscripción</th>
                 <th>Estado</th>
                 <th style="text-align: right;">Acciones</th>
               </tr>
@@ -360,7 +361,7 @@
           <textarea id="evt-desc" class="form-textarea-editorial" rows="3" placeholder="Detalles de la reunión, oradores o indicaciones para los asistentes..."></textarea>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
           <div class="form-group-editorial">
             <label class="form-label-editorial" for="evt-public">Mostrar públicamente</label>
             <select id="evt-public" class="form-input-editorial">
@@ -375,6 +376,17 @@
               <option value="true">Sí (Con borde destacado)</option>
             </select>
           </div>
+        </div>
+
+        <div class="form-group-editorial" style="margin-bottom: 1.5rem;">
+          <label class="form-label-editorial" for="evt-church-cal">¿También mostrar en Calendario de la Iglesia?</label>
+          <select id="evt-church-cal" class="form-input-editorial">
+            <option value="false">No (Solo en Calendario Completo)</option>
+            <option value="true">Sí (En Calendario de la Iglesia y Completo)</option>
+          </select>
+          <span style="font-size: 0.74rem; color: var(--ink-muted); margin-top: 0.3rem; display: block;">
+            Activa esta opción para eventos principales, cultos especiales y fechas clave que deban llegar a quienes siguen la versión resumida.
+          </span>
         </div>
 
         <button type="submit" class="btn-editorial btn-green-inst" style="width: 100%; padding: 0.75rem; justify-content: center;">

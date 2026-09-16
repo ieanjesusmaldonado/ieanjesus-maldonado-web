@@ -244,17 +244,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     agendaListEl.innerHTML = '';
 
     if (events.length === 0) {
-      agendaListEl.innerHTML = `<tr><td colspan="6" class="table-empty-td">No hay eventos registrados en la agenda. Presione "Nuevo Evento" para comenzar.</td></tr>`;
+      agendaListEl.innerHTML = `<tr><td colspan="7" class="table-empty-td">No hay eventos registrados en la agenda. Presione "Nuevo Evento" para comenzar.</td></tr>`;
       return;
     }
 
     events.forEach(evt => {
       const row = document.createElement('tr');
+      const churchCalBadge = evt.includeChurchCalendar 
+        ? '<span class="status-badge-ok" style="font-size:0.75rem; background:rgba(30,77,56,0.12); color:var(--green-inst);">Iglesia + Completo</span>' 
+        : '<span class="status-badge-off" style="font-size:0.75rem;">Solo Completo</span>';
+
       row.innerHTML = `
         <td><strong>${evt.title}</strong></td>
         <td>${evt.date}</td>
-        <td>${evt.time}</td>
+        <td>${evt.time || '<span style="color:var(--ink-muted); font-size:0.8rem;">-</span>'}</td>
         <td><span class="admin-table-badge">${evt.category || 'General'}</span></td>
+        <td>${churchCalBadge}</td>
         <td>${evt.public ? '<span class="status-badge-ok">Visible</span>' : '<span class="status-badge-off">Oculto</span>'}</td>
         <td class="table-actions-cell">
           <button class="btn-table-action edit-evt-btn" data-id="${evt.id}" title="Editar"><i class="fa-regular fa-pen-to-square"></i></button>
@@ -279,19 +284,27 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('evt-id').value = evt.id;
         document.getElementById('evt-title').value = evt.title;
         document.getElementById('evt-date').value = evt.date;
-        document.getElementById('evt-time').value = evt.time;
-        document.getElementById('evt-location').value = evt.location;
+        document.getElementById('evt-time').value = evt.time || '';
+        document.getElementById('evt-location').value = evt.location || 'Sede Central IEANJESÚS Maldonado';
         document.getElementById('evt-category').value = evt.category || 'Actividad general';
         document.getElementById('evt-desc').value = evt.description || '';
         document.getElementById('evt-public').value = evt.public ? 'true' : 'false';
         document.getElementById('evt-featured').value = evt.featured ? 'true' : 'false';
+        const churchCalSelect = document.getElementById('evt-church-cal');
+        if (churchCalSelect) {
+          churchCalSelect.value = evt.includeChurchCalendar ? 'true' : 'false';
+        }
       }
     } else {
       eventModalTitle.textContent = 'Nuevo Evento';
       document.getElementById('evt-date').value = new Date().toISOString().split('T')[0];
-      document.getElementById('evt-location').value = 'Sede Central (Av. Wilson Ferreira Aldunate & 25 de Agosto)';
+      document.getElementById('evt-location').value = 'Sede Central IEANJESÚS Maldonado';
       document.getElementById('evt-public').value = 'true';
       document.getElementById('evt-featured').value = 'false';
+      const churchCalSelect = document.getElementById('evt-church-cal');
+      if (churchCalSelect) {
+        churchCalSelect.value = 'false';
+      }
     }
 
     eventModal.classList.add('active');
@@ -304,6 +317,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     eventForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const id = document.getElementById('evt-id').value;
+      const churchCalEl = document.getElementById('evt-church-cal');
       const newEvt = {
         id: id || undefined,
         title: document.getElementById('evt-title').value.trim(),
@@ -313,7 +327,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         category: document.getElementById('evt-category').value,
         description: document.getElementById('evt-desc').value.trim(),
         public: document.getElementById('evt-public').value === 'true',
-        featured: document.getElementById('evt-featured').value === 'true'
+        featured: document.getElementById('evt-featured').value === 'true',
+        includeChurchCalendar: churchCalEl ? churchCalEl.value === 'true' : false
       };
 
       const res = await window.ieanDataStore.saveItem('events', newEvt);

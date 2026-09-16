@@ -326,6 +326,28 @@
         </div>
       </div>
     </section>
+
+    <!-- ==========================================
+         SECCIÓN DE SUSCRIPCIÓN AL CALENDARIO
+         ========================================== -->
+    <section class="agenda-subscribe-section">
+      <div class="container">
+        <div class="agenda-subscribe-box">
+          <div class="agenda-subscribe-content">
+            <span class="editorial-eyebrow">SINCRONIZACIÓN EN VIVO</span>
+            <h2 class="agenda-subscribe-title">Lleva la agenda de la iglesia contigo</h2>
+            <p class="agenda-subscribe-lead">
+              Agrega el calendario de IEANJESÚS Maldonado a tu dispositivo y mantente al día con nuestras actividades. Los cambios futuros se reflejarán automáticamente en el calendario al que estés suscrito.
+            </p>
+          </div>
+          <div class="agenda-subscribe-action">
+            <button class="btn-editorial btn-green-inst" id="open-subscribe-modal-btn">
+              <i class="fa-regular fa-calendar-plus"></i> AGREGAR A MI CALENDARIO →
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- ==========================================
@@ -368,6 +390,73 @@
           style="font-size: 0.82rem; padding: 0.55rem 1rem; flex: 1; text-align: center;">
           <i class="fa-brands fa-whatsapp"></i> Consultar
         </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL DE SUSCRIPCIÓN A CALENDARIOS
+       ========================================== -->
+  <div class="modal-editorial-backdrop" id="calendar-subscribe-modal">
+    <div class="modal-editorial-card subscribe-modal-card">
+      <button class="modal-close-btn" id="subscribe-modal-close" aria-label="Cerrar ventana">&times;</button>
+      <span class="editorial-eyebrow">SINCRONIZACIÓN OFICIAL</span>
+      <h3 class="subscribe-modal-title">Elige qué calendario quieres seguir</h3>
+
+      <div class="subscribe-options-grid">
+        <!-- Opción 1: Calendario de la Iglesia -->
+        <div class="subscribe-option-card">
+          <div class="subscribe-option-header">
+            <span class="subscribe-pill">RECOMENDADO</span>
+            <h4 class="subscribe-option-heading">Calendario de la Iglesia</h4>
+          </div>
+          <p class="subscribe-option-desc">
+            Las principales actividades, encuentros y fechas especiales de IEANJESÚS Maldonado. Una opción sencilla para mantenerte informado sin agregar cada culto semanal a tu calendario.
+          </p>
+          <div class="subscribe-buttons-stack">
+            <a href="#" target="_blank" rel="noopener" class="btn-editorial btn-dark btn-sub-action" id="sub-iglesia-google">
+              <i class="fa-brands fa-google"></i> GOOGLE CALENDAR
+            </a>
+            <a href="#" class="btn-editorial btn-outline-editorial btn-sub-action" id="sub-iglesia-apple">
+              <i class="fa-brands fa-apple"></i> APPLE / iPHONE
+            </a>
+            <button type="button" class="btn-editorial btn-outline-editorial btn-sub-action copy-ics-btn" id="sub-iglesia-copy" data-url="" data-title="Calendario de la Iglesia">
+              <i class="fa-solid fa-link"></i> OTROS CALENDARIOS (COPIAR URL)
+            </button>
+          </div>
+        </div>
+
+        <!-- Opción 2: Calendario Completo -->
+        <div class="subscribe-option-card">
+          <div class="subscribe-option-header">
+            <span class="subscribe-pill pill-full">PROGRAMACIÓN INTEGRAL</span>
+            <h4 class="subscribe-option-heading">Calendario Completo</h4>
+          </div>
+          <p class="subscribe-option-desc">
+            Toda la programación de la iglesia, incluyendo actividades especiales, cultos semanales, responsables, comités y encuentros. Ideal para quienes desean seguir la agenda completa.
+          </p>
+          <div class="subscribe-buttons-stack">
+            <a href="#" target="_blank" rel="noopener" class="btn-editorial btn-dark btn-sub-action" id="sub-completo-google">
+              <i class="fa-brands fa-google"></i> GOOGLE CALENDAR
+            </a>
+            <a href="#" class="btn-editorial btn-outline-editorial btn-sub-action" id="sub-completo-apple">
+              <i class="fa-brands fa-apple"></i> APPLE / iPHONE
+            </a>
+            <button type="button" class="btn-editorial btn-outline-editorial btn-sub-action copy-ics-btn" id="sub-completo-copy" data-url="" data-title="Calendario Completo">
+              <i class="fa-solid fa-link"></i> OTROS CALENDARIOS (COPIAR URL)
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Explicación de actualización discreta -->
+      <div class="subscribe-discreet-footer">
+        <div class="subscribe-discreet-badge">
+          <i class="fa-solid fa-rotate"></i> Siempre al día
+        </div>
+        <p class="subscribe-discreet-text">
+          Al suscribirte, los cambios realizados en la agenda de la iglesia se reflejarán en tu calendario cuando tu aplicación actualice la suscripción.
+        </p>
       </div>
     </div>
   </div>

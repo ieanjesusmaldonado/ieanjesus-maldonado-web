@@ -5181,5 +5181,213 @@ img {
   }
 }
 
+/* =============================================================================
+   SECCIÓN Y MODAL DE SUSCRIPCIÓN A CALENDARIOS (AGENDA)
+   ============================================================================= */
+.agenda-subscribe-section {
+  padding: 3rem 0 4rem;
+  border-top: 1px solid var(--border-fine);
+  background: var(--bg-cream);
+}
+
+.agenda-subscribe-box {
+  background: var(--bg-cream-card);
+  border: 1px solid var(--border-card);
+  border-left: 4px solid var(--green-inst);
+  border-radius: var(--radius-sm);
+  padding: 2.25rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  box-shadow: 0 4px 16px rgba(23, 23, 20, 0.03);
+}
+
+.agenda-subscribe-content {
+  max-width: 680px;
+}
+
+.agenda-subscribe-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--ink-primary);
+  margin-top: 0.35rem;
+  margin-bottom: 0.65rem;
+  line-height: 1.25;
+}
+
+.agenda-subscribe-lead {
+  font-size: 0.95rem;
+  color: var(--ink-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.agenda-subscribe-action {
+  flex-shrink: 0;
+}
+
+.agenda-subscribe-action .btn-editorial {
+  padding: 0.85rem 1.6rem;
+  font-size: 0.88rem;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+/* Modal de Suscripción */
+.subscribe-modal-card {
+  max-width: 720px;
+  padding: 2.25rem 2.5rem;
+}
+
+.subscribe-modal-title {
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--ink-primary);
+  margin-bottom: 1.5rem;
+  line-height: 1.25;
+}
+
+.subscribe-options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.subscribe-option-card {
+  background: var(--bg-cream-light);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-sm);
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: var(--transition);
+}
+
+.subscribe-option-card:hover {
+  border-color: var(--green-inst);
+  box-shadow: 0 4px 14px rgba(30, 77, 56, 0.06);
+}
+
+.subscribe-option-header {
+  margin-bottom: 0.65rem;
+}
+
+.subscribe-pill {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-xs);
+  background: rgba(30, 77, 56, 0.12);
+  color: var(--green-inst);
+  display: inline-block;
+  margin-bottom: 0.45rem;
+}
+
+.subscribe-pill.pill-full {
+  background: rgba(198, 92, 80, 0.12);
+  color: var(--accent-coral);
+}
+
+.subscribe-option-heading {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--ink-primary);
+  margin: 0;
+}
+
+.subscribe-option-desc {
+  font-size: 0.85rem;
+  color: var(--ink-secondary);
+  line-height: 1.55;
+  margin-bottom: 1.25rem;
+  flex-grow: 1;
+}
+
+.subscribe-buttons-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.subscribe-buttons-stack .btn-sub-action {
+  width: 100%;
+  justify-content: center;
+  font-size: 0.78rem;
+  padding: 0.55rem 0.9rem;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.subscribe-buttons-stack .copy-ics-btn {
+  font-size: 0.74rem;
+  padding: 0.48rem 0.8rem;
+  color: var(--ink-muted);
+}
+
+.subscribe-buttons-stack .copy-ics-btn:hover {
+  color: var(--ink-primary);
+}
+
+/* Nota discreta del modal */
+.subscribe-discreet-footer {
+  background: var(--bg-cream);
+  border: 1px solid var(--border-fine);
+  border-radius: var(--radius-xs);
+  padding: 0.9rem 1.15rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.subscribe-discreet-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--green-inst);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.1rem;
+}
+
+.subscribe-discreet-text {
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+  line-height: 1.45;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .agenda-subscribe-box {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1.75rem 1.5rem;
+    gap: 1.25rem;
+  }
+
+  .agenda-subscribe-action .btn-editorial {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .subscribe-modal-card {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .subscribe-options-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
 
 

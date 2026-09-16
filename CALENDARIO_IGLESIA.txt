@@ -1,0 +1,367 @@
+IEANJESÚS MALDONADO
+CALENDARIO DE LA IGLESIA - SEPTIEMBRE A DICIEMBRE DE 2026
+
+FUENTE DEFINITIVA PARA:
+- Suscripción simplificada "Calendario de la Iglesia".
+
+REGLAS DE USO:
+- Este archivo contiene únicamente la selección aprobada de actividades y fechas relevantes.
+- No incluye los cultos semanales cuyo único dato especial es el comité, la Junta Local o la Célula que dirige.
+- La línea HORA aparece únicamente cuando el horario está aprobado.
+- No inventar horarios para los eventos que no incluyen una línea HORA.
+- Cada bloque es un evento independiente, aunque varios eventos compartan fecha.
+- Si existe cualquier diferencia con un PDF u otra referencia, prevalece este archivo TXT.
+- No agregar eventos del Calendario Completo ni reclasificar, unir, dividir o reinterpretar eventos.
+
+==================================================
+SEPTIEMBRE 2026
+==================================================
+
+FECHA: 2026-09-06
+HORA: 18:30
+TÍTULO: Voto Misionero Juvenil
+DESCRIPCIÓN: Jornada especial de compromiso misionero del Comité de Jóvenes.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-09-06
+HORA: 18:30
+TÍTULO: Mes de la Familia #1
+DESCRIPCIÓN: Primera jornada especial del Mes de la Familia.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-09-09
+TÍTULO: Pro Misionero - Centro
+DESCRIPCIÓN: Actividad pro misionera en la zona Centro.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-09-12
+TÍTULO: Culto Misionero - Curva
+DESCRIPCIÓN: Culto misionero en la zona de la Curva.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-09-13
+HORA: 18:30
+TÍTULO: Mes de la Familia #2
+DESCRIPCIÓN: Segunda jornada especial del Mes de la Familia.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-09-13
+HORA: 18:30
+TÍTULO: Actividad económica del Comité de Comunicaciones
+DESCRIPCIÓN: Actividad económica organizada por el Comité de Comunicaciones.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-09-18
+TÍTULO: Pro Misionero - Barrio Norte
+DESCRIPCIÓN: Actividad pro misionera en Barrio Norte.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-09-19
+TÍTULO: Reunión de Jóvenes
+DESCRIPCIÓN: Encuentro del Comité de Jóvenes para compartir y crecer en la fe.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-09-20
+HORA: 18:30
+TÍTULO: Mes de la Familia #3
+DESCRIPCIÓN: Tercera jornada especial del Mes de la Familia.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-09-20
+HORA: 18:30
+TÍTULO: Encuentro de Células
+DESCRIPCIÓN: Encuentro especial de las células de la iglesia.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-09-27
+HORA: 18:30
+TÍTULO: Mes de la Familia #4
+DESCRIPCIÓN: Cuarta jornada especial del Mes de la Familia.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-09-30
+TÍTULO: Pro Misionero - Cuñetti
+DESCRIPCIÓN: Actividad pro misionera en la zona Cuñetti.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+==================================================
+OCTUBRE 2026
+==================================================
+
+FECHA: 2026-10-03
+HORA: 19:00
+TÍTULO: Integración de Damas
+DESCRIPCIÓN: Encuentro de integración del Comité de Damas Dorcas.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-10-03
+HORA: 19:00
+TÍTULO: Integración de Caballeros
+DESCRIPCIÓN: Encuentro de integración del Comité de Caballeros.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-10-03
+TÍTULO: Inauguración de nueva obra en La Paz
+DESCRIPCIÓN: Celebración por la inauguración de una nueva obra de IEANJESÚS en La Paz.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-10-04
+TÍTULO: Ayuno Nacional
+DESCRIPCIÓN: Jornada nacional de ayuno y oración.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-10-04
+HORA: 18:30
+TÍTULO: Clausura del Mes de la Familia
+DESCRIPCIÓN: Jornada de cierre del Mes de la Familia.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-10-06
+TÍTULO: Pro Misionero - Hipódromo
+DESCRIPCIÓN: Actividad pro misionera en la zona Hipódromo.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-10-10
+TÍTULO: Convención Brasil
+DESCRIPCIÓN: Primera jornada de la Convención Brasil.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-10-11
+TÍTULO: Convención Brasil
+DESCRIPCIÓN: Segunda jornada de la Convención Brasil.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-10-16
+TÍTULO: Pro Misionero - Cerro
+DESCRIPCIÓN: Actividad pro misionera en la zona Cerro.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-10-17
+TÍTULO: Pro Misionero - Rocha
+DESCRIPCIÓN: Actividad pro misionera en Rocha.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-10-18
+HORA: 18:30
+TÍTULO: Día del Pastor
+DESCRIPCIÓN: Jornada especial de reconocimiento y gratitud por la labor pastoral.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-10-18
+HORA: 18:30
+TÍTULO: Actividad económica del Comité de Música
+DESCRIPCIÓN: Actividad económica organizada por el Comité de Música.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-10-20
+TÍTULO: Pro Misionero - Milagrosa
+DESCRIPCIÓN: Actividad pro misionera en la zona Milagrosa.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-10-23
+TÍTULO: Pro Misionero - Maldonado Nuevo
+DESCRIPCIÓN: Actividad pro misionera en Maldonado Nuevo.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-10-24
+TÍTULO: Reunión de Jóvenes
+DESCRIPCIÓN: Encuentro del Comité de Jóvenes para compartir y crecer en la fe.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-10-25
+HORA: 18:30
+TÍTULO: Culto Misionero Juvenil
+DESCRIPCIÓN: Culto misionero especial organizado por el Comité de Jóvenes.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-10-31
+TÍTULO: Ayuno - Día 1
+DESCRIPCIÓN: Primera jornada del ayuno de dos días.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+==================================================
+NOVIEMBRE 2026
+==================================================
+
+FECHA: 2026-11-01
+TÍTULO: Ayuno - Día 2
+DESCRIPCIÓN: Segunda jornada del ayuno de dos días.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-11-01
+HORA: 10:00
+TÍTULO: Santa Cena
+DESCRIPCIÓN: Celebración de la Santa Cena con la congregación.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-11-08
+HORA: 18:30
+TÍTULO: Encuentro de Células
+DESCRIPCIÓN: Encuentro especial de las células de la iglesia.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-11-15
+HORA: 18:30
+TÍTULO: Actividad económica del Comité de Obra Social
+DESCRIPCIÓN: Actividad económica organizada por el Comité de Obra Social.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-11-21
+TÍTULO: Reunión de Jóvenes
+DESCRIPCIÓN: Encuentro del Comité de Jóvenes para compartir y crecer en la fe.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-11-22
+HORA: 18:30
+TÍTULO: Aniversario de la Iglesia
+DESCRIPCIÓN: Celebración especial por el aniversario de IEANJESÚS Maldonado.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: SÍ
+
+==================================================
+DICIEMBRE 2026
+==================================================
+
+FECHA: 2026-12-05
+TÍTULO: Convención UY - Día 1
+DESCRIPCIÓN: Primera jornada de la Convención UY.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: SÍ
+
+FECHA: 2026-12-06
+TÍTULO: Convención UY - Día 2
+DESCRIPCIÓN: Segunda jornada de la Convención UY.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: SÍ
+
+FECHA: 2026-12-19
+TÍTULO: Reunión de Jóvenes
+DESCRIPCIÓN: Encuentro del Comité de Jóvenes para compartir y crecer en la fe.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-12-20
+HORA: 18:30
+TÍTULO: Reunión de Hermanos
+DESCRIPCIÓN: Reunión especial de los hermanos de la iglesia.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-12-20
+HORA: 18:30
+TÍTULO: Fin de Año - DED
+DESCRIPCIÓN: Actividad especial de fin de año de DED.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-12-20
+HORA: 18:30
+TÍTULO: Actividad económica de la Junta Local
+DESCRIPCIÓN: Actividad económica organizada por la Junta Local.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-12-27
+HORA: 18:30
+TÍTULO: Encuentro de Células
+DESCRIPCIÓN: Encuentro especial de las células de la iglesia.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-12-27
+HORA: 18:30
+TÍTULO: Clausura del Año
+DESCRIPCIÓN: Celebración de cierre de las actividades del año.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-12-30
+TÍTULO: Año Nuevo
+DESCRIPCIÓN: Primera jornada de las actividades de Año Nuevo.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO
+
+FECHA: 2026-12-31
+TÍTULO: Año Nuevo
+DESCRIPCIÓN: Segunda jornada de las actividades de Año Nuevo.
+CALENDARIO_COMPLETO: SÍ
+CALENDARIO_IGLESIA: SÍ
+DESTACADO: NO

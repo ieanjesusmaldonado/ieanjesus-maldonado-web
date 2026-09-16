@@ -1,0 +1,3 @@
+# Reglas de redirección limpia para feeds iCalendar (.ics)
+/calendario/iglesia.ics    /.netlify/functions/calendar-iglesia    200
+/calendario/completo.ics   /.netlify/functions/calendar-completo   200

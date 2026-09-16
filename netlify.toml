@@ -1,0 +1,13 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/calendario/iglesia.ics"
+  to = "/.netlify/functions/calendar-iglesia"
+  status = 200
+
+[[redirects]]
+  from = "/calendario/completo.ics"
+  to = "/.netlify/functions/calendar-completo"
+  status = 200
