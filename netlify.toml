@@ -11,3 +11,8 @@
   from = "/calendario/completo.ics"
   to = "/.netlify/functions/calendar-completo"
   status = 200
+
+[[redirects]]
+  from = "/donar"
+  to = "/donar.html"
+  status = 200

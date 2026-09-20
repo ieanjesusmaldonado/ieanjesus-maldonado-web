@@ -47,6 +47,30 @@
 
   <!-- Estilos Editoriales -->
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Sistema de Apariencia (Prevención de Flash) -->
+  <script>
+    (function(){
+      // Dark mode is temporarily disabled for public release.
+      // Set DARK_MODE_ENABLED to true when dark theme development resumes.
+      var DARK_MODE_ENABLED = false;
+      try {
+        if (DARK_MODE_ENABLED) {
+          var s = localStorage.getItem('iean_theme') || 'system';
+          var isDark = s === 'dark' || (s === 'system' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme-choice', s);
+        } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+          document.documentElement.setAttribute('data-theme-choice', 'light');
+          document.documentElement.setAttribute('data-theme-disabled', 'true');
+        }
+      } catch(e){
+        document.documentElement.setAttribute('data-theme', 'light');
+        document.documentElement.setAttribute('data-theme-choice', 'light');
+      }
+    })();
+  </script>
 </head>
 
 <body>
@@ -80,7 +104,7 @@
           <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
           <li><a href="celulas.html" class="nav-link">Células</a></li>
           <li><a href="ministerios.html" class="nav-link active">Ministerios</a></li>
-          <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+          <li><a href="donar.html" class="nav-link">Donación</a></li>
         </ul>
       </nav>
 
@@ -149,9 +173,9 @@
 
         <div class="drawer-divider"></div>
 
-        <!-- 2. Actividades y Recursos -->
+        <!-- 2. Participa -->
         <div>
-          <span class="drawer-nav-section-title">ACTIVIDADES Y RECURSOS</span>
+          <span class="drawer-nav-section-title">PARTICIPA</span>
           <div class="drawer-resources-list">
             <!-- Agenda -->
             <a href="agenda.html" class="drawer-resource-card">
@@ -159,6 +183,14 @@
               <h3 class="drawer-resource-title">Agenda de la Iglesia</h3>
               <p class="drawer-resource-desc">Consulta actividades, fechas especiales y próximos eventos de la iglesia.</p>
               <span class="drawer-resource-cta">VER AGENDA →</span>
+            </a>
+
+            <!-- Ofrendas y donaciones -->
+            <a href="donar.html" class="drawer-resource-card drawer-resource-donate">
+              <span class="drawer-resource-badge"><i class="fa-solid fa-heart" style="color: var(--accent-coral);"></i> APORTES</span>
+              <h3 class="drawer-resource-title">Ofrendas y donaciones</h3>
+              <p class="drawer-resource-desc">Tu generosidad nos ayuda a sostener la obra de Dios y expandir el mensaje de esperanza.</p>
+              <span class="drawer-resource-cta">DONAR ONLINE →</span>
             </a>
 
             <!-- Petición de Oración -->
@@ -181,23 +213,22 @@
 
         <div class="drawer-divider"></div>
 
-        <!-- 3. Colaboración -->
-        <div>
-          <span class="drawer-nav-section-title">COLABORACIÓN</span>
-          <div class="drawer-resource-card" style="border-left: 3px solid var(--green-inst);">
-            <span class="drawer-resource-badge"><i class="fa-solid fa-hand-holding-heart"></i> DONACIONES</span>
-            <h3 class="drawer-resource-title" style="font-size: 1.05rem;">¿Quieres colaborar?</h3>
-            <p class="drawer-resource-desc">
-              Si deseas colaborar con la obra de la iglesia mediante una donación, puedes comunicarte directamente con nosotros.
-            </p>
-            <div style="font-size: 0.74rem; color: var(--ink-muted); font-weight: 500; margin-bottom: 0.85rem; line-height: 1.4;">
-              Ropa · Alimentos · Obras sociales · Ofrendas · Otros aportes
-            </div>
-            <a href="https://wa.me/59897432948?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20colaborar%20con%20la%20iglesia%20mediante%20una%20donaci%C3%B3n%20y%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20c%C3%B3mo%20hacerlo."
-              target="_blank" class="btn-editorial btn-whatsapp-editorial"
-              style="font-size: 0.78rem; padding: 0.48rem 0.9rem; width: 100%; justify-content: center; text-align: center;">
-              <i class="fa-brands fa-whatsapp"></i> CONTACTAR PARA COLABORAR →
-            </a>
+        <!-- 3. Apariencia -->
+        <div class="drawer-theme-section">
+          <span class="drawer-nav-section-title">APARIENCIA</span>
+          <div class="theme-selector-segmented" role="radiogroup" aria-label="Seleccionar Apariencia">
+            <button type="button" class="theme-option-btn active" data-theme-val="system" role="radio" aria-checked="true" title="Automático según tu dispositivo">
+              <i class="fa-solid fa-circle-half-stroke"></i>
+              <span>Sistema</span>
+            </button>
+            <button type="button" class="theme-option-btn" data-theme-val="light" role="radio" aria-checked="false" title="Modo Claro">
+              <i class="fa-regular fa-sun"></i>
+              <span>Claro</span>
+            </button>
+            <button type="button" class="theme-option-btn" data-theme-val="dark" role="radio" aria-checked="false" title="Modo Oscuro">
+              <i class="fa-solid fa-moon"></i>
+              <span>Oscuro</span>
+            </button>
           </div>
         </div>
 
@@ -239,7 +270,7 @@
     </section>
 
     <!-- GRILLA COMPLETA DE MINISTERIOS -->
-    <section style="padding: 4.5rem 0;">
+    <section style="padding: 2.75rem 0 4.5rem;">
       <div class="container">
         <div class="ministerios-full-grid">
           
@@ -283,7 +314,7 @@
                 alt="Damas Dorcas">
             </div>
             <div class="ministerio-card-body">
-              <span class="ministerio-category">03 · MINISTERIO FEMENIL</span>
+              <span class="ministerio-category">03 · MUJERES</span>
               <h2 class="ministerio-name">Damas Dorcas</h2>
               <p class="ministerio-desc">
                 Comunidad de mujeres enfocadas en la oración ferviente, el apoyo mutuo, la mayordomía del hogar y el servicio voluntario.
@@ -432,10 +463,13 @@
           <ul class="footer-links-list">
             <li><a href="index.html">Inicio</a></li>
             <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="agenda.html">Agenda</a></li>
+            <li><a href="donar.html">Ofrendas y Donaciones</a></li>
             <li><a href="celulas.html">Células</a></li>
             <li><a href="ministerios.html">Ministerios</a></li>
             <li><a href="recursos.html">Recursos</a></li>
             <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="privacidad.html">Política de Privacidad</a></li>
           </ul>
         </div>
 
@@ -464,7 +498,7 @@
       </div>
 
       <div class="footer-bottom-bar">
-        <span>&copy; <span id="current-year">2026</span> IEANJESÚS Maldonado. Todos los derechos reservados.</span>
+        <span>&copy; <span id="current-year">2026</span> IEANJESÚS Maldonado · <a href="privacidad.html" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">Política de Privacidad</a></span>
         <span>MALDONADO, URUGUAY · EFESIOS 4:5</span>
       </div>
     </div>
@@ -478,7 +512,17 @@
       <button class="chat-close-btn-editorial" id="chatbot-close">&times;</button>
     </div>
     <div class="chat-body-editorial" id="chat-body">
-      <div class="chat-msg bot">¡La paz del Señor! 🕊️ ¿Sobre qué ministerio deseas saber más?</div>
+      <div class="chat-msg bot">¡La paz del Señor! 🕊️ ¿En qué podemos ayudarte?</div>
+      <div class="chat-chips-container" id="chat-chips">
+        <button type="button" class="chat-chip" data-query="Próximas actividades"><i class="fa-regular fa-calendar-check"></i> Próximas actividades</button>
+        <button type="button" class="chat-chip" data-query="Horarios de cultos"><i class="fa-regular fa-clock"></i> Horarios de cultos</button>
+        <button type="button" class="chat-chip" data-query="Células"><i class="fa-solid fa-people-roof"></i> Células</button>
+        <button type="button" class="chat-chip" data-query="Donación"><i class="fa-solid fa-hand-holding-heart"></i> Donación</button>
+        <button type="button" class="chat-chip" data-query="Petición de oración"><i class="fa-solid fa-hands-praying"></i> Petición de oración</button>
+        <button type="button" class="chat-chip" data-query="Material gratuito"><i class="fa-solid fa-book-open"></i> Material gratuito</button>
+        <button type="button" class="chat-chip" data-query="Ubicación"><i class="fa-solid fa-location-dot"></i> Ubicación</button>
+        <button type="button" class="chat-chip" data-query="Contactar por WhatsApp"><i class="fa-brands fa-whatsapp"></i> Contactar por WhatsApp</button>
+      </div>
     </div>
     <div class="chat-footer-editorial">
       <form class="chat-input-form-editorial" id="chat-form">
@@ -512,12 +556,45 @@
             placeholder="Escribe aquí tu petición de oración..." required></textarea>
         </div>
 
+        <p class="form-privacy-note" style="font-size: 0.80rem; color: var(--ink-secondary); line-height: 1.4; margin-top: 0.75rem; margin-bottom: 0.75rem;">
+          <i class="fa-solid fa-lock" style="font-size: 0.75rem; color: var(--green-inst);"></i> La información que compartas será utilizada exclusivamente para recibir y atender tu petición de oración. Evita incluir información sensible de terceros. Consulta nuestra <a href="privacidad.html" style="color: var(--green-inst); text-decoration: underline; font-weight: 500;">Política de Privacidad</a>.
+        </p>
+
         <button type="submit" class="btn-editorial btn-whatsapp-editorial" style="width: 100%; margin-top: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
           <i class="fa-brands fa-whatsapp"></i> ENVIAR PETICIÓN POR WHATSAPP
         </button>
       </form>
     </div>
   </div>
+
+  <!-- ==========================================
+       SELECTOR FLOTANTE DE APARIENCIA (SUGERENCIA INICIAL)
+       ========================================== -->
+  <aside class="theme-prompt-banner" id="theme-prompt-banner" aria-label="Sugerencia de Apariencia" style="display: none;">
+    <div class="theme-prompt-card">
+      <div class="theme-prompt-header">
+        <div class="theme-prompt-text-group">
+          <span class="theme-prompt-eyebrow">APARIENCIA</span>
+          <p class="theme-prompt-title">Elige cómo quieres ver el sitio</p>
+        </div>
+        <button type="button" class="theme-prompt-close" id="theme-prompt-close-btn" aria-label="Cerrar sugerencia de tema">&times;</button>
+      </div>
+      <div class="theme-prompt-options" role="group" aria-label="Opciones de tema">
+        <button type="button" class="theme-prompt-btn" data-theme-val="light">
+          <i class="fa-regular fa-sun"></i>
+          <span>Claro</span>
+        </button>
+        <button type="button" class="theme-prompt-btn is-active" data-theme-val="system">
+          <i class="fa-solid fa-circle-half-stroke"></i>
+          <span>Sistema</span>
+        </button>
+        <button type="button" class="theme-prompt-btn" data-theme-val="dark">
+          <i class="fa-solid fa-moon"></i>
+          <span>Oscuro</span>
+        </button>
+      </div>
+    </div>
+  </aside>
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

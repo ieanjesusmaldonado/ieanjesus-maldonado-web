@@ -26,6 +26,30 @@
 
   <!-- Estilos Editoriales -->
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Sistema de Apariencia (Prevención de Flash) -->
+  <script>
+    (function(){
+      // Dark mode is temporarily disabled for public release.
+      // Set DARK_MODE_ENABLED to true when dark theme development resumes.
+      var DARK_MODE_ENABLED = false;
+      try {
+        if (DARK_MODE_ENABLED) {
+          var s = localStorage.getItem('iean_theme') || 'system';
+          var isDark = s === 'dark' || (s === 'system' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme-choice', s);
+        } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+          document.documentElement.setAttribute('data-theme-choice', 'light');
+          document.documentElement.setAttribute('data-theme-disabled', 'true');
+        }
+      } catch(e){
+        document.documentElement.setAttribute('data-theme', 'light');
+        document.documentElement.setAttribute('data-theme-choice', 'light');
+      }
+    })();
+  </script>
 </head>
 
 <body style="background-color: var(--bg-cream);">

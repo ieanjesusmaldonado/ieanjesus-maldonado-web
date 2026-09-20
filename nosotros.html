@@ -47,6 +47,30 @@
 
   <!-- Estilos Editoriales -->
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Sistema de Apariencia (Prevención de Flash) -->
+  <script>
+    (function(){
+      // Dark mode is temporarily disabled for public release.
+      // Set DARK_MODE_ENABLED to true when dark theme development resumes.
+      var DARK_MODE_ENABLED = false;
+      try {
+        if (DARK_MODE_ENABLED) {
+          var s = localStorage.getItem('iean_theme') || 'system';
+          var isDark = s === 'dark' || (s === 'system' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme-choice', s);
+        } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+          document.documentElement.setAttribute('data-theme-choice', 'light');
+          document.documentElement.setAttribute('data-theme-disabled', 'true');
+        }
+      } catch(e){
+        document.documentElement.setAttribute('data-theme', 'light');
+        document.documentElement.setAttribute('data-theme-choice', 'light');
+      }
+    })();
+  </script>
 </head>
 
 <body>
@@ -80,7 +104,7 @@
           <li><a href="nosotros.html" class="nav-link active">Nosotros</a></li>
           <li><a href="celulas.html" class="nav-link">Células</a></li>
           <li><a href="ministerios.html" class="nav-link">Ministerios</a></li>
-          <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+          <li><a href="donar.html" class="nav-link">Donación</a></li>
         </ul>
       </nav>
 
@@ -149,9 +173,9 @@
 
         <div class="drawer-divider"></div>
 
-        <!-- 2. Actividades y Recursos -->
+        <!-- 2. Participa -->
         <div>
-          <span class="drawer-nav-section-title">ACTIVIDADES Y RECURSOS</span>
+          <span class="drawer-nav-section-title">PARTICIPA</span>
           <div class="drawer-resources-list">
             <!-- Agenda -->
             <a href="agenda.html" class="drawer-resource-card">
@@ -159,6 +183,14 @@
               <h3 class="drawer-resource-title">Agenda de la Iglesia</h3>
               <p class="drawer-resource-desc">Consulta actividades, fechas especiales y próximos eventos de la iglesia.</p>
               <span class="drawer-resource-cta">VER AGENDA →</span>
+            </a>
+
+            <!-- Ofrendas y donaciones -->
+            <a href="donar.html" class="drawer-resource-card drawer-resource-donate">
+              <span class="drawer-resource-badge"><i class="fa-solid fa-heart" style="color: var(--accent-coral);"></i> APORTES</span>
+              <h3 class="drawer-resource-title">Ofrendas y donaciones</h3>
+              <p class="drawer-resource-desc">Tu generosidad nos ayuda a sostener la obra de Dios y expandir el mensaje de esperanza.</p>
+              <span class="drawer-resource-cta">DONAR ONLINE →</span>
             </a>
 
             <!-- Petición de Oración -->
@@ -181,23 +213,22 @@
 
         <div class="drawer-divider"></div>
 
-        <!-- 3. Colaboración -->
-        <div>
-          <span class="drawer-nav-section-title">COLABORACIÓN</span>
-          <div class="drawer-resource-card" style="border-left: 3px solid var(--green-inst);">
-            <span class="drawer-resource-badge"><i class="fa-solid fa-hand-holding-heart"></i> DONACIONES</span>
-            <h3 class="drawer-resource-title" style="font-size: 1.05rem;">¿Quieres colaborar?</h3>
-            <p class="drawer-resource-desc">
-              Si deseas colaborar con la obra de la iglesia mediante una donación, puedes comunicarte directamente con nosotros.
-            </p>
-            <div style="font-size: 0.74rem; color: var(--ink-muted); font-weight: 500; margin-bottom: 0.85rem; line-height: 1.4;">
-              Ropa · Alimentos · Obras sociales · Ofrendas · Otros aportes
-            </div>
-            <a href="https://wa.me/59897432948?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20colaborar%20con%20la%20iglesia%20mediante%20una%20donaci%C3%B3n%20y%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20c%C3%B3mo%20hacerlo."
-              target="_blank" class="btn-editorial btn-whatsapp-editorial"
-              style="font-size: 0.78rem; padding: 0.48rem 0.9rem; width: 100%; justify-content: center; text-align: center;">
-              <i class="fa-brands fa-whatsapp"></i> CONTACTAR PARA COLABORAR →
-            </a>
+        <!-- 3. Apariencia -->
+        <div class="drawer-theme-section">
+          <span class="drawer-nav-section-title">APARIENCIA</span>
+          <div class="theme-selector-segmented" role="radiogroup" aria-label="Seleccionar Apariencia">
+            <button type="button" class="theme-option-btn active" data-theme-val="system" role="radio" aria-checked="true" title="Automático según tu dispositivo">
+              <i class="fa-solid fa-circle-half-stroke"></i>
+              <span>Sistema</span>
+            </button>
+            <button type="button" class="theme-option-btn" data-theme-val="light" role="radio" aria-checked="false" title="Modo Claro">
+              <i class="fa-regular fa-sun"></i>
+              <span>Claro</span>
+            </button>
+            <button type="button" class="theme-option-btn" data-theme-val="dark" role="radio" aria-checked="false" title="Modo Oscuro">
+              <i class="fa-solid fa-moon"></i>
+              <span>Oscuro</span>
+            </button>
           </div>
         </div>
 
@@ -240,96 +271,107 @@
 
     <!-- CUERPO DE CONTENIDO -->
     <section class="article-editorial-body">
-      <div class="container-narrow">
+      <div class="container">
         
-        <!-- Historia -->
-        <span class="editorial-eyebrow">01 / NUESTRA HISTORIA</span>
-        <h2>Una Obra Nacida en la Fe</h2>
-        <p>
-          La <strong>Iglesia Evangélica Apostólica del Nombre de Jesús (IEANJESÚS)</strong> es una comunidad de creyentes con presencia internacional en más de veinte naciones. En Maldonado, Uruguay, la congregación se ha desarrollado como un espacio acogedor, donde vecinos, jóvenes, niños y adultos mayores encuentran un refugio espiritual y una familia fraterna.
-        </p>
-        <p>
-          Desde nuestros inicios, el propósito no ha sido levantar una estructura religiosa fría, sino establecer un testimonio vivo del amor de Cristo en cada hogar a través de cultos de adoración, grupos celulares barriales y servicio social a quienes más lo necesitan.
-        </p>
+        <!-- 01. Historia -->
+        <div class="nosotros-prose">
+          <span class="editorial-eyebrow">01 / NUESTRA HISTORIA</span>
+          <h2>Una Obra Nacida en la Fe</h2>
+          <p>
+            La <strong>Iglesia Evangélica Apostólica del Nombre de Jesús (IEANJESÚS)</strong> es una comunidad de creyentes con presencia internacional en más de veinte naciones. En Maldonado, Uruguay, la congregación se ha desarrollado como un espacio acogedor, donde vecinos, jóvenes, niños y adultos mayores encuentran un refugio espiritual y una familia fraterna.
+          </p>
+          <p>
+            Desde nuestros inicios, el propósito no ha sido levantar una estructura religiosa fría, sino establecer un testimonio vivo del amor de Cristo en cada hogar a través de cultos de adoración, grupos celulares barriales y servicio social a quienes más lo necesitan.
+          </p>
 
-        <!-- Cita destacada -->
-        <div class="article-quote-box">
-          <div class="article-quote-text">
-            «Edificados sobre el fundamento de los apóstoles y profetas, siendo la principal piedra del ángulo Jesucristo mismo.»
+          <!-- Cita destacada -->
+          <div class="article-quote-box">
+            <div class="article-quote-text">
+              «Edificados sobre el fundamento de los apóstoles y profetas, siendo la principal piedra del ángulo Jesucristo mismo.»
+            </div>
+            <span class="article-quote-ref">EFESIOS 2:20</span>
           </div>
-          <span class="article-quote-ref">EFESIOS 2:20</span>
         </div>
 
-        <!-- Liderazgo Pastoral -->
+        <hr class="nosotros-divider">
+
+        <!-- 02. Liderazgo Pastoral -->
         <span class="editorial-eyebrow" id="pastor">02 / LIDERAZGO</span>
-        <h2>Pastor Franklin Salas</h2>
-        <div class="pastor-photo-wrap" style="margin: 1.5rem 0 2rem;">
-          <img src="assets/images/pastor-franklin.jpg"
-            onerror="this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80'"
-            alt="Pastor Franklin Salas de IEANJESÚS Maldonado"
-            class="pastor-photo-img">
+        <h2 style="font-size: clamp(1.65rem, 2.5vw, 2.2rem); font-weight: 700; color: var(--text-primary); letter-spacing: -0.025em; margin-top: 0.35rem; margin-bottom: 1.25rem;">Pastor Franklin Salas</h2>
+        
+        <div class="pastor-editorial-grid">
+          <div class="pastor-photo-wrap">
+            <img src="assets/images/pastor-franklin.jpg"
+              onerror="this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80'"
+              alt="Pastor Franklin Salas de IEANJESÚS Maldonado"
+              class="pastor-photo-img">
+          </div>
+          <div class="pastor-editorial-info">
+            <p>
+              El <strong>Pastor Franklin Salas</strong> es misionero, predicador y consejero bíblico. Junto a su familia lleva adelante un experimentado ministerio con el respaldo de Dios.
+            </p>
+            <p>
+              Su labor se ha caracterizado por la enseñanza clara de la Palabra de Dios, la formación de discípulos y el fortalecimiento de la Iglesia. Su mensaje busca llevar a las personas a una relación más profunda con Jesucristo y a vivir una fe práctica. Además, el Espíritu Santo respalda su ministerio con señales y sanidades divinas.
+            </p>
+            <p>
+              También comparte enseñanzas bíblicas mediante las redes sociales y su canal de YouTube, alcanzando a miles de personas en distintos países. Su propósito es continuar anunciando el evangelio y sirviendo a la obra de Dios.
+            </p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
+              <a href="https://www.youtube.com/@pastorfranklinsalas" target="_blank" class="btn-editorial btn-dark">
+                <i class="fa-brands fa-youtube" style="color: #FF0000;"></i> Canal de YouTube del Pastor
+              </a>
+              <a href="https://wa.me/59897432948?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20comunicarme%20con%20el%20Pastor%20Franklin%20Salas."
+                target="_blank" class="btn-editorial btn-whatsapp-editorial">
+                <i class="fa-brands fa-whatsapp"></i> Hablar con el Pastor
+              </a>
+            </div>
+          </div>
         </div>
-        <p>
-          El <strong>Pastor Franklin Salas</strong> es misionero, predicador y consejero bíblico. Junto a su familia lleva adelante un experimentado ministerio con el respaldo de Dios.
-        </p>
-        <p>
-          Su labor se ha caracterizado por la enseñanza clara de la Palabra de Dios, la formación de discípulos y el fortalecimiento de la Iglesia. Su mensaje busca llevar a las personas a una relación más profunda con Jesucristo y a vivir una fe práctica. Además, el Espíritu Santo respalda su ministerio con señales y sanidades divinas.
-        </p>
-        <p>
-          También comparte enseñanzas bíblicas mediante las redes sociales y su canal de YouTube, alcanzando a miles de personas en distintos países. Su propósito es continuar anunciando el evangelio y sirviendo a la obra de Dios.
-        </p>
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0 3rem;">
-          <a href="https://www.youtube.com/@pastorfranklinsalas" target="_blank" class="btn-editorial btn-dark">
-            <i class="fa-brands fa-youtube" style="color: #FF0000;"></i> Canal de YouTube del Pastor
-          </a>
-          <a href="https://wa.me/59897432948?text=Hola,%20Dios%20le%20bendiga.%20Quisiera%20comunicarme%20con%20el%20Pastor%20Franklin%20Salas."
-            target="_blank" class="btn-editorial btn-whatsapp-editorial">
-            <i class="fa-brands fa-whatsapp"></i> Hablar con el Pastor
-          </a>
+
+        <hr class="nosotros-divider">
+
+        <!-- 03. En qué Creemos -->
+        <div class="nosotros-prose">
+          <span class="editorial-eyebrow" id="doctrina">03 / DOCTRINA APOSTÓLICA</span>
+          <h2>En qué Creemos</h2>
+          <p>
+            Nuestra doctrina se fundamenta exclusivamente en las Sagradas Escrituras (la Santa Biblia), inspiradas por el Espíritu Santo:
+          </p>
         </div>
 
-        <hr style="border: 0; border-top: 1px solid var(--border-fine); margin: 3rem 0;">
-
-        <!-- En qué Creemos -->
-        <span class="editorial-eyebrow" id="doctrina">03 / DOCTRINA APOSTÓLICA</span>
-        <h2>En qué Creemos</h2>
-        <p>
-          Nuestra doctrina se fundamenta exclusivamente en las Sagradas Escrituras (la Santa Biblia), inspiradas por el Espíritu Santo:
-        </p>
-
-        <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1.5rem;">
-          <div style="background: var(--bg-cream-card); border: 1px solid var(--border-card); padding: 1.5rem; border-radius: var(--radius-sm);">
-            <h3 style="font-size: 1.15rem; margin-top: 0; color: var(--green-inst);">1. La Unicidad de Dios</h3>
-            <p style="margin-bottom: 0; font-size: 0.95rem;">
+        <div class="doctrina-grid-layout">
+          <div class="doctrina-card-item">
+            <h3>1. La Unicidad de Dios</h3>
+            <p>
               Creemos en un solo Dios eterno, invisible, todopoderoso y creador de todas las cosas, quien se manifestó plenamente en carne humana en la persona de Jesucristo para redimir a la humanidad (1 Timoteo 3:16; Juan 1:1, 14; Deuteronomio 6:4).
             </p>
           </div>
 
-          <div style="background: var(--bg-cream-card); border: 1px solid var(--border-card); padding: 1.5rem; border-radius: var(--radius-sm);">
-            <h3 style="font-size: 1.15rem; margin-top: 0; color: var(--green-inst);">2. El Bautismo en el Nombre de Jesús</h3>
-            <p style="margin-bottom: 0; font-size: 0.95rem;">
+          <div class="doctrina-card-item">
+            <h3>2. El Bautismo en el Nombre de Jesús</h3>
+            <p>
               Creemos en el bautismo bíblico por inmersión completa en agua, administrado en el glorioso Nombre de Jesucristo para el perdón y remisión de los pecados, conforme a la ordenanza apostólica (Hechos 2:38; Hechos 8:16; Hechos 19:5).
             </p>
           </div>
 
-          <div style="background: var(--bg-cream-card); border: 1px solid var(--border-card); padding: 1.5rem; border-radius: var(--radius-sm);">
-            <h3 style="font-size: 1.15rem; margin-top: 0; color: var(--green-inst);">3. La Promesa del Espíritu Santo</h3>
-            <p style="margin-bottom: 0; font-size: 0.95rem;">
+          <div class="doctrina-card-item">
+            <h3>3. La Promesa del Espíritu Santo</h3>
+            <p>
               Creemos en el bautismo del Espíritu Santo como una experiencia viva para el creyente hoy, manifestada con la señal inicial de hablar en nuevas lenguas según el Espíritu concede expresarse (Hechos 2:4; Hechos 10:44-46).
             </p>
           </div>
 
-          <div style="background: var(--bg-cream-card); border: 1px solid var(--border-card); padding: 1.5rem; border-radius: var(--radius-sm);">
-            <h3 style="font-size: 1.15rem; margin-top: 0; color: var(--green-inst);">4. Salvación por Gracia y Vida Santa</h3>
-            <p style="margin-bottom: 0; font-size: 0.95rem;">
+          <div class="doctrina-card-item">
+            <h3>4. Salvación por Gracia y Vida Santa</h3>
+            <p>
               La salvación es un don inmerecido de Dios mediante la fe en la obra redentora de Jesucristo en la cruz. Llamamos a cada creyente a vivir una vida consagrada, íntegra y de amor hacia su prójimo (Efesios 2:8-9; Hebreos 12:14).
             </p>
           </div>
         </div>
 
-        <div style="margin-top: 3.5rem; text-align: center; background: var(--bg-cream-card); border: 1px solid var(--border-card); padding: 2.5rem 1.5rem; border-radius: var(--radius-sm);">
-          <h3 style="margin-top: 0; margin-bottom: 0.75rem;">¿Deseas acompañarnos en un culto?</h3>
-          <p style="max-width: 500px; margin: 0 auto 1.5rem; font-size: 0.95rem;">
+        <div class="nosotros-cta-box">
+          <h3 style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.4rem;">¿Deseas acompañarnos en un culto?</h3>
+          <p style="max-width: 540px; margin: 0 auto 1.5rem; font-size: 0.98rem; color: var(--text-secondary);">
             Nuestras puertas están abiertas para ti y tu familia. Ven a compartir un tiempo de adoración sincera y estudio de la Palabra.
           </p>
           <a href="contacto.html" class="btn-editorial btn-green-inst">
@@ -543,10 +585,13 @@
           <ul class="footer-links-list">
             <li><a href="index.html">Inicio</a></li>
             <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="agenda.html">Agenda</a></li>
+            <li><a href="donar.html">Ofrendas y Donaciones</a></li>
             <li><a href="celulas.html">Células</a></li>
             <li><a href="ministerios.html">Ministerios</a></li>
             <li><a href="recursos.html">Recursos</a></li>
             <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="privacidad.html">Política de Privacidad</a></li>
           </ul>
         </div>
 
@@ -575,7 +620,7 @@
       </div>
 
       <div class="footer-bottom-bar">
-        <span>&copy; <span id="current-year">2026</span> IEANJESÚS Maldonado. Todos los derechos reservados.</span>
+        <span>&copy; <span id="current-year">2026</span> IEANJESÚS Maldonado · <a href="privacidad.html" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">Política de Privacidad</a></span>
         <span>MALDONADO, URUGUAY · EFESIOS 4:5</span>
       </div>
     </div>
@@ -589,12 +634,16 @@
       <button class="chat-close-btn-editorial" id="chatbot-close">&times;</button>
     </div>
     <div class="chat-body-editorial" id="chat-body">
-      <div class="chat-msg bot">¡La paz del Señor! 🕊️ ¿En qué podemos orientarte hoy?</div>
+      <div class="chat-msg bot">¡La paz del Señor! 🕊️ ¿En qué podemos ayudarte?</div>
       <div class="chat-chips-container" id="chat-chips">
-        <button class="chat-chip" data-query="horarios">🕒 Horarios de cultos</button>
-        <button class="chat-chip" data-query="ubicacion">📍 Ubicación en Maldonado</button>
-        <button class="chat-chip" data-query="celulas">👥 Células en los barrios</button>
-        <button class="chat-chip" data-query="creencias">✝️ En qué creemos</button>
+        <button type="button" class="chat-chip" data-query="Próximas actividades"><i class="fa-regular fa-calendar-check"></i> Próximas actividades</button>
+        <button type="button" class="chat-chip" data-query="Horarios de cultos"><i class="fa-regular fa-clock"></i> Horarios de cultos</button>
+        <button type="button" class="chat-chip" data-query="Células"><i class="fa-solid fa-people-roof"></i> Células</button>
+        <button type="button" class="chat-chip" data-query="Donación"><i class="fa-solid fa-hand-holding-heart"></i> Donación</button>
+        <button type="button" class="chat-chip" data-query="Petición de oración"><i class="fa-solid fa-hands-praying"></i> Petición de oración</button>
+        <button type="button" class="chat-chip" data-query="Material gratuito"><i class="fa-solid fa-book-open"></i> Material gratuito</button>
+        <button type="button" class="chat-chip" data-query="Ubicación"><i class="fa-solid fa-location-dot"></i> Ubicación</button>
+        <button type="button" class="chat-chip" data-query="Contactar por WhatsApp"><i class="fa-brands fa-whatsapp"></i> Contactar por WhatsApp</button>
       </div>
     </div>
     <div class="chat-footer-editorial">
@@ -628,6 +677,10 @@
           <textarea id="prayer-motive" class="form-textarea-editorial" rows="4"
             placeholder="Escribe aquí tu petición de oración..." required></textarea>
         </div>
+
+        <p class="form-privacy-note" style="font-size: 0.80rem; color: var(--ink-secondary); line-height: 1.4; margin-top: 0.75rem; margin-bottom: 0.75rem;">
+          <i class="fa-solid fa-lock" style="font-size: 0.75rem; color: var(--green-inst);"></i> La información que compartas será utilizada exclusivamente para recibir y atender tu petición de oración. Evita incluir información sensible de terceros. Consulta nuestra <a href="privacidad.html" style="color: var(--green-inst); text-decoration: underline; font-weight: 500;">Política de Privacidad</a>.
+        </p>
 
         <button type="submit" class="btn-editorial btn-whatsapp-editorial" style="width: 100%; margin-top: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
           <i class="fa-brands fa-whatsapp"></i> ENVIAR PETICIÓN POR WHATSAPP
@@ -673,6 +726,35 @@
       </a>
     </div>
   </div>
+
+  <!-- ==========================================
+       SELECTOR FLOTANTE DE APARIENCIA (SUGERENCIA INICIAL)
+       ========================================== -->
+  <aside class="theme-prompt-banner" id="theme-prompt-banner" aria-label="Sugerencia de Apariencia" style="display: none;">
+    <div class="theme-prompt-card">
+      <div class="theme-prompt-header">
+        <div class="theme-prompt-text-group">
+          <span class="theme-prompt-eyebrow">APARIENCIA</span>
+          <p class="theme-prompt-title">Elige cómo quieres ver el sitio</p>
+        </div>
+        <button type="button" class="theme-prompt-close" id="theme-prompt-close-btn" aria-label="Cerrar sugerencia de tema">&times;</button>
+      </div>
+      <div class="theme-prompt-options" role="group" aria-label="Opciones de tema">
+        <button type="button" class="theme-prompt-btn" data-theme-val="light">
+          <i class="fa-regular fa-sun"></i>
+          <span>Claro</span>
+        </button>
+        <button type="button" class="theme-prompt-btn is-active" data-theme-val="system">
+          <i class="fa-solid fa-circle-half-stroke"></i>
+          <span>Sistema</span>
+        </button>
+        <button type="button" class="theme-prompt-btn" data-theme-val="dark">
+          <i class="fa-solid fa-moon"></i>
+          <span>Oscuro</span>
+        </button>
+      </div>
+    </div>
+  </aside>
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

@@ -59,6 +59,190 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', playHeroVideos, { passive: true });
   }
 
+  // =========================================================================
+  // 2.2 SISTEMA GLOBAL DE APARIENCIA (SISTEMA / CLARO / OSCURO)
+  // =========================================================================
+  // Dark mode is temporarily disabled for public release.
+  // Set DARK_MODE_ENABLED to true when dark theme development resumes.
+  const DARK_MODE_ENABLED = false;
+
+  const THEME_STORAGE_KEY = 'iean_theme';
+  const THEME_PROMPT_STORAGE_KEY = 'iean_theme_prompt_shown';
+
+  function getSavedThemeChoice() {
+    if (!DARK_MODE_ENABLED) return 'light';
+    try {
+      return localStorage.getItem(THEME_STORAGE_KEY) || 'system';
+    } catch (e) {
+      return 'system';
+    }
+  }
+
+  function applyTheme(choice) {
+    const root = document.documentElement;
+
+    if (!DARK_MODE_ENABLED) {
+      root.setAttribute('data-theme', 'light');
+      root.setAttribute('data-theme-choice', 'light');
+      root.setAttribute('data-theme-disabled', 'true');
+      return;
+    }
+
+    root.removeAttribute('data-theme-disabled');
+    root.setAttribute('data-theme-choice', choice);
+
+    let effectiveTheme = choice;
+    if (choice === 'system') {
+      const isSystemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      effectiveTheme = isSystemDark ? 'dark' : 'light';
+    }
+
+    if (effectiveTheme === 'dark') {
+      root.setAttribute('data-theme', 'dark');
+    } else {
+      root.setAttribute('data-theme', 'light');
+    }
+
+    // Sincronizar botones del selector en el drawer menú
+    const drawerThemeBtns = document.querySelectorAll('.theme-option-btn');
+    drawerThemeBtns.forEach(btn => {
+      const val = btn.getAttribute('data-theme-val');
+      const isActive = val === choice;
+      if (isActive) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-checked', 'true');
+      } else {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-checked', 'false');
+      }
+    });
+
+    // Sincronizar botones en el prompt flotante
+    const promptThemeBtns = document.querySelectorAll('.theme-prompt-btn');
+    promptThemeBtns.forEach(btn => {
+      const val = btn.getAttribute('data-theme-val');
+      if (val === choice) {
+        btn.classList.add('is-active');
+      } else {
+        btn.classList.remove('is-active');
+      }
+    });
+  }
+
+  function setTheme(choice, userInitiated = true) {
+    if (!DARK_MODE_ENABLED) return;
+    applyTheme(choice);
+    if (userInitiated) {
+      try {
+        localStorage.setItem(THEME_STORAGE_KEY, choice);
+        localStorage.setItem(THEME_PROMPT_STORAGE_KEY, 'true');
+      } catch (e) {}
+      hideThemePrompt();
+    }
+  }
+
+  // Listener para cambios de tema en el Sistema Operativo (solo si está habilitado y en 'system')
+  if (DARK_MODE_ENABLED) {
+    try {
+      const darkMedia = window.matchMedia('(prefers-color-scheme: dark)');
+      const handleOSThemeChange = () => {
+        const currentChoice = getSavedThemeChoice();
+        if (currentChoice === 'system') {
+          applyTheme('system');
+        }
+      };
+      if (darkMedia.addEventListener) {
+        darkMedia.addEventListener('change', handleOSThemeChange);
+      } else if (darkMedia.addListener) {
+        darkMedia.addListener(handleOSThemeChange);
+      }
+    } catch (e) {}
+  }
+
+  // Wire botones del Drawer
+  const drawerThemeBtns = document.querySelectorAll('.theme-option-btn');
+  drawerThemeBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!DARK_MODE_ENABLED) return;
+      const val = btn.getAttribute('data-theme-val');
+      if (val) {
+        setTheme(val, true);
+      }
+    });
+  });
+
+  // Prompt Flotante Inicial
+  const themePromptBanner = document.getElementById('theme-prompt-banner');
+  const themePromptCloseBtn = document.getElementById('theme-prompt-close-btn');
+
+  function hideThemePrompt() {
+    if (themePromptBanner) {
+      themePromptBanner.style.transition = 'opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)';
+      themePromptBanner.style.opacity = '0';
+      themePromptBanner.style.transform = 'translateY(12px) scale(0.96)';
+      setTimeout(() => {
+        themePromptBanner.style.display = 'none';
+      }, 260);
+    }
+  }
+
+  // Inicialización visual del tema
+  if (!DARK_MODE_ENABLED) {
+    applyTheme('light');
+    if (themePromptBanner) {
+      themePromptBanner.style.display = 'none';
+    }
+    const drawerThemeSections = document.querySelectorAll('.drawer-theme-section');
+    drawerThemeSections.forEach(sec => {
+      sec.style.display = 'none';
+      const prev = sec.previousElementSibling;
+      if (prev && prev.classList.contains('drawer-divider')) {
+        prev.style.display = 'none';
+      }
+    });
+  } else {
+    try {
+      const savedChoice = localStorage.getItem(THEME_STORAGE_KEY);
+      const promptShown = localStorage.getItem(THEME_PROMPT_STORAGE_KEY);
+
+      // Inicializar estado visual
+      applyTheme(savedChoice || 'system');
+
+      // Si el usuario aún no ha guardado una preferencia ni descartado el prompt, mostrar sugerencia
+      if (!savedChoice && !promptShown && themePromptBanner) {
+        setTimeout(() => {
+          themePromptBanner.style.display = 'block';
+        }, 1200);
+      }
+    } catch (e) {
+      applyTheme('system');
+    }
+  }
+
+  // Wire botones del Prompt Flotante
+  const promptThemeBtns = document.querySelectorAll('.theme-prompt-btn');
+  promptThemeBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!DARK_MODE_ENABLED) return;
+      const val = btn.getAttribute('data-theme-val');
+      if (val) {
+        setTheme(val, true);
+      }
+    });
+  });
+
+  if (themePromptCloseBtn) {
+    themePromptCloseBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      try {
+        localStorage.setItem(THEME_PROMPT_STORAGE_KEY, 'true');
+      } catch (err) {}
+      hideThemePrompt();
+    });
+  }
+
   // 3. DRAWER LATERAL: HERRAMIENTAS Y RECURSOS
   const drawerToggleBtns = document.querySelectorAll('.drawer-toggle-btn');
   const drawerBackdrop = document.getElementById('drawer-backdrop');
@@ -690,6 +874,82 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // 9.1 MODAL DE DATOS DE TRANSFERENCIA BANCARIA (/donar)
+  const transferModal = document.getElementById('transfer-modal');
+  const transferCloseBtn = document.getElementById('transfer-modal-close');
+  const openTransferBtn = document.getElementById('open-transfer-btn');
+  const copyAccountBtn = document.getElementById('copy-account-btn');
+
+  const openTransferModal = () => {
+    if (transferModal) {
+      transferModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      if (transferCloseBtn) transferCloseBtn.focus();
+    }
+  };
+
+  const closeTransferModal = () => {
+    if (transferModal) {
+      transferModal.classList.remove('active');
+      document.body.style.overflow = '';
+      if (openTransferBtn) openTransferBtn.focus();
+    }
+  };
+
+  if (openTransferBtn) {
+    openTransferBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openTransferModal();
+    });
+  }
+
+  if (transferCloseBtn) {
+    transferCloseBtn.addEventListener('click', closeTransferModal);
+  }
+
+  if (transferModal) {
+    transferModal.addEventListener('click', (e) => {
+      if (e.target === transferModal) closeTransferModal();
+    });
+  }
+
+  if (copyAccountBtn) {
+    copyAccountBtn.addEventListener('click', async () => {
+      const accountNumber = '110718652-00001';
+      try {
+        if (navigator.clipboard && window.isSecureContext && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(accountNumber);
+        } else {
+          const tempInput = document.createElement('input');
+          tempInput.value = accountNumber;
+          tempInput.style.position = 'absolute';
+          tempInput.style.left = '-9999px';
+          document.body.appendChild(tempInput);
+          tempInput.select();
+          document.execCommand('copy');
+          document.body.removeChild(tempInput);
+        }
+
+        const originalHtml = '<i class="fa-regular fa-copy"></i> <span>COPIAR CUENTA</span>';
+        copyAccountBtn.classList.add('is-copied');
+        copyAccountBtn.innerHTML = '<i class="fa-solid fa-check"></i> <span>CUENTA COPIADA ✓</span>';
+        
+        setTimeout(() => {
+          copyAccountBtn.classList.remove('is-copied');
+          copyAccountBtn.innerHTML = originalHtml;
+        }, 2200);
+      } catch (err) {
+        console.error('Error al copiar número de cuenta:', err);
+      }
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && transferModal && transferModal.classList.contains('active')) {
+      closeTransferModal();
+    }
+  });
+
   // 10. CHATBOT ASISTENTE VIRTUAL (IEAN-BOT)
   const chatbotToggle = document.getElementById('chatbot-toggle');
   const chatbotClose = document.getElementById('chatbot-close');
@@ -716,55 +976,115 @@ document.addEventListener('DOMContentLoaded', () => {
       msgEl.innerHTML = text;
       chatBody.appendChild(msgEl);
       chatBody.scrollTop = chatBody.scrollHeight;
+
+      // Re-vincular botones de oración que aparezcan dentro de los mensajes del bot
+      msgEl.querySelectorAll('.open-prayer-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const prayerModal = document.getElementById('prayer-modal');
+          if (prayerModal) {
+            prayerModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+          }
+        });
+      });
+    };
+
+    const normalizeText = (str) => {
+      return (str || '')
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '');
     };
 
     const botKnowledge = {
-      horarios: 'Nuestros cultos generales en la sede central son:<br>• <strong>Jueves:</strong> 19:30 hs<br>• <strong>Domingos:</strong> 18:30 hs.<br>Además tenemos 8 células en hogares de lunes a viernes. <a href="celulas.html" style="color: var(--green-inst); text-decoration: underline; font-weight: 600;">Ver todos los horarios</a>.',
-      ubicacion: 'Nuestra sede central se encuentra en <strong>Av. Wilson Ferreira Aldunate & 25 de Agosto</strong>, Maldonado, Uruguay. <a href="contacto.html" style="color: var(--green-inst); text-decoration: underline; font-weight: 600;">Ver mapa y cómo llegar</a>.',
-      celulas: 'Contamos con 8 células activas en: Centro (Viernes 19:00 hs), Barrio Norte (Viernes 19:30 hs), Cuñetti (Miércoles 19:30 hs), Cerro Pelado (Martes 19:30 hs), La Milagrosa (Martes 19:00 hs), Hipódromo (Lunes 19:00 hs), Maldonado Nuevo (Viernes 19:00 hs) y Rocha (Miércoles 19:30 hs). <a href="celulas.html" style="color: var(--green-inst); text-decoration: underline; font-weight: 600;">Explorar las células</a>.',
-      pastor: 'Nuestro pastor es el <strong>Pastor Franklin Salas</strong>, misionero y predicador bíblico. <a href="nosotros.html#pastor" style="color: var(--green-inst); text-decoration: underline; font-weight: 600;">Conocer más del pastor</a>.',
-      agenda: 'Puedes consultar nuestras próximas actividades y eventos especiales en la <a href="agenda.html" style="color: var(--green-inst); text-decoration: underline; font-weight: 600;">Agenda Oficial</a>.',
-      recursos: 'Descarga folletos, materiales de evangelismo, Plan Cornelio y bosquejos en <a href="recursos.html" style="color: var(--green-inst); text-decoration: underline; font-weight: 600;">Material Gratuito</a>.',
-      creencias: 'Creemos en un solo Dios manifestado en Jesucristo, en el bautismo bíblico en el Nombre de Jesús por inmersión y en la salvación por gracia (Efesios 4:5). <a href="nosotros.html#doctrina" style="color: var(--green-inst); text-decoration: underline; font-weight: 600;">Leer en qué creemos</a>.',
-      jesus: 'Jesús es el camino, la verdad y la vida. Si deseas conocer su mensaje o dar el paso para acercarte a Dios, puedes leer nuestra guía. <a href="jesus.html" style="color: var(--green-inst); text-decoration: underline; font-weight: 600;">Ir a Conoce a Jesús</a>.',
-      oracion: 'Puedes solicitar oración en cualquier momento abriendo nuestro formulario de intercesión o escribiéndonos directamente por WhatsApp.'
+      donacion_transferencia: `Para realizar una <strong>transferencia bancaria en Uruguay</strong>, disponemos de cuenta en <strong>BROU</strong> (Caja de Ahorros). Puedes ver los datos exactos y copiarlos con un clic en nuestra sección oficial:<br><a href="donar.html" class="chat-link-cta"><i class="fa-solid fa-hand-holding-heart"></i> VER DATOS DE TRANSFERENCIA →</a>`,
+      donacion_exterior: `Si deseas realizar tu aporte <strong>desde el exterior</strong>, puedes donar con <strong>tarjeta de crédito o débito</strong> a través de nuestra plataforma de Donaciones, o contactarnos por WhatsApp para coordinar otra alternativa.<br><a href="donar.html" class="chat-link-cta"><i class="fa-solid fa-credit-card"></i> IR A DONACIONES ONLINE →</a> <a href="https://wa.me/59897432948?text=Hola,%20quisiera%20hacer%20un%20aporte%20desde%20el%20exterior." target="_blank" class="chat-link-cta"><i class="fa-brands fa-whatsapp"></i> WHATSAPP INTERNACIONAL →</a>`,
+      donacion: `Puedes realizar tu aporte desde nuestra sección de <strong>Donaciones</strong>. Allí encontrarás las opciones disponibles para donar con <strong>tarjeta o Mercado Pago</strong>, realizar una <strong>transferencia en Uruguay (BROU)</strong> o comunicarte por WhatsApp si necesitas otra alternativa.<br><a href="donar.html" class="chat-link-cta"><i class="fa-solid fa-hand-holding-heart"></i> IR A DONACIONES →</a>`,
+      agenda: `Puedes consultar las próximas actividades, fechas especiales y la programación completa de la iglesia en nuestra <strong>Agenda Oficial</strong>, además de suscribirte a tu calendario personal:<br><a href="agenda.html" class="chat-link-cta"><i class="fa-regular fa-calendar-check"></i> VER AGENDA COMPLETA →</a>`,
+      horarios: `Nuestros horarios de cultos generales en la Sede Central son:<br>• <strong>Jueves:</strong> 19:30 hs (Culto de Adoración y Palabra)<br>• <strong>Domingos:</strong> 10:00 hs (Evangelismo en la Feria)<br>• <strong>Domingos:</strong> 18:30 hs (Gran Celebración Dominical)<br><br>Además contamos con 8 células barriales entre semana.<br><a href="agenda.html" class="chat-link-cta"><i class="fa-regular fa-calendar-check"></i> VER AGENDA Y CULTOS →</a>`,
+      celulas: `Contamos con 8 células familiares en distintos barrios:<br>• <strong>Lunes 19:00 hs:</strong> Hipódromo<br>• <strong>Martes 19:00 hs:</strong> La Milagrosa<br>• <strong>Martes 19:30 hs:</strong> Cerro Pelado<br>• <strong>Miércoles 19:30 hs:</strong> Cuñetti y Rocha<br>• <strong>Viernes 19:00 hs:</strong> Centro y Maldonado Nuevo<br>• <strong>Viernes 19:30 hs:</strong> Barrio Norte<br><br><a href="celulas.html" class="chat-link-cta"><i class="fa-solid fa-people-roof"></i> VER TODAS LAS CÉLULAS →</a> <a href="https://wa.me/59897432948?text=Hola,%20quisiera%20conocer%20la%20direcci%C3%B3n%20exacta%20de%20una%20c%C3%A9lula." target="_blank" class="chat-link-cta"><i class="fa-brands fa-whatsapp"></i> PEDIR UBICACIÓN EXACTA →</a>`,
+      ministerios: `Nuestra iglesia cuenta con 10 ministerios y comités activos: <strong>Educación Cristiana</strong>, <strong>Comité de Jóvenes</strong>, <strong>Damas Dorcas</strong>, <strong>Caballeros</strong>, <strong>Música y Alabanza</strong>, <strong>Comunicaciones</strong>, <strong>Obra Social</strong>, <strong>Intercesión</strong>, <strong>Misiones y Extensión</strong> y <strong>Junta Local</strong>.<br><a href="ministerios.html" class="chat-link-cta"><i class="fa-solid fa-users"></i> CONOCER LOS MINISTERIOS →</a>`,
+      pastor: `El <strong>Pastor Franklin Salas</strong> es misionero, predicador y consejero bíblico. Junto a su familia lidera IEANJESÚS Maldonado.<br><a href="nosotros.html#pastor" class="chat-link-cta"><i class="fa-solid fa-user"></i> PERFIL DEL PASTOR →</a> <a href="https://www.youtube.com/@pastorfranklinsalas" target="_blank" class="chat-link-cta"><i class="fa-brands fa-youtube"></i> YOUTUBE DEL PASTOR →</a> <a href="https://wa.me/59897432948?text=Hola,%20quisiera%20comunicarme%20con%20el%20Pastor%20Franklin%20Salas." target="_blank" class="chat-link-cta"><i class="fa-brands fa-whatsapp"></i> CONTACTAR AL PASTOR →</a>`,
+      oracion: `Queremos orar por ti y tu familia. Puedes enviar tu motivo de intercesión a través de nuestro formulario oficial o escribirnos por WhatsApp.<br><button type="button" class="chat-link-cta open-prayer-btn"><i class="fa-solid fa-hands-praying"></i> ENVIAR PETICIÓN DE ORACIÓN →</button> <a href="https://wa.me/59897432948?text=Hola,%20quisiera%20pedir%20oraci%C3%B3n%20por..." target="_blank" class="chat-link-cta"><i class="fa-brands fa-whatsapp"></i> PEDIR POR WHATSAPP →</a>`,
+      recursos: `En nuestra sección de <strong>Material Gratuito</strong> puedes descargar libremente folletos de evangelismo, estudios bíblicos, bosquejos y el Plan Cornelio:<br><a href="recursos.html" class="chat-link-cta"><i class="fa-solid fa-book-open"></i> DESCARGAR MATERIAL GRATUITO →</a>`,
+      ubicacion: `Nuestra sede central se encuentra en <strong>Av. Wilson Ferreira Aldunate & 25 de Agosto</strong>, Maldonado, Uruguay.<br><a href="contacto.html" class="chat-link-cta"><i class="fa-solid fa-location-dot"></i> VER MAPA Y CONTACTO →</a> <a href="https://maps.app.goo.gl/Wde2KanvJQ8BYH8G6" target="_blank" class="chat-link-cta"><i class="fa-solid fa-diamond-turn-right"></i> ABRIR EN GOOGLE MAPS →</a>`,
+      contacto: `Puedes comunicarte con nosotros por los canales oficiales:<br>• <strong>WhatsApp:</strong> +598 97 432 948<br>• <strong>Instagram:</strong> @ieanjesusmaldonado<br>• <strong>Facebook:</strong> IEANJESÚS Maldonado<br>• <strong>YouTube:</strong> @pastorfranklinsalas<br><a href="contacto.html" class="chat-link-cta"><i class="fa-solid fa-envelope"></i> IR A CONTACTO →</a> <a href="https://wa.me/59897432948" target="_blank" class="chat-link-cta"><i class="fa-brands fa-whatsapp"></i> ABRIR WHATSAPP →</a>`,
+      jesus: `Jesucristo es el Señor y el Salvador de nuestras vidas. Te invitamos a leer nuestra guía sobre la fe, la gracia y el camino a Dios:<br><a href="jesus.html" class="chat-link-cta"><i class="fa-solid fa-heart"></i> CONOCE A JESÚS →</a>`,
+      doctrina: `Nuestra doctrina se fundamenta en las Sagradas Escrituras: la Unicidad de Dios manifestado en Jesucristo (1 Timoteo 3:16), el Bautismo bíblico en el Nombre de Jesús y el poder del Espíritu Santo.<br><a href="nosotros.html#doctrina" class="chat-link-cta"><i class="fa-solid fa-book-bible"></i> LEER EN QUÉ CREEMOS →</a>`
     };
 
     const processBotQuery = (query) => {
-      const q = query.toLowerCase();
+      const q = normalizeText(query);
       let response = '';
 
-      if (q.includes('horari') || q.includes('hora') || q.includes('dia') || q.includes('cuándo') || q.includes('reun')) {
-        response = botKnowledge.horarios;
-      } else if (q.includes('agenda') || q.includes('evento') || q.includes('actividad') || q.includes('fecha')) {
-        response = botKnowledge.agenda;
-      } else if (q.includes('recurso') || q.includes('material') || q.includes('folleto') || q.includes('bosquejo') || q.includes('cornelio')) {
-        response = botKnowledge.recursos;
-      } else if (q.includes('donde') || q.includes('direcci') || q.includes('ubicaci') || q.includes('mapa') || q.includes('llegar')) {
-        response = botKnowledge.ubicacion;
-      } else if (q.includes('celula') || q.includes('hogar') || q.includes('barrio')) {
-        response = botKnowledge.celulas;
-      } else if (q.includes('pastor') || q.includes('franklin') || q.includes('lider')) {
-        response = botKnowledge.pastor;
-      } else if (q.includes('cree') || q.includes('doctrina') || q.includes('bautismo') || q.includes('fe')) {
-        response = botKnowledge.creencias;
-      } else if (q.includes('jesus') || q.includes('salvac') || q.includes('volver') || q.includes('dios')) {
-        response = botKnowledge.jesus;
-      } else if (q.includes('oraci') || q.includes('rezar') || q.includes('peticion') || q.includes('pedir')) {
+      // 1. DONACIONES / OFRENDAS (Prioridad alta)
+      if (q.includes('transferencia') || q.includes('brou') || q.includes('banco') || q.includes('cuenta bancaria')) {
+        response = botKnowledge.donacion_transferencia;
+      } else if (q.includes('otro pais') || q.includes('exterior') || q.includes('extranjero') || q.includes('afuera') || q.includes('internacional')) {
+        response = botKnowledge.donacion_exterior;
+      } else if (q.includes('donac') || q.includes('donar') || q.includes('ofrend') || q.includes('aporte') || q.includes('aportar') || q.includes('diezmo') || q.includes('colaborar') || q.includes('mercado pago') || q.includes('tarjeta') || q.includes('ayuda economica') || q.includes('ayudar economicamente') || q.includes('como puedo donar') || q.includes('como donar') || q.includes('dar una ofrenda')) {
+        response = botKnowledge.donacion;
+      }
+      // 2. ORACIÓN / INTERCESIÓN
+      else if (q.includes('oraci') || q.includes('orar') || q.includes('rezar') || q.includes('peticion') || q.includes('interces') || q.includes('oren por mi') || q.includes('necesito oracion') || q.includes('quiero pedir oracion') || q.includes('pedir oracion')) {
         response = botKnowledge.oracion;
-      } else {
-        response = 'Gracias por escribirnos. Puedes consultar sobre nuestra <strong>agenda</strong>, <strong>horarios</strong>, <strong>material gratuito</strong>, <strong>células barriales</strong> o nuestro <strong>pastor</strong>. También puedes <a href="https://wa.me/59897432948" target="_blank" style="color: var(--green-inst); text-decoration: underline; font-weight: 600;">escribirnos por WhatsApp</a>.';
+      }
+      // 3. HORARIOS DE CULTOS
+      else if (q.includes('horari') || q.includes('hora') || q.includes('a que hora') || q.includes('cuando es el proximo culto') || q.includes('proximo culto') || q.includes('cuando son los cultos') || q.includes('dia de culto') || q.includes('dias de culto') || q.includes('culto dominical') || q.includes('feria') || q.includes('celebracion')) {
+        response = botKnowledge.horarios;
+      }
+      // 4. AGENDA / ACTIVIDADES / EVENTOS
+      else if (q.includes('agenda') || q.includes('actividad') || q.includes('evento') || q.includes('calendario') || q.includes('programacion') || q.includes('fechas') || q.includes('cuando hay') || q.includes('ics') || q.includes('google calendar')) {
+        response = botKnowledge.agenda;
+      }
+      // 5. CÉLULAS
+      else if (q.includes('celula') || q.includes('grupo familiar') || q.includes('hogar') || q.includes('hogares') || q.includes('barrio') || q.includes('rocha') || q.includes('cunetti') || q.includes('pelado') || q.includes('milagrosa') || q.includes('hipodromo')) {
+        response = botKnowledge.celulas;
+      }
+      // 6. MINISTERIOS / COMITÉS
+      else if (q.includes('ministerio') || q.includes('comite') || q.includes('damas') || q.includes('dorcas') || q.includes('jovenes') || q.includes('caballeros') || q.includes('musica') || q.includes('alabanza') || q.includes('educacion') || q.includes('comunicaciones') || q.includes('obra social') || q.includes('misiones') || q.includes('junta')) {
+        response = botKnowledge.ministerios;
+      }
+      // 7. PASTOR FRANKLIN SALAS
+      else if (q.includes('pastor') || q.includes('franklin') || q.includes('salas') || q.includes('hablar con el pastor') || q.includes('pastoral') || q.includes('lider')) {
+        response = botKnowledge.pastor;
+      }
+      // 8. MATERIAL GRATUITO / DESCARGAS / ESTUDIOS
+      else if (q.includes('material') || q.includes('gratuito') || q.includes('recurso') || q.includes('estudio') || q.includes('folleto') || q.includes('bosquejo') || q.includes('cornelio') || q.includes('descarga') || q.includes('biblico')) {
+        response = botKnowledge.recursos;
+      }
+      // 9. UBICACIÓN / DIRECCIÓN / MAPA
+      else if (q.includes('donde') || q.includes('direccion') || q.includes('ubicac') || q.includes('como llegar') || q.includes('mapa') || q.includes('donde queda') || q.includes('donde esta') || q.includes('sede central')) {
+        response = botKnowledge.ubicacion;
+      }
+      // 10. CONTACTO / WHATSAPP / REDES
+      else if (q.includes('whatsapp') || q.includes('contact') || q.includes('telefono') || q.includes('celular') || q.includes('redes') || q.includes('instagram') || q.includes('facebook') || q.includes('youtube') || q.includes('escribir')) {
+        response = botKnowledge.contacto;
+      }
+      // 11. CONOCE A JESÚS / SALVACIÓN
+      else if (q.includes('jesus') || q.includes('jesucristo') || q.includes('salvac') || q.includes('volver a dios') || q.includes('arrepent') || q.includes('conocer a jesus')) {
+        response = botKnowledge.jesus;
+      }
+      // 12. DOCTRINA / EN QUÉ CREEMOS
+      else if (q.includes('doctrina') || q.includes('cree') || q.includes('en que creemos') || q.includes('bautismo') || q.includes('unicidad') || q.includes('espiritu santo') || q.includes('fe')) {
+        response = botKnowledge.doctrina;
+      }
+      // 13. FALLBACK
+      else {
+        response = `¡Gracias por escribirnos! Puedes consultar sobre nuestra <strong>agenda y actividades</strong>, <strong>horarios de cultos</strong>, <strong>células barriales</strong>, <strong>donaciones</strong>, <strong>material gratuito</strong>, <strong>peticiones de oración</strong>, <strong>nuestro pastor</strong> o <strong>ubicación</strong>.<br><br>También puedes escribirnos directamente por WhatsApp:<br><a href="https://wa.me/59897432948" target="_blank" class="chat-link-cta"><i class="fa-brands fa-whatsapp"></i> HABLAR POR WHATSAPP →</a>`;
       }
 
       setTimeout(() => {
         addMessage(response, 'bot');
-      }, 300);
+      }, 250);
     };
 
+    // Binding para chips de sugerencias rápidas
     document.querySelectorAll('.chat-chip').forEach(chip => {
       chip.addEventListener('click', () => {
-        const query = chip.getAttribute('data-query');
-        addMessage(chip.textContent, 'user');
+        const query = chip.getAttribute('data-query') || chip.textContent.trim();
+        addMessage(query, 'user');
         processBotQuery(query);
       });
     });

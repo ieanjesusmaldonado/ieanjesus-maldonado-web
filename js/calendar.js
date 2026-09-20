@@ -2,8 +2,9 @@
  * =============================================================================
  * IEANJESÚS Maldonado - Motor de Agenda y Calendario Mensual
  * =============================================================================
- * Maneja la visualización interactiva del calendario mensual, la lista cronológica
- * de la programación completa y la interacción con el modal de suscripción.
+ * Maneja la visualización interactiva del calendario mensual, la vista dinámica de
+ * próximos eventos o actividades por día seleccionado, la programación anual
+ * organizada en acordeones por mes y la sincronización con iCalendar.
  * =============================================================================
  */
 
@@ -13,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const prevMonthBtn = document.getElementById('calendar-prev-btn');
   const nextMonthBtn = document.getElementById('calendar-next-btn');
   const upcomingEventsList = document.getElementById('upcoming-events-list');
+  const resetDayBtn = document.getElementById('agenda-reset-day-btn');
   const eventDetailModal = document.getElementById('event-detail-modal');
   const eventModalClose = document.getElementById('event-modal-close');
 
@@ -30,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentDate = new Date();
   let selectedYear = currentDate.getFullYear();
   let selectedMonth = currentDate.getMonth(); // 0-11
+  let activeSelectedDate = null;
 
   const MONTH_NAMES = [
     'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
@@ -60,30 +63,71 @@ document.addEventListener('DOMContentLoaded', () => {
     return `${dayName} ${day} de ${MONTH_NAMES[month]} de ${year}`;
   };
 
-  // Renderizar Lista de Próximas Actividades (Calendario Completo)
-  const renderUpcomingEvents = () => {
-    const events = window.ieanDataStore ? window.ieanDataStore.getEvents(true) : [];
+  // Renderizar Panel de Próximas Actividades / Eventos del Día Seleccionado
+  const renderUpcomingEvents = (filterDate = null) => {
+    activeSelectedDate = filterDate;
+    const allEvents = window.ieanDataStore ? window.ieanDataStore.getEvents(true) : [];
     upcomingEventsList.innerHTML = '';
 
-    if (events.length === 0) {
-      upcomingEventsList.innerHTML = `
-        <div class="empty-agenda-state">
-          <i class="fa-regular fa-calendar-check" style="font-size: 2rem; color: var(--ink-muted); margin-bottom: 0.75rem;"></i>
-          <p style="color: var(--ink-secondary); font-size: 0.95rem;">No hay actividades públicas programadas para los próximos días.</p>
-          <span style="font-size: 0.82rem; color: var(--ink-muted);">Consulta periódicamente o contáctanos para más información.</span>
-        </div>
-      `;
-      return;
+    const panelEyebrow = document.getElementById('agenda-panel-eyebrow');
+    const panelTitle = document.getElementById('agenda-panel-title');
+    const resetBtn = document.getElementById('agenda-reset-day-btn');
+
+    let displayEvents = [];
+
+    if (filterDate) {
+      if (panelEyebrow) panelEyebrow.textContent = 'ACTIVIDADES DEL DÍA';
+      if (panelTitle) panelTitle.textContent = formatEventDate(filterDate);
+      if (resetBtn) resetBtn.style.display = 'inline-flex';
+
+      displayEvents = allEvents.filter(e => {
+        if (!e.public) return false;
+        if (e.date === filterDate) return true;
+        if (e.date.includes(' a ')) {
+          const [sDate, eDate] = e.date.split(' a ').map(s => s.trim());
+          return filterDate >= sDate && filterDate <= eDate;
+        }
+        return false;
+      });
+
+      if (displayEvents.length === 0) {
+        upcomingEventsList.innerHTML = `
+          <div class="empty-agenda-state" style="background: var(--bg-cream-card); border: 1px dashed var(--border-card); border-radius: var(--radius-sm); padding: 2.25rem 1.5rem; text-align: center;">
+            <i class="fa-regular fa-calendar" style="font-size: 2rem; color: var(--ink-muted); margin-bottom: 0.75rem; display: block;"></i>
+            <p style="color: var(--ink-secondary); font-size: 0.95rem; margin-bottom: 0.35rem; font-weight: 600;">No hay actividades programadas para este día.</p>
+            <span style="font-size: 0.82rem; color: var(--ink-muted);">Selecciona otro día en el calendario o haz clic en «Ver próximos» para volver.</span>
+          </div>
+        `;
+        return;
+      }
+    } else {
+      if (panelEyebrow) panelEyebrow.textContent = 'AGENDA DESTACADA';
+      if (panelTitle) panelTitle.textContent = 'Próximos Eventos';
+      if (resetBtn) resetBtn.style.display = 'none';
+
+      // Mostrar únicamente los 3 próximos eventos como vista inicial compacta
+      displayEvents = allEvents.slice(0, 3);
+
+      if (displayEvents.length === 0) {
+        upcomingEventsList.innerHTML = `
+          <div class="empty-agenda-state" style="background: var(--bg-cream-card); border: 1px dashed var(--border-card); border-radius: var(--radius-sm); padding: 2.25rem 1.5rem; text-align: center;">
+            <i class="fa-regular fa-calendar-check" style="font-size: 2rem; color: var(--ink-muted); margin-bottom: 0.75rem; display: block;"></i>
+            <p style="color: var(--ink-secondary); font-size: 0.95rem; margin-bottom: 0.35rem; font-weight: 600;">No hay actividades públicas programadas para los próximos días.</p>
+            <span style="font-size: 0.82rem; color: var(--ink-muted);">Consulta la programación completa debajo o contáctanos.</span>
+          </div>
+        `;
+        return;
+      }
     }
 
-    events.forEach(evt => {
+    displayEvents.forEach(evt => {
       let dayNum = '';
       let monthShort = '';
 
       if (evt.date.includes(' a ')) {
-        const startParts = evt.date.split(' a ')[0].trim().split('-');
-        dayNum = startParts[2] || '';
-        const monthNum = parseInt(startParts[1], 10) - 1;
+        const [p1, p2] = evt.date.split(' a ').map(s => s.trim().split('-'));
+        dayNum = `${parseInt(p1[2], 10)}-${parseInt(p2[2], 10)}`;
+        const monthNum = parseInt(p1[1], 10) - 1;
         monthShort = MONTH_NAMES[monthNum] ? MONTH_NAMES[monthNum].slice(0, 3).toUpperCase() : '';
       } else {
         const parts = evt.date.split('-');
@@ -101,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       card.innerHTML = `
         <div class="agenda-date-badge">
-          <span class="agenda-date-day">${dayNum}</span>
+          <span class="agenda-date-day" style="${dayNum.length > 2 ? 'font-size: 1.05rem;' : ''}">${dayNum}</span>
           <span class="agenda-date-month">${monthShort}</span>
         </div>
         <div class="agenda-event-info">
@@ -117,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
         <div class="agenda-event-action">
-          <button class="btn-editorial btn-dark btn-view-event" data-id="${evt.id}" style="font-size: 0.78rem; padding: 0.5rem 0.9rem;">
+          <button type="button" class="btn-editorial btn-dark btn-view-event" data-id="${evt.id}" style="font-size: 0.78rem; padding: 0.5rem 0.9rem;">
             Ver detalle <i class="fa-solid fa-arrow-right"></i>
           </button>
         </div>
@@ -177,9 +221,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const isToday = isCurrentMonthYear && day === todayDateNum;
       const hasEvents = dayEvents.length > 0;
+      const isSelected = activeSelectedDate === fullDateStr;
 
       const cell = document.createElement('div');
-      cell.className = `calendar-day-cell current-month-cell ${isToday ? 'is-today' : ''} ${hasEvents ? 'has-events' : ''}`;
+      cell.className = `calendar-day-cell current-month-cell ${isToday ? 'is-today' : ''} ${hasEvents ? 'has-events' : ''} ${isSelected ? 'selected-day' : ''}`;
       
       let eventsDots = '';
       if (hasEvents) {
@@ -196,14 +241,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (hasEvents) {
         cell.setAttribute('title', dayEvents.map(e => `${e.time ? e.time + ': ' : ''}${e.title}`).join('\n'));
-        cell.addEventListener('click', () => {
-          if (dayEvents.length === 1) {
-            openEventModal(dayEvents[0]);
-          } else {
-            openMultiEventModal(fullDateStr, dayEvents);
-          }
-        });
       }
+
+      cell.addEventListener('click', () => {
+        // Marcar celda seleccionada
+        document.querySelectorAll('.calendar-day-cell.selected-day').forEach(el => el.classList.remove('selected-day'));
+        cell.classList.add('selected-day');
+
+        // Mostrar eventos de ese día en el panel derecho
+        renderUpcomingEvents(fullDateStr);
+
+        // En móvil desplazar la vista suavemente hacia el panel para ver los resultados
+        if (window.innerWidth <= 768) {
+          const panelHeader = document.querySelector('.agenda-panel-header');
+          if (panelHeader) {
+            panelHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
 
       calendarDaysContainer.appendChild(cell);
     }
@@ -218,6 +273,155 @@ document.addEventListener('DOMContentLoaded', () => {
       calendarDaysContainer.appendChild(cell);
     }
   };
+
+  // Renderizar Sección: Ver Programación Completa (Acordeones por Mes)
+  const renderMonthlyAccordion = () => {
+    const accordionContainer = document.getElementById('monthly-accordion');
+    if (!accordionContainer) return;
+
+    const allEvents = window.ieanDataStore ? window.ieanDataStore.getEvents(true) : [];
+    accordionContainer.innerHTML = '';
+
+    // Agrupar eventos por mes
+    const monthsMap = {
+      '2026-09': { name: 'SEPTIEMBRE 2026', events: [] },
+      '2026-10': { name: 'OCTUBRE 2026', events: [] },
+      '2026-11': { name: 'NOVIEMBRE 2026', events: [] },
+      '2026-12': { name: 'DICIEMBRE 2026', events: [] }
+    };
+
+    allEvents.forEach(evt => {
+      let mKey = '';
+      if (evt.date.includes(' a ')) {
+        mKey = evt.date.split(' a ')[0].trim().slice(0, 7);
+      } else {
+        mKey = evt.date.slice(0, 7);
+      }
+
+      if (monthsMap[mKey]) {
+        monthsMap[mKey].events.push(evt);
+      } else {
+        if (!monthsMap[mKey]) {
+          const [y, m] = mKey.split('-');
+          const mName = MONTH_NAMES[parseInt(m, 10) - 1] || 'MES';
+          monthsMap[mKey] = { name: `${mName.toUpperCase()} ${y}`, events: [] };
+        }
+        monthsMap[mKey].events.push(evt);
+      }
+    });
+
+    Object.keys(monthsMap).sort().forEach(mKey => {
+      const monthData = monthsMap[mKey];
+      if (monthData.events.length === 0) return;
+
+      const item = document.createElement('div');
+      item.className = 'month-accordion-item';
+      item.setAttribute('data-month', mKey);
+
+      const count = monthData.events.length;
+      const countLabel = count === 1 ? '1 actividad' : `${count} actividades`;
+
+      const header = document.createElement('button');
+      header.type = 'button';
+      header.className = 'month-accordion-header';
+      header.setAttribute('aria-expanded', 'false');
+      header.innerHTML = `
+        <div class="month-accordion-title-group">
+          <span class="month-accordion-name">${monthData.name}</span>
+          <span class="month-accordion-badge">${countLabel}</span>
+        </div>
+        <span class="month-accordion-icon">+</span>
+      `;
+
+      const body = document.createElement('div');
+      body.className = 'month-accordion-body';
+      body.style.display = 'none';
+
+      const grid = document.createElement('div');
+      grid.className = 'month-events-compact-grid';
+
+      monthData.events.forEach(evt => {
+        let dayNum = '';
+        let monthShort = '';
+
+        if (evt.date.includes(' a ')) {
+          const [p1, p2] = evt.date.split(' a ').map(s => s.trim().split('-'));
+          dayNum = `${parseInt(p1[2], 10)}-${parseInt(p2[2], 10)}`;
+          const monthNum = parseInt(p1[1], 10) - 1;
+          monthShort = MONTH_NAMES[monthNum] ? MONTH_NAMES[monthNum].slice(0, 3).toUpperCase() : '';
+        } else {
+          const parts = evt.date.split('-');
+          dayNum = parts[2] || '';
+          const monthNum = parseInt(parts[1], 10) - 1;
+          monthShort = MONTH_NAMES[monthNum] ? MONTH_NAMES[monthNum].slice(0, 3).toUpperCase() : '';
+        }
+
+        const timeHtml = evt.time 
+          ? `<span><i class="fa-regular fa-clock"></i> ${evt.time}</span>` 
+          : `<span><i class="fa-regular fa-calendar"></i> Fecha completa</span>`;
+
+        const row = document.createElement('div');
+        row.className = `compact-event-row ${evt.featured ? 'featured' : ''}`;
+        row.innerHTML = `
+          <div class="compact-event-date">
+            <span class="compact-event-day" style="${dayNum.length > 2 ? 'font-size: 0.95rem;' : ''}">${dayNum}</span>
+            <span class="compact-event-mon">${monthShort}</span>
+          </div>
+          <div class="compact-event-main">
+            <div class="compact-event-header">
+              <h4 class="compact-event-title">${evt.title}</h4>
+              <span class="compact-event-category">${evt.category || 'Actividad'}</span>
+              ${evt.featured ? '<span class="compact-event-featured-badge">DESTACADO</span>' : ''}
+            </div>
+            <div class="compact-event-meta">
+              ${timeHtml}
+              <span><i class="fa-solid fa-location-dot"></i> ${evt.location || 'Sede Central'}</span>
+            </div>
+          </div>
+          <button type="button" class="compact-event-detail-btn" data-id="${evt.id}">
+            Ver detalle →
+          </button>
+        `;
+
+        row.querySelector('.compact-event-detail-btn').addEventListener('click', (e) => {
+          e.stopPropagation();
+          openEventModal(evt);
+        });
+
+        grid.appendChild(row);
+      });
+
+      body.appendChild(grid);
+      item.appendChild(header);
+      item.appendChild(body);
+
+      // Evento de apertura/cierre de cada mes
+      header.addEventListener('click', () => {
+        const isOpen = item.classList.contains('is-open');
+        if (isOpen) {
+          item.classList.remove('is-open');
+          body.style.display = 'none';
+          header.setAttribute('aria-expanded', 'false');
+          header.querySelector('.month-accordion-icon').textContent = '+';
+        } else {
+          item.classList.add('is-open');
+          body.style.display = 'block';
+          header.setAttribute('aria-expanded', 'true');
+          header.querySelector('.month-accordion-icon').textContent = '−';
+        }
+      });
+
+      accordionContainer.appendChild(item);
+    });
+  };
+
+  // Botón de restablecer filtro de día ("Ver próximos")
+  if (resetDayBtn) {
+    resetDayBtn.addEventListener('click', () => {
+      document.querySelectorAll('.calendar-day-cell.selected-day').forEach(el => el.classList.remove('selected-day'));
+      renderUpcomingEvents(null);
+    });
+  }
 
   // Modal de Detalle de Evento Individual
   const openEventModal = (event) => {
@@ -242,30 +446,6 @@ document.addEventListener('DOMContentLoaded', () => {
       waBtn.href = `https://wa.me/59897432948?text=${encodeURIComponent(msg)}`;
     }
 
-    eventDetailModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  };
-
-  // Modal cuando hay múltiples eventos el mismo día
-  const openMultiEventModal = (dateStr, eventsList) => {
-    if (!eventDetailModal) return;
-    document.getElementById('modal-event-cat').textContent = `${eventsList.length} ACTIVIDADES PROGRAMADAS`;
-    document.getElementById('modal-event-title').textContent = `Actividades del ${formatEventDate(dateStr)}`;
-    document.getElementById('modal-event-date').textContent = formatEventDate(dateStr);
-    document.getElementById('modal-event-time').textContent = 'Múltiples horarios / actividades';
-    document.getElementById('modal-event-location').textContent = 'IEANJESÚS Maldonado';
-
-    const descHtml = eventsList.map(e => `
-      <div style="margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-fine);">
-        <strong style="color: var(--ink-primary); font-size: 1.05rem;">${e.title}</strong><br>
-        <span style="font-size: 0.85rem; color: var(--accent-coral); font-weight: 600;">
-          ${e.time ? '🕒 ' + e.time + ' | ' : ''}📍 ${e.location || 'Sede Central IEANJESÚS Maldonado'}
-        </span>
-        <p style="margin-top: 0.4rem; font-size: 0.9rem; color: var(--ink-secondary); line-height: 1.5;">${e.description || ''}</p>
-      </div>
-    `).join('');
-
-    document.getElementById('modal-event-desc').innerHTML = descHtml;
     eventDetailModal.classList.add('active');
     document.body.style.overflow = 'hidden';
   };
@@ -382,7 +562,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Controles de mes
+  // Controles de mes en calendario
   if (prevMonthBtn) {
     prevMonthBtn.addEventListener('click', () => {
       selectedMonth--;
@@ -417,12 +597,14 @@ document.addEventListener('DOMContentLoaded', () => {
   configureSubscriptionLinks();
   renderUpcomingEvents();
   renderCalendar();
+  renderMonthlyAccordion();
 
-  // Suscribirse a cambios en el DataStore si se edita desde el panel
+  // Suscribirse a cambios en el DataStore si se actualiza desde Supabase o el panel
   if (window.ieanDataStore) {
     window.ieanDataStore.subscribe(() => {
-      renderUpcomingEvents();
+      renderUpcomingEvents(activeSelectedDate);
       renderCalendar();
+      renderMonthlyAccordion();
     });
   }
 });
