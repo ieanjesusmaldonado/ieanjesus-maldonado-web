@@ -618,9 +618,9 @@ document.addEventListener('DOMContentLoaded', () => {
         celulaCards.forEach(card => {
           const category = card.getAttribute('data-category');
           if (filter === 'all' || category === filter) {
-            card.style.display = 'flex';
+            card.style.setProperty('display', 'flex', 'important');
           } else {
-            card.style.display = 'none';
+            card.style.setProperty('display', 'none', 'important');
           }
         });
       });
@@ -642,9 +642,9 @@ document.addEventListener('DOMContentLoaded', () => {
         recursoCards.forEach(card => {
           const cat = card.getAttribute('data-category');
           if (filter === 'all' || cat === filter) {
-            card.style.display = 'flex';
+            card.style.setProperty('display', 'flex', 'important');
           } else {
-            card.style.display = 'none';
+            card.style.setProperty('display', 'none', 'important');
           }
         });
       });

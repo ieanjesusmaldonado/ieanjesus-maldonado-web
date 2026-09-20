@@ -477,8 +477,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const iglesiaWebcal = iglesiaHttps.replace(/^https?:\/\//i, 'webcal://');
     const completoWebcal = completoHttps.replace(/^https?:\/\//i, 'webcal://');
 
-    const iglesiaGoogle = `https://calendar.google.com/calendar/r?cid=${encodeURIComponent(iglesiaHttps)}`;
-    const completoGoogle = `https://calendar.google.com/calendar/r?cid=${encodeURIComponent(completoHttps)}`;
+    const iglesiaGoogle = `https://calendar.google.com/calendar/render?cid=${encodeURIComponent(iglesiaHttps)}`;
+    const completoGoogle = `https://calendar.google.com/calendar/render?cid=${encodeURIComponent(completoHttps)}`;
 
     const subIglesiaGoogle = document.getElementById('sub-iglesia-google');
     if (subIglesiaGoogle) subIglesiaGoogle.href = iglesiaGoogle;

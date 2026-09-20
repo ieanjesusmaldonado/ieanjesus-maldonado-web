@@ -136,6 +136,7 @@ function generateICS(events) {
     'PRODID:-//IEANJESUS Maldonado//Calendario de la Iglesia//ES',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
+    'NAME:IEANJESÚS Maldonado — Calendario de la Iglesia',
     'X-WR-CALNAME:IEANJESÚS Maldonado — Calendario de la Iglesia',
     'X-WR-CALDESC:Principales actividades, cultos especiales y fechas destacadas de IEANJESÚS Maldonado.',
     'X-WR-TIMEZONE:America/Montevideo',
