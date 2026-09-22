@@ -465,8 +465,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- MODAL DE SUSCRIPCIÓN ---
-  const GOOGLE_CALENDAR_ID_IGLESIA = '84c6e2cc672c586703b51cb4d67e42452f436165960a1f9d550754083163b3f1@group.calendar.google.com';
-  const GOOGLE_CALENDAR_ID_COMPLETO = 'ea5b32b0812fb107670e36027c049df7a434996d1872737c895ab02a296b73dd@group.calendar.google.com';
+  const GOOGLE_CALENDAR_URL_IGLESIA = 'https://calendar.google.com/calendar/u/0?cid=ODRjNmUyY2M2NzJjNTg2NzAzYjUxY2I0ZDY3ZTQyNDUyZjQzNjE2NTk2MGExZjlkNTUwNzU0MDgzMTYzYjNmMUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t';
+  const GOOGLE_CALENDAR_URL_COMPLETO = 'https://calendar.google.com/calendar/u/0?cid=ZWE1YjMyYjA4MTJmYjEwNzY3MGUzNjAyN2MwNDlkZjdhNDM0OTk2ZDE4NzI3MzdjODk1YWIwMmEyOTZiNzNkZEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t';
 
   const configureSubscriptionLinks = () => {
     let baseOrigin = window.location.origin;
@@ -480,12 +480,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const iglesiaWebcal = iglesiaHttps.replace(/^https?:\/\//i, 'webcal://');
     const completoWebcal = completoHttps.replace(/^https?:\/\//i, 'webcal://');
 
-    // Enlaces a Calendarios Nativos de Google Calendar
-    const iglesiaGoogle = `https://calendar.google.com/calendar/render?cid=${encodeURIComponent(GOOGLE_CALENDAR_ID_IGLESIA)}`;
-    const completoGoogle = `https://calendar.google.com/calendar/render?cid=${encodeURIComponent(GOOGLE_CALENDAR_ID_COMPLETO)}`;
-
+    // Enlaces directos a Google Calendar
     const subIglesiaGoogle = document.getElementById('sub-iglesia-google');
-    if (subIglesiaGoogle) subIglesiaGoogle.href = iglesiaGoogle;
+    if (subIglesiaGoogle) subIglesiaGoogle.href = GOOGLE_CALENDAR_URL_IGLESIA;
 
     const subIglesiaApple = document.getElementById('sub-iglesia-apple');
     if (subIglesiaApple) subIglesiaApple.href = iglesiaWebcal;
@@ -494,7 +491,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (subIglesiaCopy) subIglesiaCopy.setAttribute('data-url', iglesiaHttps);
 
     const subCompletoGoogle = document.getElementById('sub-completo-google');
-    if (subCompletoGoogle) subCompletoGoogle.href = completoGoogle;
+    if (subCompletoGoogle) subCompletoGoogle.href = GOOGLE_CALENDAR_URL_COMPLETO;
 
     const subCompletoApple = document.getElementById('sub-completo-apple');
     if (subCompletoApple) subCompletoApple.href = completoWebcal;
