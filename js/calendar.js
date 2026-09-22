@@ -465,6 +465,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- MODAL DE SUSCRIPCIÓN ---
+  const GOOGLE_CALENDAR_ID_IGLESIA = '84c6e2cc672c586703b51cb4d67e42452f436165960a1f9d550754083163b3f1@group.calendar.google.com';
+  const GOOGLE_CALENDAR_ID_COMPLETO = 'ea5b32b0812fb107670e36027c049df7a434996d1872737c895ab02a296b73dd@group.calendar.google.com';
+
   const configureSubscriptionLinks = () => {
     let baseOrigin = window.location.origin;
     if (!baseOrigin || baseOrigin === 'null' || baseOrigin.startsWith('file:')) {
@@ -477,8 +480,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const iglesiaWebcal = iglesiaHttps.replace(/^https?:\/\//i, 'webcal://');
     const completoWebcal = completoHttps.replace(/^https?:\/\//i, 'webcal://');
 
-    const iglesiaGoogle = `https://calendar.google.com/calendar/render?cid=${encodeURIComponent(iglesiaWebcal)}`;
-    const completoGoogle = `https://calendar.google.com/calendar/render?cid=${encodeURIComponent(completoWebcal)}`;
+    // Enlaces a Calendarios Nativos de Google Calendar
+    const iglesiaGoogle = `https://calendar.google.com/calendar/render?cid=${encodeURIComponent(GOOGLE_CALENDAR_ID_IGLESIA)}`;
+    const completoGoogle = `https://calendar.google.com/calendar/render?cid=${encodeURIComponent(GOOGLE_CALENDAR_ID_COMPLETO)}`;
 
     const subIglesiaGoogle = document.getElementById('sub-iglesia-google');
     if (subIglesiaGoogle) subIglesiaGoogle.href = iglesiaGoogle;

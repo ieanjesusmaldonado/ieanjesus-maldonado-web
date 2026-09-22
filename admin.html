@@ -201,6 +201,33 @@
             </tbody>
           </table>
         </div>
+
+        <!-- Sección Desplegable de Eventos Pasados -->
+        <div class="admin-past-events-section" id="admin-past-events-wrapper" style="display: none; margin-top: 1.25rem;">
+          <button type="button" class="admin-past-toggle-btn" id="admin-past-events-toggle" aria-expanded="false">
+            <span class="past-toggle-icon" id="admin-past-toggle-icon">▸</span>
+            <span id="admin-past-toggle-text">Mostrar eventos pasados · 0</span>
+          </button>
+          
+          <div class="admin-table-wrap" id="admin-past-events-content" style="display: none; margin-top: 0.75rem;">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Título</th>
+                  <th>Fecha</th>
+                  <th>Hora</th>
+                  <th>Categoría</th>
+                  <th>Suscripción</th>
+                  <th>Estado</th>
+                  <th style="text-align: right;">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="admin-past-agenda-list">
+                <!-- Llenado dinámico -->
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
 
       <!-- ==========================================

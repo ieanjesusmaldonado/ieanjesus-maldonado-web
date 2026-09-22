@@ -232,45 +232,155 @@ document.addEventListener('DOMContentLoaded', async () => {
   // 1. MÓDULO AGENDA (EVENTOS)
   // =========================================================================
   const agendaListEl = document.getElementById('admin-agenda-list');
+  const pastEventsWrapper = document.getElementById('admin-past-events-wrapper');
+  const pastEventsToggleBtn = document.getElementById('admin-past-events-toggle');
+  const pastEventsToggleIcon = document.getElementById('admin-past-toggle-icon');
+  const pastEventsToggleText = document.getElementById('admin-past-toggle-text');
+  const pastEventsContent = document.getElementById('admin-past-events-content');
+  const pastAgendaListEl = document.getElementById('admin-past-agenda-list');
   const newEventBtn = document.getElementById('btn-new-event');
   const eventModal = document.getElementById('admin-event-modal');
   const eventForm = document.getElementById('admin-event-form');
   const eventModalClose = document.getElementById('admin-event-modal-close');
   const eventModalTitle = document.getElementById('admin-event-modal-title');
 
+  let isPastEventsOpen = false;
+
+  // Obtener fecha actual en zona horaria oficial de Uruguay (America/Montevideo)
+  function getTodayUruguayStr() {
+    try {
+      const formatter = new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'America/Montevideo',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      });
+      return formatter.format(new Date()); // Formato YYYY-MM-DD
+    } catch (e) {
+      const d = new Date();
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${y}-${m}-${day}`;
+    }
+  }
+
+  // Determinar si un evento ya ocurrió respecto a la fecha actual de Uruguay
+  function isEventPast(evt, todayStr) {
+    if (!evt.date) return false;
+    if (evt.date.includes(' a ')) {
+      const endDate = evt.date.split(' a ')[1].trim();
+      return endDate < todayStr;
+    }
+    return evt.date < todayStr;
+  }
+
+  // Generar fila HTML reutilizable para eventos actuales o pasados
+  function createAdminEventRow(evt) {
+    const row = document.createElement('tr');
+    const churchCalBadge = evt.includeChurchCalendar 
+      ? '<span class="status-badge-ok" style="font-size:0.75rem; background:rgba(30,77,56,0.12); color:var(--green-inst);">Iglesia + Completo</span>' 
+      : '<span class="status-badge-off" style="font-size:0.75rem;">Solo Completo</span>';
+
+    row.innerHTML = `
+      <td><strong>${evt.title}</strong></td>
+      <td>${evt.date}</td>
+      <td>${evt.time || '<span style="color:var(--ink-muted); font-size:0.8rem;">-</span>'}</td>
+      <td><span class="admin-table-badge">${evt.category || 'General'}</span></td>
+      <td>${churchCalBadge}</td>
+      <td>${evt.public ? '<span class="status-badge-ok">Visible</span>' : '<span class="status-badge-off">Oculto</span>'}</td>
+      <td class="table-actions-cell">
+        <button class="btn-table-action edit-evt-btn" data-id="${evt.id}" title="Editar"><i class="fa-regular fa-pen-to-square"></i></button>
+        <button class="btn-table-action delete-evt-btn" data-id="${evt.id}" title="Eliminar"><i class="fa-regular fa-trash-can"></i></button>
+      </td>
+    `;
+
+    row.querySelector('.edit-evt-btn').addEventListener('click', () => openEditEventModal(evt.id));
+    row.querySelector('.delete-evt-btn').addEventListener('click', () => deleteEvent(evt.id, evt.title));
+    return row;
+  }
+
+  function updatePastEventsToggleUI(count) {
+    if (!pastEventsToggleBtn) return;
+    if (isPastEventsOpen) {
+      if (pastEventsToggleIcon) pastEventsToggleIcon.textContent = '▾';
+      if (pastEventsToggleText) pastEventsToggleText.textContent = `Ocultar eventos pasados · ${count}`;
+      if (pastEventsContent) pastEventsContent.style.display = 'block';
+      pastEventsToggleBtn.setAttribute('aria-expanded', 'true');
+    } else {
+      if (pastEventsToggleIcon) pastEventsToggleIcon.textContent = '▸';
+      if (pastEventsToggleText) pastEventsToggleText.textContent = `Mostrar eventos pasados · ${count}`;
+      if (pastEventsContent) pastEventsContent.style.display = 'none';
+      pastEventsToggleBtn.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+  if (pastEventsToggleBtn) {
+    pastEventsToggleBtn.addEventListener('click', () => {
+      isPastEventsOpen = !isPastEventsOpen;
+      const allEvents = window.ieanDataStore.getEvents(false) || [];
+      const todayStr = getTodayUruguayStr();
+      const pastCount = allEvents.filter(e => isEventPast(e, todayStr)).length;
+      updatePastEventsToggleUI(pastCount);
+    });
+  }
+
   function renderAdminAgenda() {
     if (!agendaListEl) return;
-    const events = window.ieanDataStore.getEvents(false);
-    agendaListEl.innerHTML = '';
+    const allEvents = window.ieanDataStore.getEvents(false) || [];
+    const todayStr = getTodayUruguayStr();
 
-    if (events.length === 0) {
-      agendaListEl.innerHTML = `<tr><td colspan="7" class="table-empty-td">No hay eventos registrados en la agenda. Presione "Nuevo Evento" para comenzar.</td></tr>`;
-      return;
+    const currentEvents = [];
+    const pastEvents = [];
+
+    allEvents.forEach(evt => {
+      if (isEventPast(evt, todayStr)) {
+        pastEvents.push(evt);
+      } else {
+        currentEvents.push(evt);
+      }
+    });
+
+    // Ordenar actuales y futuros: más próximo → más lejano (ascendente)
+    currentEvents.sort((a, b) => {
+      const dateA = a.date.includes(' a ') ? a.date.split(' a ')[0].trim() : a.date;
+      const dateB = b.date.includes(' a ') ? b.date.split(' a ')[0].trim() : b.date;
+      return dateA > dateB ? 1 : (dateA < dateB ? -1 : 0);
+    });
+
+    // Ordenar pasados: más reciente → más antiguo (descendente)
+    pastEvents.sort((a, b) => {
+      const dateA = a.date.includes(' a ') ? a.date.split(' a ')[0].trim() : a.date;
+      const dateB = b.date.includes(' a ') ? b.date.split(' a ')[0].trim() : b.date;
+      return dateA < dateB ? 1 : (dateA > dateB ? -1 : 0);
+    });
+
+    // Renderizar tabla principal (actuales y futuros)
+    agendaListEl.innerHTML = '';
+    if (currentEvents.length === 0) {
+      agendaListEl.innerHTML = `<tr><td colspan="7" class="table-empty-td">No hay actividades próximas programadas. Presione "Nuevo Evento" para comenzar.</td></tr>`;
+    } else {
+      currentEvents.forEach(evt => {
+        agendaListEl.appendChild(createAdminEventRow(evt));
+      });
     }
 
-    events.forEach(evt => {
-      const row = document.createElement('tr');
-      const churchCalBadge = evt.includeChurchCalendar 
-        ? '<span class="status-badge-ok" style="font-size:0.75rem; background:rgba(30,77,56,0.12); color:var(--green-inst);">Iglesia + Completo</span>' 
-        : '<span class="status-badge-off" style="font-size:0.75rem;">Solo Completo</span>';
+    // Renderizar sección de eventos pasados
+    if (pastEventsWrapper) {
+      if (pastEvents.length === 0) {
+        pastEventsWrapper.style.display = 'none';
+      } else {
+        pastEventsWrapper.style.display = 'block';
+        updatePastEventsToggleUI(pastEvents.length);
 
-      row.innerHTML = `
-        <td><strong>${evt.title}</strong></td>
-        <td>${evt.date}</td>
-        <td>${evt.time || '<span style="color:var(--ink-muted); font-size:0.8rem;">-</span>'}</td>
-        <td><span class="admin-table-badge">${evt.category || 'General'}</span></td>
-        <td>${churchCalBadge}</td>
-        <td>${evt.public ? '<span class="status-badge-ok">Visible</span>' : '<span class="status-badge-off">Oculto</span>'}</td>
-        <td class="table-actions-cell">
-          <button class="btn-table-action edit-evt-btn" data-id="${evt.id}" title="Editar"><i class="fa-regular fa-pen-to-square"></i></button>
-          <button class="btn-table-action delete-evt-btn" data-id="${evt.id}" title="Eliminar"><i class="fa-regular fa-trash-can"></i></button>
-        </td>
-      `;
-
-      row.querySelector('.edit-evt-btn').addEventListener('click', () => openEditEventModal(evt.id));
-      row.querySelector('.delete-evt-btn').addEventListener('click', () => deleteEvent(evt.id, evt.title));
-      agendaListEl.appendChild(row);
-    });
+        if (pastAgendaListEl) {
+          pastAgendaListEl.innerHTML = '';
+          pastEvents.forEach(evt => {
+            pastAgendaListEl.appendChild(createAdminEventRow(evt));
+          });
+        }
+      }
+    }
   }
 
   function openEditEventModal(id = null) {

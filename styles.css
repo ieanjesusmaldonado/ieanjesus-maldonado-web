@@ -4933,6 +4933,39 @@ img {
   min-width: 120px;
 }
 
+.admin-past-events-section {
+  margin-top: 1.25rem;
+}
+
+.admin-past-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-cream-card);
+  border: 1px dashed var(--border-card);
+  padding: 0.65rem 1.15rem;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  text-align: left;
+}
+
+.admin-past-toggle-btn:hover {
+  background: var(--bg-cream);
+  border-color: var(--ink-muted);
+  color: var(--ink-primary);
+}
+
+.admin-past-toggle-btn .past-toggle-icon {
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+}
+
 .btn-table-action {
   display: inline-flex;
   align-items: center;
