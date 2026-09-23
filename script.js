@@ -603,8 +603,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Helper de escape para atributos y texto HTML seguro
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function escapeAttr(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
   // 7. FILTRADO DE CÉLULAS EN CELULAS.HTML & HOMEPAGE
-  const filterTabs = document.querySelectorAll('.filter-tab-btn');
+  const filterTabs = document.querySelectorAll('.filter-tab-btn:not(.recurso-filter-btn)');
   const celulaCards = document.querySelectorAll('.celula-card-editorial');
 
   if (filterTabs.length > 0 && celulaCards.length > 0) {
@@ -627,26 +645,170 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 8. FILTRADO DE MATERIAL GRATUITO EN RECURSOS.HTML
-  const recursoFilterBtns = document.querySelectorAll('.recurso-filter-btn');
-  const recursoCards = document.querySelectorAll('.recurso-card-item');
+  // 7.1 SINCRONIZACIÓN DINÁMICA DE CÉLULAS DESDE DATASTORE
+  const syncCellsFromStore = () => {
+    if (!window.ieanDataStore) return;
+    const cells = window.ieanDataStore.getCells(false);
+    if (!cells || cells.length === 0) return;
 
-  if (recursoFilterBtns.length > 0 && recursoCards.length > 0) {
+    const cards = document.querySelectorAll('.celula-card-editorial');
+    if (cards.length === 0) return;
+
+    cards.forEach(card => {
+      const cellId = card.getAttribute('data-cell-id');
+      if (!cellId) return;
+      const cell = cells.find(c => c.id === cellId);
+      if (!cell) return;
+
+      if (cell.visible === false) {
+        card.style.setProperty('display', 'none', 'important');
+      } else {
+        card.style.removeProperty('display');
+        const nameEl = card.querySelector('.celula-name');
+        const badgeEl = card.querySelector('.celula-badge');
+        const metaItems = card.querySelectorAll('.celula-meta-list li');
+        const waBtn = card.querySelector('.btn-whatsapp, .btn-whatsapp-editorial');
+
+        if (nameEl) nameEl.textContent = cell.name;
+        if (badgeEl) badgeEl.textContent = `${cell.day.toUpperCase()} · ${cell.time.toUpperCase()}`;
+        if (metaItems.length >= 2) {
+          metaItems[0].innerHTML = `<i class="fa-regular fa-clock"></i> ${cell.day} a las ${cell.time}`;
+          metaItems[1].innerHTML = `<i class="fa-solid fa-location-dot"></i> ${cell.address || cell.zone}`;
+        }
+        if (waBtn && cell.whatsappUrl) {
+          waBtn.href = cell.whatsappUrl;
+        }
+      }
+    });
+  };
+
+  // 8. RENDERIZADO DINÁMICO DE MATERIAL GRATUITO EN RECURSOS.HTML
+  let activeRecursoFilter = 'all';
+
+  function getRecursoBadgeHtml(fileType) {
+    const type = (fileType || 'PDF').toUpperCase();
+    if (type.includes('PDF')) {
+      return `<i class="fa-regular fa-file-pdf" style="color: #E53935;"></i> ${escapeHtml(type)}`;
+    }
+    if (type.includes('PRESENTAC') || type.includes('PPT')) {
+      return `<i class="fa-regular fa-file-powerpoint" style="color: #E64A19;"></i> ${escapeHtml(type)}`;
+    }
+    if (type.includes('DOC') || type.includes('TEXTO') || type.includes('DOCUMENTO')) {
+      return `<i class="fa-regular fa-file-lines" style="color: #1976D2;"></i> ${escapeHtml(type)}`;
+    }
+    if (type.includes('AUDIO') || type.includes('MP3')) {
+      return `<i class="fa-regular fa-file-audio" style="color: #8E24AA;"></i> ${escapeHtml(type)}`;
+    }
+    if (type.includes('VIDEO') || type.includes('MP4')) {
+      return `<i class="fa-regular fa-file-video" style="color: #D32F2F;"></i> ${escapeHtml(type)}`;
+    }
+    if (type.includes('FOLLETO')) {
+      return `<i class="fa-regular fa-file-pdf" style="color: #E53935;"></i> ${escapeHtml(type)}`;
+    }
+    if (type.includes('ENLACE') || type.includes('WEB')) {
+      return `<i class="fa-solid fa-link" style="color: #00897B;"></i> ${escapeHtml(type)}`;
+    }
+    return `<i class="fa-regular fa-file" style="color: #546E7A;"></i> ${escapeHtml(type)}`;
+  }
+
+  function getRecursoCtaInfo(url, fileType) {
+    if (!url || url.trim() === '' || url === '#') {
+      return {
+        href: 'https://wa.me/59897432948?text=Hola,%20quisiera%20solicitar%20material%20bíblico%20de%20IEANJESÚS',
+        label: 'SOLICITAR POR WHATSAPP',
+        icon: 'fa-brands fa-whatsapp',
+        target: '_blank'
+      };
+    }
+    const cleanUrl = url.trim();
+    const isWa = cleanUrl.includes('wa.me') || cleanUrl.includes('whatsapp.com');
+    const isDrive = cleanUrl.includes('drive.google.com') || cleanUrl.includes('docs.google.com');
+    const isExternal = cleanUrl.startsWith('http://') || cleanUrl.startsWith('https://');
+
+    if (isWa) {
+      return {
+        href: cleanUrl,
+        label: 'SOLICITAR POR WHATSAPP',
+        icon: 'fa-brands fa-whatsapp',
+        target: '_blank'
+      };
+    }
+    if (cleanUrl.startsWith('nosotros.html')) {
+      return {
+        href: cleanUrl,
+        label: 'LEER EN LÍNEA',
+        icon: 'fa-solid fa-arrow-right',
+        target: '_self'
+      };
+    }
+    if (isDrive) {
+      return {
+        href: cleanUrl,
+        label: 'VER EN GOOGLE DRIVE',
+        icon: 'fa-solid fa-arrow-up-right-from-square',
+        target: '_blank'
+      };
+    }
+    return {
+      href: cleanUrl,
+      label: 'DESCARGAR / VER',
+      icon: 'fa-solid fa-arrow-up-right-from-square',
+      target: isExternal ? '_blank' : '_self'
+    };
+  }
+
+  const renderPublicResources = () => {
+    const recursosGrid = document.getElementById('recursos-grid');
+    if (!recursosGrid || !window.ieanDataStore) return;
+
+    const allResources = window.ieanDataStore.getResources(true, 'all');
+
+    const filtered = (activeRecursoFilter === 'all')
+      ? allResources
+      : allResources.filter(r => r.category && r.category.toLowerCase() === activeRecursoFilter.toLowerCase());
+
+    if (filtered.length === 0) {
+      recursosGrid.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: 3.5rem 1rem; color: var(--ink-secondary); font-size: 0.95rem; background: var(--bg-surface-elevated); border: 1px dashed var(--border-card); border-radius: var(--radius-sm);">
+          <i class="fa-regular fa-folder-open" style="font-size: 2rem; color: var(--green-inst); margin-bottom: 0.75rem; display: block;"></i>
+          No hay materiales disponibles en esta sección por el momento.
+        </div>
+      `;
+      return;
+    }
+
+    recursosGrid.innerHTML = filtered.map(res => {
+      const cta = getRecursoCtaInfo(res.externalUrl, res.fileType);
+      const badgeHtml = getRecursoBadgeHtml(res.fileType);
+      const catLabel = (res.category || 'GENERAL').toUpperCase();
+      const targetAttr = cta.target === '_blank' ? 'target="_blank" rel="noopener noreferrer"' : '';
+
+      return `
+        <div class="recurso-card-item" data-category="${escapeAttr(res.category || '')}">
+          <div class="recurso-top-row">
+            <span class="recurso-cat-tag">${escapeHtml(catLabel)}</span>
+            <span class="recurso-type-badge">${badgeHtml}</span>
+          </div>
+          <h3 class="recurso-item-title">${escapeHtml(res.title || 'Sin Título')}</h3>
+          <p class="recurso-item-desc">${escapeHtml(res.description || '')}</p>
+          <div>
+            <a href="${escapeAttr(cta.href)}" ${targetAttr} class="btn-editorial btn-dark" style="font-size: 0.82rem; padding: 0.55rem 1rem; width: 100%; text-align: center;">
+              ${escapeHtml(cta.label)} <i class="${cta.icon}" style="font-size: 0.75rem;"></i>
+            </a>
+          </div>
+        </div>
+      `;
+    }).join('');
+  };
+
+  const recursoFilterBtns = document.querySelectorAll('.recurso-filter-btn');
+  if (recursoFilterBtns.length > 0) {
     recursoFilterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         recursoFilterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-
-        const filter = btn.getAttribute('data-category');
-
-        recursoCards.forEach(card => {
-          const cat = card.getAttribute('data-category');
-          if (filter === 'all' || cat === filter) {
-            card.style.setProperty('display', 'flex', 'important');
-          } else {
-            card.style.setProperty('display', 'none', 'important');
-          }
-        });
+        activeRecursoFilter = btn.getAttribute('data-category') || 'all';
+        renderPublicResources();
       });
     });
   }
@@ -1286,7 +1448,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const renderAllPublicData = () => {
     checkAndRenderNotices();
     syncSchedulesFromStore();
+    syncCellsFromStore();
     syncBusinessesFromStore();
+    renderPublicResources();
   };
 
   async function initializePublicSite() {
