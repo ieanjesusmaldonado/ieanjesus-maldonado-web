@@ -40,6 +40,9 @@
   <!-- Estilos Editoriales -->
   <link rel="stylesheet" href="styles.css">
 
+  <!-- Google Analytics 4 & Consent Mode v2 -->
+  <script src="js/analytics.js"></script>
+
   <!-- Sistema de Apariencia (Prevención de Flash) -->
   <script>
     (function(){
@@ -336,22 +339,60 @@
           <span class="editorial-eyebrow">04 / ALMACENAMIENTO TÉCNICO</span>
           <h2>Uso de Almacenamiento Local (localStorage)</h2>
           <p>
-            Este sitio web no utiliza cookies de rastreo de terceros. Emplea únicamente la tecnología estándar de <code>localStorage</code> del navegador con fines estrictamente técnicos y de preferencia del usuario:
+            Este sitio web emplea la tecnología estándar de <code>localStorage</code> del navegador con fines técnicos, de personalización y para recordar tus preferencias de privacidad:
           </p>
           <ul style="margin: 0.5rem 0 1.25rem 1.25rem; line-height: 1.7; color: var(--ink-secondary); font-size: 0.95rem;">
+            <li><code>iean_ga_consent</code>: Almacena tu decisión sobre el uso de herramientas de analítica web (<code>granted</code> para aceptar o <code>denied</code> para rechazar).</li>
             <li><code>iean_theme</code>: Guarda tu preferencia de apariencia visual (modo claro u oscuro) si la configuras.</li>
             <li><code>iean_theme_prompt_dismissed</code>: Recuerda si ya cerraste la sugerencia inicial de tema.</li>
             <li><code>iean_notice_closed</code>: Recuerda si cerraste un aviso informativo temporal para no volver a mostrártelo durante tu sesión.</li>
             <li><code>sb-*-auth-token</code>: Utilizado exclusivamente en el Panel Administrativo para mantener la sesión segura de los administradores autorizados.</li>
           </ul>
           <p style="font-size: 0.92rem; color: var(--ink-muted);">
-            Estos datos residen únicamente en tu propio dispositivo, no contienen información identificativa y puedes eliminarlos en cualquier momento borrando el almacenamiento local o historial de tu navegador.
+            Estos datos residen únicamente en tu propio dispositivo, no contienen información personal identificativa y puedes eliminarlos en cualquier momento borrando el almacenamiento local o historial de tu navegador.
           </p>
 
           <hr class="nosotros-divider">
 
-          <!-- 05. Servicios de Terceros e Integraciones -->
-          <span class="editorial-eyebrow">05 / TERCEROS</span>
+          <!-- 05. Analítica Web y Medición Responsable -->
+          <span class="editorial-eyebrow">05 / ANALÍTICA & MEDICIÓN</span>
+          <h2>Herramientas de Analítica Web (Google Analytics 4)</h2>
+          <p>
+            Utilizamos <strong>Google Analytics 4</strong> únicamente con fines estadísticos y de mejora continua de la experiencia de navegación de nuestro sitio web.
+          </p>
+          <p>
+            A través de esta herramienta podemos conocer de forma agregada y anónima:
+          </p>
+          <ul style="margin: 0.5rem 0 1.25rem 1.25rem; line-height: 1.7; color: var(--ink-secondary); font-size: 0.95rem;">
+            <li><strong>Páginas visitadas:</strong> Qué secciones y recursos son más consultados.</li>
+            <li><strong>Interacción con el sitio:</strong> Clics en descargas de material bíblico, enlaces a la agenda o accesos informativos.</li>
+            <li><strong>Tipo general de dispositivo:</strong> Si la visita se realiza desde un teléfono móvil, tablet o computadora de escritorio, así como el navegador utilizado.</li>
+            <li><strong>Origen aproximado del tráfico:</strong> País, ciudad aproximada o página de referencia desde la que se accedió.</li>
+            <li><strong>Duración e interacción de las visitas:</strong> Tiempo aproximado de permanencia en las páginas para optimizar la velocidad y utilidad de los contenidos.</li>
+          </ul>
+
+          <div style="background: var(--bg-surface); border: 1px solid var(--border-card); border-radius: var(--radius-sm); padding: 1.5rem; margin: 1.5rem 0;">
+            <h3 style="font-size: 1.15rem; color: var(--ink-primary); margin-bottom: 0.4rem;">
+              <i class="fa-solid fa-shield-halved" style="color: var(--green-inst); margin-right: 0.4rem;"></i> Privacidad Garantizada y Consentimiento Activo
+            </h3>
+            <p style="font-size: 0.92rem; color: var(--ink-secondary); line-height: 1.6; margin-bottom: 0.75rem;">
+              <strong>Google Consent Mode v2:</strong> Por defecto, el almacenamiento de cookies de analítica (<code>analytics_storage</code>) se encuentra completamente deshabilitado hasta que el usuario decida voluntariamente aceptarlo mediante el banner de privacidad. Si decides rechazarlo, no se habilitará almacenamiento de analítica.
+            </p>
+            <p style="font-size: 0.92rem; color: var(--ink-secondary); line-height: 1.6; margin-bottom: 0.75rem;">
+              <strong>Ausencia de Publicidad:</strong> No utilizamos Google Ads ni funciones de remarketing. Los parámetros <code>ad_storage</code>, <code>ad_user_data</code> y <code>ad_personalization</code> permanecen permanentemente desactivados.
+            </p>
+            <p style="font-size: 0.92rem; color: var(--ink-secondary); line-height: 1.6; margin-bottom: 1rem;">
+              <strong>Información Protegida:</strong> Nunca se transmiten a Google Analytics nombres, números de teléfono, contenido de peticiones de oración, mensajes enviados por formularios ni datos de autenticación. Asimismo, el Panel Administrativo (<code>admin.html</code>) está estrictamente excluido de toda medición.
+            </p>
+            <button type="button" class="btn-editorial btn-dark" onclick="if(window.openCookieSettings)window.openCookieSettings();" style="font-size: 0.85rem; padding: 0.55rem 1.1rem; display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+              <i class="fa-solid fa-sliders"></i> Gestionar Preferencias de Analítica
+            </button>
+          </div>
+
+          <hr class="nosotros-divider">
+
+          <!-- 06. Servicios de Terceros e Integraciones -->
+          <span class="editorial-eyebrow">06 / TERCEROS</span>
           <h2>Servicios de Terceros e Integraciones</h2>
           <p>
             Para brindar ciertas funcionalidades comunitarias, el sitio interactúa con plataformas externas:
@@ -365,8 +406,8 @@
 
           <hr class="nosotros-divider">
 
-          <!-- 06. Derechos del Usuario -->
-          <span class="editorial-eyebrow">06 / TUS DERECHOS</span>
+          <!-- 07. Derechos del Usuario -->
+          <span class="editorial-eyebrow">07 / TUS DERECHOS</span>
           <h2>Tus Derechos sobre tus Datos Personales</h2>
           <p>
             De conformidad con las normativas aplicables sobre protección de datos personales (Ley N° 18.331 de la República Oriental del Uruguay), tienes derecho a consultar, actualizar, rectificar o solicitar la supresión de los datos personales que hayas proporcionado voluntariamente a la iglesia.
@@ -377,8 +418,8 @@
 
           <hr class="nosotros-divider">
 
-          <!-- 07. Actualizaciones -->
-          <span class="editorial-eyebrow">07 / VIGENCIA</span>
+          <!-- 08. Actualizaciones -->
+          <span class="editorial-eyebrow">08 / VIGENCIA</span>
           <h2>Actualizaciones de esta Política</h2>
           <p>
             Esta política de privacidad refleja fielmente el funcionamiento actual de nuestro sitio web y rige a partir de <strong>Septiembre de 2026</strong>. Cualquier cambio futuro en las funcionalidades o servicios será publicado oportunamente en esta misma página.
@@ -450,7 +491,7 @@
       </div>
 
       <div class="footer-bottom-bar">
-        <span>&copy; <span id="current-year">2026</span> IEANJESÚS Maldonado · <a href="privacidad.html" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">Política de Privacidad</a></span>
+        <span>&copy; <span id="current-year">2026</span> IEANJESÚS Maldonado · <a href="privacidad.html" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">Política de Privacidad</a> · <button type="button" onclick="if(window.openCookieSettings)window.openCookieSettings();" style="background:none;border:none;color:inherit;text-decoration:underline;text-underline-offset:2px;cursor:pointer;padding:0;font:inherit;">Preferencias de cookies</button></span>
         <span>MALDONADO, URUGUAY</span>
       </div>
     </div>
